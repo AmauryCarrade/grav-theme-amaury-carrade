@@ -1,0 +1,49 @@
+body.homepage {
+    overflow: hidden;
+    background: url('../images/homepage-background-full.jpg'), url('../images/homepage-background-low.jpg');
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    min-height: 100vh;
+
+    flex-grow: 1;
+    flex-shrink: 0;
+
+    header {
+        display: flex;
+        flex-direction: column;
+
+        padding-top: 14vh;
+
+        width: 100%;
+        min-height: 50vh;
+
+        color: white;
+
+        h1 {
+            width: 100%;
+
+            font-size: 6em;
+            font-family: 'Charlevoix-Light';
+            text-align: center;
+
+            span {
+                font-family: 'Charlevoix-Regular';
+                font-weight: bold;
+            }
+        }
+
+        p {
+            width: 100%;
+
+            font-size: 1.95em;
+            font-family: 'Moon-Regular';
+            font-variant: all-small-caps;
+            letter-spacing: .18em;
+
+            text-align: center;
+        }
+    }
+}
