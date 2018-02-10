@@ -1,6 +1,8 @@
 body.homepage {
     overflow: hidden;
-    background: url('../images/homepage-background-full.jpg'), url('../images/homepage-background-low.jpg');
+    background: url('../images/homepage-background-high.png'), url('../images/homepage-background-low.jpg');
+    background-position: top center;
+    background-size: cover;
 
     display: flex;
     flex-direction: column;
@@ -15,10 +17,10 @@ body.homepage {
         display: flex;
         flex-direction: column;
 
-        padding-top: 14vh;
+        padding-top: 6vh;
 
         width: 100%;
-        min-height: 50vh;
+        min-height: 32vh;
 
         color: white;
 
@@ -44,6 +46,42 @@ body.homepage {
             letter-spacing: .18em;
 
             text-align: center;
+        }
+    }
+
+    nav {
+        min-height: 10vh;
+        padding-top: 4vh;
+
+        font-size: 1.3em;
+        font-family: 'Moon-Regular';
+        font-variant: all-small-caps;
+        letter-spacing: .18em;
+        color: white;
+
+        ul {
+            li {
+                display: inline-block;
+                margin: 0 .5em;
+
+                a {
+                    display: inline-block;
+                    width: 12em;
+                    padding: .2em 1.5em;
+
+                    text-align: center;
+
+                    color: darken(white, 10%);
+
+                    &:hover {
+                        color: white;
+                    }
+                }
+
+                &:hover, &.is-active {
+                    border-bottom: solid 1px #ddd;
+                }
+            }
         }
     }
 }
