@@ -84,4 +84,158 @@ body.homepage {
             }
         }
     }
+
+    section {
+        padding-top: 2vh;
+        width: 100%;
+
+        color: white;
+
+        article {
+            background: rgba(255, 255, 255, .25);
+            min-height: 48vh;
+
+            // border-radius: 8px;
+            padding: .6em 20%;
+
+            h2 {
+                font-size: 2.8em;
+                font-family: 'Moon-Regular';
+                text-align: center;
+            }
+
+            div.columns {
+                margin-top: -1.8em;
+
+                .column {
+                    min-width: 0;
+
+                    h3 {
+                        padding-bottom: .1em;
+                        border-bottom: white 2px solid;
+
+                        font-size: 2em;
+                        font-family: 'Moon-Regular';
+                        font-variant: all-small-caps;
+                        letter-spacing: .08em;
+
+                        a {
+                            color: white;
+                        }
+
+                        .fas {
+                            font-size: .4em;
+
+                            position: relative;
+                            top: .1em;
+                        }
+                    }
+
+                    &:last-child {
+                        article {
+                            background: transparent;
+                            margin: 0;
+                            padding: 0;
+                            padding-top: inherit;
+                        }
+
+                        h3 {
+                            text-align: right;
+                        }
+                    }
+
+                    article {
+                        // For the absolute positionning of the button relative
+                        // to this parent
+                        position: relative;
+
+                        min-height: 26vh;
+
+                        margin-top: .6em;
+                        padding: .6em 1em;
+
+                        background: rgba(0, 0, 0, .3);
+
+                        h4 {
+                            margin-bottom: .4em;
+                            font-size: 1.4em;
+                            font-family: 'Moon-Regular';
+                            font-weight: bold;
+                            color: $blue;
+                        }
+
+                        p {
+                            font-family: $family-sans-serif;
+                            text-align: justify;
+
+                            &.read-more {
+                                position: absolute;
+                                bottom: .6em;
+                                right: .6em;
+
+                                text-align: right;
+
+                                svg {
+                                    position: relative;
+                                    top: .08em;
+
+                                    display: inline-block;
+                                    margin-right: .3em;
+                                }
+                            }
+                        }
+                    }
+
+                    ul {
+                        display: flex;
+                        flex-flow: column;
+                        justify-content: space-between;
+
+                        height: 26vh;
+                        
+                        li {
+                            padding: 0;
+                            background: rgba(0, 0, 0, .3);
+
+                            position: relative;
+
+                            a {
+                                display: block;
+                                margin: 0;
+                                padding: 1.4em;
+
+                                max-width: 90%;
+
+                                font-family: 'Moon-Regular';
+                                font-size: 1.1em;
+                                font-weight: bold;
+
+                                text-overflow: ellipsis;
+                                white-space: nowrap;
+                                overflow: hidden;
+
+                                .button {
+                                    position: absolute;
+                                    right: 1.4em;
+                                    top: 1.2em;
+                                }
+                            }
+
+                            &:first-child {
+                                //margin-top: 0;
+                            }
+
+                            &:hover {
+                                background: rgba(0, 0, 0, .5);
+
+                                a {
+                                    color: white;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
