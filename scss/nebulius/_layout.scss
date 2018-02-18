@@ -1,0 +1,28 @@
+body {
+    background:
+        url('../images/stars.svg') top center repeat,
+        linear-gradient(to bottom, #0a020a 0%, #1b1424 35%, #1b1424 100%),
+        #1b1424;
+
+     background-size: contain;
+
+     .body-background-container {
+        min-height: 100vh;
+        background: url('../images/background-bottom.png') bottom center no-repeat;
+     }
+
+     &::after {
+        content: "";
+
+        display: block;
+        position: absolute;
+        top: 2em;
+        right: 4em;
+
+        width: 10em;
+        height: 30em;
+
+        background: url('../images/stars-shooting-star.svg') no-repeat;
+        background-size: contain;
+     }
+}

@@ -1,8 +1,8 @@
 body.homepage {
     overflow: hidden;
-    background: url('../images/homepage-background-high.png'), url('../images/homepage-background-low.jpg');
-    background-position: top center;
-    background-size: cover;
+    // background: url('../images/homepage-background-high.png'), url('../images/homepage-background-low.jpg');
+    // background-position: top center;
+    // background-size: cover;
 
     display: flex;
     flex-direction: column;
@@ -58,6 +58,8 @@ body.homepage {
         font-variant: all-small-caps;
         letter-spacing: .18em;
         color: white;
+
+        text-align: center;
 
         ul {
             li {
