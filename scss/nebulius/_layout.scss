@@ -19,10 +19,24 @@ body {
         top: 2em;
         right: 4em;
 
-        width: 10em;
+        width: 0;
         height: 30em;
 
         background: url('../images/stars-shooting-star.svg') no-repeat;
         background-size: contain;
+
+        transition: none;
+     }
+
+     &.static-shooting-star::after {
+        width: 10em;
+        opacity: 1;
+     }
+
+     &.animated-shooting-star::after {
+        width: 28em;
+        opacity: 0;
+
+        transition: width .8s, opacity .8s;
      }
 }
