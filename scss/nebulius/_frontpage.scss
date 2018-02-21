@@ -281,12 +281,14 @@ body.homepage {
     }
 
     &.has-js {
-        section:not(:first-of-type) {
-            margin-top: 0;
-        }
+        @include tablet {
+            section:not(:first-of-type) {
+                margin-top: 0;
+            }
 
-        section:last-of-type {
-            margin-bottom: 0;
+            section {
+                margin-bottom: 0;
+            }
         }
 
         footer {
