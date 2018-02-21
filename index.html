@@ -38,7 +38,7 @@
                         </h3>
                         <article>
                             <h4>
-                                <a href="#">Notre galaxie est-elle en danger ?</a>
+                                <a href="#">Notre galaxie est-elle en danger&nbsp;?</a>
                             </h4>
                             <p>
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -62,7 +62,7 @@
                             <ul>
                                 <li>
                                     <a href="#" title="Comment avancer en s'appuyant sur rien ? Avec un texte trop long">
-                                        Comment avancer en s'appuyant sur rien ? Avec un texte trop long
+                                        Comment avancer en s'appuyant sur rien&nbsp;? Avec un texte trop long.
 
                                         <div class="button is-white">
                                             <span class="fas fa-moon"></span>
@@ -71,7 +71,7 @@
                                 </li>
                                 <li>
                                     <a href="#" title="Qu'est-ce que… « quelque chose » ?">
-                                        Qu'est-ce que… « quelque chose » ?
+                                        Qu'est-ce que… «&nbsp;quelque chose&nbsp;»&nbsp;?
 
                                         <div class="button is-white">
                                             <span class="fas fa-moon"></span>
@@ -145,7 +145,7 @@
 
             <footer>
                 <div class="columns">
-                    <div class="column is-5">
+                    <div class="column is-6">
                         <ul>
                             <li>
                                 <a href="#">Qui sommes-nous ?</a>
@@ -155,12 +155,8 @@
                             </li>
                         </ul>
                     </div>
-                    
-                    <div class="column is-2 earth-footer">
-                        <img src="images/earth-icon.svg" alt="The Earth" />
-                    </div>
 
-                    <div class="column is-5">
+                    <div class="column is-6">
                         <ul>
                             <li>
                                 <a href="#">Twitter</a>
@@ -179,19 +175,49 @@
 
             document.body.classList.remove('static-shooting-star');
 
-            function animate_shooting_star()
+            window.addEventListener('load', function()
             {
-                document.body.classList.add('animated-shooting-star');
+                document.body.classList.remove('static-shooting-star');
 
-                setTimeout(function()
+                function animate_shooting_star()
                 {
-                    document.body.classList.remove('animated-shooting-star');
-                }, 5000);
+                    document.body.classList.add('animated-shooting-star');
 
-                setTimeout(animate_shooting_star, (Math.floor(Math.random() * (60 - 20)) + 20) * 1000)
+                    setTimeout(function()
+                    {
+                        document.body.classList.remove('animated-shooting-star');
+                    }, 1500);
+
+                    setTimeout(animate_shooting_star, (Math.floor(Math.random() * (60 - 20)) + 20) * 1000);
+                }
+
+                setTimeout(animate_shooting_star, (Math.floor(Math.random() * (10 - 2)) + 2) * 1000);
+            });
+        </script>
+
+        <script type="text/javascript">
+            'use strict';
+
+            function hide_hidden_sections()
+            {
+                if (window.screen.width < 769) return;
+
+                var initially_hidden_sections = document.querySelectorAll('section:not(:first-of-type)');
+                for (var i = initially_hidden_sections.length - 1; i >= 0; i--) {
+                    initially_hidden_sections[i].style.display = 'none';
+                }
             }
 
-            setTimeout(animate_shooting_star, (Math.floor(Math.random() * (10 - 2)) + 2) * 1000)
+            // If the DOM is loaded—removed here so the screen does not blinks.
+            hide_hidden_sections();
+
+            window.addEventListener('load', function()
+            {
+                document.body.classList.add('has-js');
+
+                hide_hidden_sections();
+
+            });
         </script>
     </body>
 </html>

@@ -8,6 +8,9 @@ body {
 
      .body-background-container {
         min-height: 100vh;
+        margin: 0;
+        padding: 0;
+
         background: url('../images/background-bottom.png') bottom center no-repeat;
      }
 
@@ -26,6 +29,8 @@ body {
         background-size: contain;
 
         transition: none;
+
+        z-index: 0;
      }
 
      &.static-shooting-star::after {
@@ -41,57 +46,205 @@ body {
      }
 }
 
-footer {
-    margin-top: 0;
-    position: relative;
-    top: -2.2em;
+header {
+    color: white;
 
-    .column {
-        ul {
-            position: relative;
-            top: 3.2em;
+    h1 {
+        width: 100%;
 
-            li {
-                display: inline-block;
-                padding: 0;
-                margin: 0;
+        font-size: 6em;
+        font-family: 'Charlevoix-Light';
 
-                a {
-                    display: inline-block;
-                    padding: 0 2em;
-                    min-width: 6em;
+        text-align: center;
+        text-shadow: 0px 0px 2px black;
 
-                    color: white;
-
-                    &:hover {
-                        text-shadow: 0px 0px 2px #ddd;
-                    }
-                }
-            }
-        }
-
-        &:first-child {
-            text-align: right;
-        }
-        &:last-child {
-            text-align: left;
+        span {
+            font-family: 'Charlevoix-Regular';
+            font-weight: bold;
         }
     }
 
-    .earth-footer {
-        position: relative;
-        top: -$footer-earth-size / 2;
+    p {
+        width: 100%;
+
+        font-size: 1.95em;
+        font-family: 'Moon-Regular';
+        font-variant: all-small-caps;
+        letter-spacing: .18em;
+
         text-align: center;
+        text-shadow: 0px 0px 2px black;
+    }
 
-        img {
-            width: $footer-earth-size;
-            height: $footer-earth-size;
+    @include mobile {
+        h1 {
+            font-size: 4em;
+        }
+        p {
+            font-size: 1em;
+            position: relative;
+            top: -1em;
+        }
+    }
+}
 
-            transition: transform .4s ease-in-out;
+nav {
+    font-size: 1.3em;
+    font-family: 'Moon-Regular';
+    font-variant: all-small-caps;
+    letter-spacing: .18em;
+    color: white;
 
-            &:hover {
-                transform: rotate(360deg);
+    text-align: center;
+
+    ul {
+        li {
+            display: inline-block;
+            margin: 0 .5em;
+
+            border-bottom: solid 1px transparent;
+
+            @include mobile {
+                display: block;
             }
+
+            a {
+                display: inline-block;
+                width: 12em;
+                padding: .2em 1.5em;
+
+                @include mobile {
+                    width: 100%;
+                }
+
+                text-align: center;
+
+                color: darken(white, 10%);
+
+                &:hover {
+                    color: white;
+                }
+            }
+
+            &:hover, &.is-active {
+                border-bottom-color: #ddd;
+
+                @include mobile {
+                    border-bottom-color: transparent;
+                }
+            }
+        }
+    }
+}
+
+.body-background-container > * {
+    padding-left: 20%;
+    padding-right: 20%;
+
+    @media screen and (max-width: 1700px) {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    @include mobile {
+        padding-left: 5px;
+        padding-right: 5px;
+
+        max-width: 100vw;
+    }
+}
+
+aside.earth-footer {
+    position: relative;
+    top: -$footer-earth-size / 2;
+    text-align: center;
+
+    @include mobile {
+        position: initial;
+        top: 0;
+    }
+
+    img {
+        width: $footer-earth-size;
+        height: $footer-earth-size;
+
+        transition: transform .4s ease-in-out;
+
+        &:hover {
+            transform: rotate(360deg);
+        }
+    }
+}
+
+footer {    
+    position: relative;
+
+    margin: 0;
+    padding-top: 1.2em;
+
+    text-align: center;
+
+    .column {
+        &:first-child {
+            text-align: left;
+        }
+        &:last-child {
+            text-align: right;
+        }
+    }
+
+    ul {
+        li {
+            display: inline-block;
+            padding: 0;
+            margin: 0;
+
+            @include mobile {
+                display: list-item;
+            }
+
+            a {
+                display: inline-block;
+                padding: 0 2em;
+                min-width: 6em;
+
+                color: white;
+
+                &:hover {
+                    text-shadow: 0px 0px 2px #ddd;
+                }
+            }
+
+            &:first-child a {
+                padding-left: 0;
+            }
+
+            &:last-child a {
+                padding-right: 0;
+            }
+        }
+    }
+
+    &:before {
+        $footer-earth-size-small-radius: $footer-earth-size-small/2;
+
+        content: "";
+        position: absolute;
+
+        top: -50%;
+        left: calc(50% - 30px); // TODO use variable above
+
+        width: $footer-earth-size-small;
+        height: $footer-earth-size-small;
+
+        background: url('../images/earth-icon.svg') center center no-repeat;
+
+        transition: transform .4s ease-in-out;
+    }
+
+    &:hover {
+        &:before {
+            transform: rotate(360deg);
         }
     }
 }

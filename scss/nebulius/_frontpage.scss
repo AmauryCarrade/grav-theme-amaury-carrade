@@ -15,33 +15,10 @@ body.homepage {
         width: 100%;
         min-height: 32vh;
 
-        color: white;
-
-        h1 {
-            width: 100%;
-
-            font-size: 6em;
-            font-family: 'Charlevoix-Light';
-
-            text-align: center;
-            text-shadow: 0px 0px 2px black;
-
-            span {
-                font-family: 'Charlevoix-Regular';
-                font-weight: bold;
-            }
-        }
-
-        p {
-            width: 100%;
-
-            font-size: 1.95em;
-            font-family: 'Moon-Regular';
-            font-variant: all-small-caps;
-            letter-spacing: .18em;
-
-            text-align: center;
-            text-shadow: 0px 0px 2px black;
+        @include mobile {
+            min-height: 0;
+            padding-top: 2vh;
+            padding-bottom: 0;
         }
     }
 
@@ -49,49 +26,13 @@ body.homepage {
         min-height: 10vh;
         padding-top: 4vh;
 
-        font-size: 1.3em;
-        font-family: 'Moon-Regular';
-        font-variant: all-small-caps;
-        letter-spacing: .18em;
-        color: white;
-
-        text-align: center;
-
-        ul {
-            li {
-                display: inline-block;
-                margin: 0 .5em;
-
-                a {
-                    display: inline-block;
-                    width: 12em;
-                    padding: .2em 1.5em;
-
-                    text-align: center;
-
-                    color: darken(white, 10%);
-
-                    &:hover {
-                        color: white;
-                    }
-                }
-
-                &:hover, &.is-active {
-                    border-bottom: solid 1px #ddd;
-                }
-            }
+        @include mobile {
+            padding: 2vh 0 4vh 0;
         }
     }
 
     section {
-        margin-top: 1vh;
-
-        padding: .6em 20%;
-
-        @media screen and (max-width: 1700px) {
-            padding-left: 5%;
-            padding-right: 5%;
-        }
+        padding: calc(1vh + .6em) inherit .6em inherit;
 
         width: 100%;
         min-height: 52vh;
@@ -115,7 +56,7 @@ body.homepage {
         }
 
         &.has-js {
-            margin-bottom: 4vh;
+            padding-bottom: 4vh;
 
             &:not(:first-of-type) {
                 margin-top: 0;
@@ -123,10 +64,14 @@ body.homepage {
         }
 
         h2 {
-            margin-top: .3em;
+            padding-top: .6em;
             font-size: 2.8em;
             font-family: 'Moon-Regular';
             text-align: center;
+
+            @include mobile {
+                margin-top: 0;
+            }
         }
 
         div.columns {
@@ -172,6 +117,10 @@ body.homepage {
 
                     h3 {
                         text-align: right;
+
+                        @include mobile {
+                            text-align: left;
+                        }
                     }
                 }
 
@@ -234,14 +183,16 @@ body.homepage {
                     justify-content: space-between;
 
                     height: 100%;
-
-                    //margin-top: .6em;
                     
                     li {
                         padding: 0;
                         background: rgba(0, 0, 0, .3);
 
                         position: relative;
+
+                        @include mobile {
+                            margin-bottom: .5em;
+                        }
 
                         a {
                             display: block;
@@ -258,10 +209,21 @@ body.homepage {
                             white-space: nowrap;
                             overflow: hidden;
 
+                            @include mobile {
+                                max-width: 100%;
+
+                                overflow: visible;
+                                white-space: normal;
+                            }
+
                             .button {
                                 position: absolute;
                                 right: 1.4em;
                                 top: 1.2em;
+
+                                @include mobile {
+                                    display: none;
+                                }
                             }
                         }
 
@@ -279,22 +241,31 @@ body.homepage {
 
         > article {
             position: relative;
-            margin-top: 1.6em;
+            padding-top: 1.6em;
 
             font-size: 1.2em;
 
+            @include mobile {
+                padding-top: .6em;
+            }
+
             p {
                 text-align: center;
+
+                @include mobile {
+                    padding: 0 5%;
+                    text-align: justify;
+                }
             }
 
             aside {
                 @include clearfix;
 
-                margin: 2em;
-                margin-top: 4em;
+                padding: 2em;
+                padding-top: 4em;
 
                 @media screen and (max-width: 1700px) {
-                    margin-top: 2.6em;
+                    padding-top: 2.6em;
                 }
 
                 text-align: center;
@@ -304,6 +275,27 @@ body.homepage {
 
                     padding-right: .2em;
                     font-size: 1.2em;
+                }
+            }
+        }
+    }
+
+    &.has-js {
+        section:not(:first-of-type) {
+            margin-top: 0;
+        }
+
+        section:last-of-type {
+            margin-bottom: 0;
+        }
+
+        footer {
+            .earth-footer {
+                top: -$footer-earth-size-small / 2 + 34px;
+
+                img {
+                    width: $footer-earth-size-small;
+                    height: $footer-earth-size-small;
                 }
             }
         }
