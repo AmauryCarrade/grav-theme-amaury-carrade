@@ -221,7 +221,8 @@
                 }
             }
 
-            // If the DOM is loaded—removed here so the screen does not blinks.
+            // If the DOM is already loaded, this is removed right here so the screen does not blinks.
+            // (Else there is no effect and the elements are removed when the load event is fired anyway.)
             hide_hidden_sections();
 
             window.addEventListener('load', function()
