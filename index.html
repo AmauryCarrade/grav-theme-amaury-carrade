@@ -18,13 +18,13 @@
             <nav>
                 <ul>
                     <li class="is-active">
-                        <a href="#notes">Notes</a>
+                        <a href="/notes" data-target="#notes">Notes</a>
                     </li>
                     <li>
-                        <a href="#sablet">Sablet</a>
+                        <a href="/sablet" data-target="#sablet">Sablet</a>
                     </li>
                     <li>
-                        <a href="#baby-rocket">Baby-Rocket</a>
+                        <a href="/babyrocket" data-target="#baby-rocket">Baby-Rocket</a>
                     </li>
                 </ul>
             </nav>
@@ -199,11 +199,25 @@
         <script type="text/javascript">
             'use strict';
 
+            function reset_focus()
+            {
+                var scrollTop = document.body.scrollTop;
+                var body = document.body;
+                var tmp = document.createElement('input');
+
+                tmp.style.opacity = 0;
+                body.appendChild(tmp);
+                tmp.focus();
+                body.removeChild(tmp);
+
+                body.scrollTop = scrollTop;
+            }
+
             function hide_hidden_sections()
             {
                 if (window.screen.width < 769) return;
 
-                var initially_hidden_sections = document.querySelectorAll('section:not(:first-of-type)');
+                var initially_hidden_sections = document.querySelectorAll('body > div > section:not(:first-of-type)');
                 for (var i = initially_hidden_sections.length - 1; i >= 0; i--) {
                     initially_hidden_sections[i].style.display = 'none';
                 }
@@ -214,10 +228,37 @@
 
             window.addEventListener('load', function()
             {
+                if (window.screen.width < 769) return;
+
                 document.body.classList.add('has-js');
 
                 hide_hidden_sections();
 
+                var navigation_list_items = document.querySelectorAll('body > div > nav > ul > li');
+                var navigation_links = document.querySelectorAll('body > div > nav > ul > li > a');
+                var sections = document.querySelectorAll('body > div > section');
+
+                for (var i = navigation_links.length - 1; i >= 0; i--) {
+                    navigation_links[i].addEventListener('click', function(e)
+                    {
+                        e.preventDefault();
+                        
+                        var target = document.querySelector(e.target.dataset.target);
+
+                        for (var i = sections.length - 1; i >= 0; i--) {
+                            sections[i].style.display = 'none';
+                        }
+
+                        for (var i = navigation_list_items.length - 1; i >= 0; i--) {
+                            navigation_list_items[i].classList.remove('is-active');
+                        }
+
+                        target.style.display = 'block';
+                        e.target.parentNode.classList.add('is-active');
+
+                        reset_focus();
+                    });
+                }
             });
         </script>
     </body>

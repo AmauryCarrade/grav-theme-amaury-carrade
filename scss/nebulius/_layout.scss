@@ -1,20 +1,22 @@
 body {
+    scroll-behavior: smooth;
+    
     background:
         url('../images/stars.svg') top center repeat,
         linear-gradient(to bottom, #0a020a 0%, #1b1424 35%, #1b1424 100%),
         #1b1424;
 
-     background-size: contain;
+    background-size: contain;
 
-     .body-background-container {
+    .body-background-container {
         min-height: 100vh;
         margin: 0;
         padding: 0;
 
         background: url('../images/background-bottom.png') bottom center no-repeat;
-     }
+    }
 
-     &::after {
+    &::after {
         content: "";
 
         display: block;
@@ -31,19 +33,19 @@ body {
         transition: none;
 
         z-index: 0;
-     }
+    }
 
-     &.static-shooting-star::after {
+    &.static-shooting-star::after {
         width: 10em;
         opacity: 1;
-     }
+    }
 
-     &.animated-shooting-star::after {
+    &.animated-shooting-star::after {
         width: 28em;
         opacity: 0;
 
         transition: width .8s, opacity .8s;
-     }
+    }
 }
 
 header {
@@ -189,17 +191,25 @@ footer {
 
     text-align: center;
 
-    .column {
-        &:first-child {
-            text-align: left;
-        }
-        &:last-child {
-            text-align: right;
+    .columns {
+        // !important because there is a super-specific Bulma rule
+        // adding a bottom margin to non-last-child .columns blocs,
+        // and this rule breaks the layout in full page mode
+        // (i.e. body.homepage.has-js).
+        margin-bottom: 0 !important;
 
-            @include mobile {
-                ul {
-                    position: relative;
-                    top: $footer-earth-size-small;
+        .column {
+            &:first-child {
+                text-align: left;
+            }
+            &:last-child {
+                text-align: right;
+
+                @include mobile {
+                    ul {
+                        position: relative;
+                        top: $footer-earth-size-small;
+                    }
                 }
             }
         }
@@ -251,7 +261,7 @@ footer {
         width: $footer-earth-size-small;
         height: $footer-earth-size-small;
 
-        background: url('../images/earth-icon.svg') center center no-repeat;
+        background: url('../images/earth.svg') center center no-repeat;
 
         transition: transform .4s ease-in-out;
     }
