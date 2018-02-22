@@ -1,0 +1,101 @@
+{% set theme_config = attribute(config.themes, config.system.pages.theme) %}
+<!DOCTYPE html>
+<html lang="{{ grav.language.getActive ?: theme_config.default_lang }}">
+<head>
+{% block head %}
+    <meta charset="utf-8" />
+    <title>{% if header.title %}{{ header.title|e('html') }} ⋅ {% endif %}{{ site.title|e('html') }}</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    {% include 'partials/metadata.html.twig' %}
+
+    <link rel="icon" type="image/png" href="{{ url('theme://images/favicon.png') }}" />
+    <link rel="canonical" href="{{ page.url(true, true) }}" />
+
+    {% block stylesheets %}
+        {% do assets.addCss('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css', 99) %}
+        {% do assets.addCss('theme://css-compiled/nebulius.min.css', 98) %}
+    {% endblock %}
+
+    {{ assets.css() }}
+
+    {% block javascripts %}
+        {% do assets.addJs('jquery', 100) %}
+    {% endblock %}
+
+    {{ assets.js() }}
+
+{% endblock head%}
+</head>
+
+<body id="top" class="static-shooting-star {{ page.header.body_classes }} {% block body_classes %}{% endblock %}">
+    <div class="body-background-container">
+        {% block header %}
+            <header>
+                <h1>{{ theme_config.header.title ?: config.site.title }}</h1>
+                <p>{{ theme_config.header.tagline }}</p>
+            </header>
+
+            <nav>
+                <ul>
+                    {% for page in pages.children.visible %}
+                        {% set current_page = (page.active or page.activeChild) ? 'is-active' : '' %}
+                        <li class="{{ current_page }}">
+                            <a href="{{ page.url }}">
+                                {% if page.header.icon %}<i class="fa fa-{{ page.header.icon }}"></i>{% endif %}
+                                {{ page.menu }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                    {% for mitem in site.menu %}
+                        <li>
+                            <a href="{{ mitem.url }}">
+                                {% if mitem.icon %}<i class="fa fa-{{ mitem.icon }}"></i>{% endif %}
+                                {{ mitem.text }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </nav>
+        {% endblock %}
+
+        {% block content %}{% endblock %}
+
+        {% block footer %}
+            <footer>
+                <div class="columns">
+                    <div class="column is-6">
+                        <ul>
+                            <li>
+                                <a href="#">Qui sommes-nous ?</a>
+                            </li>
+                            <li>
+                                <a href="#">Nous contacter</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="column is-6">
+                        <ul>
+                            <li>
+                                <a href="#">Twitter</a>
+                            </li>
+                            <li>
+                                <a href="#">YouTube</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="is-clearfix"></div>
+            </footer>
+        {% endblock %}
+
+    </div>
+
+    {% block bottom %}
+        {{ assets.js('bottom') }}
+    {% endblock %}
+</body>
+</html>

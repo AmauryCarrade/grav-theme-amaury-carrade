@@ -1,0 +1,34 @@
+name: Nebulius
+version: 0.1.0
+description: Theme for the Nebulius website
+icon: rebel
+author:
+  name: Amaury Carrade and Kiliann Becquet
+  email: amaury@carrade.eu
+homepage: https://github.com/Nebulius/GravTemplate
+demo: https://nebulius.org
+keywords: grav, theme, etc
+bugs: https://github.com/Nebulius/GravTemplate/issues
+readme: https://github.com/Nebulius/GravTemplate
+license: CeCILL-B
+
+form:
+  validation: loose
+  fields:
+    header.title:
+      type: text
+      label: "Le titre à afficher dans l'en-tête"
+      help: "L'éventuelle partie en gras doit être affichée entre <span>"
+    header.tagline:
+      type: text
+      label: "Le slogan à afficher dans l'en-tête"
+    dropdown.enabled:
+      type: toggle
+      label: Dropdown in Menu
+      highlight: 1
+      default: 1
+      options:
+        1: PLUGIN_ADMIN.ENABLED
+        0: PLUGIN_ADMIN.DISABLED
+      validate:
+        type: bool
