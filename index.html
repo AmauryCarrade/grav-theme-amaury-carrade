@@ -194,10 +194,7 @@
 
                 setTimeout(animate_shooting_star, (Math.floor(Math.random() * (10 - 2)) + 2) * 1000);
             });
-        </script>
 
-        <script type="text/javascript">
-            'use strict';
 
             function reset_focus()
             {
@@ -218,7 +215,8 @@
                 if (window.screen.width < 769) return;
 
                 var initially_hidden_sections = document.querySelectorAll('body > div > section:not(:first-of-type)');
-                for (var i = initially_hidden_sections.length - 1; i >= 0; i--) {
+                for (var i = initially_hidden_sections.length - 1; i >= 0; i--)
+                {
                     initially_hidden_sections[i].style.display = 'none';
                 }
             }
@@ -238,18 +236,21 @@
                 var navigation_links = document.querySelectorAll('body > div > nav > ul > li > a');
                 var sections = document.querySelectorAll('body > div > section');
 
-                for (var i = navigation_links.length - 1; i >= 0; i--) {
+                for (var i = navigation_links.length - 1; i >= 0; i--)
+                {
                     navigation_links[i].addEventListener('click', function(e)
                     {
                         e.preventDefault();
                         
                         var target = document.querySelector(e.target.dataset.target);
 
-                        for (var i = sections.length - 1; i >= 0; i--) {
+                        for (var i = sections.length - 1; i >= 0; i--)
+                        {
                             sections[i].style.display = 'none';
                         }
 
-                        for (var i = navigation_list_items.length - 1; i >= 0; i--) {
+                        for (var i = navigation_list_items.length - 1; i >= 0; i--)
+                        {
                             navigation_list_items[i].classList.remove('is-active');
                         }
 
