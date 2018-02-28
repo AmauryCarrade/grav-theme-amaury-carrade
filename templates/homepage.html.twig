@@ -67,8 +67,12 @@
 
                             <aside>
                                 <a class="button is-white">
-                                    <span class="fas fa-fighter-jet"></span>
-                                    En voir plus sur {{ page.header.title }}
+                                    <span class="{{ subpage.header.home_icon_type|default('fas') }} fa-{{ subpage.header.home_icon|default('fighter-jet') }}"></span>
+                                    {% if subpage.header.home_button %}
+                                        {{ subpage.header.home_button }}
+                                    {% else %}
+                                        En voir plus sur {{ page.header.title }}
+                                    {% endif %}
                                 </a>
                             </aside>
                         </article>
