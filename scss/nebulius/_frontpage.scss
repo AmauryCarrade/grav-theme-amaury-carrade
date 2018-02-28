@@ -74,6 +74,10 @@ body.homepage {
             }
         }
 
+        strong {
+            color: white;
+        }
+
         div.columns {
             margin-top: -1.8em;
 
@@ -99,11 +103,8 @@ body.homepage {
                         color: white;
                     }
 
-                    .fas {
-                        font-size: .4em;
-
-                        position: relative;
-                        top: .1em;
+                    .fas, .fa, svg {
+                        font-size: .7em;
                     }
                 }
 
@@ -149,6 +150,7 @@ body.homepage {
 
                     p {
                         padding: $padding-inside-home-article;
+                        padding-left: 1em;
                         font-family: $family-sans-serif;
                         text-align: justify;
 
@@ -167,7 +169,7 @@ body.homepage {
 
                         text-align: right;
 
-                        svg {
+                        svg, .fa {
                             position: relative;
                             top: .08em;
 
@@ -227,6 +229,13 @@ body.homepage {
                             }
                         }
 
+                        p {
+                            padding: 1.4em;
+                            padding-top: 1.4em !important; // Overrides Bulma style for first p in column
+
+                            font-style: italic;
+                        }
+
                         &:hover {
                             background: rgba(0, 0, 0, .5);
 
@@ -270,7 +279,7 @@ body.homepage {
 
                 text-align: center;
 
-                svg {
+                svg, .fa {
                     display: inline-block;
 
                     padding-right: .2em;

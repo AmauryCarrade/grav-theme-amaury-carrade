@@ -15,7 +15,6 @@
     <link rel="canonical" href="{{ page.url(true, true) }}" />
 
     {% block stylesheets %}
-        {% do assets.addCss('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css', 99) %}
         {% do assets.addCss('theme://css-compiled/nebulius.min.css', 98) %}
     {% endblock %}
 
@@ -23,6 +22,7 @@
 
     {% block javascripts %}
         {% do assets.addJs('jquery', 100) %}
+        {% do assets.addJs('https://use.fontawesome.com/releases/v5.0.7/js/all.js', 99) %}
     {% endblock %}
 
     {{ assets.js() }}
@@ -40,11 +40,12 @@
 
             <nav>
                 <ul>
+                    {% set this_page = page %}
                     {% for page in pages.children.visible %}
-                        {% set current_page = (page.active or page.activeChild) ? 'is-active' : '' %}
+                        {% set current_page = (page.active or page.activeChild or (this_page.template == 'homepage' and loop.index == 1)) ? 'is-active' : '' %}
                         <li class="{{ current_page }}">
-                            <a href="{{ page.url }}">
-                                {% if page.header.icon %}<i class="fa fa-{{ page.header.icon }}"></i>{% endif %}
+                            <a href="{{ page.url }}"{% if this_page.template == 'homepage' %} data-target="#{{ page.url|trim('/') }}"{% endif %}>
+                                {% if page.header.icon %}<i class="fas fa-{{ page.header.icon }}"></i>{% endif %}
                                 {{ page.menu }}
                             </a>
                         </li>
@@ -52,7 +53,7 @@
                     {% for mitem in site.menu %}
                         <li>
                             <a href="{{ mitem.url }}">
-                                {% if mitem.icon %}<i class="fa fa-{{ mitem.icon }}"></i>{% endif %}
+                                {% if mitem.icon %}<i class="fas fa-{{ mitem.icon }}"></i>{% endif %}
                                 {{ mitem.text }}
                             </a>
                         </li>

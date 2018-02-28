@@ -3,7 +3,81 @@
 {% block body_classes %}homepage{% endblock %}
 
 {% block content %}
-    <section>{{ page.content }}</section>
+    {% for page in pages.children.visible %}
+        <section id="{{ page.url|trim('/') }}">
+            <h2>{{ page.header.title }}</h2>
+            {% if page.template == 'blog' %}
+                {% set articles = page.children.routable.visible.order('date', 'desc') %}
+                {% set last_article = articles.current %}
+                <div class="columns is-clearfix">
+                    <div class="column">
+                        <h3>
+                            <a href="{{ last_article.url }}">Dernier article</a>
+                        </h3>
+                        <article>
+                            <h4>
+                                <a href="{{ last_article.url }}">{{ last_article.header.title }}</a>
+                            </h4>
+                            <p>
+                                {% if last_article.header.abstract %}
+                                    {{ last_article.header.abstract }}
+                                {% else %}
+                                    {{ last_article.content|striptags|safe_truncate(300, true) }}
+                                {% endif %}
+                            </p>
+                            <aside>
+                                <a href="{{ last_article.url }}" class="button is-white"><span class="fas fa-moon"></span>Lire la suite…</a>
+                            </aside>
+                        </article>
+                    </div>
+                    <div class="column">
+                        <h3>
+                            <a href="{{ page.url }}">
+                                Tous les articles
+                                <span class="fas fa-angle-double-right fa-xs"></span>
+                            </a>
+                        </h3>
+                        <article>
+                            <ul>
+                                {% for article in articles.batch(4)[0] if not article.isFirst %}
+                                    <li>
+                                        <a href="{{ article.url }}" title="{{ article.header.title }}">
+                                            {{ article.header.title }}
+
+                                            {# TODO what about an icon relative to the content type? article, video… #}
+                                            <div class="button is-white">
+                                                <span class="fas fa-moon"></span>
+                                            </div>
+                                        </a>
+                                    </li>
+                                {% else %}
+                                    <li>
+                                        <p>Il n'y a aucun autre article à lire pour le moment.</p>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </article>
+                    </div>
+                </div>
+            {% else %}
+                {% for subpage in page.children.nonRoutable.nonVisible %}
+                    {% if subpage.header.title == '_homepage' %}
+                        <article>
+                            {{ subpage.content }}
+
+                            <aside>
+                                <a class="button is-white">
+                                    <span class="fas fa-fighter-jet"></span>
+                                    En voir plus sur {{ page.header.title }}
+                                </a>
+                            </aside>
+                        </article>
+
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </section>
+    {% endfor %}
 {% endblock %}
 
 {% block bottom %}
