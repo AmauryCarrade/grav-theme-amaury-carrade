@@ -11,6 +11,11 @@ $link-active: white;
 $footer-earth-size: 80px;
 $footer-earth-size-small: 60px;
 
+$family-serif: 'EB Garamond', Garamond, serif;
+$family-sans-serif: 'Fira Sans', $family-sans-serif;
+
+$weight-light: 200;
+
 @import "bulma/bulma";
 
 @import "nebulius/all";

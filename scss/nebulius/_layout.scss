@@ -58,13 +58,13 @@ header {
         width: 100%;
 
         font-size: 6em;
-        font-family: 'Charlevoix-Light';
+        font-family: 'Charlevoix';
+        font-weight: 200;
 
         text-align: center;
         text-shadow: 0px 0px 2px black;
 
         span {
-            font-family: 'Charlevoix-Regular';
             font-weight: bold;
         }
     }
@@ -73,7 +73,8 @@ header {
         width: 100%;
 
         font-size: 1.95em;
-        font-family: 'Moon-Regular';
+        font-family: 'Fira Sans';
+        font-weight: 200;
         font-variant: all-small-caps;
         letter-spacing: .18em;
 
@@ -95,7 +96,7 @@ header {
 
 nav {
     font-size: 1.3em;
-    font-family: 'Moon-Regular';
+    font-family: 'Fira Sans';
     font-variant: all-small-caps;
     letter-spacing: .18em;
     color: white;

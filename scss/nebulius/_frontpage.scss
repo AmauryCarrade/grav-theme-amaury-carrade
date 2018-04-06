@@ -66,7 +66,7 @@ body.homepage {
         h2 {
             padding-top: .6em;
             font-size: 2.8em;
-            font-family: 'Moon-Regular';
+            font-weight: 200;
             text-align: center;
 
             @include mobile {
@@ -95,7 +95,7 @@ body.homepage {
                     border-bottom: white 2px solid;
 
                     font-size: 2em;
-                    font-family: 'Moon-Regular';
+                    font-weight: 200;
                     font-variant: all-small-caps;
                     letter-spacing: .08em;
 
@@ -142,7 +142,6 @@ body.homepage {
                         padding: $padding-inside-home-article;
 
                         font-size: 1.4em;
-                        font-family: 'Moon-Regular';
                         font-weight: bold;
                         
                         color: $blue;
@@ -203,7 +202,6 @@ body.homepage {
 
                             max-width: 90%;
 
-                            font-family: 'Moon-Regular';
                             font-size: 1.1em;
                             font-weight: bold;
 
