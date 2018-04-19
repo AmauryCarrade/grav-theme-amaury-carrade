@@ -8,8 +8,16 @@
             <h1>{{ theme_config.header.title ?: config.site.title }}</h1>
             <p>{{ theme_config.header.tagline }}</p>
         </header>
-        <div class="hero-body">
-            
+        <div class="hero-body container">
+            <article class="presentation content">
+                {{ page.content }}
+            </article>
+            <div class="columns">
+                <div class="column">
+                    <h2></h2>
+                    <p></p>
+                </div>
+            </div>
         </div>
         <footer class="hero-foot">
             <nav class="navbar is-transparent">
@@ -57,8 +65,8 @@
                                 </span>
                                 @yoku_timo
                             </a>
-                            <a class="navbar-item">
-                                <span class="icon" href="https://instagram.com/amaurypi">
+                            <a class="navbar-item" href="https://instagram.com/amaurypi">
+                                <span class="icon">
                                     <span class="fab fa-instagram"></span>
                                 </span>
                                 @amaurypi
@@ -80,14 +88,20 @@
                                 </span>
                                 Yoku_Sama
                             </a>
-                            <a class="navbar-item">
-                                <span class="icon" href="https://youtu.be/Nebulius">
+                            <a class="navbar-item" href="https://youtu.be/Nebulius">
+                                <span class="icon">
                                     <span class="fab fa-youtube"></span>
                                 </span>
                                 Nebulius
                             </a>
                         </div>
                     </div>
+
+                    <a class="navbar-item" href="https://github.com/Nebulius">
+                        <span class="icon">
+                            <span class="fab fa-github"></span>
+                        </span>
+                    </a>
 
                     <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
                         <span></span>

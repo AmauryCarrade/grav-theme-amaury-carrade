@@ -1,5 +1,25 @@
 body.frontpage {
     section.hero {
+        .hero-body {
+            color: white;
+
+            .presentation {
+                font-family: 'EB Garamond', serif;
+                font-size: 2em;
+                text-align: center;
+
+                a {
+                    display: inline-block;
+                    border-bottom: 1px solid white;
+                    color: white;
+                    text-decoration: none;
+
+                    &:hover {
+                        text-shadow: 1px 1px 2px rgba(255, 255, 255, .4), -1px -1px 2px rgba(255, 255, 255, .4);
+                    }
+                }
+            }
+        }
         footer.hero-foot {
             a.navbar-item, a.navbar-link {
                 padding: 0 1.4em;
@@ -19,11 +39,14 @@ body.frontpage {
                     font-variant: normal;
                     letter-spacing: 0;
                     font-size: 1.2em;
+                    margin-left: 1.1em;
                     padding: .4em 1em .4em .6em;
                     border-bottom: none;
 
                     .icon {
                         margin-right: .4em;
+                        position: relative;
+                        top: 2px;
                     }
 
                     &:hover {
