@@ -4,22 +4,72 @@
 
 {% block body %}
     <section class="hero is-fullheight">
-        <header class="hero-head">
+        <header class="hero-head page-header">
             <h1>{{ theme_config.header.title ?: config.site.title }}</h1>
             <p>{{ theme_config.header.tagline }}</p>
         </header>
-        <div class="hero-body container">
-            <article class="presentation content">
-                {{ page.content }}
-            </article>
-            <div class="columns">
-                <div class="column">
-                    <h2></h2>
-                    <p></p>
+        <div class="hero-body">
+            <section>
+                <div class="columns articles-display">
+                    <div class="column is-half">
+                        <article class="presentation content">
+                            {{ page.content }}
+                        </article>
+                    </div>
+                    <div class="column is-half">
+                        <article class="latest-article">
+                            <h2>Dernier article</h2>
+                            <h3>
+                                <a href="#">Le nombre d'éléments de l'univers est-il limité&nbsp;?</a>
+                            </h3>
+                            <p class="content">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aspernatur beatae,
+                                deleniti dolor enim eveniet harum illo labore magni, maxime molestias, natus officiis
+                                optio placeat possimus provident quos tenetur totam!
+                            </p>
+                            <aside>
+                                <a href="#" class="button is-white is-outlined"><span class="fas fa-moon"></span>Lire l'article</a>
+                            </aside>
+                        </article>
+                    </div>
                 </div>
-            </div>
+                <aside class="columns articles-list">
+                    <div class="column is-one-quarter">
+                        <a href="">
+                            Second article
+                            <footer>
+                                <time>Il y a une semaine</time>
+                            </footer>
+                        </a>
+                    </div>
+                    <div class="column is-one-quarter">
+                        <a href="">
+                            Troisième article
+                            <footer>
+                                <time>Il y a une semaine</time>
+                            </footer>
+                        </a>
+                    </div>
+                    <div class="column is-one-quarter">
+                        <a href="">
+                            Quatrième article
+                            <footer>
+                                <time>Il y a une semaine</time>
+                            </footer>
+                        </a>
+                    </div>
+                    <div class="column is-one-quarter">
+                        <a href="">
+                            Tous les articles…
+                            <footer>
+                                12 articles
+                            </footer>
+                        </a>
+                    </div>
+                </aside>
+            </section>
         </div>
-        <footer class="hero-foot">
+        <footer class="hero-foot page-footer">
             <nav class="navbar is-transparent">
                 <div class="navbar-brand">
                     <div class="navbar-item has-dropdown has-dropdown-up is-hoverable">
@@ -30,6 +80,12 @@
                         </a>
 
                         <div class="navbar-dropdown">
+                            <a class="navbar-item" href="https://twitter.com/NebuliusGrp">
+                                <span class="icon">
+                                    <span class="fab fa-twitter"></span>
+                                </span>
+                                @NebuliusGrp
+                            </a>
                             <a class="navbar-item" href="https://twitter.com/Yoku_Sama">
                                 <span class="icon">
                                     <span class="fab fa-twitter"></span>
@@ -41,12 +97,6 @@
                                     <span class="fab fa-twitter"></span>
                                 </span>
                                 @AmauryPi
-                            </a>
-                            <a class="navbar-item" href="https://twitter.com/NebuliusGrp">
-                                <span class="icon">
-                                    <span class="fab fa-twitter"></span>
-                                </span>
-                                @NebuliusGrp
                             </a>
                         </div>
                     </div>
@@ -82,17 +132,17 @@
                         </a>
 
                         <div class="navbar-dropdown">
-                            <a class="navbar-item" href="https://youtu.be/Yoku_Sama">
-                                <span class="icon">
-                                    <span class="fab fa-youtube"></span>
-                                </span>
-                                Yoku_Sama
-                            </a>
                             <a class="navbar-item" href="https://youtu.be/Nebulius">
                                 <span class="icon">
                                     <span class="fab fa-youtube"></span>
                                 </span>
                                 Nebulius
+                            </a>
+                            <a class="navbar-item" href="https://youtu.be/Yoku_Sama">
+                                <span class="icon">
+                                    <span class="fab fa-youtube"></span>
+                                </span>
+                                Yoku_Sama
                             </a>
                         </div>
                     </div>
@@ -125,8 +175,7 @@
                             {{ mitem.text }}
                         </a>
                     {% endfor %}
-                    </div>
-              </div>
+                </div>
             </nav>
         </footer>
     </section>

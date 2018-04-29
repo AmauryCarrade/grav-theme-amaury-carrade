@@ -1,62 +1,153 @@
+$frontpage-blog-space-between-blocks: 1.2em;
+$frontpage-blog-margin-around-blocks: 14%;
+
 body.frontpage {
     section.hero {
+        header.hero-head {
+
+        }
+
         .hero-body {
             color: white;
+            padding-right: 0;
+            padding-left: 0;
 
-            .presentation {
-                font-family: 'EB Garamond', serif;
-                font-size: 2em;
+            .articles-display {
+                .column {
+                    padding: 0;
+
+                    article {
+                        margin: 0;
+                        padding: .4em 1em 1em;
+
+                        min-height: 30vh;
+
+                        font-family: 'EB Garamond', serif;
+                        background-color: rgba(0, 0, 0, .25);
+
+                        h2 {
+                            margin-bottom: .4em;
+                            font-size: 1.5em;
+                            font-style: italic;
+                            line-height: 1.5;
+                            color: white;
+                        }
+
+                        &.presentation {
+                            margin-right: $frontpage-blog-space-between-blocks / 2;
+                            padding-left: $frontpage-blog-margin-around-blocks;
+
+                            background-color: transparent;
+
+                            text-align: center;
+
+                            h2 {
+                                text-align: center;
+                                margin-bottom: 1.5em;
+                            }
+
+                            p {
+                                font-size: 1.8em;
+                                font-variant: normal;
+                                letter-spacing: 1.4px;
+
+                                a {
+                                    display: inline-block;
+                                    border-bottom: 1px solid white;
+                                    color: white;
+                                    text-decoration: none;
+
+                                    &:hover {
+                                        text-shadow: 1px 1px 2px rgba(255, 255, 255, .4), -1px -1px 2px rgba(255, 255, 255, .4);
+                                    }
+                                }
+                            }
+                        }
+
+                        &.latest-article {
+                            margin-left: $frontpage-blog-space-between-blocks / 2;
+                            padding-right: $frontpage-blog-margin-around-blocks;
+
+                            text-align: left;
+
+                            h3 a {
+                                font-size: 1.8em;
+                                font-family: $family-primary;
+                                font-weight: 300;
+                                color: white;
+
+                                &:hover {
+                                    text-shadow: 1px 1px 2px rgba(255, 255, 255, .4), -1px -1px 2px rgba(255, 255, 255, .4);
+                                }
+                            }
+
+                            p.content {
+                                font-size: 1.4em;
+                                margin-top: .6em;
+                                margin-bottom: .1em;
+                            }
+
+                            aside {
+                                text-align: right;
+                                a.button {
+                                    font-family: $family-primary;
+                                    font-size: 1.3em;
+                                    font-weight: 300;
+
+                                    svg {
+                                        display: inline-block;
+                                        margin-right: .5em;
+                                        font-size: .9em;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .latest-article {
+                    backdrop-filter: blur(1.5rem);
+                    -webkit-backdrop-filter: blur(1.5rem);
+                }
+            }
+
+            .articles-list {
+                margin: 1em ($frontpage-blog-margin-around-blocks / 2) 0 ($frontpage-blog-margin-around-blocks / 2);
+
                 text-align: center;
-
-                a {
-                    display: inline-block;
-                    border-bottom: 1px solid white;
-                    color: white;
-                    text-decoration: none;
-
-                    &:hover {
-                        text-shadow: 1px 1px 2px rgba(255, 255, 255, .4), -1px -1px 2px rgba(255, 255, 255, .4);
-                    }
-                }
-            }
-        }
-        footer.hero-foot {
-            a.navbar-item, a.navbar-link {
-                padding: 0 1.4em;
                 color: white;
-                border-bottom: 1px solid transparent;
 
-                &.is-active, &:hover {
-                    border-bottom-color: white;
-                }
-            }
+                .column {
 
-            .navbar-item.has-dropdown {
-                a.navbar-link::after {
-                    display: none;
-                }
-                a.navbar-item {
-                    font-variant: normal;
-                    letter-spacing: 0;
-                    font-size: 1.2em;
-                    margin-left: 1.1em;
-                    padding: .4em 1em .4em .6em;
-                    border-bottom: none;
-
-                    .icon {
-                        margin-right: .4em;
-                        position: relative;
-                        top: 2px;
+                    &:first-child a {
+                        margin-left: 0;
+                    }
+                    &:last-child a {
+                        margin-right: 0;
                     }
 
-                    &:hover {
+                    a {
+                        display: block;
+                        margin: 0 1em;
+                        padding: .6em .6em;
+
+                        background-color: rgba(0, 0, 0, .25);
+
+                        font-size: 1.3em;
+                        font-weight: 300;
+                        font-family: $family-primary;
+
                         color: white;
+
+                        footer {
+                            font-size: .7em;
+                            font-weight: 400;
+                        }
+
+                        &:hover {
+                            background-color: rgba(0, 0, 0, .35);
+                        }
                     }
-                }
-                .navbar-dropdown {
-                    background-color: transparent;
-                    box-shadow: none;
-                    border-bottom: none;
                 }
             }
         }

@@ -22,12 +22,12 @@
 
     {% block javascripts %}
         {% do assets.addJs('jquery', 100) %}
-        {% do assets.addJs('https://use.fontawesome.com/releases/v5.0.7/js/all.js', 99) %}
+        {% do assets.addJs('https://use.fontawesome.com/releases/v5.0.7/js/all.js', 99, true, 'async', 'last') %}
     {% endblock %}
 
-    {{ assets.js() }}
+    {{ assets.js('top') }}
 
-{% endblock head%}
+{% endblock head %}
 </head>
 
 <body id="top" class="static-shooting-star {{ page.header.body_classes }} {% block body_classes %}{% endblock %}">
@@ -36,34 +36,36 @@
     </div>
 
     {% block bottom %}
-        {{ assets.js('bottom') }}
+        {{ assets.js() }}
 
-            {{ super() }}
+        {{ super() }}
 
-    <script type="text/javascript">
-        'use strict';
+        <script type="text/javascript">
+            'use strict';
 
-        document.body.classList.remove('static-shooting-star');
-
-        window.addEventListener('load', function()
-        {
             document.body.classList.remove('static-shooting-star');
 
-            function animate_shooting_star()
+            window.addEventListener('load', function()
             {
-                document.body.classList.add('animated-shooting-star');
+                document.body.classList.remove('static-shooting-star');
 
-                setTimeout(function()
+                function animate_shooting_star()
                 {
-                    document.body.classList.remove('animated-shooting-star');
-                }, 1500);
+                    document.body.classList.add('animated-shooting-star');
 
-                setTimeout(animate_shooting_star, (Math.floor(Math.random() * (60 - 20)) + 20) * 1000);
-            }
+                    setTimeout(function()
+                    {
+                        document.body.classList.remove('animated-shooting-star');
+                    }, 1500);
 
-            setTimeout(animate_shooting_star, (Math.floor(Math.random() * (10 - 2)) + 2) * 1000);
-        });
-    </script>
+                    setTimeout(animate_shooting_star, (Math.floor(Math.random() * (60 - 20)) + 20) * 1000);
+                }
+
+                setTimeout(animate_shooting_star, (Math.floor(Math.random() * (10 - 2)) + 2) * 1000);
+            });
+        </script>
+
+        {{ assets.js('last') }}
     {% endblock %}
 </body>
 </html>
