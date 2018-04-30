@@ -3,8 +3,8 @@ body {
 
     background:
         url('../images/stars.svg') top center repeat,
-        linear-gradient(to bottom, #0a020a 0%, #1b1424 40%, #1b1424 100%),
-        #1b1424;
+        linear-gradient(to bottom, $page-background-dark 0%, #1b1424 40%, $page-background-purple 100%),
+        $page-background-purple;
 
     background-size: contain;
 

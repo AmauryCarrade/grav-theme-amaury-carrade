@@ -1,6 +1,8 @@
 $frontpage-blog-space-between-blocks: 1.2em;
 $frontpage-blog-margin-around-blocks: 14%;
 
+$frontpage-photos-size: 88px;
+
 body.frontpage {
     section.hero {
         header.hero-head {
@@ -34,41 +36,100 @@ body.frontpage {
                         }
 
                         &.presentation {
+                            display: flex;
+                            flex-direction: column;
+
                             margin-right: $frontpage-blog-space-between-blocks / 2;
                             padding-left: $frontpage-blog-margin-around-blocks;
-
-                            background-color: transparent;
+                            padding-right: $frontpage-blog-margin-around-blocks;
+                            padding-top: 0;
 
                             text-align: center;
 
-                            h2 {
-                                text-align: center;
-                                margin-bottom: 1.5em;
+                            div.content {
+                                display: flex;
+                                flex-grow: 2;
+                                margin: 0;
+
+                                > div {
+                                    align-self: center;
+
+                                    h2 {
+                                        text-align: center;
+                                        margin-bottom: 1.5em;
+                                    }
+
+                                    p {
+                                        font-size: 1.68em;
+                                        font-variant: normal;
+                                        letter-spacing: 1.4px;
+
+                                        a {
+                                            display: inline-block;
+                                            border-bottom: 1px solid white;
+                                            color: white;
+                                            text-decoration: none;
+
+                                            &:hover {
+                                                text-shadow: 1px 1px 2px rgba(255, 255, 255, .4), -1px -1px 2px rgba(255, 255, 255, .4);
+                                            }
+                                        }
+                                    }
+                                }
                             }
 
-                            p {
-                                font-size: 1.8em;
-                                font-variant: normal;
-                                letter-spacing: 1.4px;
+                            footer {
+                                text-align: center;
 
-                                a {
-                                    display: inline-block;
-                                    border-bottom: 1px solid white;
-                                    color: white;
-                                    text-decoration: none;
+                                ul {
+                                    position: relative;
+                                    left: $frontpage-photos-size / 6;
 
-                                    &:hover {
-                                        text-shadow: 1px 1px 2px rgba(255, 255, 255, .4), -1px -1px 2px rgba(255, 255, 255, .4);
+                                    li {
+                                        display: inline-block;
+                                        padding: 0;
+
+                                        a {
+                                            margin: 0;
+
+                                            img {
+                                                width: $frontpage-photos-size;
+                                                border: 3px solid $page-background-purple;
+                                                border-radius: 426921px;
+
+                                                &:hover {
+                                                    z-index: 1000;
+                                                }
+                                            }
+                                        }
+
+                                        &:not(:first-child) {
+                                            position: relative;
+                                            left: -($frontpage-photos-size / 3);
+                                        }
                                     }
                                 }
                             }
                         }
 
                         &.latest-article {
+                            display: flex;
+                            flex-direction: column;
+
                             margin-left: $frontpage-blog-space-between-blocks / 2;
                             padding-right: $frontpage-blog-margin-around-blocks;
 
                             text-align: left;
+
+                            div {
+                                display: flex;
+                                flex-direction: column;
+                                flex-grow: 2;
+
+                                > div {
+                                    align-self: center;
+                                }
+                            }
 
                             h3 a {
                                 font-size: 1.8em;
@@ -87,18 +148,24 @@ body.frontpage {
                                 margin-bottom: .1em;
                             }
 
-                            aside {
-                                text-align: right;
-                                a.button {
-                                    font-family: $family-primary;
-                                    font-size: 1.3em;
-                                    font-weight: 300;
+                            footer {
+                                text-align: center;
 
-                                    svg {
-                                        display: inline-block;
-                                        margin-right: .5em;
-                                        font-size: .9em;
-                                    }
+                                svg {
+                                    margin-right: .5em;
+                                }
+                            }
+                        }
+
+                        footer {
+                            a.button {
+                                font-family: $family-primary;
+                                font-size: 1.3em;
+                                font-weight: 300;
+
+                                svg {
+                                    display: inline-block;
+                                    font-size: .9em;
                                 }
                             }
                         }
