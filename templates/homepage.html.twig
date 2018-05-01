@@ -20,7 +20,7 @@
                                 <ul>
                                     {% for photo in page.media.images %}
                                         <li>
-                                            <a href="#" class="tooltip is-tooltip-bottom" data-tooltip="{{ photo.meta.alt_text }}">
+                                            <a href="#" class="tooltip" data-tooltip="{{ photo.meta.alt_text }}">
                                                 <h3 class="sr-only">{{ photo.meta.alt_text }}</h3>
                                                 <img src="{{ photo.cropResize(176, 176).url }}" alt="{{ photo.meta.alt_text }}" />
                                             </a>
@@ -48,25 +48,25 @@
                     </div>
                 </div>
                 <aside class="columns articles-list">
-                    <div class="column is-one-quarter">
-                        <a href="" class="tooltip" data-tooltip="Le nombre d'éléments de l'univers est-il limité&nbsp;?">
-                            <h3>Le nombre d'éléments de l'univers est-il limité ?</h3>
+                    <div class="column is-one-quarter tooltip" data-tooltip="BabyRocket fête son premier kilomètre — en route vers Kármán&nbsp;!">
+                        <a href="">
+                            <h3>BabyRocket fête son premier kilomètre — en route vers Kármán&nbsp;!</h3>
                             <footer>
                                 <time>Il y a une semaine</time>
                             </footer>
                         </a>
                     </div>
-                    <div class="column is-one-quarter">
+                    <div class="column is-one-quarter tooltip" data-tooltip="Un trou noir ? C'est dans la poche&nbsp;!">
                         <a href="">
-                            <h3>Troisième article</h3>
+                            <h3>Un trou noir ? C'est dans la poche&nbsp;!</h3>
                             <footer>
                                 <time>Il y a deux semaine</time>
                             </footer>
                         </a>
                     </div>
-                    <div class="column is-one-quarter">
+                    <div class="column is-one-quarter tooltip" data-tooltip="Grave gravité(s)">
                         <a href="">
-                            <h3>Quatrième article</h3>
+                            <h3>Grave gravité(s)</h3>
                             <footer>
                                 <time>Il y a un mois</time>
                             </footer>

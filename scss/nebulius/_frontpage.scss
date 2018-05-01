@@ -1,6 +1,8 @@
 $frontpage-blog-space-between-blocks: 1.2em;
 $frontpage-blog-margin-around-blocks: 14%;
 
+$frontpage-blur-radius: 1.5rem;
+
 $frontpage-photos-size: 88px;
 
 body.frontpage {
@@ -27,8 +29,8 @@ body.frontpage {
                         font-family: 'EB Garamond', serif;
                         background-color: rgba(0, 0, 0, .25);
 
-                        backdrop-filter: blur(1.5rem);
-                        -webkit-backdrop-filter: blur(1.5rem);
+                        backdrop-filter: blur($frontpage-blur-radius);
+                        -webkit-backdrop-filter: blur($frontpage-blur-radius);
 
                         h2 {
                             margin-bottom: .4em;
@@ -196,12 +198,14 @@ body.frontpage {
             }
 
             .articles-list {
-                margin: 1em ($frontpage-blog-margin-around-blocks / 2) 0 ($frontpage-blog-margin-around-blocks / 2);
+                margin: 2em ($frontpage-blog-margin-around-blocks / 2) 0 ($frontpage-blog-margin-around-blocks / 2);
 
                 text-align: center;
                 color: white;
 
                 .column {
+
+                    padding-top: 0;
 
                     &:first-child a {
                         margin-left: 0;
@@ -222,6 +226,9 @@ body.frontpage {
                         font-family: $family-primary;
 
                         color: white;
+
+                        backdrop-filter: blur($frontpage-blur-radius);
+                        -webkit-backdrop-filter: blur($frontpage-blur-radius);
 
                         h3 {
                             overflow: hidden;
