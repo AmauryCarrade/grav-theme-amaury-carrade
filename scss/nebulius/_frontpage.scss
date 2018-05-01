@@ -27,6 +27,9 @@ body.frontpage {
                         font-family: 'EB Garamond', serif;
                         background-color: rgba(0, 0, 0, .25);
 
+                        backdrop-filter: blur(1.5rem);
+                        -webkit-backdrop-filter: blur(1.5rem);
+
                         h2 {
                             margin-bottom: .4em;
                             font-size: 1.5em;
@@ -92,13 +95,21 @@ body.frontpage {
                                         a {
                                             margin: 0;
 
+                                            display: block;
+
+                                            width: $frontpage-photos-size;
+                                            height: $frontpage-photos-size;
+
                                             img {
                                                 width: $frontpage-photos-size;
-                                                border: 3px solid $page-background-purple;
                                                 border-radius: 426921px;
+                                                border: 3px solid $page-background-purple;
+
+                                                filter: grayscale(84%);
+                                                transition: filter .4s ease-in-out;
 
                                                 &:hover {
-                                                    z-index: 1000;
+                                                    filter: grayscale(21%);
                                                 }
                                             }
                                         }
@@ -149,10 +160,21 @@ body.frontpage {
                             }
 
                             footer {
-                                text-align: center;
+                                margin-top: 1em;
 
-                                svg {
-                                    margin-right: .5em;
+                                text-align: left;
+
+                                font-size: .96em;
+                                font-family: $family-primary;
+
+                                color: lighten($page-background-purple, 78%);
+
+                                a {
+                                    color: lighten($page-background-purple, 78%);
+
+                                    &:hover {
+                                        color: white;
+                                    }
                                 }
                             }
                         }
@@ -170,11 +192,6 @@ body.frontpage {
                             }
                         }
                     }
-                }
-
-                .latest-article {
-                    backdrop-filter: blur(1.5rem);
-                    -webkit-backdrop-filter: blur(1.5rem);
                 }
             }
 
@@ -206,9 +223,19 @@ body.frontpage {
 
                         color: white;
 
+                        h3 {
+                            overflow: hidden;
+                            white-space: nowrap;
+                            text-overflow: ellipsis;
+
+                            font-weight: 300;
+                        }
+
                         footer {
                             font-size: .7em;
                             font-weight: 400;
+
+                            color: lighten($page-background-purple, 78%);
                         }
 
                         &:hover {

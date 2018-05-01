@@ -18,18 +18,14 @@
                             </div>
                             <footer>
                                 <ul>
-                                    <li>
-                                        <a href="#">
-                                            <h3 class="sr-only">Yoku_Sama</h3>
-                                            <img src="http://127.0.0.1:8000/user/pages/01.home/yoku_sama.jpg" alt="Yoku_Sama" />
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <h3 class="sr-only">AmauryPi</h3>
-                                            <img src="http://127.0.0.1:8000/user/pages/01.home/PAFEV18_amaury_001-square.jpg" alt="AmauryPi" />
-                                        </a>
-                                    </li>
+                                    {% for photo in page.media.images %}
+                                        <li>
+                                            <a href="#" class="tooltip is-tooltip-bottom" data-tooltip="{{ photo.meta.alt_text }}">
+                                                <h3 class="sr-only">{{ photo.meta.alt_text }}</h3>
+                                                <img src="{{ photo.cropResize(176, 176).url }}" alt="{{ photo.meta.alt_text }}" />
+                                            </a>
+                                        </li>
+                                    {% endfor %}
                                 </ul>
                             </footer>
                         </article>
@@ -45,13 +41,16 @@
                                 deleniti dolor enim eveniet harum illo labore magni, maxime molestias, natus officiis
                                 optio placeat possimus provident quos tenetur totam!
                             </p>
+                            <footer>
+                                Il y a quatre jours &middot; <a href="">Lire l'article</a>
+                            </footer>
                         </article>
                     </div>
                 </div>
                 <aside class="columns articles-list">
                     <div class="column is-one-quarter">
-                        <a href="">
-                            Second article
+                        <a href="" class="tooltip" data-tooltip="Le nombre d'éléments de l'univers est-il limité&nbsp;?">
+                            <h3>Le nombre d'éléments de l'univers est-il limité ?</h3>
                             <footer>
                                 <time>Il y a une semaine</time>
                             </footer>
@@ -59,23 +58,23 @@
                     </div>
                     <div class="column is-one-quarter">
                         <a href="">
-                            Troisième article
+                            <h3>Troisième article</h3>
                             <footer>
-                                <time>Il y a une semaine</time>
+                                <time>Il y a deux semaine</time>
                             </footer>
                         </a>
                     </div>
                     <div class="column is-one-quarter">
                         <a href="">
-                            Quatrième article
+                            <h3>Quatrième article</h3>
                             <footer>
-                                <time>Il y a une semaine</time>
+                                <time>Il y a un mois</time>
                             </footer>
                         </a>
                     </div>
                     <div class="column is-one-quarter">
                         <a href="">
-                            Tous les articles…
+                            <h3>Tous les articles…</h3>
                             <footer>
                                 12 articles
                             </footer>
