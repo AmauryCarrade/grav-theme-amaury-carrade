@@ -1,0 +1,7 @@
+{%- spaceless -%}
+    <time datetime="{{ date|date('c') }}"
+          {%- if show_title|default(true) %} title="{{ date|date('d/m/Y à H:i') }}"{% endif -%}
+          {%- if itemprop %} itemprop="{{ itemprop }}"{% endif -%}>
+            {{- date|nicetime -}}
+    </time>
+{%- endspaceless -%}

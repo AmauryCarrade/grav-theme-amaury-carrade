@@ -1,0 +1,65 @@
+{% set last_article = articles.current %}
+
+<section>
+    <div class="columns articles-display">
+        <div class="column is-half">
+            <article class="presentation">
+                <div class="content">
+                    <div>{{ introduction }}</div>
+                </div>
+                <footer>
+                    <ul>
+                        {% for photo in introduction_images %}
+                            <li>
+                                <a href="#"{% if photo.meta.alt_text %} class="tooltip" data-tooltip="{{ photo.meta.alt_text }}"{% endif %}>
+                                    <h3 class="sr-only">{{ photo.meta.alt_text }}</h3>
+                                    <img src="{{ photo.cropResize(176, 176).url }}" alt="{{ photo.meta.alt_text }}" />
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </footer>
+            </article>
+        </div>
+        <div class="column is-half">
+            <article class="latest-article" itemid="{{ last_article.url }}" itemscope itemtype="http://schema.org/BlogPosting">
+                <h2>Dernier article</h2>
+                <h3>
+                    <a href="{{ last_article.url }}" itemprop="name">{{ last_article.header.title }}</a>
+                </h3>
+                <div class="content" itemprop="description">
+                    {% if last_article.header.abstract %}
+                        {{ last_article.header.abstract }}
+                    {% elseif last_article.summary %}
+                        {{ last_article.summary(250) }}
+                    {% else %}
+                        {{ last_article.content|striptags|safe_truncate(300, true) }}
+                    {% endif %}
+                </div>
+                <footer>
+                    {% include 'partials/tags/time.html.twig' with {'date': last_article.date, 'itemprop': 'datePublished'} %} &middot; <a href="{{ last_article.url }}">Lire l'article</a>
+                </footer>
+            </article>
+        </div>
+    </div>
+    <aside class="columns articles-list">
+        {% for article in articles.batch(4)[0] if not article.isFirst %}
+            <div class="column is-one-quarter tooltip" data-tooltip="{{ article.header.title }}" itemid="{{ article.url }}" itemscope itemtype="http://schema.org/BlogPosting">
+                <a href="{{ article.url }}">
+                    <h3 itemprop="name">{{ article.header.title }}</h3>
+                    <footer>
+                        {% include 'partials/tags/time.html.twig' with {'date': article.date, 'itemprop': 'datePublished'} %}
+                    </footer>
+                </a>
+            </div>
+        {% endfor %}
+        <div class="column is-one-quarter">
+            <a href="">
+                <h3>Tous les articles…</h3>
+                <footer>
+                    {{ articles|length }} {{ 'article'|pluralize(articles.count) }}
+                </footer>
+            </a>
+        </div>
+    </aside>
+</section>

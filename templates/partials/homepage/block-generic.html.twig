@@ -1,0 +1,27 @@
+<section>
+    {% for subpage in page.children.nonRoutable.nonVisible %}
+        {% if subpage.header.title == '_homepage' %}
+            <article>
+                <header>
+                    <h2>{{ page.header.title }}</h2>
+                </header>
+                
+                <div class="content">
+                    {{ subpage.content }}
+                </div>
+
+                <aside>
+                    <a class="button is-white" href="{{ page.url }}">
+                        <span class="{{ subpage.header.home_icon_type|default('fas') }} fa-{{ subpage.header.home_icon|default('fighter-jet') }}"></span>
+                        {% if subpage.header.home_button %}
+                            {{ subpage.header.home_button }}
+                        {% else %}
+                            En voir plus sur {{ page.header.title }}
+                        {% endif %}
+                    </a>
+                </aside>
+            </article>
+
+        {% endif %}
+    {% endfor %}
+</section>

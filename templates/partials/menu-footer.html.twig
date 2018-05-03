@@ -1,0 +1,109 @@
+<footer class="hero-foot page-footer">
+    <nav class="navbar is-transparent">
+        <div class="navbar-brand">
+            <div class="navbar-item has-dropdown has-dropdown-up is-hoverable">
+                <a class="navbar-link" href="https://twitter.com/NebuliusGrp">
+                    <span class="icon">
+                        <span class="fab fa-twitter"></span>
+                    </span>
+                </a>
+
+                <div class="navbar-dropdown">
+                    <a class="navbar-item" href="https://twitter.com/NebuliusGrp">
+                        <span class="icon">
+                            <span class="fab fa-twitter"></span>
+                        </span>
+                        @NebuliusGrp
+                    </a>
+                    <a class="navbar-item" href="https://twitter.com/Yoku_Sama">
+                        <span class="icon">
+                            <span class="fab fa-twitter"></span>
+                        </span>
+                        @Yoku_Sama
+                    </a>
+                    <a class="navbar-item" href="https://twitter.com/AmauryPi">
+                        <span class="icon">
+                            <span class="fab fa-twitter"></span>
+                        </span>
+                        @AmauryPi
+                    </a>
+                </div>
+            </div>
+
+            <div class="navbar-item has-dropdown has-dropdown-up is-hoverable">
+                <a class="navbar-link" href="https://instagram.com/yoku_timo">
+                    <span class="icon">
+                        <span class="fab fa-instagram"></span>
+                    </span>
+                </a>
+
+                <div class="navbar-dropdown">
+                    <a class="navbar-item" href="https://instagram.com/yoku_timo">
+                        <span class="icon">
+                            <span class="fab fa-instagram"></span>
+                        </span>
+                        @yoku_timo
+                    </a>
+                    <a class="navbar-item" href="https://instagram.com/amaurypi">
+                        <span class="icon">
+                            <span class="fab fa-instagram"></span>
+                        </span>
+                        @amaurypi
+                    </a>
+                </div>
+            </div>
+
+            <div class="navbar-item has-dropdown has-dropdown-up is-hoverable">
+                <a class="navbar-link" href="https://youtu.be/Nebulius">
+                    <span class="icon">
+                        <span class="fab fa-youtube"></span>
+                    </span>
+                </a>
+
+                <div class="navbar-dropdown">
+                    <a class="navbar-item" href="https://youtu.be/Nebulius">
+                        <span class="icon">
+                            <span class="fab fa-youtube"></span>
+                        </span>
+                        Nebulius
+                    </a>
+                    <a class="navbar-item" href="https://youtu.be/Yoku_Sama">
+                        <span class="icon">
+                            <span class="fab fa-youtube"></span>
+                        </span>
+                        Yoku_Sama
+                    </a>
+                </div>
+            </div>
+
+            <a class="navbar-item" href="https://github.com/Nebulius">
+                <span class="icon">
+                    <span class="fab fa-github"></span>
+                </span>
+            </a>
+
+            <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+
+        <div class="navbar-end">
+            {% set this_page = page %}
+            {% for page in pages.children.visible %}
+                {% set current_page = (page.active or page.activeChild or (this_page.template == 'homepage' and loop.index == 1)) ? 'is-active' : '' %}
+                <a class="navbar-item {{ current_page }}" href="{{ page.url }}"{% if this_page.template == 'homepage' %} data-target="#{{ page.url|trim('/') }}"{% endif %}>
+                        {% if page.header.icon %}<i class="fas fa-{{ page.header.icon }}"></i>{% endif %}
+                        {{ page.menu }}
+                </a>
+            {% endfor %}
+            {% for mitem in site.menu %}
+                <a class="navbar-item" href="{{ mitem.url }}">
+                    {% if mitem.icon %}<i class="fas fa-{{ mitem.icon }}"></i>{% endif %}
+                    {{ mitem.text }}
+                </a>
+            {% endfor %}
+        </div>
+    </nav>
+</footer>

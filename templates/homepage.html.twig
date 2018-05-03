@@ -3,196 +3,33 @@
 {% block body_classes %}frontpage{% endblock %}
 
 {% block body %}
-    <section class="hero is-fullheight">
-        <header class="hero-head page-header">
-            <h1>{{ theme_config.header.title ?: config.site.title }}</h1>
-            <p>{{ theme_config.header.tagline }}</p>
-        </header>
-        <div class="hero-body">
-            <section>
-                <div class="columns articles-display">
-                    <div class="column is-half">
-                        <article class="presentation">
-                            <div class="content">
-                                <div>{{ page.content }}</div>
-                            </div>
-                            <footer>
-                                <ul>
-                                    {% for photo in page.media.images %}
-                                        <li>
-                                            <a href="#"{% if photo.meta.alt_text %} class="tooltip" data-tooltip="{{ photo.meta.alt_text }}"{% endif %}>
-                                                <h3 class="sr-only">{{ photo.meta.alt_text }}</h3>
-                                                <img src="{{ photo.cropResize(176, 176).url }}" alt="{{ photo.meta.alt_text }}" />
-                                            </a>
-                                        </li>
-                                    {% endfor %}
-                                </ul>
-                            </footer>
-                        </article>
-                    </div>
-                    <div class="column is-half">
-                        <article class="latest-article">
-                            <h2>Dernier article</h2>
-                            <h3>
-                                <a href="#">Le nombre d'éléments de l'univers est-il limité&nbsp;?</a>
-                            </h3>
-                            <p class="content">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aspernatur beatae,
-                                deleniti dolor enim eveniet harum illo labore magni, maxime molestias, natus officiis
-                                optio placeat possimus provident quos tenetur totam!
-                            </p>
-                            <footer>
-                                Il y a quatre jours &middot; <a href="">Lire l'article</a>
-                            </footer>
-                        </article>
-                    </div>
-                </div>
-                <aside class="columns articles-list">
-                    <div class="column is-one-quarter tooltip" data-tooltip="BabyRocket fête son premier kilomètre — en route vers Kármán&nbsp;!">
-                        <a href="">
-                            <h3>BabyRocket fête son premier kilomètre — en route vers Kármán&nbsp;!</h3>
-                            <footer>
-                                <time>Il y a une semaine</time>
-                            </footer>
-                        </a>
-                    </div>
-                    <div class="column is-one-quarter tooltip" data-tooltip="Un trou noir ? C'est dans la poche&nbsp;!">
-                        <a href="">
-                            <h3>Un trou noir ? C'est dans la poche&nbsp;!</h3>
-                            <footer>
-                                <time>Il y a deux semaine</time>
-                            </footer>
-                        </a>
-                    </div>
-                    <div class="column is-one-quarter tooltip" data-tooltip="Grave gravité(s)">
-                        <a href="">
-                            <h3>Grave gravité(s)</h3>
-                            <footer>
-                                <time>Il y a un mois</time>
-                            </footer>
-                        </a>
-                    </div>
-                    <div class="column is-one-quarter">
-                        <a href="">
-                            <h3>Tous les articles…</h3>
-                            <footer>
-                                12 articles
-                            </footer>
-                        </a>
-                    </div>
-                </aside>
-            </section>
-        </div>
-        <footer class="hero-foot page-footer">
-            <nav class="navbar is-transparent">
-                <div class="navbar-brand">
-                    <div class="navbar-item has-dropdown has-dropdown-up is-hoverable">
-                        <a class="navbar-link" href="https://twitter.com/NebuliusGrp">
-                            <span class="icon">
-                                <span class="fab fa-twitter"></span>
-                            </span>
-                        </a>
-
-                        <div class="navbar-dropdown">
-                            <a class="navbar-item" href="https://twitter.com/NebuliusGrp">
-                                <span class="icon">
-                                    <span class="fab fa-twitter"></span>
-                                </span>
-                                @NebuliusGrp
-                            </a>
-                            <a class="navbar-item" href="https://twitter.com/Yoku_Sama">
-                                <span class="icon">
-                                    <span class="fab fa-twitter"></span>
-                                </span>
-                                @Yoku_Sama
-                            </a>
-                            <a class="navbar-item" href="https://twitter.com/AmauryPi">
-                                <span class="icon">
-                                    <span class="fab fa-twitter"></span>
-                                </span>
-                                @AmauryPi
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="navbar-item has-dropdown has-dropdown-up is-hoverable">
-                        <a class="navbar-link" href="https://instagram.com/yoku_timo">
-                            <span class="icon">
-                                <span class="fab fa-instagram"></span>
-                            </span>
-                        </a>
-
-                        <div class="navbar-dropdown">
-                            <a class="navbar-item" href="https://instagram.com/yoku_timo">
-                                <span class="icon">
-                                    <span class="fab fa-instagram"></span>
-                                </span>
-                                @yoku_timo
-                            </a>
-                            <a class="navbar-item" href="https://instagram.com/amaurypi">
-                                <span class="icon">
-                                    <span class="fab fa-instagram"></span>
-                                </span>
-                                @amaurypi
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="navbar-item has-dropdown has-dropdown-up is-hoverable">
-                        <a class="navbar-link" href="https://youtu.be/Nebulius">
-                            <span class="icon">
-                                <span class="fab fa-youtube"></span>
-                            </span>
-                        </a>
-
-                        <div class="navbar-dropdown">
-                            <a class="navbar-item" href="https://youtu.be/Nebulius">
-                                <span class="icon">
-                                    <span class="fab fa-youtube"></span>
-                                </span>
-                                Nebulius
-                            </a>
-                            <a class="navbar-item" href="https://youtu.be/Yoku_Sama">
-                                <span class="icon">
-                                    <span class="fab fa-youtube"></span>
-                                </span>
-                                Yoku_Sama
-                            </a>
-                        </div>
-                    </div>
-
-                    <a class="navbar-item" href="https://github.com/Nebulius">
-                        <span class="icon">
-                            <span class="fab fa-github"></span>
-                        </span>
-                    </a>
-
-                    <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                </div>
-
-                <div class="navbar-end">
-                    {% set this_page = page %}
-                    {% for page in pages.children.visible %}
-                        {% set current_page = (page.active or page.activeChild or (this_page.template == 'homepage' and loop.index == 1)) ? 'is-active' : '' %}
-                        <a class="navbar-item {{ current_page }}" href="{{ page.url }}"{% if this_page.template == 'homepage' %} data-target="#{{ page.url|trim('/') }}"{% endif %}>
-                                {% if page.header.icon %}<i class="fas fa-{{ page.header.icon }}"></i>{% endif %}
-                                {{ page.menu }}
-                        </a>
-                    {% endfor %}
-                    {% for mitem in site.menu %}
-                        <a class="navbar-item" href="{{ mitem.url }}">
-                            {% if mitem.icon %}<i class="fas fa-{{ mitem.icon }}"></i>{% endif %}
-                            {{ mitem.text }}
-                        </a>
-                    {% endfor %}
-                </div>
-            </nav>
-        </footer>
-    </section>
+    {% for subpage in pages.children.visible %}
+        <section id="{{ subpage.url|trim('/') }}"{% if loop.first %} class="hero is-fullheight"{% endif %}>
+            {% if loop.first %}
+                <header class="hero-head page-header">
+                    <h1>{{ theme_config.header.title ?: config.site.title }}</h1>
+                    <p>{{ theme_config.header.tagline }}</p>
+                </header>
+            {% endif %}
+            <div class="{% if loop.first %}hero-body{% else %}section-body{% endif %}">
+                {% set description_page = loop.first ? page : subpage %}
+                {% if subpage.template == 'blog' %}
+                    {% include 'partials/homepage/block-blog.html.twig' with {
+                        'introduction': description_page.content,
+                        'introduction_images': description_page.media.images,
+                        'articles': subpage.children.routable.visible.order('date', 'desc')
+                    } %}
+                {% else %}
+                    {% include 'partials/homepage/block-generic.html.twig' with {
+                        'page': subpage
+                    } %}
+                {% endif %}
+            </div>
+            {% if loop.first %}
+                {% include 'partials/menu-footer.html.twig' %}
+            {% endif %}
+        </section>
+    {% endfor %}
 {% endblock %}
 
 {#
