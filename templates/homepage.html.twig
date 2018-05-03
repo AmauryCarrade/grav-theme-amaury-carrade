@@ -20,7 +20,7 @@
                                 <ul>
                                     {% for photo in page.media.images %}
                                         <li>
-                                            <a href="#" class="tooltip" data-tooltip="{{ photo.meta.alt_text }}">
+                                            <a href="#"{% if photo.meta.alt_text %} class="tooltip" data-tooltip="{{ photo.meta.alt_text }}"{% endif %}>
                                                 <h3 class="sr-only">{{ photo.meta.alt_text }}</h3>
                                                 <img src="{{ photo.cropResize(176, 176).url }}" alt="{{ photo.meta.alt_text }}" />
                                             </a>
