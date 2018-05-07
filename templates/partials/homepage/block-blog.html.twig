@@ -43,8 +43,8 @@
         </div>
     </div>
     <aside class="columns articles-list">
-        {% for article in articles.batch(4)[0] if not article.isFirst %}
-            <div class="column is-one-quarter tooltip" data-tooltip="{{ article.header.title }}" itemid="{{ article.url }}" itemscope itemtype="http://schema.org/BlogPosting">
+        {% for article in articles.batch(4)[0] if article != last_article %}
+            <div class="column tooltip" data-tooltip="{{ article.header.title }}" itemid="{{ article.url }}" itemscope itemtype="http://schema.org/BlogPosting">
                 <a href="{{ article.url }}">
                     <h3 itemprop="name">{{ article.header.title }}</h3>
                     <footer>
@@ -53,7 +53,7 @@
                 </a>
             </div>
         {% endfor %}
-        <div class="column is-one-quarter">
+        <div class="column">
             <a href="{{ page.url }}">
                 <h3>Tous les articles</h3>
                 <footer>
