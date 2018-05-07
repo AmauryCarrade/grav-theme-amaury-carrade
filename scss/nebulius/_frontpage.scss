@@ -5,258 +5,365 @@ $frontpage-blur-radius: 1.5rem;
 
 $frontpage-photos-size: 88px;
 
+$frontpage-reflection-height: 333px;
+$frontpage-reflection-compression: 0.5;
+
 body.frontpage {
     div.body-background-container {
         background: none;
-    }
+    
+        > section.hero {
+            background: url("../images/background-bottom.png") bottom center no-repeat,
+                        url("../images/background-bottom-low.png") bottom/contain no-repeat;
 
-    section.hero {
-        background: url("../images/background-bottom.png") bottom center no-repeat,
-                    url("../images/background-bottom-low.png") bottom/contain no-repeat;
+            header.hero-head {
 
-        header.hero-head {
+            }
 
-        }
+            .hero-body {
+                color: white;
+                padding-right: 0;
+                padding-left: 0;
 
-        .hero-body {
-            color: white;
-            padding-right: 0;
-            padding-left: 0;
+                .articles-display {
+                    .column {
+                        padding: 0;
 
-            .articles-display {
-                .column {
-                    padding: 0;
+                        article {
+                            margin: 0;
+                            padding: .4em 1em 1em;
 
-                    article {
-                        margin: 0;
-                        padding: .4em 1em 1em;
+                            min-height: 30vh;
 
-                        min-height: 30vh;
+                            font-family: 'EB Garamond', serif;
+                            background-color: rgba(0, 0, 0, .25);
 
-                        font-family: 'EB Garamond', serif;
-                        background-color: rgba(0, 0, 0, .25);
+                            backdrop-filter: blur($frontpage-blur-radius);
+                            -webkit-backdrop-filter: blur($frontpage-blur-radius);
 
-                        backdrop-filter: blur($frontpage-blur-radius);
-                        -webkit-backdrop-filter: blur($frontpage-blur-radius);
-
-                        h2 {
-                            margin-bottom: .4em;
-                            font-size: 1.5em;
-                            font-style: italic;
-                            line-height: 1.5;
-                            color: white;
-                        }
-
-                        &.presentation {
-                            display: flex;
-                            flex-direction: column;
-
-                            margin-right: $frontpage-blog-space-between-blocks / 2;
-                            padding-left: $frontpage-blog-margin-around-blocks;
-                            padding-right: $frontpage-blog-margin-around-blocks;
-                            padding-top: 0;
-
-                            text-align: center;
-
-                            div.content {
-                                display: flex;
-                                flex-grow: 2;
-                                margin: 0;
-
-                                > div {
-                                    align-self: center;
-
-                                    h2 {
-                                        text-align: center;
-                                        margin-bottom: 1.5em;
-                                    }
-
-                                    p {
-                                        font-size: 1.68em;
-                                        font-variant: normal;
-                                        letter-spacing: 1.4px;
-
-                                        a {
-                                            display: inline-block;
-                                            border-bottom: 1px solid white;
-                                            color: white;
-                                            text-decoration: none;
-
-                                            &:hover {
-                                                text-shadow: 1px 1px 2px rgba(255, 255, 255, .4), -1px -1px 2px rgba(255, 255, 255, .4);
-                                            }
-                                        }
-                                    }
-                                }
+                            h2 {
+                                margin-bottom: .4em;
+                                font-size: 1.5em;
+                                font-style: italic;
+                                line-height: 1.5;
+                                color: white;
                             }
 
-                            footer {
+                            &.presentation {
+                                display: flex;
+                                flex-direction: column;
+
+                                margin-right: $frontpage-blog-space-between-blocks / 2;
+                                padding-left: $frontpage-blog-margin-around-blocks;
+                                padding-right: $frontpage-blog-margin-around-blocks;
+                                padding-top: 0;
+
                                 text-align: center;
 
-                                ul {
-                                    position: relative;
-                                    left: $frontpage-photos-size / 6;
+                                div.content {
+                                    display: flex;
+                                    flex-grow: 2;
+                                    margin: 0;
 
-                                    li {
-                                        display: inline-block;
-                                        padding: 0;
+                                    > div {
+                                        align-self: center;
 
-                                        a {
-                                            margin: 0;
+                                        h2 {
+                                            text-align: center;
+                                            margin-bottom: 1.5em;
+                                        }
 
-                                            display: block;
+                                        p {
+                                            font-size: 1.68em;
+                                            font-variant: normal;
+                                            letter-spacing: 1.4px;
 
-                                            width: $frontpage-photos-size;
-                                            height: $frontpage-photos-size;
-
-                                            img {
-                                                width: $frontpage-photos-size;
-                                                border-radius: 426921px;
-                                                border: 3px solid $page-background-purple;
-
-                                                filter: grayscale(84%);
-                                                transition: filter .4s ease-in-out;
+                                            a {
+                                                display: inline-block;
+                                                border-bottom: 1px solid white;
+                                                color: white;
+                                                text-decoration: none;
 
                                                 &:hover {
-                                                    filter: grayscale(21%);
+                                                    text-shadow: 1px 1px 2px rgba(255, 255, 255, .4), -1px -1px 2px rgba(255, 255, 255, .4);
                                                 }
                                             }
                                         }
+                                    }
+                                }
 
-                                        &:not(:first-child) {
-                                            position: relative;
-                                            left: -($frontpage-photos-size / 3);
+                                footer {
+                                    text-align: center;
+
+                                    ul {
+                                        position: relative;
+                                        left: $frontpage-photos-size / 6;
+
+                                        li {
+                                            display: inline-block;
+                                            padding: 0;
+
+                                            a {
+                                                margin: 0;
+
+                                                display: block;
+
+                                                width: $frontpage-photos-size;
+                                                height: $frontpage-photos-size;
+
+                                                img {
+                                                    width: $frontpage-photos-size;
+                                                    border-radius: 426921px;
+                                                    border: 3px solid $page-background-purple;
+
+                                                    filter: grayscale(84%);
+                                                    transition: filter .4s ease-in-out;
+
+                                                    &:hover {
+                                                        filter: grayscale(21%);
+                                                    }
+                                                }
+                                            }
+
+                                            &:not(:first-child) {
+                                                position: relative;
+                                                left: -($frontpage-photos-size / 3);
+                                            }
                                         }
                                     }
                                 }
                             }
-                        }
 
-                        &.latest-article {
-                            display: flex;
-                            flex-direction: column;
-
-                            margin-left: $frontpage-blog-space-between-blocks / 2;
-                            padding-right: $frontpage-blog-margin-around-blocks;
-
-                            text-align: left;
-
-                            div {
+                            &.latest-article {
                                 display: flex;
                                 flex-direction: column;
-                                flex-grow: 2;
 
-                                > div {
-                                    align-self: center;
-                                }
-                            }
-
-                            h3 a {
-                                font-size: 1.8em;
-                                font-family: $family-primary;
-                                font-weight: 300;
-                                color: white;
-
-                                &:hover {
-                                    text-shadow: 1px 1px 2px rgba(255, 255, 255, .4), -1px -1px 2px rgba(255, 255, 255, .4);
-                                }
-                            }
-
-                            div.content {
-                                font-size: 1.4em;
-                                margin-top: .6em;
-                                margin-bottom: .1em;
-                            }
-
-                            footer {
-                                margin-top: 1em;
+                                margin-left: $frontpage-blog-space-between-blocks / 2;
+                                padding-right: $frontpage-blog-margin-around-blocks;
 
                                 text-align: left;
 
-                                font-size: .96em;
-                                font-family: $family-primary;
+                                div {
+                                    display: flex;
+                                    flex-direction: column;
+                                    flex-grow: 2;
 
-                                color: lighten($page-background-purple, 78%);
+                                    > div {
+                                        align-self: center;
+                                    }
+                                }
 
-                                a {
-                                    color: lighten($page-background-purple, 78%);
+                                h3 a {
+                                    font-size: 1.8em;
+                                    font-family: $family-primary;
+                                    font-weight: 300;
+                                    color: white;
 
                                     &:hover {
-                                        color: white;
+                                        text-shadow: 1px 1px 2px rgba(255, 255, 255, .4), -1px -1px 2px rgba(255, 255, 255, .4);
+                                    }
+                                }
+
+                                div.content {
+                                    font-size: 1.4em;
+                                    margin-top: .6em;
+                                    margin-bottom: .1em;
+                                }
+
+                                footer {
+                                    margin-top: 1em;
+
+                                    text-align: left;
+
+                                    font-size: .96em;
+                                    font-family: $family-primary;
+
+                                    color: lighten($page-background-purple, 78%);
+
+                                    a {
+                                        color: lighten($page-background-purple, 78%);
+
+                                        &:hover {
+                                            color: white;
+                                        }
+                                    }
+                                }
+                            }
+
+                            footer {
+                                a.button {
+                                    font-family: $family-primary;
+                                    font-size: 1.3em;
+                                    font-weight: 300;
+
+                                    svg {
+                                        display: inline-block;
+                                        font-size: .9em;
                                     }
                                 }
                             }
                         }
+                    }
+                }
 
-                        footer {
-                            a.button {
-                                font-family: $family-primary;
-                                font-size: 1.3em;
+                .articles-list {
+                    margin: 2em ($frontpage-blog-margin-around-blocks / 2) 0 ($frontpage-blog-margin-around-blocks / 2);
+
+                    text-align: center;
+                    color: white;
+
+                    .column {
+
+                        padding-top: 0;
+
+                        &:first-child a {
+                            margin-left: 0;
+                        }
+                        &:last-child a {
+                            margin-right: 0;
+                        }
+
+                        a {
+                            display: block;
+                            margin: 0 1em;
+                            padding: .6em .6em;
+
+                            background-color: rgba(0, 0, 0, .25);
+
+                            font-size: 1.3em;
+                            font-weight: 300;
+                            font-family: $family-primary;
+
+                            color: white;
+
+                            backdrop-filter: blur($frontpage-blur-radius);
+                            -webkit-backdrop-filter: blur($frontpage-blur-radius);
+
+                            h3 {
+                                overflow: hidden;
+                                white-space: nowrap;
+                                text-overflow: ellipsis;
+
                                 font-weight: 300;
+                            }
 
-                                svg {
-                                    display: inline-block;
-                                    font-size: .9em;
-                                }
+                            footer {
+                                font-size: .7em;
+                                font-weight: 400;
+
+                                color: lighten($page-background-purple, 78%);
+                            }
+
+                            &:hover {
+                                background-color: rgba(0, 0, 0, .35);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        > section:nth-of-type(2) {
+            position: relative;
+            padding-top: $frontpage-reflection-height;
+
+            &:before {
+                content: "";
+
+                position: absolute;
+                top: 0;
+
+                width: 100%;
+                height: $frontpage-reflection-height * (1 / $frontpage-reflection-compression);
+
+                background: url("../images/background-bottom.png") bottom center no-repeat,
+                            url("../images/background-bottom-low.png") bottom/contain no-repeat;
+
+                transform: rotate(180deg) scaleX(-1) scaleY($frontpage-reflection-compression);
+                //transform-origin: middle;
+
+                margin-top: -169px;
+                filter: blur(2.8px) brightness(64%);
+            }
+        }
+
+        > section:not(.hero) {
+            .section-body {
+                position: relative;
+                left: -50%;
+                width: 200%;
+
+                padding: 6em 0;
+                margin-bottom: 18em;
+
+                background-color: rgba(200, 200, 200, .36);
+
+                text-align: center;
+
+                article {
+                    color: white;
+
+                    header {
+                        p {
+                            font-family: 'EB Garamond', serif;
+                            font-style: italic;
+                            font-size: 1.4em;
+                        }
+
+                        h2 {
+                            font-family: $family-primary;
+                            font-weight: 300;
+                            font-size: 2.8em;
+                        }
+                    }
+
+                    div.content {
+                        margin: 1.4em 40% 5em;
+                        padding: 2em 0;
+                        border-top: 1px solid white;
+                        border-bottom: 1px solid white;
+
+                        font-family: $family-primary;
+                        font-weight: 300;
+                        font-size: 1.3em;
+
+                        * {
+                            color: white;
+                        }
+                    }
+
+                    aside {
+                        a.button {
+                            font-family: $family-primary;
+                            font-weight: 300;
+                            font-size: 1.3em;
+
+                            svg {
+                                display: inline-block;
+                                font-size: 1.3em;
+                                padding-right: .4em;
                             }
                         }
                     }
                 }
             }
 
-            .articles-list {
-                margin: 2em ($frontpage-blog-margin-around-blocks / 2) 0 ($frontpage-blog-margin-around-blocks / 2);
+            $angles: 6deg, -2deg, 1deg, -8deg, 4deg, -11deg;
 
-                text-align: center;
-                color: white;
+            @each $angle in $angles {
+                &:nth-of-type(#{length($angles)}n+#{index($angles, $angle) + 1}) {
+                    div.section-body {
+                        transform: rotate($angle);
 
-                .column {
-
-                    padding-top: 0;
-
-                    &:first-child a {
-                        margin-left: 0;
-                    }
-                    &:last-child a {
-                        margin-right: 0;
-                    }
-
-                    a {
-                        display: block;
-                        margin: 0 1em;
-                        padding: .6em .6em;
-
-                        background-color: rgba(0, 0, 0, .25);
-
-                        font-size: 1.3em;
-                        font-weight: 300;
-                        font-family: $family-primary;
-
-                        color: white;
-
-                        backdrop-filter: blur($frontpage-blur-radius);
-                        -webkit-backdrop-filter: blur($frontpage-blur-radius);
-
-                        h3 {
-                            overflow: hidden;
-                            white-space: nowrap;
-                            text-overflow: ellipsis;
-
-                            font-weight: 300;
-                        }
-
-                        footer {
-                            font-size: .7em;
-                            font-weight: 400;
-
-                            color: lighten($page-background-purple, 78%);
-                        }
-
-                        &:hover {
-                            background-color: rgba(0, 0, 0, .35);
+                        article {
+                            transform: rotate(-$angle);
                         }
                     }
                 }
+            }
+
+            &:last-of-type {
+                padding-bottom: 1em;
             }
         }
     }

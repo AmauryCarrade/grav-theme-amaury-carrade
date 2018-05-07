@@ -1,3 +1,7 @@
+html {
+    background-color: $page-background-purple;
+}
+
 body {
     scroll-behavior: smooth;
 
@@ -169,6 +173,11 @@ aside.earth-footer {
 }
 
 footer.page-footer {
+
+    nav.navbar {
+        background-color: transparent;
+    }
+
     a.navbar-item, a.navbar-link {
         padding: 0 1.4em;
         border-bottom: 1px solid transparent;

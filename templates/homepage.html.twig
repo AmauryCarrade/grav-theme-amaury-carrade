@@ -17,6 +17,7 @@
                     {% include 'partials/homepage/block-blog.html.twig' with {
                         'introduction': description_page.content,
                         'introduction_images': description_page.media.images,
+                        'page': subpage,
                         'articles': subpage.children.routable.visible.order('date', 'desc')
                     } %}
                 {% else %}
@@ -30,6 +31,8 @@
             {% endif %}
         </section>
     {% endfor %}
+
+    {% include 'partials/menu-footer.html.twig' %}
 {% endblock %}
 
 {#

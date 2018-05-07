@@ -54,8 +54,8 @@
             </div>
         {% endfor %}
         <div class="column is-one-quarter">
-            <a href="">
-                <h3>Tous les articles…</h3>
+            <a href="{{ page.url }}">
+                <h3>Tous les articles</h3>
                 <footer>
                     {{ articles|length }} {{ 'article'|pluralize(articles.count) }}
                 </footer>
