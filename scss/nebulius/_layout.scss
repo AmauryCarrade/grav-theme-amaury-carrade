@@ -150,6 +150,49 @@ nav.page-nav {
     }
 }
 
+nav.navbar.top-navbar {
+    background: transparent;
+    color: white;
+
+    .navbar-item {
+        font-size: 1.2em;
+        font-weight: 300;
+        color: white;
+
+        padding: inherit 1em;
+
+        a {
+            color: white;
+        }
+
+        &.is-active {
+            font-weight: 400;
+        }
+    }
+
+    div.site-name.navbar-item {
+        width: 100%;
+
+        font-size: 1.8em;
+        font-family: 'Charlevoix', sans-serif;
+        font-weight: 200;
+
+        text-align: center;
+        text-shadow: 0 0 2px black;
+
+        span {
+            font-weight: bold;
+        }
+
+        aside {
+            display: inline-block;
+            border-left: 1px solid white;
+            padding-left: .6em;
+            margin-left: .6em;
+        }
+    }
+}
+
 aside.earth-footer {
     position: relative;
     top: 0; //-$footer-earth-size / 2;
@@ -247,6 +290,16 @@ footer.page-footer {
             transform: rotate(360deg);
         }
     }
+}
+
+body:not(.frontpage) footer.page-footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+a {
+    transition: color .2s ease-in-out;
 }
 
 .tooltip::before, .tooltip::after {

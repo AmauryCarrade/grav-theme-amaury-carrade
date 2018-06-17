@@ -1,0 +1,57 @@
+{% extends 'partials/base.html.twig' %}
+
+{% block body %}
+    <nav class="navbar top-navbar is-transparent" role="navigation" aria-label="main navigation">
+        <div class="container">
+            <div class="navbar-brand">
+                <div class="navbar-item site-name" href="/">
+                    <a href="/">{{ theme_config.header.title ?: config.site.title }}</a>
+                    <aside><a href="{{ page.topParent.url }}">{{ page.topParent.header.title }}</a></aside>
+                </div>
+
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+            <div class="navbar-menu">
+                <div class="navbar-start"></div>
+
+                <div class="navbar-end">
+                    {% for menu_item in pages.children.visible.routable.published %}
+                        <a href="{{ menu_item.url }}" class="navbar-item{% if page.url|starts_with(menu_item.route) %} is-active{% endif %}">
+                            {{ menu_item.title }}
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    {% block content %}{% endblock %}
+
+    {% include 'partials/menu-footer.html.twig' %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ super() }}
+
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                displayMath: [['$$','$$']],
+                processEscapes: true,
+                processClass: "content",
+                ignoreClass: "page-container"
+            },
+            TeX: { extensions: ["color.js", "cancel.js", "enclose.js", "bbox.js", "mathchoice.js", "newcommand.js", "verb.js", "unicode.js", "autobold.js", "mhchem.js"] },
+            messageStyle: "none",
+        });
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+        integrity="sha384-Ra6zh6uYMmH5ydwCqqMoykyf1T/+ZcnOQfFPhDrp2kI4OIxadnhsvvA2vv9A7xYv"
+        crossorigin="anonymous">
+    </script>
+{% endblock %}

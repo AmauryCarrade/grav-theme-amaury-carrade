@@ -1,5 +1,141 @@
-{% extends 'partials/base.html.twig' %}
+{% extends 'partials/base-page.html.twig' %}
 
 {% block content %}
-    {{ page.content }}
+    {% set page_header_image = null %}
+    {% for medium in page.media.images if medium.basename in ['bandeau', 'header'] %}
+        {% set page_header_image = medium %}
+    {% endfor %}
+
+    <main class="page-main-article">
+        <div class="header-size-constrainer">
+            <header{% if page_header_image %} style="background-image: linear-gradient(0deg, #7a49b7, transparent 50%, transparent), url({{ page_header_image.url }});"{% endif %}>
+                <div class="container">
+                    <aside class="header-image-legend">
+                        NGC 281, par <a href="https://flic.kr/p/qHu8TR">Adam Evans</a>.
+                    </aside>
+                    <h1>{{ header.title }}</h1>
+                </div>
+            </header>
+        </div>
+
+        <div class="container">
+            <div class="columns">
+                <div class="column is-10">
+                    <article class="main-article">
+                        <div class="content">
+                            {{ page.content }}
+                        </div>
+                    </article>
+                </div>
+                <div class="column is-2">
+                    <aside class="main-aside">
+                        <div class="columns is-mobile navigation-links">
+                            {% spaceless %}
+                                <div class="column">
+                                    {% if page.nextSibling.url is null %}
+                                        <a href="" title="Vous lisez le dernier article" class="is-disabled">
+                                    {% else %}
+                                        <a href="{{ page.nextSibling.url }}" title="Article plus récent : {{ page.nextSibling.header.title }}">
+                                    {% endif %}
+                                        «</a>
+                                </div>
+                                <div class="column">
+                                    <a href="{{ base_url_relative }}/random" title="Article au hasard">∞</a>
+                                </div>
+                                <div class="column">
+                                    {% if page.prevSibling.url is null %}
+                                        <a href="" title="Vous lisez le tout premier article" class="is-disabled">
+                                    {% else %}
+                                        <a href="{{ page.prevSibling.url }}" title="Article plus ancien : {{ page.prevSibling.header.title }}">
+                                    {% endif %}
+                                        »</a>
+                                </div>
+                            {% endspaceless %}
+                        </div>
+                        <p>
+                            Publié le {% include 'partials/tags/time.html.twig' with {'date': page.date, 'itemprop': 'datePublished', 'absolute': true} -%}.
+                        </p>
+
+                        {% if header.author or header.authors %}
+                            <p>
+                                Écrit par
+                                {%- if header.author %}
+                                    {{ header.author }}
+                                {%- elseif header.authors %}
+                                    {% for author in header.authors -%}
+                                        {%- if loop.last %} et {% elseif not loop.first %}, {% endif %}{{ author }}
+                                    {%- endfor -%}
+                                {%- endif -%}.
+                            </p>
+                        {% endif %}
+
+                        {% if header.taxonomy.tag %}
+                            <p class="tags">
+                                {% for tag in header.taxonomy.tag %}
+                                    <a href="#" class="tag is-dark">{{ tag }}</a>
+                                {% endfor %}
+                            </p>
+                        {% endif %}
+
+                        <p class="license">
+                            {% spaceless %}
+                                {% set license = header.license %}
+                                {% if not license %}
+                                    {% set license = 'by-sa' %}
+                                {% endif %}
+
+                                {% set url, ico = '', '' %}
+
+                                {% if license == 'by' %}
+                                    {% set url, ico = 'by', 'b' %}
+                                {% elseif license == 'by-sa' %}
+                                    {% set url, ico = 'by-sa', 'ba' %}
+                                {% elseif license == 'by-nc' %}
+                                    {% set url, ico = 'by-nc', 'bn' %}
+                                {% elseif license == 'by-nd' %}
+                                    {% set url, ico = 'by-nd', 'bd' %}
+                                {% elseif license == 'by-nc-nd' or license == 'by-nd-nc' %}
+                                    {% set url, ico = 'by-nc-nd', 'bnd' %}
+                                {% elseif license == 'by-nc-sa' %}
+                                    {% set url, ico = 'by-nc-sa', 'bna' %}
+                                {% elseif license in ['cc0', '0', 'cc-0', 'zero', 'publicdomain', 'public domain', 'pd'] %}
+                                    {% set url, ico = 'zero', 'p' %}
+                                {% endif %}
+
+                                {% set labels = {
+                                    'by': 'Attribution (BY)',
+                                    'sa': 'Partage à l\'identique (SA)',
+                                    'nc': 'Pas d\'usage commercial (NC)',
+                                    'nd': 'Pas de modification (ND)',
+                                    'zero': 'Creative Commons Zéro : œuvre placée dans le domaine public'
+                                } %}
+
+                                {% if url %}
+                                    {% set label = '' %}
+                                    {% if url == 'zero' %}
+                                        {% set label = labels.zero %}
+                                    {% else %}
+                                        {% set label = 'Creative Commons' %}
+                                        {% for license_part in url|split('-') %}
+                                            {% set label = label ~ ' ' ~ labels[license_part] %}
+                                            {% if not loop.last %}
+                                                {% set label = label ~ ' –' %}
+                                            {% endif %}
+                                        {% endfor %}
+                                        {% set label = label ~ ' 4.0 International' %}
+                                    {% endif %}
+
+                                    {% set url = url != 'zero' ? 'https://creativecommons.org/licenses/' ~ url ~ '/4.0/deed.fr' : 'https://creativecommons.org/publicdomain/zero/1.0/' %}
+
+                                    <a href="{{ url }}" title="{{ label }}" class="creative-commons-icons">{% if url != 'zero' %}c{% endif %}{{ ico }}</a>
+                                {% else %}
+                                    {{ header.license }}
+                                {% endif %}
+                            {% endspaceless %}
+                        </p>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </main>
 {% endblock %}

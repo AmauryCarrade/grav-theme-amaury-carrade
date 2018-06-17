@@ -131,3 +131,14 @@
        url('../fonts/fira/fira-sans-v8-greek_latin-ext_latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
        url('../fonts/fira/fira-sans-v8-greek_latin-ext_latin-regular.svg#FiraSans') format('svg'); /* Legacy iOS */
 }
+
+/* Creative Commons logos */
+@font-face {
+  font-family: 'CCIcons';
+  src: url('../fonts/creative-commons/CCIcons.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/creative-commons/CCIcons.woff') format('woff'),
+       url('../fonts/creative-commons/CCIcons.ttf')  format('truetype'),
+       url('../fonts/creative-commons/CCIcons.svg#CCIcons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}

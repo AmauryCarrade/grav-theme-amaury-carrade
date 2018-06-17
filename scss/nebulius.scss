@@ -7,8 +7,11 @@ $blue: #7bc2ff;
 
 $page-background-dark: #0a020a;
 $page-background-purple: #1b1424;
+$content-text-color: lighten($page-background-purple, 88%);
 
 $tooltip-background-color: rgba(lighten($page-background-purple, 14%), .4);
+
+$link: lighten($page-background-purple, 60%);
 
 $link-hover: white;
 $link-focus: white;
