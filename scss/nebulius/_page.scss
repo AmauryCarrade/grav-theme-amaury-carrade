@@ -18,8 +18,6 @@ main {
             background-size: cover;
             background-blend-mode: multiply;
 
-            transition: background-blend-mode .2s ease-in-out;
-
             .container {
                 display: flex;
                 flex-direction: column;
@@ -95,12 +93,41 @@ main {
                 text-align: left;
             }
 
-            a:hover {
-                color: lighten($link, 12%);
-            }
-
             strong, em, figure, dl, dt, dd, ol, ul, li, abbr {
                 color: $content-text-color;
+            }
+
+            figure {
+                margin-left: 0;
+                margin-right: 0;
+
+                padding-bottom: .5em;
+
+                background-color: $page-background-dark;
+                text-align: center;
+
+                figcaption {
+                    padding-left: $article-padding;
+                    padding-right: $article-padding;
+                    
+                    font-size: .88em;
+                }
+            }
+
+            a {
+                color: $link;
+
+                strong, em, figure, dl, dt, dd, ol, ul, li, abbr {
+                    color: $link;
+                }
+
+                &:hover {
+                    color: lighten($link, 12%);
+
+                    strong, em, figure, dl, dt, dd, ol, ul, li, abbr {
+                        color: lighten($link, 12%);
+                    }
+                }
             }
 
             abbr[title] {
@@ -163,6 +190,11 @@ main {
                 ol, ul {
                     margin-top: .2em;
                 }
+
+                p {
+                    padding: 0;
+                    margin: 0;
+                }
             }
 
             > ol, > ol ol {
@@ -191,6 +223,7 @@ main {
 
                     p {
                         padding: 0;
+                        margin: 0;
 
                         &:first-child {
                             display: inline-block;
@@ -207,6 +240,7 @@ main {
 
             table {
                 background-color: $page-background-purple;
+                margin-bottom: 1.25em;
 
                 thead, tfoot {
                     background-color: darken($page-background-purple, 6%);
@@ -233,14 +267,16 @@ main {
                 }
             }
 
-            pre {
-                background-color: $page-background-dark;
+            pre, .hljs-code-div {
+                margin: 1em 0;
                 padding: 0;
+
+                background-color: $page-background-dark;
 
                 code {
                     background-color: $page-background-dark;
                     font-size: .88em;
-                    padding: .8em $article-padding;
+                    padding: 1em $article-padding;
                 }
             }
 
@@ -248,6 +284,15 @@ main {
                 background-color: $page-background-dark;
                 color: $content-text-color;
                 font-size: .8em;
+            }
+
+            .katex-html {
+                display: none;
+            }
+
+            .inlineMath.inlineMathDouble {
+                display: block;
+                text-align: center;
             }
 
             .notices {
@@ -266,6 +311,56 @@ main {
                 }
             }
 
+            .custom-block {
+                margin: 1em 0;
+                padding: .6em 0;
+
+                border-left: 10px solid;
+
+                background-color: $page-background-purple;
+
+                p {
+                    padding-left: $article-padding - 10px;
+                }
+
+                &.custom-block-information {
+                    color: #44b144;
+                    border-left-color: #5cb85c;
+                }
+                &.custom-block-question {
+                    color: #28a1c5;
+                    border-left-color: #5bc0de;
+                }
+                &.custom-block-warning {
+                    color: #df8a13;
+                    border-left-color: #f0ad4e;
+                }
+                &.custom-block-error {
+                    color: #dd625e;
+                    border-left-color: #d9534f;
+                }
+                &.custom-block-spoiler {
+                    color: #44b144;
+                    border-left-color: #5cb85c;
+                }
+                &.custom-block-neutral {
+                    color: #44b144;
+                    border-left-color: #5cb85c;
+                }
+
+                strong, em, figure, dl, dt, dd, ol, ul, li, abbr  {
+                    color: inherit;
+                }
+            }
+
+            .footnote-ref {
+                // Ensures the footnotes numbers are always in a normal font weight & variant, even
+                // when the note is in a bold or italic block.
+                font-weight: normal !important;
+                font-variant: normal !important;
+                font-style: normal !important;
+            }
+
             .footnotes {
                 font-size: .8em;
 
@@ -276,14 +371,31 @@ main {
 
                 ol {
                     margin-top: .6em;
-                }
 
-                .footnote-backref {
-                    position: relative;
-                    top: 3px;
+                    li {
+                        position: relative;
 
-                    display: inline-block;
-                    padding-left: .2em;
+                        &:hover {
+                            .footnote-backref {
+                                color: $link;
+                            }
+                        }
+
+                        p {
+                            padding-right: 2em;
+                        }
+
+                        .footnote-backref {
+                            position: absolute;
+                            top: 0;
+                            right: 0;
+
+                            display: inline-block;
+                            padding: 3px .4em 6px .8em;
+
+                            color: darken($link, 32%);
+                        }
+                    }
                 }
             }
         }
