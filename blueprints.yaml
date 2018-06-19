@@ -1,7 +1,7 @@
 name: Nebulius
 version: 0.1.0
 description: Theme for the Nebulius website
-icon: rebel
+icon: rocket
 author:
   name: Amaury Carrade and Kiliann Becquet
   email: amaury@carrade.eu
@@ -22,13 +22,3 @@ form:
     header.tagline:
       type: text
       label: "Le slogan à afficher dans l'en-tête"
-    dropdown.enabled:
-      type: toggle
-      label: Dropdown in Menu
-      highlight: 1
-      default: 1
-      options:
-        1: PLUGIN_ADMIN.ENABLED
-        0: PLUGIN_ADMIN.DISABLED
-      validate:
-        type: bool

@@ -12,9 +12,10 @@
     {% include 'partials/metadata.html.twig' %}
 
     <link rel="icon" type="image/png" href="{{ url('theme://images/favicon.png') }}" />
-    <link rel="canonical" href="{{ page.url(true, true) }}" />
+    <link rel="canonical" href="{{ header.canonical ? header.canonical : page.url(true, true) }}" />
 
     {% block stylesheets %}
+        {% do assets.addCss('https://use.fontawesome.com/releases/v5.0.13/css/all.css', 97) %}
         {% do assets.addCss('theme://css-compiled/nebulius.min.css', 98) %}
     {% endblock %}
 
@@ -22,7 +23,6 @@
 
     {% block javascripts %}
         {% do assets.addJs('jquery', 100) %}
-        {% do assets.addJs('https://use.fontawesome.com/releases/v5.0.7/js/all.js', 99, true, 'async', 'last') %}
     {% endblock %}
 
     {{ assets.js('top') }}

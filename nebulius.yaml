@@ -1,7 +1,11 @@
 enabled: true
 
-dropdown:
-  enabled: true
+# Required for the theme blueprints to work. (Undocumented??)
+streams:
+  schemes:
+    blueprints:
+      type: ReadOnlyStream
+      paths: ['themes://nebulius/blueprints']
 
 header:
   title: ''

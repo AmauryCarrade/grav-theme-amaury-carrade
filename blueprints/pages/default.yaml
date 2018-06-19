@@ -1,0 +1,99 @@
+@extends:
+  '@parent'
+
+form:
+  fields:
+    tabs:
+      fields:
+        content:
+          fields:
+            attribution_spacer:
+              type: spacer
+              text: <br /><br />
+            metadata_columns:
+              type: columns
+              fields:
+                banner_column:
+                  type: column
+                  fields:
+                    attributions:
+                      type: section
+                      title: Bandeau de l'article
+                      underline: true
+                      fields:
+                        header_image_help:
+                          type: display
+                          size: long
+                          label: Comment ajouter un bandeau ?
+                          markdown: true
+                          content: |
+                            Pour ajouter un bandeau à l'article, téléversez ci-dessus l'image que vous désirez utiliser, et renommez-la `bandeau` en survolant le fichier et en cliquant sur le petit <kbd>A</kbd> en bas à droite. L'extension n'a pas d'importance.
+
+                            Préférez une image large et peu haute (mais d'au moins 380px de haut). Seul un bandeau verticalement centré, de 380px de haut, sera visible _in fine_.
+
+                            Vous pouvez préciser l'attribution de l'image du bandeau ci-dessous. Elle sera affichée au survol.
+                        header.header_image_source.title:
+                          type: text
+                          label: Titre de l'image du bandeau
+                          help: Le titre de l'image utilisée pour le bandeau de la page, affiché au survol.
+                        header.header_image_source.author:
+                          type: text
+                          label: Auteur de l'image du bandeau
+                          help: L'auteur de l'image utilisée pour le bandeau de la page, ou équivalent appliquable affiché au survol.
+                        header.header_image_source.link:
+                          type: text
+                          label: Lien vers la source de l'image du bandeau
+                          help: Un lien vers la source de l'image du bandeau, s'il fait sens ; si défini, la source sera cliquable.
+                          placeholder: https://…
+
+                authors_column:
+                  type: column
+                  fields:
+                    authors:
+                      type: section
+                      title: Auteurs
+                      underline: true
+                      fields:
+                        header.author:
+                          type: text
+                          label: Auteur principal
+                          help: L'auteur de l'article, ou l'auteur principal s'il y en a plusieurs. S'il n'y a pas d'auteur principal, peut être laissé vide. L'auteur principal n'a pas d'autre particularité que d'être affiché en premier.
+                        header.authors:
+                          type: array
+                          label: Auteurs
+                          help: S'il y a plusieurs auteurs, les renseigner ici.
+                          value_only: true
+        options:
+          fields:
+            license:
+              type: section
+              title: Licence
+              underline: true
+              fields:
+                header.license:
+                  type: select
+                  label: Licence
+                  help: La licence de publication du contenu
+                  default: by-sa
+                  options:
+                    cc0: Placement dans le domaine public (Creative Commons Zéro)
+                    by: Creative Commons Attribution (CC BY 4.0)
+                    by-sa: Creative Commons Attribution – Partage sous les mêmes conditions (CC BY SA 4.0)
+                    by-nc: Creative Commons Attribution – Pas d'usage commercial (CC BY NC 4.0)
+                    by-nd: Creative Commons Attribution – Pas de modifications (CC BY ND 4.0)
+                    by-nc-nd: Creative Commons Attribution – Pas d'usage commercial – Pas de modifications (CC BY NC ND 4.0)
+                    by-nc-sa: Creative Commons Attribution – Pas d'usage commercial – Partage sous les mêmes conditions (CC BY NC SA 4.0)
+                    'Tous droits réservés': Tous droits réservés
+                license_help:
+                  type: display
+                  size: long
+                  label: Qu'est-ce que la licence ?
+                  markdown: true
+                  content: |
+                    La licence du contenu précise sous quelles conditions le contenu peut être repartagé (ces conditions pouvant être combinées) :
+                    - en citant l'auteur (**attribution**) ;
+                    - en partageant sous la même licence, afin que le contenu reste librement partageable (**partage sous les mêmes conditions**) ;
+                    - en interdisant l'usage commercial (**pas d'usage commercial**) ;
+                    - en interdisant la modification (**pas de modification**) ;
+                    - en interdisant tout usage, y compris de reproduction (**tous droits réservés**) ;
+                    - ou en plaçant le contenu dans le domaine public, renonçant alors à l'intégralité de ses droits dessus.

@@ -5,5 +5,8 @@ use Grav\Common\Theme;
 
 class Nebulius extends Theme
 {
-    // Access plugin events in this class
+    // Enables blueprints for the page admin.
+    public $features = [
+        'blueprints' => 1000,
+    ];
 }

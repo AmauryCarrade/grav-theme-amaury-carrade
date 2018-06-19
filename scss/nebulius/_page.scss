@@ -12,9 +12,7 @@ main {
 
             // The following property is re-written in the HTML source (through a style attribute) as-is, because another
             // background-image is added there.
-            background: linear-gradient(0deg, lighten($page-background-purple, 48%), transparent 40%, transparent);
-            background-position: center center;
-            background-repeat: no-repeat;
+            background: linear-gradient(0deg, lighten($page-background-purple, 48%), transparent 40%, transparent) no-repeat center center;
             background-size: cover;
             background-blend-mode: multiply;
 
@@ -24,7 +22,7 @@ main {
 
                 height: 100%;
 
-                aside.header-image-legend {
+                aside.header-image-source {
                     display: block;
                     flex-grow: 1;
 
@@ -46,8 +44,14 @@ main {
                         transition: color .2s ease-in-out;
 
                         &:hover {
-                            text-decoration: underline;
+                            text-decoration: none;
                         }
+                    }
+
+                    cite {
+                        display: block;
+                        font-style: normal;
+                        font-size: .9em;
                     }
                 }
 
@@ -403,7 +407,6 @@ main {
 
     aside.main-aside {
         margin-top: 1em;
-        padding: 1em;
 
         border-radius: 8px;
 
@@ -423,13 +426,15 @@ main {
         }
 
         .columns.navigation-links {
+            margin: 0 0 .6em 0;
+
+            border-bottom: solid 1px lighten($page-background-purple, 20%);
+
             font-size: 2.4em;
             font-family: 'EB Garamond', 'Georgia', 'Times New Roman', Times, serif;
 
-            border-bottom: solid 1px lighten($page-background-purple, 20%);
-            margin-bottom: .6em;
-
             .column {
+                padding-top: .1em;
                 text-align: center;
 
                 &:first-child {
@@ -451,8 +456,14 @@ main {
             }
         }
 
+        p.reading-time {
+            border-bottom: solid 1px lighten($page-background-purple, 20%);
+            margin: 0 0 1em;
+            padding: 0 1em 1.2em 1em;
+        }
+
         p, dl {
-            margin-top: .6em;
+            margin: .6em 1em 0 1em;
 
             &:first-of-type {
                 margin-top: 0;

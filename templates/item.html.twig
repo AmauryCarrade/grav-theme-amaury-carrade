@@ -10,8 +10,17 @@
         <div class="header-size-constrainer">
             <header{% if page_header_image %} style="background-image: linear-gradient(0deg, #7a49b7, transparent 50%, transparent), url({{ page_header_image.url }});"{% endif %}>
                 <div class="container">
-                    <aside class="header-image-legend">
-                        NGC 281, par <a href="https://flic.kr/p/qHu8TR">Adam Evans</a>.
+                    <aside class="header-image-source">
+                        {% if header.header_image_source.link %}
+                            <a href="{{ header.header_image_source.link }}">
+                        {% endif %}
+                            {{ header.header_image_source.title }}
+                            {% if header.header_image_source.author %}
+                                <cite>{{ header.header_image_source.author }}</cite>
+                            {% endif %}
+                        {% if header.header_image_source.link %}
+                            </a>
+                        {% endif %}
                     </aside>
                     <h1>{{ header.title }}</h1>
                 </div>
@@ -39,9 +48,11 @@
                                     {% endif %}
                                         «</a>
                                 </div>
+                                {% if config.plugins.random.enabled %}
                                 <div class="column">
                                     <a href="{{ base_url_relative }}/random" title="Article au hasard">∞</a>
                                 </div>
+                                {% endif %}
                                 <div class="column">
                                     {% if page.prevSibling.url is null %}
                                         <a href="" title="Vous lisez le tout premier article" class="is-disabled">
@@ -52,6 +63,14 @@
                                 </div>
                             {% endspaceless %}
                         </div>
+
+
+                        {% if config.plugins.readingtime.enabled %}
+                            <p class="reading-time has-text-centered" title="Temps de lecture estimé, considérant un rythme de {{ config.plugins.readingtime.words_per_minute }} mots par minute.">
+                                {{ page.content|readingtime }} de lecture
+                            </p>
+                        {% endif %}
+
                         <p>
                             Publié le {% include 'partials/tags/time.html.twig' with {'date': page.date, 'itemprop': 'datePublished', 'absolute': true} -%}.
                         </p>
@@ -59,12 +78,16 @@
                         {% if header.author or header.authors %}
                             <p>
                                 Écrit par
-                                {%- if header.author %}
-                                    {{ header.author }}
-                                {%- elseif header.authors %}
-                                    {% for author in header.authors -%}
-                                        {%- if loop.last %} et {% elseif not loop.first %}, {% endif %}{{ author }}
+                                {%- if header.authors %}
+                                    {% set authors = header.authors %}
+                                    {%  if header.author %}
+                                        {% set authors = [header.author]|merge(authors) %}
+                                    {% endif %}
+                                    {% for author in authors -%}
+                                        {%- if loop.last and authors|length > 1 %} et {% elseif not loop.first %}, {% endif %}{{ author }}
                                     {%- endfor -%}
+                                {%- elseif header.author %}
+                                    {{ header.author }}
                                 {%- endif -%}.
                             </p>
                         {% endif %}
@@ -94,9 +117,9 @@
                                     {% set url, ico = 'by-nc', 'bn' %}
                                 {% elseif license == 'by-nd' %}
                                     {% set url, ico = 'by-nd', 'bd' %}
-                                {% elseif license == 'by-nc-nd' or license == 'by-nd-nc' %}
+                                {% elseif license in ['by-nc-nd', 'by-nd-nc'] %}
                                     {% set url, ico = 'by-nc-nd', 'bnd' %}
-                                {% elseif license == 'by-nc-sa' %}
+                                {% elseif license in ['by-nc-sa', 'by-sa-nc'] %}
                                     {% set url, ico = 'by-nc-sa', 'bna' %}
                                 {% elseif license in ['cc0', '0', 'cc-0', 'zero', 'publicdomain', 'public domain', 'pd'] %}
                                     {% set url, ico = 'zero', 'p' %}
