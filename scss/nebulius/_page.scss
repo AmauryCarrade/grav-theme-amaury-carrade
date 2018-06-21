@@ -95,6 +95,22 @@ main {
             h1, h2, h3, h4, h5, h6 {
                 color: darken($content-text-color, 4%);
                 text-align: left;
+
+                a {
+                    display: inline-block;
+                    margin-left: .6em;
+
+                    color: transparent;
+
+                    span.icon.icon-link:before {
+                        @include font-awesome('solid', '\f0c1');
+                        font-size: .6em;
+                    }
+                }
+
+                &:hover a {
+                    color: darken($content-text-color, 8%);
+                }
             }
 
             strong, em, figure, dl, dt, dd, ol, ul, li, abbr {
@@ -236,7 +252,7 @@ main {
                 }
 
                 // Fixes a gap between images and caption
-                img {
+                > img {
                     position: relative;
                     top: 0.46em;
                 }
@@ -428,13 +444,13 @@ main {
 
             .custom-block {
                 margin: 1em 0;
-                padding: .6em 0;
+                padding: 0;
 
                 border-left: 10px solid;
 
                 background-color: $page-background-purple;
 
-                p {
+                p, h1, h2, h3, h4, h5, h6, ol, ul {
                     padding-left: $article-padding - 10px;
                 }
 
@@ -462,9 +478,47 @@ main {
                     color: #44b144;
                     border-left-color: #5cb85c;
                 }
+                &.custom-block-spoiler {
+                    color: $content-text-color;
+                    border-left-color: lighten($page-background-purple, 16%);
+                }
 
                 strong, em, figure, dl, dt, dd, ol, ul, li, abbr  {
                     color: inherit;
+                }
+
+                .custom-block-body {
+                    padding: .6em 0;
+                }
+
+                .custom-block-header {
+                    padding: .6em 0;
+                    background-color: darken($page-background-purple, 2%);
+
+                    font-family: $family-sans-serif;
+                    font-weight: 300;
+                    font-size: .9em;
+                }
+
+                &.custom-block-spoiler .custom-block-header {
+                    padding-left: calc(#{$article-padding - 10px} + .66em);
+
+                    cursor: pointer;
+
+                    &:before {
+                        @include font-awesome('regular', '\f06e');
+
+                        position: relative;
+                        left: -.6em;
+
+                        font-size: .9em;
+
+                        color: darken($content-text-color, 12%);
+                    }
+
+                    &[data-visible="true"]:before {
+                        content: '\f070';
+                    }
                 }
             }
 

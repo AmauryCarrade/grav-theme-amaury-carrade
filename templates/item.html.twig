@@ -1,5 +1,10 @@
 {% extends 'partials/base-page.html.twig' %}
 
+{% block javascripts %}
+    {{ super() }}
+    {% do assets.addJs('theme://js/spoilers.js', 64) %}
+{% endblock %}
+
 {% block content %}
     {% set page_header_image = null %}
     {% if header.header_image.image %}
