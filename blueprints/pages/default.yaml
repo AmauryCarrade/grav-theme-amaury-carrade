@@ -21,31 +21,34 @@ form:
                       title: Bandeau de l'article
                       underline: true
                       fields:
+                        header.header_image.image:
+                          type: filepicker
+                          folder: '@self'
+                          preview_images: true
+                          label: Image à utiliser comme bandeau
+                          help: Téléversez une image ci-dessus, puis sélectionnez-là ci-contre pour l'utiliser comme bandeau.
+                        header.header_image.title:
+                          type: text
+                          label: Titre de l'image du bandeau
+                          help: Le titre de l'image utilisée pour le bandeau de la page, affiché au survol.
+                        header.header_image.author:
+                          type: text
+                          label: Auteur de l'image du bandeau
+                          help: L'auteur de l'image utilisée pour le bandeau de la page, ou équivalent appliquable affiché au survol.
+                        header.header_image.link:
+                          type: text
+                          label: Lien vers la source de l'image du bandeau
+                          help: Un lien vers la source de l'image du bandeau, s'il fait sens ; si défini, la source sera cliquable.
+                          placeholder: https://…
                         header_image_help:
                           type: display
                           size: long
                           label: Comment ajouter un bandeau ?
                           markdown: true
                           content: |
-                            Pour ajouter un bandeau à l'article, téléversez ci-dessus l'image que vous désirez utiliser, et renommez-la `bandeau` en survolant le fichier et en cliquant sur le petit <kbd>A</kbd> en bas à droite. L'extension n'a pas d'importance.
+                            Pour ajouter un bandeau à l'article, téléversez ci-dessus l'image que vous désirez utiliser, et sélectionnez-là ci-dessus.
 
-                            Préférez une image large et peu haute (mais d'au moins 380px de haut). Seul un bandeau verticalement centré, de 380px de haut, sera visible _in fine_.
-
-                            Vous pouvez préciser l'attribution de l'image du bandeau ci-dessous. Elle sera affichée au survol.
-                        header.header_image_source.title:
-                          type: text
-                          label: Titre de l'image du bandeau
-                          help: Le titre de l'image utilisée pour le bandeau de la page, affiché au survol.
-                        header.header_image_source.author:
-                          type: text
-                          label: Auteur de l'image du bandeau
-                          help: L'auteur de l'image utilisée pour le bandeau de la page, ou équivalent appliquable affiché au survol.
-                        header.header_image_source.link:
-                          type: text
-                          label: Lien vers la source de l'image du bandeau
-                          help: Un lien vers la source de l'image du bandeau, s'il fait sens ; si défini, la source sera cliquable.
-                          placeholder: https://…
-
+                            Préférez une image large sans forcément être trop haute (mais d'au moins 380px de haut). Seul un bandeau verticalement centré, de 380px de haut, sera visible _in fine_.
                 authors_column:
                   type: column
                   fields:

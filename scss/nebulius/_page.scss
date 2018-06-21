@@ -101,23 +101,6 @@ main {
                 color: $content-text-color;
             }
 
-            figure {
-                margin-left: 0;
-                margin-right: 0;
-
-                padding-bottom: .5em;
-
-                background-color: $page-background-dark;
-                text-align: center;
-
-                figcaption {
-                    padding-left: $article-padding;
-                    padding-right: $article-padding;
-                    
-                    font-size: .88em;
-                }
-            }
-
             a {
                 color: $link;
 
@@ -155,26 +138,6 @@ main {
                 margin: 2em 0;
 
                 background-color: lighten($page-background-purple, 80%);
-            }
-
-            blockquote {
-                position: relative;
-
-                padding: 1em calc(#{$article-padding} + 1em) 1em calc(#{$article-padding} + 2em);
-                
-                background: transparent;
-                border: none;
-
-                font-size: 1.2em;
-
-                &:before {
-                    position: absolute;
-                    top: -1.23em;
-                    left: 0.26em;
-                    content: "“";
-                    padding-top: 1em;
-                    font-size: 4.6em;
-                }
             }
 
             ul li {
@@ -242,6 +205,173 @@ main {
                 }
             }
 
+            .video-wrapper {
+                position: relative;
+                padding-bottom: 56.25%; /* 16:9 */
+                padding-top: 25px;
+                height: 0;
+
+                iframe {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+
+            figure {
+                margin-left: 0;
+                margin-right: 0;
+
+                text-align: center;
+
+                figcaption {
+                    margin-top: 0;
+                    padding: .5em $article-padding;
+
+                    background-color: $page-background-dark;
+
+                    font-size: .88em;
+                }
+
+                // Fixes a gap between images and caption
+                img {
+                    position: relative;
+                    top: 0.46em;
+                }
+
+                .hljs-code-div {
+                    margin: 0;
+
+                    pre {
+                        margin: 0;
+
+                        .hljs {
+                            padding-bottom: .5em;
+                        }
+                    }
+
+                    & + figcaption {
+                        padding-top: 0;
+                        padding-bottom: 1em;
+                    }
+                }
+
+                blockquote {
+                    margin-bottom: 0;
+                    padding-bottom: 0;
+                }
+
+                span.inlineMath.inlineMathDouble + figcaption {
+                    background-color: transparent;
+                }
+
+                .table-wrapper {
+                    table {
+                        margin-bottom: 0;
+
+                        tbody:last-child tr:last-child td {
+                            border-bottom-width: 2px;
+                        }
+                    }
+
+                    & + figcaption {
+                        background-color: darken($page-background-purple, 6%);
+                    }
+                }
+            }
+
+            blockquote {
+                position: relative;
+
+                padding: 1em calc(#{$article-padding} + 1em) 1em calc(#{$article-padding} + 2em);
+
+                background: transparent;
+                border: none;
+
+                font-size: 1em;
+
+                text-align: left;
+
+                p:only-child {
+                    font-size: 1.2em;
+                }
+
+                &:before {
+                    position: absolute;
+                    top: -1.23em;
+                    left: 0.26em;
+                    content: "“";
+                    padding-top: 1em;
+                    font-size: 4.6em;
+                }
+
+                & + figcaption {
+                    position: relative;
+                    padding-left: calc(#{$article-padding} + 4.4em);
+
+                    background-color: transparent;
+
+                    text-align: left;
+                    font-size: .9em;
+
+                    &:before {
+                        content: "—";
+                        position: absolute;
+                        left: calc(#{$article-padding} + 3.3em);
+                        top: .42em;
+                    }
+                }
+            }
+
+            pre, .hljs-code-div {
+                margin: 1em 0;
+                padding: 0;
+
+                background-color: $page-background-dark;
+
+                text-align: left;
+
+                code {
+                    padding: 1em $article-padding;
+                    background-color: $page-background-dark;
+
+                    font-size: .88em;
+                    text-align: left;
+                }
+
+                .hljs-line-numbers {
+                    float: left;
+                    position: relative;
+
+                    top: 0.95em;
+
+                    padding-left: 1em;
+
+                    counter-reset: code-line-numbers;
+
+                    span:before {
+                        counter-increment: code-line-numbers;
+                        content: counter(code-line-numbers);
+
+                        display: block;
+                        height: 2.048em;
+
+                        font-size: .6em;
+                        font-family: $family-monospace;
+                        text-align: right;
+                        color: desaturate(darken($content-text-color, 40%), 26%);
+                    }
+                }
+            }
+
+            code {
+                background-color: $page-background-dark;
+                color: $content-text-color;
+                font-size: .8em;
+            }
+
             table {
                 background-color: $page-background-purple;
                 margin-bottom: 1.25em;
@@ -269,25 +399,6 @@ main {
                         border-bottom: solid 1px lighten($page-background-purple, 12%);
                     }
                 }
-            }
-
-            pre, .hljs-code-div {
-                margin: 1em 0;
-                padding: 0;
-
-                background-color: $page-background-dark;
-
-                code {
-                    background-color: $page-background-dark;
-                    font-size: .88em;
-                    padding: 1em $article-padding;
-                }
-            }
-
-            code {
-                background-color: $page-background-dark;
-                color: $content-text-color;
-                font-size: .8em;
             }
 
             .katex-html {
