@@ -68,6 +68,20 @@ form:
                           value_only: true
         options:
           fields:
+            publishing:
+              fields:
+                header.comments:
+                  type: toggle
+                  toggleable: true
+                  label: Activer les commentaires
+                  help: Permettre aux lecteurs de commenter l'article ? Désactiver l'option masquera également d'éventuels commentaires existants.s
+                  highlight: 1
+                  size: medium
+                  options:
+                    1: PLUGIN_ADMIN.YES
+                    0: PLUGIN_ADMIN.NO
+                  validate:
+                    type: bool
             license:
               type: section
               title: Licence

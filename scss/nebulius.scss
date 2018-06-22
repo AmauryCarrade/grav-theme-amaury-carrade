@@ -7,15 +7,18 @@ $blue: #7bc2ff;
 
 $page-background-dark: #0a020a;
 $page-background-purple: #1b1424;
-$content-text-color: lighten($page-background-purple, 88%);
 
-$tooltip-background-color: rgba(lighten($page-background-purple, 14%), .4);
-
-$link: lighten($page-background-purple, 60%);
+$primary: $page-background-purple;
+$info: lighten($primary, 20%);
+$link: lighten($primary, 60%);
 
 $link-hover: white;
 $link-focus: white;
 $link-active: white;
+
+$content-text-color: lighten($primary, 88%);
+
+$article-padding: 28px;
 
 $footer-earth-size: 48px;
 $footer-earth-size-small: 42px;
@@ -25,7 +28,16 @@ $family-sans-serif: 'Fira Sans', $family-sans-serif;
 
 $weight-light: 200;
 
+$tooltip-background-color: rgba(lighten($primary, 14%), .4);
+
+$timeline-color: $info;
+$timeline-marker-color: $timeline-color;
+$timeline-marker-background-color: $timeline-color;
+$timeline-line-color: $timeline-color;
+$timeline-line-width: .08em;
+
 @import "bulma/bulma";
 @import "bulma-tooltip/dist/bulma-tooltip";
+@import "bulma-timeline/src/sass/index";
 
 @import "nebulius/all";

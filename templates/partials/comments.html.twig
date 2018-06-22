@@ -1,0 +1,81 @@
+{# Overwrites the comments template from the comments plugin #}
+{# As there is no blocks inside, it's copy-pasted and updated to fit our needs. #}
+
+{% if grav.twig.enable_comments_plugin %}
+    {% set scope = scope ?: 'data.' %}
+
+    <div class="timeline">
+        {% if grav.twig.comments|length %}
+            {% for comment in grav.twig.comments %}
+                <div class="timeline-item">
+                    <div class="timeline-marker is-image is-32x32">
+                        <img src="https://www.gravatar.com/avatar/{{ comment.email|lower|trim|md5 }}?s=64&amp;d=identicon">
+                    </div>
+                    <div class="timeline-content">
+                        <h3 class="heading">{{ comment.author }}</h3>
+                        <div class="content">{{ comment.text|markdown }}</div>
+                        <cite>Rédigé {% include 'partials/tags/time.html.twig' with {'date': comment.date} %}.</cite>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <div class="timeline-item new-comment">
+            <div class="timeline-marker is-icon">
+                <span class="far fa-comments"></span>
+            </div>
+            <div class="timeline-content">
+                <h3 class="heading">Ajouter un commentaire</h3>
+
+                {% if form.message %}
+                    <div class="custom-block custom-block-question">
+                        <div class="custom-block-body">
+                            <p>{{ form.message }}</p>
+                        </div>
+                    </div>
+                {% endif %}
+
+                <form name="{{ grav.config.plugins.comments.form.name }}"
+                      action="{{ grav.config.plugins.comments.form.action ? base_url ~ grav.config.plugins.comments.form.action : page.url ~ '#comments' }}"
+                      method="{{ grav.config.plugins.comments.form.method|upper|default('POST') }}">
+
+                    {% for field in grav.config.plugins.comments.form.fields %}
+                        {% set value = form.value(field.name) %}
+                        {% if field.evaluateDefault %}
+                            {% set value = evaluate(field.evaluateDefault) %}
+                        {% endif %}
+                        {% if config.plugins.login.enabled and grav.user.authenticated %}
+                            {% if field.name == 'name' %}
+                                <input type="hidden" name="{{ (scope ~ field.name)|fieldName }}" value="{{grav.user.fullname}}">
+                            {% elseif field.name == 'email' %}
+                                <input type="hidden" name="{{ (scope ~ field.name)|fieldName }}" value="{{grav.user.email}}">
+                            {% else %}
+                                <div class="field field-{{ field.name }}">
+                                    {% include "forms/fields/#{field.type}/#{field.type}.html.twig" %}
+                                </div>
+                            {% endif %}
+                        {% else %}
+                            <div class="field field-{{ field.name }}">
+                                {% include "forms/fields/#{field.type}/#{field.type}.html.twig" %}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                    {% include "forms/fields/formname/formname.html.twig" %}
+
+                    <div class="field is-grouped">
+                        {% for button in grav.config.plugins.comments.form.buttons %}
+                            <p class="control">
+                                <button class="button is-info" type="{{ button.type|default('submit') }}">{{ button.value|t|default('Submit') }}</button>
+                            </p>
+                        {% endfor %}
+
+                        <p class="help">Votre adresse de courriel ne sera jamais publiée.</p>
+                    </div>
+
+                    {{ nonce_field('form', 'form-nonce')|raw }}
+                </form>
+            </div>
+        </div>
+
+    </div>
+{% endif %}

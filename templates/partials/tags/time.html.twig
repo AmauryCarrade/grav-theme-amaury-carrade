@@ -1,6 +1,6 @@
 {%- spaceless -%}
     <time datetime="{{ date|date('c') }}"
-          {%- if show_title|default(true) %} title="{{ date|date('d/m/Y à H:i') }}"{% endif -%}
+          {%- if show_title|default(true) %} title="Le {{ date|date('d/m/Y à H:i') }}"{% endif -%}
           {%- if itemprop %} itemprop="{{ itemprop }}"{% endif -%}>
             {%- if absolute|default(false) -%}
                 {{- date|date('d') }} {{ 'MONTHS_OF_THE_YEAR'|ta(date|date('n') - 1)|lower }} {{ date|date('Y') -}}

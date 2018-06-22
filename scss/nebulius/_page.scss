@@ -65,6 +65,16 @@ main {
         }
     }
 
+    // Enlarges the sidebar a little bit
+    .columns .column {
+        &.is-10 {
+            width: 83%;
+        }
+        &.is-2 {
+            width: 17%;
+        }
+    }
+
     article.main-article {
         padding: 1em 0;
 
@@ -75,8 +85,6 @@ main {
 
         backdrop-filter: blur($frontpage-blur-radius);
         -webkit-backdrop-filter: blur($frontpage-blur-radius);
-
-        $article-padding: 28px;
 
         .content {
             text-align: justify;
@@ -442,86 +450,6 @@ main {
                 }
             }
 
-            .custom-block {
-                margin: 1em 0;
-                padding: 0;
-
-                border-left: 10px solid;
-
-                background-color: $page-background-purple;
-
-                p, h1, h2, h3, h4, h5, h6, ol, ul {
-                    padding-left: $article-padding - 10px;
-                }
-
-                &.custom-block-information {
-                    color: #44b144;
-                    border-left-color: #5cb85c;
-                }
-                &.custom-block-question {
-                    color: #28a1c5;
-                    border-left-color: #5bc0de;
-                }
-                &.custom-block-warning {
-                    color: #df8a13;
-                    border-left-color: #f0ad4e;
-                }
-                &.custom-block-error {
-                    color: #dd625e;
-                    border-left-color: #d9534f;
-                }
-                &.custom-block-spoiler {
-                    color: #44b144;
-                    border-left-color: #5cb85c;
-                }
-                &.custom-block-neutral {
-                    color: #44b144;
-                    border-left-color: #5cb85c;
-                }
-                &.custom-block-spoiler {
-                    color: $content-text-color;
-                    border-left-color: lighten($page-background-purple, 16%);
-                }
-
-                strong, em, figure, dl, dt, dd, ol, ul, li, abbr  {
-                    color: inherit;
-                }
-
-                .custom-block-body {
-                    padding: .6em 0;
-                }
-
-                .custom-block-header {
-                    padding: .6em 0;
-                    background-color: darken($page-background-purple, 2%);
-
-                    font-family: $family-sans-serif;
-                    font-weight: 300;
-                    font-size: .9em;
-                }
-
-                &.custom-block-spoiler .custom-block-header {
-                    padding-left: calc(#{$article-padding - 10px} + .66em);
-
-                    cursor: pointer;
-
-                    &:before {
-                        @include font-awesome('regular', '\f06e');
-
-                        position: relative;
-                        left: -.6em;
-
-                        font-size: .9em;
-
-                        color: darken($content-text-color, 12%);
-                    }
-
-                    &[data-visible="true"]:before {
-                        content: '\f070';
-                    }
-                }
-            }
-
             .footnote-ref {
                 // Ensures the footnotes numbers are always in a normal font weight & variant, even
                 // when the note is in a bold or italic block.
@@ -664,6 +592,12 @@ main {
             &.authors:before {
                 content: '\f007';
             }
+            &.comments:before {
+                content: '\f086';
+            }
+            &.comments-single:before {
+                content: '\f075';
+            }
             &.tags-list:before {
                 content: '\f02c';
             }
@@ -690,6 +624,97 @@ main {
             .creative-commons-icons {
                 color: lighten($page-background-purple, 64%);
                 font-size: 2em;
+            }
+        }
+    }
+
+    footer.comments-section {
+        margin-top: 2em;
+        padding: 1em 0 0 0;
+
+        border-radius: 8px;
+
+        background: rgba($page-background-dark, .4);
+
+        backdrop-filter: blur($frontpage-blur-radius);
+        -webkit-backdrop-filter: blur($frontpage-blur-radius);
+
+        color: $content-text-color;
+
+        h2 {
+            padding: 0 $article-padding .4em $article-padding;
+            border-bottom: solid 1px $timeline-color;
+            font-size: 1.6em;
+            font-weight: 300;
+        }
+
+        .comments-section-content {
+            padding: 0 $article-padding 0 $article-padding / 2;
+
+            .timeline-item {
+                padding-bottom: 1em;
+
+                .timeline-marker.is-icon {
+                    height: 32px;
+                    width: 32px;
+                    left: -16px;
+                }
+
+                .timeline-content {
+                    position: relative;
+                    top: 7px;
+
+                    width: 100%;
+
+                    h3.heading {
+                        font-size: .9em;
+                        font-weight: 400;
+                    }
+
+                    div.content {
+                        margin-bottom: .4em;
+
+                        p {
+                            margin-bottom: .4em;
+                        }
+                    }
+
+                    cite {
+                        display: block;
+                        font-size: .9em;
+                    }
+                }
+
+                &.new-comment {
+                    .label {
+                        display: none;
+                    }
+
+                    .field-name, .field-email {
+                        width: 49%;
+                    }
+                    .field-name {
+                        float: left;
+                    }
+                    .field-email {
+                        float: right;
+                    }
+
+                    // Fixes text field overlapping previous ones with the float trick
+                    .field-text {
+                        position: relative;
+                        top: 2.8em;
+
+                        textarea {
+                            position: relative;
+                            top: -2.8em;
+                        }
+                    }
+
+                    .field > .help {
+                        padding-top: 0.5em;
+                    }
+                }
             }
         }
     }

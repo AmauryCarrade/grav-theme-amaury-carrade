@@ -4,3 +4,6 @@
 [submodule "scss/bulma-tooltip"]
 	path = scss/bulma-tooltip
 	url = https://github.com/Wikiki/bulma-tooltip.git
+[submodule "scss/bulma-timeline"]
+	path = scss/bulma-timeline
+	url = https://github.com/Wikiki/bulma-timeline.git

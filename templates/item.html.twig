@@ -13,6 +13,10 @@
         {% endfor %}
     {% endif %}
 
+    {% set has_comments = config.plugins.comments.enabled and header.comments|default(true) %}
+    {% set comments_count = grav.twig.comments|default([])|length %}
+    {% set comments_count_text = comments_count == 0 ? 'Aucun commentaire' : (comments_count == 1 ? 'Un commentaire' : comments_count ~ ' commentaires') %}
+
     <main class="page-main-article">
         <div class="header-size-constrainer">
             <header{% if page_header_image %} style="background-image: linear-gradient(0deg, #7a49b7, transparent 50%, transparent), url('{{ page_header_image.url }}');"{% endif %}>
@@ -42,6 +46,14 @@
                             {{ page.content }}
                         </div>
                     </article>
+                    {% if has_comments %}
+                        <footer class="comments-section" id="comments">
+                            <h2>{{ comments_count_text }}</h2>
+                            <div class="comments-section-content">
+                                {% include 'partials/comments.html.twig' with {'page': page} %}
+                            </div>
+                        </footer>
+                    {% endif %}
                 </div>
                 <div class="column is-2">
                     <aside class="main-aside">
@@ -94,6 +106,12 @@
                                     {{ header.author }}
                                 {%- endif -%}
                             </p>
+                        {%- endif -%}
+
+                        {%- if has_comments -%}
+                            <p class="has-icon comments{% if comments_count <= 1 %}-single{% endif %}" title="Cliquer pour aller aux commentaires ou en poster un"><a href="#comments">
+                                    {{- comments_count_text -}}
+                            </a></p>
                         {%- endif -%}
 
                         {%- if header.taxonomy.tag -%}

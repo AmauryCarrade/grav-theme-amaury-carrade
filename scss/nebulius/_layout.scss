@@ -298,10 +298,96 @@ body:not(.frontpage) footer.page-footer {
     width: 100%;
 }
 
+.custom-block {
+    margin: 1em 0;
+    padding: 0;
+
+    border-left: 10px solid;
+
+    background-color: $page-background-purple;
+
+    p, h1, h2, h3, h4, h5, h6, ol, ul {
+        padding-left: $article-padding - 10px;
+    }
+
+    &.custom-block-information {
+        color: #44b144;
+        border-left-color: #5cb85c;
+    }
+    &.custom-block-question {
+        color: #28a1c5;
+        border-left-color: #5bc0de;
+    }
+    &.custom-block-warning {
+        color: #df8a13;
+        border-left-color: #f0ad4e;
+    }
+    &.custom-block-error {
+        color: #dd625e;
+        border-left-color: #d9534f;
+    }
+    &.custom-block-spoiler {
+        color: #44b144;
+        border-left-color: #5cb85c;
+    }
+    &.custom-block-neutral {
+        color: #44b144;
+        border-left-color: #5cb85c;
+    }
+    &.custom-block-spoiler {
+        color: $content-text-color;
+        border-left-color: lighten($page-background-purple, 16%);
+    }
+
+    strong, em, figure, dl, dt, dd, ol, ul, li, abbr  {
+        color: inherit;
+    }
+
+    .custom-block-body {
+        padding: .6em 0;
+    }
+
+    .custom-block-header {
+        padding: .6em 0;
+        background-color: darken($page-background-purple, 2%);
+
+        font-family: $family-sans-serif;
+        font-weight: 300;
+        font-size: .9em;
+    }
+
+    &.custom-block-spoiler .custom-block-header {
+        padding-left: calc(#{$article-padding - 10px} + .66em);
+
+        cursor: pointer;
+
+        &:before {
+            @include font-awesome('regular', '\f06e');
+
+            position: relative;
+            left: -.6em;
+
+            font-size: .9em;
+
+            color: darken($content-text-color, 12%);
+        }
+
+        &[data-visible="true"]:before {
+            content: '\f070';
+        }
+    }
+}
+
 a {
     transition: color .2s ease-in-out;
 }
 
 .tooltip::before, .tooltip::after {
     font-family: $family-primary;
+}
+
+.input, .textarea {
+    @include placeholder {
+        color: rgba(54, 54, 54, 0.8);
+    }
 }
