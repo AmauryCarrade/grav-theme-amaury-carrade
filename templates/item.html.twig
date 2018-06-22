@@ -73,38 +73,36 @@
 
                         {% if config.plugins.readingtime.enabled %}
                             <p class="reading-time has-text-centered" title="Temps de lecture estimé, considérant un rythme de {{ config.plugins.readingtime.words_per_minute }} mots par minute.">
-                                {{ page.content|readingtime }} de lecture
-                            </p>
+                                {{- page.content|readingtime }} de lecture</p>
                         {% endif %}
 
-                        <p>
-                            Publié le {% include 'partials/tags/time.html.twig' with {'date': page.date, 'itemprop': 'datePublished', 'absolute': true} -%}.
+                        <p class="has-icon publication-date" title="Date de publication">
+                            {%- include 'partials/tags/time.html.twig' with {'date': page.date, 'itemprop': 'datePublished', 'absolute': true} -%}
                         </p>
 
-                        {% if header.author or header.authors %}
-                            <p>
-                                Écrit par
-                                {%- if header.authors %}
-                                    {% set authors = header.authors %}
-                                    {%  if header.author %}
-                                        {% set authors = [header.author]|merge(authors) %}
-                                    {% endif %}
-                                    {% for author in authors -%}
-                                        {%- if loop.last and authors|length > 1 %} et {% elseif not loop.first %}, {% endif %}{{ author }}
+                        {%- if header.author or header.authors -%}
+                            <p class="has-icon authors" title="Auteur(s) de l'article">
+                                {%- if header.authors -%}
+                                    {% set authors = header.authors -%}
+                                    {%-  if header.author -%}
+                                        {%- set authors = [header.author]|merge(authors) -%}
+                                    {%- endif -%}
+                                    {%- for author in authors -%}
+                                        {%- if not loop.first -%}<br />{%- endif -%}{{ author }}
                                     {%- endfor -%}
-                                {%- elseif header.author %}
+                                {%- elseif header.author -%}
                                     {{ header.author }}
-                                {%- endif -%}.
+                                {%- endif -%}
                             </p>
-                        {% endif %}
+                        {%- endif -%}
 
-                        {% if header.taxonomy.tag %}
-                            <p class="tags">
-                                {% for tag in header.taxonomy.tag %}
-                                    <a href="#" class="tag is-dark">{{ tag }}</a>
-                                {% endfor %}
+                        {%- if header.taxonomy.tag -%}
+                            <p class="has-icon tags-list{% if header.taxonomy.tag|length == 1 %}-single{% endif %}" title="Étiquette{% if header.taxonomy.tag|length > 1 %}s{% endif %} de l'article">
+                                {%- for tag in header.taxonomy.tag -%}
+                                    <a href="#">{{ tag }}</a><br />
+                                {%- endfor -%}
                             </p>
-                        {% endif %}
+                        {%- endif -%}
 
                         <p class="license">
                             {% spaceless %}

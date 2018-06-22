@@ -635,6 +635,43 @@ main {
             }
         }
 
+        p.has-icon {
+            padding-left: 1.9em;
+
+            text-indent: -.05em;
+
+            &:before {
+                position: relative;
+                left: -1.8em;
+                top: -1px;
+
+                width: 0;
+                height: 0;
+
+                color: lighten($page-background-purple, 16%);
+            }
+
+            &:not(.tags-list):not(.tags-list-single):before {
+                @include font-awesome('regular');
+            }
+            &.tags-list:before, &.tags-list-single:before {
+                @include font-awesome('solid');
+            }
+
+            &.publication-date:before {
+                content: '\f133';
+            }
+            &.authors:before {
+                content: '\f007';
+            }
+            &.tags-list:before {
+                content: '\f02c';
+            }
+            &.tags-list-single:before {
+                content: '\f02b';
+            }
+        }
+
         p.tags {
             margin-top: 2em;
         }
@@ -648,9 +685,10 @@ main {
 
         p.license {
             text-align: center;
+            margin-top: 1em;
 
             .creative-commons-icons {
-                color: lighten($page-background-purple, 82%);
+                color: lighten($page-background-purple, 64%);
                 font-size: 2em;
             }
         }
