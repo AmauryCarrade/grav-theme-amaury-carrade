@@ -1,5 +1,7 @@
 {% extends 'partials/base-page-content.html.twig' %}
 
+{% import 'macros/creative-commons.html.twig' as creative_commons %}
+
 {% block content_aside %}
     <aside class="main-aside">
         <div class="columns is-mobile navigation-links">
@@ -67,61 +69,6 @@
             </p>
         {%- endif -%}
 
-        <p class="license">
-            {% spaceless %}
-                {% set license = header.license %}
-                {% if not license %}
-                    {% set license = 'by-sa' %}
-                {% endif %}
-
-                {% set url, ico = '', '' %}
-
-                {% if license == 'by' %}
-                    {% set url, ico = 'by', 'b' %}
-                {% elseif license == 'by-sa' %}
-                    {% set url, ico = 'by-sa', 'ba' %}
-                {% elseif license == 'by-nc' %}
-                    {% set url, ico = 'by-nc', 'bn' %}
-                {% elseif license == 'by-nd' %}
-                    {% set url, ico = 'by-nd', 'bd' %}
-                {% elseif license in ['by-nc-nd', 'by-nd-nc'] %}
-                    {% set url, ico = 'by-nc-nd', 'bnd' %}
-                {% elseif license in ['by-nc-sa', 'by-sa-nc'] %}
-                    {% set url, ico = 'by-nc-sa', 'bna' %}
-                {% elseif license in ['cc0', '0', 'cc-0', 'zero', 'publicdomain', 'public domain', 'pd'] %}
-                    {% set url, ico = 'zero', 'p' %}
-                {% endif %}
-
-                {% set labels = {
-                    'by': 'Attribution (BY)',
-                    'sa': 'Partage à l\'identique (SA)',
-                    'nc': 'Pas d\'usage commercial (NC)',
-                    'nd': 'Pas de modification (ND)',
-                    'zero': 'Creative Commons Zéro : œuvre placée dans le domaine public'
-                } %}
-
-                {% if url %}
-                    {% set label = '' %}
-                    {% if url == 'zero' %}
-                        {% set label = labels.zero %}
-                    {% else %}
-                        {% set label = 'Creative Commons' %}
-                        {% for license_part in url|split('-') %}
-                            {% set label = label ~ ' ' ~ labels[license_part] %}
-                            {% if not loop.last %}
-                                {% set label = label ~ ' –' %}
-                            {% endif %}
-                        {% endfor %}
-                        {% set label = label ~ ' 4.0 International' %}
-                    {% endif %}
-
-                    {% set url = url != 'zero' ? 'https://creativecommons.org/licenses/' ~ url ~ '/4.0/deed.fr' : 'https://creativecommons.org/publicdomain/zero/1.0/' %}
-
-                    <a href="{{ url }}" title="{{ label }}" class="creative-commons-icons">{% if url != 'zero' %}c{% endif %}{{ ico }}</a>
-                {% else %}
-                    {{ header.license }}
-                {% endif %}
-            {% endspaceless %}
-        </p>
+        <p class="license">{{ creative_commons.logos(header.license|default('by-sa')) }}</p>
     </aside>
 {% endblock %}

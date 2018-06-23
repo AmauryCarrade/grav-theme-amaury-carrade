@@ -1,0 +1,58 @@
+{% macro logos(license, include_link = true, include_title = true, element_class = 'creative-commons-icons') -%}
+    {%- spaceless -%}
+        {% set url, ico = '', '' %}
+
+        {% if license == 'by' %}
+            {% set url, ico = 'by', 'b' %}
+        {% elseif license == 'by-sa' %}
+            {% set url, ico = 'by-sa', 'ba' %}
+        {% elseif license == 'by-nc' %}
+            {% set url, ico = 'by-nc', 'bn' %}
+        {% elseif license == 'by-nd' %}
+            {% set url, ico = 'by-nd', 'bd' %}
+        {% elseif license in ['by-nc-nd', 'by-nd-nc'] %}
+            {% set url, ico = 'by-nc-nd', 'bnd' %}
+        {% elseif license in ['by-nc-sa', 'by-sa-nc'] %}
+            {% set url, ico = 'by-nc-sa', 'bna' %}
+        {% elseif license in ['cc0', '0', 'cc-0', 'zero', 'publicdomain', 'public domain', 'pd'] %}
+            {% set url, ico = 'zero', 'p' %}
+        {% endif %}
+
+        {% set labels = {
+            'by': 'Attribution (BY)',
+            'sa': 'Partage à l\'identique (SA)',
+            'nc': 'Pas d\'usage commercial (NC)',
+            'nd': 'Pas de modification (ND)',
+            'zero': 'Creative Commons Zéro : œuvre placée dans le domaine public'
+        } %}
+
+        {# If the license was recognized to something we know #}
+        {% if url %}
+            {% set label = '' %}
+            {% if include_title %}
+                {% if url == 'zero' %}
+                    {% set label = labels.zero %}
+                {% else %}
+                    {% set label = 'Creative Commons' %}
+                    {% for license_part in url|split('-') %}
+                        {% set label = label ~ ' ' ~ labels[license_part] %}
+                        {% if not loop.last %}
+                            {% set label = label ~ ' –' %}
+                        {% endif %}
+                    {% endfor %}
+                    {% set label = label ~ ' 4.0 International' %}
+                {% endif %}
+            {% endif %}
+
+            {% set url = url != 'zero' ? 'https://creativecommons.org/licenses/' ~ url ~ '/4.0/deed.fr' : 'https://creativecommons.org/publicdomain/zero/1.0/' %}
+            {% set tag = include_link ? 'a' : 'span' %}
+            {% set tag_href = include_link ? ' href="' ~ url ~ '"' : '' %}
+            {% set tag_title = include_title ? ' title="' ~ label ~ '"' : '' %}
+
+            <{{ tag }}{{ tag_attr }}{{ tag_title }} class="{{ element_class }}">{% if url != 'zero' %}c{% endif %}{{ ico }}</{{ tag }}>
+
+        {% else %}
+            {{ header.license }}
+        {% endif %}
+    {%- endspaceless -%}
+{%- endmacro %}
