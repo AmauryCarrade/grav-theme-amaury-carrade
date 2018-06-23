@@ -1,6 +1,8 @@
 {# Overwrites the comments template from the comments plugin #}
 {# As there is no blocks inside, it's copy-pasted and updated to fit our needs. #}
 
+{% import 'macros/tags.html.twig' as tags %}
+
 {% if grav.twig.enable_comments_plugin %}
     {% set scope = scope ?: 'data.' %}
 
@@ -14,7 +16,7 @@
                     <div class="timeline-content">
                         <h3 class="heading">{{ comment.author }}</h3>
                         <div class="content">{{ comment.text|markdown }}</div>
-                        <cite>Rédigé {% include 'partials/tags/time.html.twig' with {'date': comment.date} %}.</cite>
+                        <cite class="comment-date">Rédigé {{ tags.time(comment.date, false, false, true, 'bottom') }}.</cite>
                     </div>
                 </div>
             {% endfor %}

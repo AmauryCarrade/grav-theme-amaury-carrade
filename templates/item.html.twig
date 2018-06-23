@@ -1,6 +1,7 @@
 {% extends 'partials/base-page-content.html.twig' %}
 
 {% import 'macros/creative-commons.html.twig' as creative_commons %}
+{% import 'macros/tags.html.twig' as tags %}
 
 {% block content_aside %}
     <aside class="main-aside">
@@ -9,10 +10,10 @@
                 <div class="column">
                     {% if page.nextSibling.url is null %}
                     <a href="" title="Vous lisez le dernier article" class="is-disabled">
-                        {% else %}
-                        <a href="{{ page.nextSibling.url }}" title="Article plus récent : {{ page.nextSibling.header.title }}">
-                            {% endif %}
-                            «</a>
+                    {% else %}
+                    <a href="{{ page.nextSibling.url }}" title="Article plus récent : {{ page.nextSibling.header.title }}">
+                        {% endif %}
+                        «</a>
                 </div>
                 {% if config.plugins.random.enabled %}
                     <div class="column">
@@ -36,7 +37,7 @@
         {% endif %}
 
         <p class="has-icon publication-date" title="Date de publication">
-            {%- include 'partials/tags/time.html.twig' with {'date': page.date, 'itemprop': 'datePublished', 'absolute': true} -%}
+            {{- tags.time(page.date, true, true, false, null, 'datePublished') -}}
         </p>
 
         {%- if header.author or header.authors -%}

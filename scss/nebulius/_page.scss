@@ -671,6 +671,7 @@ main {
                     height: 32px;
                     width: 32px;
                     left: -16px;
+                    cursor: default;
                 }
 
                 .timeline-content {
@@ -682,6 +683,7 @@ main {
                     h3.heading {
                         font-size: .9em;
                         font-weight: 400;
+                        cursor: default;
                     }
 
                     div.content {
@@ -692,9 +694,11 @@ main {
                         }
                     }
 
-                    cite {
+                    cite.comment-date {
                         display: block;
-                        font-size: .9em;
+                        font-weight: 300;
+                        font-style: normal;
+                        cursor: default;
                     }
                 }
 

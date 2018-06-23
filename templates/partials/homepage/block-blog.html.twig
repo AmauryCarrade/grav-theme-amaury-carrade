@@ -1,5 +1,7 @@
 {% set last_article = articles.current %}
 
+{% import 'macros/tags.html.twig' as tags %}
+
 <section>
     <div class="columns articles-display">
         <div class="column is-half">
@@ -37,7 +39,7 @@
                     {% endif %}
                 </div>
                 <footer>
-                    {% include 'partials/tags/time.html.twig' with {'date': last_article.date, 'itemprop': 'datePublished'} %} &middot; <a href="{{ last_article.url }}">Lire l'article</a>
+                    {{ tags.time(last_article.date, false, true, false, null, 'datePublished') }} &middot; <a href="{{ last_article.url }}">Lire l'article</a>
                 </footer>
             </article>
         </div>
@@ -48,7 +50,7 @@
                 <a href="{{ article.url }}">
                     <h3 itemprop="name">{{ article.header.title }}</h3>
                     <footer>
-                        {% include 'partials/tags/time.html.twig' with {'date': article.date, 'itemprop': 'datePublished'} %}
+                        {{ tags.time(article.date, false, true, false, null, 'datePublished') }}
                     </footer>
                 </a>
             </div>

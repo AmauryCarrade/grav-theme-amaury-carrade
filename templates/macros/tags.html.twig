@@ -1,0 +1,14 @@
+{% macro time(date, absolute = false, show_title = true, show_tooltip = false, tooltip_direction = 'top', itemprop = null) -%}
+    {%- spaceless -%}
+        <time datetime="{{ date|date('c') }}"
+              {%- if show_title %} title="Le {{ date|date('d/m/Y à H:i') }}"{% endif -%}
+              {%- if show_tooltip %} class="tooltip is-tooltip-{{ tooltip_direction }}" data-tooltip="Le {{ date|date('d/m/Y à H:i') }}"{% endif -%}
+              {%- if itemprop %} itemprop="{{ itemprop }}"{% endif -%}>
+                {%- if absolute -%}
+                    {{- date|date('d') }} {{ 'MONTHS_OF_THE_YEAR'|ta(date|date('n') - 1)|lower }} {{ date|date('Y') -}}
+                {%- else -%}
+                    {{- date|nicetime  -}}
+                {%- endif -%}
+        </time>
+    {%- endspaceless -%}
+{%- endmacro %}
