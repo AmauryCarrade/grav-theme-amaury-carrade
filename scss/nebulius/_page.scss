@@ -5,6 +5,19 @@ main {
         .header-size-constrainer {
             max-height: 380px;
             overflow: hidden;
+
+            &.imageless-header {
+                max-height: 111px;
+
+                header {
+                    height: 111px;
+
+                    background: rgba($page-background-dark, .4);
+
+                    backdrop-filter: blur($frontpage-blur-radius);
+                    -webkit-backdrop-filter: blur($frontpage-blur-radius);
+                }
+            }
         }
 
         header {

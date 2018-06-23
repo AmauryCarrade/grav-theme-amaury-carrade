@@ -7,6 +7,14 @@ form:
       fields:
         content:
           fields:
+            header.abstract:
+              ordering@: 1
+              type: textarea
+              style: vertical
+              placeholder: |
+                Chapô de l'article ou de la page, affiché sur la page d'accueil ou sur les listes. Peut contenir du Markdown.
+                Le chapô ne sera pas réécrit sur l'article lui-même. Si vide, un résumé sera automatiquement généré.
+              rows: 2
             attribution_spacer:
               type: spacer
               text: <br /><br />

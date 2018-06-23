@@ -1,0 +1,67 @@
+{% extends 'partials/base-page.html.twig' %}
+
+{% set page_header_image = header.header_image.image ? page.media.images[header.header_image.image] : null %}
+
+{% set has_comments = config.plugins.comments.enabled and header.comments|default(true) %}
+{% set comments_count = grav.twig.comments|default([])|length %}
+{% set comments_count_text = comments_count == 0 ? 'Aucun commentaire' : (comments_count == 1 ? 'Un commentaire' : comments_count ~ ' commentaires') %}
+
+{% block javascripts %}
+    {{ super() }}
+    {% do assets.addJs('theme://js/spoilers.js', 64) %}
+{% endblock %}
+
+{% block content %}
+    <main class="page-main-article {% block content_main_classes %}{% endblock %}">
+        {% block content_header %}
+            <div class="header-size-constrainer{% if not page_header_image %} imageless-header{% endif %}">
+                <header{% if page_header_image %} style="background-image: linear-gradient(0deg, #7a49b7, transparent 50%, transparent), url('{{ page_header_image.url|e('css') }}');"{% endif %}>
+                    <div class="container">
+                        <aside class="header-image-source">
+                            {% if header.header_image.image %}
+                                {% if header.header_image.link %}
+                                <a href="{{ header.header_image.link }}">
+                                    {% endif %}
+                                    {{ header.header_image.title }}
+                                    {% if header.header_image.author %}
+                                        <cite>{{ header.header_image.author }}</cite>
+                                    {% endif %}
+                                    {% if header.header_image.link %}
+                                </a>
+                                {% endif %}
+                            {% endif %}
+                        </aside>
+                        <h1>{{ header.title }}</h1>
+                    </div>
+                </header>
+            </div>
+        {% endblock %}
+
+        {% block content_content %}
+            <div class="container">
+                <div class="columns">
+                    <div class="column is-10">
+                        {% block content_article %}
+                            <article class="main-article">
+                                <div class="content">
+                                    {{ page.content }}
+                                </div>
+                            </article>
+                            {% if has_comments %}
+                                <footer class="comments-section" id="comments">
+                                    <h2>{{ comments_count_text }}</h2>
+                                    <div class="comments-section-content">
+                                        {% include 'partials/comments.html.twig' with {'page': page} %}
+                                    </div>
+                                </footer>
+                            {% endif %}
+                        {% endblock %}
+                    </div>
+                    <div class="column is-2">
+                        {% block content_aside %}{% endblock %}
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+    </main>
+{% endblock %}

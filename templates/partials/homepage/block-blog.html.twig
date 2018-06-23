@@ -29,7 +29,7 @@
                 </h3>
                 <div class="content" itemprop="description">
                     {% if last_article.header.abstract %}
-                        {{ last_article.header.abstract }}
+                        {{ last_article.header.abstract|markdown }}
                     {% elseif last_article.summary %}
                         {{ last_article.summary(250) }}
                     {% else %}
