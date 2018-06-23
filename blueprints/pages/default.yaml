@@ -48,6 +48,16 @@ form:
                           label: Lien vers la source de l'image du bandeau
                           help: Un lien vers la source de l'image du bandeau, s'il fait sens ; si défini, la source sera cliquable.
                           placeholder: https://…
+                        header.header_image.vertical_centering:
+                          type: range
+                          label: Centrage vertical de l'image
+                          help: |
+                            Le bandeau est affiché partiellement au dessus du titre, en choisissant une bande de 380px de large, par défaut centrée.
+                            Cette option vous permet de décaler vers le haut (curseur plus à gauche) ou le bas (plus à droite) la position verticale de cette bande.
+                          default: 50
+                          validate:
+                            min: 0
+                            max: 100
                         header_image_help:
                           type: display
                           size: long
