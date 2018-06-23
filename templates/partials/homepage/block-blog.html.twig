@@ -45,7 +45,7 @@
         </div>
     </div>
     <aside class="columns articles-list">
-        {% for article in articles.batch(4)[0] if article != last_article %}
+        {% for article in articles.slice(0, 4) if article != last_article %}
             <div class="column tooltip" data-tooltip="{{ article.header.title }}" itemid="{{ article.url }}" itemscope itemtype="http://schema.org/BlogPosting">
                 <a href="{{ article.url }}">
                     <h3 itemprop="name">{{ article.header.title }}</h3>
