@@ -1,0 +1,107 @@
+{% extends 'partials/base-page.html.twig' %}
+
+{% import 'macros/tags.html.twig' as tags %}
+
+{% set collection = page.collection() %}
+
+{% set page_header_height = 380 %}
+{% set page_header_width = 800 %}
+
+{% block content %}
+    <main class="page-main-list">
+        {% block content_header %}
+            <header class="hero is-medium">
+                <div class="hero-body">
+                    <div class="container">
+                        <p>{{ header.homepage.invite }}</p>
+                        <h1>{{ header.title }}</h1>
+                    </div>
+                </div>
+            </header>
+        {% endblock %}
+
+        {% block content_content %}
+            <div class="container">
+                <div class="columns">
+                    <div class="column is-10 is-offset-1">
+                        {% block content_intro %}
+                            {% if page.content %}
+                                <article class="main-article">
+                                    <div class="content">
+                                        {{ page.content }}
+                                    </div>
+                                </article>
+                            {% endif %}
+                        {% endblock %}
+                    </div>
+                </div>
+
+                {% block content_list %}
+                    <section class="main-list">
+                        <div class="columns is-multiline">
+                            {% for subpage in collection %}
+                                <div class="column is-half">
+                                    {% block content_list_item %}
+                                        <article class="card list-item">
+                                            <a href="{{ subpage.url }}">
+                                                {% block content_list_item_header %}
+                                                    {% set page_header_image = subpage.header.header_image.image ? subpage.media.images[subpage.header.header_image.image] : null %}
+                                                    {% if page_header_image %}
+                                                        {#
+                                                            We user here cropZoom to resize the image as it is displayed on a very small area.
+                                                            As the resulting image is small, we shift the image according to the user's will using
+                                                            CSS directly.
+                                                            The CSS shift is increased as the containing block is way smaller.
+                                                         #}
+                                                        {% set center_percentage = subpage.header.header_image.vertical_centering|default(50) %}
+                                                        {% set page_header_image = page_header_image.cropZoom(page_header_width, page_header_height) %}
+                                                    {% endif %}
+                                                    <header class="card-image{% if not page_header_image %} imageless-header{% endif %}"{% if page_header_image %} style="background: linear-gradient(0deg, rgba(90, 57, 135, 0.6), transparent 50%, transparent) center center, url('{{ page_header_image.url|e('css') }}') center {{ center_percentage + 10 * (center_percentage >= 50 ? 1 : -1) }}%;"{% endif %}>
+                                                        {% block content_list_item_header_aside %}
+                                                            <aside>
+                                                                {{ tags.time(subpage.date, true, true, false, null, 'datePublished') }}
+                                                            </aside>
+                                                        {% endblock %}
+                                                        <h2>{{ subpage.header.title }}</h2>
+                                                    </header>
+                                                {% endblock %}
+                                                {% block content_list_item_content %}
+                                                    <div class="card-content">
+                                                        {% block content_list_item_content_reading_time %}
+                                                            {% if config.plugins.readingtime.enabled %}
+                                                                <p class="reading-time" title="Temps de lecture estimé, considérant un rythme de {{ config.plugins.readingtime.words_per_minute }} mots par minute.">
+                                                                    {{- subpage.content|readingtime }} de lecture</p>
+                                                            {% endif %}
+                                                        {% endblock %}
+                                                        {% block content_list_item_content_body %}
+                                                            <div class="content">
+                                                                {% if subpage.header.abstract %}
+                                                                    {{ subpage.header.abstract|markdown }}
+                                                                {% elseif subpage.summary %}
+                                                                    {{ subpage.summary(250) }}
+                                                                {% else %}
+                                                                    {{ subpage.content|striptags|safe_truncate(300, true) }}
+                                                                {% endif %}
+                                                            </div>
+                                                        {% endblock %}
+                                                    </div>
+                                                {% endblock %}
+                                            </a>
+                                        </article>
+                                    {% endblock %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                        {% block content_list_pagination %}
+                            {% if config.plugins.pagination.enabled and collection.params.pagination %}
+                                {% include 'partials/pagination.html.twig' with {'base_url': page.url, 'pagination': collection.params.pagination} %}
+                            {% endif %}
+                        {% endblock %}
+                    </section>
+                {% endblock %}
+
+                {% block content_aside %}{% endblock %}
+            </div>
+        {% endblock %}
+    </main>
+{% endblock %}

@@ -92,7 +92,7 @@
         <div class="navbar-end">
             {% set this_page = page %}
             {% for page in pages.children.visible %}
-                {% set current_page = (page.active or page.activeChild or (this_page.template == 'homepage' and loop.index == 1)) ? 'is-active' : '' %}
+                {% set current_page = (page.active or page.activeChild) ? 'is-active' : '' %}
                 <a class="navbar-item {{ current_page }}" href="{{ page.url }}"{% if this_page.template == 'homepage' %} data-target="#{{ page.url|trim('/') }}"{% endif %}>
                         {% if page.header.icon %}<i class="fas fa-{{ page.header.icon }}"></i>{% endif %}
                         {{ page.menu }}

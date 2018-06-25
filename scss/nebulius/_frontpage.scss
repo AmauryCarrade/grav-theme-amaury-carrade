@@ -35,7 +35,7 @@ body.frontpage {
 
                             min-height: 30vh;
 
-                            font-family: 'EB Garamond', serif;
+                            font-family: $family-serif;
                             background-color: rgba(0, 0, 0, .25);
 
                             backdrop-filter: blur($frontpage-blur-radius);
@@ -318,7 +318,7 @@ body.frontpage {
 
                     header {
                         p {
-                            font-family: 'EB Garamond', serif;
+                            font-family: $family-serif;
                             font-style: italic;
                             font-size: 1.4em;
                         }
@@ -331,7 +331,7 @@ body.frontpage {
                     }
 
                     div.content {
-                        margin: 1.4em 40% 5em;
+                        margin: 1.4em 40% 3em;
                         padding: 2em 0;
                         border-top: 1px solid white;
                         border-bottom: 1px solid white;

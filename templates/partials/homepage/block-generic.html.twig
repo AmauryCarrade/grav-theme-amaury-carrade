@@ -1,26 +1,19 @@
-{% for subpage in page.children.nonRoutable.nonVisible %}
-    {% if subpage.header.title == '_homepage' %}
-        <article>
-            <header>
-                {% if subpage.header.metadata.invite %}<p>{{ subpage.header.metadata.invite }}</p>{% endif %}
-                <h2>{{ page.header.title }}</h2>
-            </header>
-            
-            <div class="content">
-                {{ subpage.content }}
-            </div>
+<article>
+    <header>
+        {% if page.header.homepage.invite %}<p>{{ page.header.homepage.invite }}</p>{% endif %}
+        <h2>{{ page.header.title }}</h2>
+    </header>
 
-            <aside>
-                <a class="button is-white is-medium" href="{{ page.url }}">
-                    <span class="{{ subpage.header.metadata.home_icon_type|default('fas') }} fa-{{ subpage.header.metadata.home_icon|default('fighter-jet') }}"></span>
-                    {% if subpage.header.metadata.home_button %}
-                        {{ subpage.header.metadata.home_button }}
-                    {% else %}
-                        En voir plus sur {{ page.header.title }}
-                    {% endif %}
-                </a>
-            </aside>
-        </article>
+    <div class="content">{{ page.header.homepage.text|markdown }}</div>
 
-    {% endif %}
-{% endfor %}
+    <aside>
+        <a class="button is-white is-medium" href="{{ page.url }}">
+            <span class="{{ page.header.homepage.button.icon_type|default('fas') }} {{ page.header.homepage.button.icon|default('fa-fighter-jet') }}"></span>
+            {% if page.header.homepage.button.text %}
+                {{ page.header.homepage.button.text }}
+            {% else %}
+                En voir plus sur {{ page.header.title }}
+            {% endif %}
+        </a>
+    </aside>
+</article>

@@ -1,12 +1,15 @@
 {% extends 'partials/base.html.twig' %}
 
+{# We want to display the page section even for top pages, like /notes if there is a “notes” section. #}
+{% set top_section_page = page.topParent.parent != null ? page.topParent : page %}
+
 {% block body %}
     <nav class="navbar top-navbar is-transparent" role="navigation" aria-label="main navigation">
         <div class="container">
             <div class="navbar-brand">
                 <div class="navbar-item site-name" href="/">
                     <a href="/">{{ theme_config.header.title ?: config.site.title }}</a>
-                    <aside><a href="{{ page.topParent.url }}">{{ page.topParent.header.title }}</a></aside>
+                    <aside><a href="{{ top_section_page.url }}">{{ top_section_page.header.title }}</a></aside>
                 </div>
 
                 <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">

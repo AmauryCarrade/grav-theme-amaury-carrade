@@ -1,6 +1,4 @@
 main {
-    margin-bottom: 500px;
-
     &.page-main-article {
         .header-size-constrainer {
             max-height: 380px;
@@ -76,15 +74,15 @@ main {
                 }
             }
         }
-    }
 
-    // Enlarges the sidebar a little bit
-    .columns .column {
-        &.is-10 {
-            width: 83%;
-        }
-        &.is-2 {
-            width: 17%;
+        // Enlarges the sidebar a little bit
+        .columns .column {
+            &.is-10 {
+                width: 83%;
+            }
+            &.is-2 {
+                width: 17%;
+            }
         }
     }
 

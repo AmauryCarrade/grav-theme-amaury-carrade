@@ -1,0 +1,112 @@
+main {
+    &.page-main-list {
+        header.hero .hero-body {
+            text-align: center;
+
+            font-family: $family-sans-serif;
+
+            color: $content-text-color;
+
+            p {
+                font-family: $family-serif;
+                font-style: italic;
+                font-size: 1.6em;
+            }
+
+            h1 {
+                font-weight: 300;
+                font-size: 3.8em;
+            }
+        }
+
+        article.main-article {
+            border-radius: 8px;
+        }
+
+        section.main-list {
+            margin-top: 2em;
+
+            article.list-item {
+                min-height: 21em;
+
+                border-radius: 8px;
+
+                background: rgba($page-background-dark, .4);
+
+                backdrop-filter: blur($frontpage-blur-radius);
+                -webkit-backdrop-filter: blur($frontpage-blur-radius);
+
+                transition: background .2s ease-in-out, box-shadow .2s ease-in-out;
+
+                &:hover {
+                    background: rgba($page-background-dark, .6);
+                    box-shadow: 2px 2px 14px 0 rgba(lighten($primary, 4%), .68), 6px 6px 21px 0 rgba(lighten($primary, 2%), .52);
+                }
+
+                a {
+                    display: block;
+                    color: $content-text-color;
+                }
+
+                header {
+                    display: flex;
+                    flex-direction: column;
+
+                    height: 160px;
+
+                    border-top-right-radius: 8px;
+                    border-top-left-radius: 8px;
+
+                    &.imageless-header {
+                        background: rgba($page-background-dark, .32) none;
+                        border-bottom: solid 1px lighten($page-background-purple, 48%);
+                    }
+
+                    aside {
+                        display: block;
+                        flex-grow: 1;
+
+                        text-align: right;
+
+                        time {
+                            display: inline-block;
+
+                            margin-top: 1em;
+                            padding: .4em .8em;
+
+                            border-top-left-radius: 2px;
+                            border-bottom-left-radius: 2px;
+
+                            background-color: lighten($primary, 40%);
+                        }
+                    }
+
+                    h2 {
+                        margin: 0 .4rem .2em 1.4rem;
+                        font-size: 1.77em;
+                        font-weight: 300;
+                        color: white;
+                    }
+                }
+
+                .card-content {
+                    padding-top: 1rem;
+
+                    p.reading-time {
+                        font-size: .94em;
+                        color: desaturate(darken($content-text-color, 48%), 8);
+                        margin-bottom: .6rem;
+
+                        & + .content {
+                            margin-top: 0;
+                        }
+                    }
+
+                    .content {
+                        margin-top: .5rem;
+                    }
+                }
+            }
+        }
+    }
+}

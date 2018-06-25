@@ -1,0 +1,50 @@
+form:
+  fields:
+    header.homepage.invite:
+      type: text
+      label: Sur-titre
+      help: Le texte affiché au dessus du titre sur la page d'accueil et sur la page racine de la section.
+      style: vertical
+    header.homepage.text:
+      type: markdown
+      style: vertical
+      label: Descriptif affiché sur la page d'accueil
+      validate:
+        type: textarea
+    homepage_button:
+      type: columns
+      fields:
+        homepage_button_c1:
+          type: column
+          fields:
+            header.homepage.button.icon_type:
+              type: select
+              label: Style de l'icône du bouton
+              help: Le style de l'icône. Attention que tous les styles ne sont pas disponibles pour toutes les icônes gratuites.
+              style: vertical
+              options:
+                no: Aucune icône
+                fas: Style solide (fas)
+                far: Style normal (far)
+                fal: Style léger (fal)
+                fab: Marques (fab)
+        homepage_button_c2:
+          type: column
+          fields:
+            header.homepage.button.icon:
+              type: text
+              label: Icône du bouton
+              placeholder: fa-
+              style: vertical
+        homepage_button_c3:
+          type: column
+          fields:
+            header.homepage.button.text:
+              type: text
+              label: Texte du bouton
+              style: vertical
+    homepage_button_help:
+      type: spacer
+      text: |
+        Sélectionnez ci-dessus l'icône du bouton et renseignez son texte ; il pointera vers la page d'accueil de la section.
+        Les icônes sont celles de FontAwesome. <a href="https://fontawesome.com/icons">Vous pouvez retrouver la référence ici.</a> Seules les icônes gratuites sont disponibles.

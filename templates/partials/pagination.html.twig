@@ -1,0 +1,24 @@
+{% if pagination|length > 1 %}
+    <nav class="pagination" role="navigation" aria-label="pagination">
+        <a class="pagination-previous" rel="prev" href="{{ (base_url ~ pagination.params ~ pagination.prevUrl)|replace({'//':'/'}) }}"{% if not pagination.hasPrev %} disabled{% endif %}>
+            Page précédente
+        </a>
+        <a class="pagination-next" rel="next" href="{{ (base_url ~ pagination.params ~ pagination.nextUrl)|replace({'//':'/'}) }}"{% if not pagination.hasNext %} disabled{% endif %}>
+            Page suivante
+        </a>
+        <ul class="pagination-list">
+            {% for paginate in pagination %}
+                {% set url =  (base_url ~ pagination.params ~ paginate.url)|replace({'//':'/'}) %}
+                <li>
+                    {% if paginate.isCurrent %}
+                        <a href="{{ url }}" class="pagination-link is-current" aria-label="Page {{ paginate.number }}" aria-current="page">{{ paginate.number }}</a>
+                    {% elseif paginate.isInDelta or paginate.number == 1 or paginate.number == pagination|length %}
+                        <a href="{{ url }}" class="pagination-link" aria-label="Aller à la page {{ paginate.number }}">{{ paginate.number }}</a>
+                    {% elseif paginate.isDeltaBorder %}
+                        <span class="pagination-ellipsis">&hellip;</span>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </nav>
+{% endif %}

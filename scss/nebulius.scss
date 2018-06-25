@@ -16,7 +16,12 @@ $link-hover: white;
 $link-focus: white;
 $link-active: white;
 
+$link-hover-border: lighten($primary, 32%);
+$link-focus-border: lighten($primary, 32%);
+$link-active-border: lighten($primary, 32%);
+
 $content-text-color: lighten($primary, 88%);
+$text: $content-text-color;
 
 $article-padding: 28px;
 
@@ -26,7 +31,18 @@ $footer-earth-size-small: 42px;
 $family-serif: 'EB Garamond', Garamond, serif;
 $family-sans-serif: 'Fira Sans', $family-sans-serif;
 
+$family-primary: $family-sans-serif;
+
 $weight-light: 200;
+
+$pagination-color: $text;
+$pagination-border-color: lighten($primary, 50%);
+$pagination-disabled-color: desaturate(darken($link, 40%), 16);
+$pagination-disabled-background-color: $link;
+$pagination-disabled-border-color: $link;
+$pagination-current-color: $text;
+$pagination-current-background-color: lighten($primary, 16%);
+$pagination-current-border-color: darken($pagination-border-color, 10%);
 
 $tooltip-background-color: rgba(lighten($primary, 14%), .4);
 

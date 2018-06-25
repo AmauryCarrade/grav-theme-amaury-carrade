@@ -1,0 +1,13 @@
+{% extends 'partials/base-page-list.html.twig' %}
+
+{# No date for these pages #}
+{# The aside element is still required to push the title at the bottom (flex based, so it must be non-empty). #}
+{% block content_list_item_header_aside %}
+    <aside>
+
+    </aside>
+{% endblock %}
+
+{# No reading time too #}
+{% block content_list_item_content_reading_time %}{% endblock %}
+
