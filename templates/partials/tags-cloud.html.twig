@@ -1,0 +1,32 @@
+{# Derived from the tagcloud grav plugin #}
+
+{% if config.plugins.taxonomylist.enabled and header.tags_cloud.enabled|default(true) %}
+    {% set taxlist = taxonomylist.getChildPagesTags() %}
+
+    {% if taxlist %}
+        {% set max = max(taxlist['tag']) %}
+        {% set threshold = theme_config.tags_cloud.threshold|default(0) %}
+        <aside class="tags-cloud">
+            <div class="tags is-centered">
+                {% for tax, value in taxlist['tag']|shuffle %}
+                    {% set percent = (value / max) * 100 %}
+                    {% if percent > threshold %}
+                        {% set class = 'is-very-large' %}
+                        {% if percent < 20 %}
+                            {% set class = 'is-very-small' %}
+                        {% elseif percent >= 20 and percent < 40 %}
+                            {% set class = 'is-small' %}
+                        {% elseif percent >= 40 and percent < 60 %}
+                            {% set class = 'is-medium' %}
+                        {% elseif percent >= 50 and percent < 80 %}
+                            {% set class = 'is-large' %}
+                        {% endif %}
+                        <span class="tag is-primary {{ class }}" title="{{ value }} {{ 'billet'|pluralize(value) }}">
+                            <a href="{{ base_url }}{{ config.plugins.taxonomylist.route }}/tag{{ config.system.param_sep }}{{ tax|e('url') }}">{{ tax }}</a>
+                        </span>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </aside>
+    {% endif %}
+{% endif %}

@@ -92,7 +92,7 @@ form:
                   type: toggle
                   toggleable: true
                   label: Activer les commentaires
-                  help: Permettre aux lecteurs de commenter l'article ? Désactiver l'option masquera également d'éventuels commentaires existants.s
+                  help: Permettre aux lecteurs de commenter l'article ? Désactiver l'option masquera également d'éventuels commentaires existants.
                   highlight: 1
                   size: medium
                   options:

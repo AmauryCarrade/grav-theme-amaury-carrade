@@ -15,10 +15,43 @@ license: CeCILL-B
 form:
   validation: loose
   fields:
-    header.title:
-      type: text
-      label: "Le titre à afficher dans l'en-tête"
-      help: "L'éventuelle partie en gras doit être affichée entre <span>"
-    header.tagline:
-      type: text
-      label: "Le slogan à afficher dans l'en-tête"
+    headers:
+      type: section
+      title: En-tête du site
+      underline: true
+      fields:
+        header.title:
+          type: text
+          label: "Le titre à afficher dans l'en-tête"
+          help: "L'éventuelle partie en gras doit être affichée entre <span>"
+        header.tagline:
+          type: text
+          label: "Le slogan à afficher dans l'en-tête"
+    tags_clouds:
+      type: section
+      title: Nuages de tags
+      underline: true
+      fields:
+        tags_cloud.enabled:
+          type: toggle
+          label: Activer les nuages de tags
+          help: Si désactivé, les nuages de tags ne seront pas affichés.
+          highlight: 1
+          default: 1
+          size: medium
+          options:
+            1: PLUGIN_ADMIN.YES
+            0: PLUGIN_ADMIN.NO
+          validate:
+            type: bool
+        tags_cloud.threshold:
+          type: range
+          label: Seuil d'affichage des tags dans le nuage
+          help: |
+            Spécifiez un pourcentage, entre zéro et cent.
+            Seuls les tags présents sur un nombre de posts supérieur ou égal à ce pourcentage multiplié par le nombre de posts du tag le plus présent seront affichés.
+            Ainsi, à 0, tous les tags seront affichés. À 100, seuls les tags les plus populaires (ou le, s'il n'y a pas d'égalité) le seront.
+          default: 0
+          validate:
+            min: 0
+            max: 100

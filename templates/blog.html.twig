@@ -1,2 +1,6 @@
 {% extends 'partials/base-page-list.html.twig' %}
 
+{% block content_aside %}
+    {{ super() }}
+    {% include 'partials/tags-cloud.html.twig' %}
+{% endblock %}

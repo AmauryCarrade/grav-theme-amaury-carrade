@@ -15,6 +15,24 @@
                     <div class="container">
                         <p>{{ header.homepage.invite }}</p>
                         <h1>{{ header.title }}</h1>
+
+                        {% if uri.param('tag') %}
+                            <h2>
+                                Billets étiquetés
+                                <span class="tag is-primary is-large">
+                                    <span class="icon"><i class="fas fa-tag"></i></span>
+                                    <span>{{ uri.param('tag') }}</span>
+                                </span>
+                            </h2>
+                        {% elseif uri.param('category') %}
+                            <h2>
+                                Billets catégorisés
+                                <span class="tag is-primary is-large">
+                                    <span class="icon"><i class="fas fa-briefcase"></i></span>
+                                    <span>{{ uri.param('category') }}</span>
+                                </span>
+                            </h2>
+                        {% endif %}
                     </div>
                 </div>
             </header>

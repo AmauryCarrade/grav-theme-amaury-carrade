@@ -65,7 +65,11 @@
         {%- if header.taxonomy.tag -%}
             <p class="has-icon tags-list{% if header.taxonomy.tag|length == 1 %}-single{% endif %}" title="Étiquette{% if header.taxonomy.tag|length > 1 %}s{% endif %} de l'article">
                 {%- for tag in header.taxonomy.tag -%}
-                    <a href="#">{{ tag }}</a><br />
+                    {%- if config.plugins.taxonomylist.enabled -%}
+                        <a href="{{ base_url }}{{ config.plugins.taxonomylist.route }}/tag{{ config.system.param_sep }}{{ tag|e('url') }}">{{ tag }}</a><br />
+                    {%- else -%}
+                        {{ tag }}<br />
+                    {%- endif -%}
                 {%- endfor -%}
             </p>
         {%- endif -%}
