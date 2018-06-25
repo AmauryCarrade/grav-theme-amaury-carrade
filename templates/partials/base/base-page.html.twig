@@ -1,4 +1,4 @@
-{% extends 'partials/base.html.twig' %}
+{% extends 'partials/base/base.html.twig' %}
 
 {# We want to display the page section even for top pages, like /notes if there is a “notes” section. #}
 {% set top_section_page = page.topParent.parent != null ? page.topParent : page %}
