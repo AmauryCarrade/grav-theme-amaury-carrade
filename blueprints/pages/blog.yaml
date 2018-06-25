@@ -14,7 +14,6 @@ form:
               style: vertical
               label: Sur-titre
               help: Le texte affiché au dessus du titre sur la page racine du blog.
-              rows: 2
             header.abstract:
               unset@: true
             attribution_spacer:

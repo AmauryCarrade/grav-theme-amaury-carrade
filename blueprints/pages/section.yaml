@@ -8,6 +8,12 @@ form:
       fields:
         content:
           fields:
+            header.homepage.invite:
+              ordering@: 1
+              type: text
+              label: Sur-titre
+              help: Le texte affiché au dessus du titre sur la page d'accueil et sur la page racine de la section.
+              style: vertical
             header.abstract:
               unset@: true
             attribution_spacer:
@@ -28,11 +34,6 @@ form:
               title: Affichage sur la page d'accueil
               underline: true
               fields:
-                header.homepage.invite:
-                  type: text
-                  label: Sur-titre
-                  help: Le texte affiché au dessus du titre sur la page d'accueil et sur la page racine de la section.
-                  style: vertical
                 header.homepage.text:
                   type: markdown
                   style: vertical
