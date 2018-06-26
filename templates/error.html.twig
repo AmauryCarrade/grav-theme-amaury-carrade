@@ -1,8 +1,12 @@
 {% extends 'partials/base/base-page.html.twig' %}
 
 {% block content %}
-    <div class="lead text-center">
-        <h1>Error!</h1>
-        {{ page.content }}
-    </div>
+    <section class="hero is-fullheight is-error-page">
+        <div class="hero-body">
+            <div class="container">
+                <h1>Houston, we've got a problem.</h1>
+                <p>{{ page.content }}</p>
+            </div>
+        </div>
+    </section>
 {% endblock %}

@@ -1,0 +1,21 @@
+section.hero.is-error-page {
+    &.is-fullheight {
+        min-height: calc(100vh - 3.55rem * 2);
+
+        .hero-body {
+            text-align: center;
+
+            h1 {
+                font-size: 3.6em;
+                font-family: $family-serif;
+                font-style: italic;
+            }
+
+            p:not(:empty) {
+                margin: 2em 0 8em;
+                font-size: 1.6em;
+                font-weight: 300;
+            }
+        }
+    }
+}
