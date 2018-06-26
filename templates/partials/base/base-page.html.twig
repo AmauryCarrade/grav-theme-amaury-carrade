@@ -9,7 +9,7 @@
             <div class="navbar-brand">
                 <div class="navbar-item site-name" href="/">
                     <a href="/">{{ theme_config.header.title ?: config.site.title }}</a>
-                    <aside><a href="{{ top_section_page.url }}">{{ top_section_page.header.title }}</a></aside>
+                    <aside>{% block section_title %}<a href="{{ top_section_page.url }}">{{ top_section_page.header.title }}</a>{% endblock %}</aside>
                 </div>
 
                 <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
@@ -27,6 +27,13 @@
                             {{ menu_item.title }}
                         </a>
                     {% endfor %}
+
+                    {% if config.plugins.tntsearch.enabled %}
+                        <a class="navbar-item search-nav" href="{{ config.plugins.tntsearch.search_route }}" title="Rechercher sur le site…">
+                            <span class="fas fa-search"></span>
+                            <span class="sr-only">Rechercher</span>
+                        </a>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -40,7 +47,7 @@
 {% block javascripts %}
     {{ super() }}
 
-    {%  do assets.addJs('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML', 200, false, 'async', 'last') %}
+    {% do assets.addJs('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML', 200, false, 'async', 'last') %}
 
     <script type="text/x-mathjax-config">
         MathJax.Hub.Config({

@@ -1,0 +1,120 @@
+nav.navbar.top-navbar {
+    a.navbar-item.search-nav {
+        font-size: .8em;
+        color: darken($text, 8%);
+    }
+}
+
+main.page-main-search {
+    header {
+        padding: 8rem 0 1em 0;
+        form {
+            margin: 0 16%;
+
+            .control {
+                input[type="search"] {
+                    background-color: desaturate(lighten($primary, 16%), 10);
+                    border-color: lighten($primary, 20%);
+                    color: lighten($primary, 74%);
+
+                    font-family: $family-sans-serif;
+
+                    @include placeholder {
+                        color: lighten($primary, 70%);
+                    }
+
+                    &:focus ~ .icon {
+                        color: lighten($primary, 74%);
+                    }
+                }
+
+                .icon {
+                    color: lighten($primary, 66%);
+                }
+            }
+        }
+    }
+
+    section.search-results {
+        margin: 0 20%;
+
+        aside {
+            text-align: center;
+            padding: 0 0 7rem 0;
+
+            font-size: 1.2em;
+            font-weight: 300;
+
+            color: darken($text, 8%);
+        }
+
+        article.search-result {
+            margin-bottom: 1.4rem;
+            padding: 0;
+
+            border-radius: 8px;
+
+            background: rgba($page-background-dark, .4);
+
+            backdrop-filter: blur($frontpage-blur-radius);
+            -webkit-backdrop-filter: blur($frontpage-blur-radius);
+
+            transition: background .2s ease-in-out;
+
+            &:hover {
+                background: rgba($page-background-dark, .6);
+            }
+
+            a {
+                display: block;
+                padding: 1.25rem;
+
+                color: darken($text, 8%);
+
+                em {
+                    display: inline-block;
+                    padding: 0 .4em;
+
+                    background-color: rgba(lighten($primary, 40%), .4);
+                    border-radius: 4px;
+
+                    font-style: normal;
+                }
+
+                h2 {
+                    font-size: 1.7em;
+                    font-weight: 300;
+                }
+
+                p {
+                    margin-top: .8em;
+
+                    &.route {
+                        margin-top: .2em;
+
+                        font-family: $family-monospace;
+                        font-size: .8em;
+
+                        color: desaturate(darken($content-text-color, 48%), 8);
+                    }
+                }
+            }
+        }
+    }
+
+    footer {
+        margin-top: 12rem;
+
+        p {
+            text-align: center;
+            font-size: 1.2em;
+
+            a {
+                display: inline-block;
+                padding: .2em;
+
+                color: darken($text, 8%);
+            }
+        }
+    }
+}

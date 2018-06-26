@@ -1,0 +1,56 @@
+{% extends 'partials/base/base-page.html.twig' %}
+
+{% set url = url|default(base_url|rtrim('/') ~ '/' ~ config.get('plugins.tntsearch.query_route', 's')|trim('/')) %}
+{% set in_page = true %}
+{% set live_update = true %}
+{% set limit = limit|default(config.get('plugins.tntsearch.limit', 20)) %}
+{% set snippet = snippet|default(config.get('plugins.tntsearch.snippet', 300)) %}
+{% set min = min|default(config.get('plugins.tntsearch.min', 3)) %}
+{% set search_type = search_type|default(config.get('plugins.tntsearch.search_type', 'auto')) %}
+{% set placeholder = placeholder|default('Entrez votre recherche…') %}
+{% set live_update = in_page ? live_update|default(config.get('plugins.tntsearch.live_uri_update', 1)) : 0 %}
+
+{% set options = { uri: url, limit: limit, snippet: snippet, min: min, in_page: in_page, live_update: live_update, search_type: search_type } %}
+
+{% block section_title %}<a href="{{ top_section_page.url }}">Recherche</a>{% endblock %}
+
+{% block javascripts %}
+    {{ super() }}
+    {% do assets.addJs('theme://js/tnt-search.js', 64) %}
+{% endblock %}
+
+{% block content %}
+    {{ dump(options) }}
+    <main class="page-main-search">
+        <div class="container">
+            <header>
+                <form role="form" class="tntsearch-form">
+                    <div class="field">
+                        <p class="control is-medium has-icons-left" id="tntsearch-wrapper">
+                            <input class="input is-medium tntsearch-field{{ in_page ? ' tntsearch-field-inpage' : '' }}" type="search" name="q" data-tntsearch="{{ options|json_encode|e('html_attr') }}" placeholder="{{ placeholder }}" value="{{ not dropdown ? query|e : '' }}" autofocus autocomplete="off" />
+                            <span class="icon is-small is-left">
+                                <span class="fas fa-search"></span>
+                            </span>
+                        </p>
+                    </div>
+                </form>
+            </header>
+
+            <section class="search-results tntsearch-results{{ in_page ? ' tntsearch-results-inpage' : '' }}">
+                {% if tntsearch_results is defined and tntsearch_results is not empty and in_page %}
+                    {% include 'tntquery-ajax.html.twig' %}
+                {% endif %}
+            </section>
+
+            {% if config.get('plugins.tntsearch.powered_by') %}
+                <footer>
+                    <p>
+                        <a href="https://github.com/trilbymedia/grav-plugin-tntsearch" class="tooltip is-tooltip-bottom" data-tooltip="Propulsé par TNTSearch" aria-label="Propulsé par TNTSearch" target="_blank">
+                            <span class="fas fa-bomb"></span>
+                        </a>
+                    </p>
+                </footer>
+            {% endif %}
+        </div>
+    </main>
+{% endblock %}

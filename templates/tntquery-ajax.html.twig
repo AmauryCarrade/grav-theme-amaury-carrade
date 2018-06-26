@@ -1,0 +1,40 @@
+<aside>
+    {% set show_time = config.get('plugins.tntsearch.display_time') %}
+    {% set show_hits = config.get('plugins.tntsearch.display_hits') %}
+
+    {% set exec_time = tntsearch_results.execution_time|replace('.', ',') %}
+
+    {% if show_hits %}
+        {% set hits = tntsearch_results.number_of_hits %}
+        {% set plural = hits > 1 ? 's' : '' %}
+        {% if hits > 0 %}
+            On a trouvé {{ hits == 1 ? 'un' : hits }} résultat{{ plural }}
+            {% if show_time -%}
+                en {{ exec_time }}
+            {%- endif -%}.
+        {%- else -%}
+            On a rien trouvé.
+            {% if show_time %}
+                (Et ça nous a pris {{ exec_time }}.)
+            {%- endif %}
+            <br />Tentez de reformuler votre requête&nbsp;?
+        {%- endif -%}
+    {%- elseif show_time -%}
+        Requête traitée en {{ exec_time }}.
+    {%- endif -%}
+</aside>
+
+
+{% for key, val in tntsearch_results.hits  %}
+    <article class="search-result">
+        <a href="{{ base_url ~ val.link }}">
+            <h2>{{ val.title }}</h2>
+
+            {% if config.get('plugins.tntsearch.display_route') %}
+                <p class="route">{{ val.link }}</p>
+            {% endif %}
+
+            <p>{{ val.content }}</p>
+        </a>
+    </article>
+{% endfor %}
