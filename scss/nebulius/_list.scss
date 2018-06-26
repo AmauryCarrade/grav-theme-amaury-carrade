@@ -142,5 +142,23 @@ main {
                 }
             }
         }
+
+        aside.categories {
+            .tag {
+                font-size: $size-5 * 1.1;
+                font-weight: 300;
+                text-align: center;
+                margin-right: 2rem;
+
+                &:last-child {
+                    margin-right: .25rem;
+                }
+
+                a {
+                    position: relative;
+                    left: .2em;
+                }
+            }
+        }
     }
 }

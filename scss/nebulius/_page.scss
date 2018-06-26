@@ -590,10 +590,10 @@ main {
                 color: lighten($page-background-purple, 16%);
             }
 
-            &:not(.tags-list):not(.tags-list-single):before {
+            &:not(.tags-list):not(.tags-list-single):not(.category):before {
                 @include font-awesome('regular');
             }
-            &.tags-list:before, &.tags-list-single:before {
+            &.tags-list:before, &.tags-list-single:before, &.category:before {
                 @include font-awesome('solid');
             }
 
@@ -608,6 +608,9 @@ main {
             }
             &.comments-single:before {
                 content: '\f075';
+            }
+            &.category:before {
+                content: '\f0b1';
             }
             &.tags-list:before {
                 content: '\f02c';

@@ -62,6 +62,15 @@
                 </a></p>
         {%- endif -%}
 
+        {%- if header.taxonomy.category -%}
+            <p class="has-icon category" title="Catégorie de l'article">
+                {%- for category in header.taxonomy.category -%}
+                    {%- set cat_url = base_url ~ config.plugins.taxonomylist.route ~ '/category' ~ config.system.param_sep ~ category|e('url') -%}
+                    <a href="{{ cat_url }}">{{ category }}</a>
+                {%- endfor -%}
+            </p>
+        {%- endif -%}
+
         {%- if header.taxonomy.tag -%}
             <p class="has-icon tags-list{% if header.taxonomy.tag|length == 1 %}-single{% endif %}" title="Étiquette{% if header.taxonomy.tag|length > 1 %}s{% endif %} de l'article">
                 {%- for tag in header.taxonomy.tag -%}
