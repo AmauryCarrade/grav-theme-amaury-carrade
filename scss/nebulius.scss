@@ -35,6 +35,11 @@ $family-primary: $family-sans-serif;
 
 $weight-light: 200;
 
+$menu-item-hover-color: $text;
+$menu-item-hover-background-color: $info;
+$menu-item-active-color: $text;
+$menu-item-active-background-color: $info;
+
 $pagination-color: $text;
 $pagination-border-color: lighten($primary, 50%);
 $pagination-disabled-color: desaturate(darken($link, 40%), 16);

@@ -1,1 +1,24 @@
 {% extends 'partials/base/base-page-content.html.twig' %}
+
+{% macro loop(page) %}
+    {% for p in page.children.visible %}
+        <li>
+            <a href="{{ p.url }}"{% if p.active or p.activeChild %} class="is-active"{% endif %}>
+                {{ p.header.menu ?: p.header.title }}
+            </a>
+            {% if p.children.visible.published.count > 0 %}
+            <ul>
+                {{ _self.loop(p) }}
+            </ul>
+            {% endif %}
+        </li>
+    {% endfor %}
+{% endmacro %}
+
+{% block content_aside %}
+    <aside class="menu">
+        <ul class="menu-list">
+            {{ _self.loop(page.topParent) }}
+        </ul>
+    </aside>
+{% endblock %}

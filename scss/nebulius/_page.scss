@@ -242,7 +242,7 @@ main {
 
             .video-wrapper {
                 position: relative;
-                padding-bottom: 56.25%; /* 16:9 */
+                padding-bottom: 54.46%; /* 16:9 */
                 padding-top: 25px;
                 height: 0;
 
@@ -642,6 +642,20 @@ main {
         }
     }
 
+    aside.menu {
+        margin-top: 1em;
+
+        ul.menu-list {
+            li {
+                margin-bottom: .4em;
+
+                a {
+                    transition: none;
+                }
+            }
+        }
+    }
+
     footer.comments-section {
         margin-top: 2em;
         padding: 1em 0 0 0;
@@ -685,6 +699,10 @@ main {
                         font-size: .9em;
                         font-weight: 400;
                         cursor: default;
+
+                        &.comments-disabled {
+                            padding-bottom: .6em;
+                        }
                     }
 
                     div.content {

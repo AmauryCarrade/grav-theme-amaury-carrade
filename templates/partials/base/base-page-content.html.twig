@@ -3,7 +3,7 @@
 {% set page_header_height = 380 * 2 %} {# Real height is 380px; doubled for high-pixel-density screens. #}
 {% set page_header_image = header.header_image.image ? page.media.images[header.header_image.image] : null %}
 
-{% set has_comments = config.plugins.comments.enabled and header.comments|default(true) %}
+{% set has_comments = config.plugins.comments.enabled and grav.twig.enable_comments_plugin and header.comments.show|default(true) %}
 {% set comments_count = grav.twig.comments|default([])|length %}
 {% set comments_count_text = comments_count == 0 ? 'Aucun commentaire' : (comments_count == 1 ? 'Un commentaire' : comments_count ~ ' commentaires') %}
 

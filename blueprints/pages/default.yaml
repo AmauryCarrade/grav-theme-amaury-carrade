@@ -88,11 +88,27 @@ form:
           fields:
             publishing:
               fields:
-                header.comments:
+                header.comments.show:
                   type: toggle
                   toggleable: true
-                  label: Activer les commentaires
-                  help: Permettre aux lecteurs de commenter l'article ? Désactiver l'option masquera également d'éventuels commentaires existants.
+                  label: Afficher les commentaires
+                  help: |
+                    Afficher les commentaires sur l'article ?
+                    Si désactivé, les commentaires seront masqués et il ne sera plus possible de commenter.
+                  highlight: 1
+                  size: medium
+                  options:
+                    1: PLUGIN_ADMIN.YES
+                    0: PLUGIN_ADMIN.NO
+                  validate:
+                    type: bool
+                header.comments.allow_new:
+                  type: toggle
+                  toggleable: true
+                  label: Autoriser l'envoi de nouveaux commentaires
+                  help: |
+                    Permettre aux lecteurs d'envoyer de nouveaux commentaires ?
+                    Si désactivé mais que l'option précédente reste activée, les commentaires resteront lisibles mais en lecture seule.
                   highlight: 1
                   size: medium
                   options:
