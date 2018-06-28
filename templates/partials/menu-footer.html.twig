@@ -1,90 +1,38 @@
 <footer class="hero-foot page-footer">
     <nav class="navbar is-transparent">
         <div class="navbar-brand">
-            <div class="navbar-item has-dropdown has-dropdown-up is-hoverable">
-                <a class="navbar-link" href="https://twitter.com/NebuliusGrp">
-                    <span class="icon">
-                        <span class="fab fa-twitter"></span>
-                    </span>
-                </a>
+            {% for links_group in theme_config.bottom_links %}
+                {% if links_group.sub_links %}
+                    <div class="navbar-item has-dropdown has-dropdown-up is-hoverable">
+                        <a class="navbar-link" href="{{ links_group.link }}" aria-label="{{ links_group.title }}">
+                            <span class="icon">
+                                <span class="{{ links_group.icon_type }} {{ links_group.icon }}"></span>
+                            </span>
+                        </a>
 
-                <div class="navbar-dropdown">
-                    <a class="navbar-item" href="https://twitter.com/NebuliusGrp">
+                        <div class="navbar-dropdown">
+                            {% for sub_link_title, sub_link in links_group.sub_links %}
+                                <a class="navbar-item" href="{{ sub_link }}">
+                                    <span class="icon">
+                                        <span class="{{ links_group.icon_type }} {{ links_group.icon }}"></span>
+                                    </span>
+                                    {{ sub_link_title }}
+                                </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% else %}
+                    <a class="navbar-item" href="{{ links_group.link }}" aria-label="{{ links_group.title }}">
                         <span class="icon">
-                            <span class="fab fa-twitter"></span>
+                            <span class="{{ links_group.icon_type }} {{ links_group.icon }}"></span>
                         </span>
-                        @NebuliusGrp
                     </a>
-                    <a class="navbar-item" href="https://twitter.com/Yoku_Sama">
-                        <span class="icon">
-                            <span class="fab fa-twitter"></span>
-                        </span>
-                        @Yoku_Sama
-                    </a>
-                    <a class="navbar-item" href="https://twitter.com/AmauryPi">
-                        <span class="icon">
-                            <span class="fab fa-twitter"></span>
-                        </span>
-                        @AmauryPi
-                    </a>
-                </div>
-            </div>
-
-            <div class="navbar-item has-dropdown has-dropdown-up is-hoverable">
-                <a class="navbar-link" href="https://instagram.com/yoku_timo">
-                    <span class="icon">
-                        <span class="fab fa-instagram"></span>
-                    </span>
-                </a>
-
-                <div class="navbar-dropdown">
-                    <a class="navbar-item" href="https://instagram.com/yoku_timo">
-                        <span class="icon">
-                            <span class="fab fa-instagram"></span>
-                        </span>
-                        @yoku_timo
-                    </a>
-                    <a class="navbar-item" href="https://instagram.com/amaurypi">
-                        <span class="icon">
-                            <span class="fab fa-instagram"></span>
-                        </span>
-                        @amaurypi
-                    </a>
-                </div>
-            </div>
-
-            <div class="navbar-item has-dropdown has-dropdown-up is-hoverable">
-                <a class="navbar-link" href="https://youtu.be/Nebulius">
-                    <span class="icon">
-                        <span class="fab fa-youtube"></span>
-                    </span>
-                </a>
-
-                <div class="navbar-dropdown">
-                    <a class="navbar-item" href="https://youtu.be/Nebulius">
-                        <span class="icon">
-                            <span class="fab fa-youtube"></span>
-                        </span>
-                        Nebulius
-                    </a>
-                    <a class="navbar-item" href="https://youtu.be/Yoku_Sama">
-                        <span class="icon">
-                            <span class="fab fa-youtube"></span>
-                        </span>
-                        Yoku_Sama
-                    </a>
-                </div>
-            </div>
-
-            <a class="navbar-item" href="https://github.com/Nebulius">
-                <span class="icon">
-                    <span class="fab fa-github"></span>
-                </span>
-            </a>
+                {% endif %}
+            {% endfor %}
 
             {% if config.plugins.feed.enabled %}
                 {% for page in grav.pages.find('/').parent.children.visible.published.routable if page.template == 'blog' %}
-                    <a class="navbar-item" href="{{ page.url(true) }}.atom">
+                    <a class="navbar-item" href="{{ page.url(true) }}.atom" aria-label="Flux Atom de la section {{ page.header.title }}">
                         <span class="icon">
                             <span class="fas fa-rss"></span>
                         </span>

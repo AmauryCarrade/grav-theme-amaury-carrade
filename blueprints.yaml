@@ -55,3 +55,44 @@ form:
           validate:
             min: 0
             max: 100
+    bottom_links_section:
+      type: section
+      title: Liens en bas de page
+      underline: true
+      fields:
+        bottom_links:
+          type: list
+          label: Liens en bas de page
+          help: |
+            Liste des liens affichés en bas de page. Chaque lien peut posséder des sous-liens affichés au survol, masqués sur mobile.
+            Les icônes sont celles de FontAwesome.
+            La référence est disponible sur fontawesome.com/icons.
+          fields:
+            .title:
+              type: text
+              label: Titre du lien
+              help: Le titre du lien n'est pas affiché, mais est utilisé pour remplacer l'icône pour les personnes utilisant des logiciels d'assistance.
+            .link:
+              type: text
+              label: Adresse du lien
+              validate:
+                type: url
+            .icon_type:
+              type: select
+              label: Style de l'icône du bouton
+              help: Le style de l'icône. Attention que tous les styles ne sont pas disponibles pour toutes les icônes gratuites.
+              options:
+                fas: Style solide (fas)
+                far: Style normal (far)
+                fal: Style léger (fal)
+                fab: Marques (fab)
+            .icon:
+              type: text
+              label: Icône du bouton
+              placeholder: fa-
+            .sub_links:
+              type: array
+              label: Liens secondaires affichés au survol
+              help: Liens affichés au survol du lien principal, avec la même icône que ci-dessus. Ils sont masqués sur mobile.
+              placeholder_key: Titre du lien
+              placeholder_value: Lien (URL)
