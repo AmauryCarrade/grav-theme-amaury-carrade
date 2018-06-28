@@ -1,0 +1,44 @@
+{%- set collection = collection|default(page.collection) -%}
+
+{%- set page_header_width = 1200 -%}
+{%- set page_header_height = 380 -%}
+
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>{{ page.title }} – {{ site.title }}</title>
+        <link>{{ page.url(true) }}.{{ uri.extension() }}</link>
+        <description>{{ collection.params.description }}</description>
+        <language>{{ collection.params.lang }}</language>
+        <atom:link href="{{ uri.url(true) }}.{{ uri.extension }}" rel="self" type="application/rss+xml"/>
+
+        {% for item in collection %}
+            {% set page_header_image = item.header.header_image.image ? item.media.images[item.header.header_image.image] : null %}
+
+            {% if page_header_image %}
+                {% set page_header_image = page_header_image.cropZoom(page_header_width, page_header_height) %}
+            {% endif %}
+
+            <item>
+                <title>{{ item.title|e }}</title>
+                <link>{{ item.url(true) }}</link>
+                <description>
+                    <![CDATA[
+                        {% if page_header_image %}
+                            <img
+                                src="{{ base_url_absolute ~ page_header_image.url }}"
+                                alt="{{ item.header.header_image.title }}{{ item.header.header_image.author ? ' – ' ~ item.header.header_image.author }}"
+                            />
+                        {% endif %}
+
+                        {{ item.content|raw }}
+                    ]]>
+                </description>
+                <category>{{ item.taxonomy.tag|join(',') }}</category>
+                <guid>{{ item.url(true) }}</guid>
+                <pubDate>{{ item.date|date('D, d M Y H:i:s O') }}</pubDate>
+                <author>{{ item.header.author }}{% if item.header.author and item.header.authors %}, {% endif %}{{ item.header.authors|join(', ') }}</author>
+            </item>
+        {% endfor %}
+    </channel>
+</rss>

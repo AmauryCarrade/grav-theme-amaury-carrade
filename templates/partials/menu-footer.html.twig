@@ -82,11 +82,15 @@
                 </span>
             </a>
 
-            <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+            {% if config.plugins.feed.enabled %}
+                {% for page in grav.pages.find('/').parent.children.visible.published.routable if page.template == 'blog' %}
+                    <a class="navbar-item" href="{{ page.url(true) }}.atom">
+                        <span class="icon">
+                            <span class="fas fa-rss"></span>
+                        </span>
+                    </a>
+                {% endfor %}
+            {% endif %}
         </div>
 
         <div class="navbar-end">

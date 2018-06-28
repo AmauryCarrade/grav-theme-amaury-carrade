@@ -19,6 +19,14 @@
     <link rel="icon" type="image/png" href="{{ url('theme://images/favicon.png') }}" />
     <link rel="canonical" href="{{ header.canonical ? header.canonical : page.url(true, true) }}" />
 
+    {% if config.plugins.feed.enabled %}
+        {% for page in grav.pages.find('/').parent.children.visible.published.routable if page.template == 'blog' %}
+            <link rel="alternate" type="application/atom+xml" title="{{ page.header.title }} – Flux Atom" href="{{ page.url(true) }}.atom" />
+            <link rel="alternate" type="application/rss+xml" title="{{ page.header.title }} – Flux RSS" href="{{ page.url(true) }}.rss" />
+            <link rel="alternate" type="application/json" title="{{ page.header.title }} – Flux JSON" href="{{ page.url(true) }}.json" />
+        {% endfor %}
+    {% endif %}
+
     {% block stylesheets %}
         {% do assets.addCss('https://use.fontawesome.com/releases/v5.1.0/css/all.css', 97) %}
         {% do assets.addCss('theme://css-compiled/nebulius.min.css', 98) %}
@@ -26,10 +34,10 @@
 
     {{ assets.css() }}
 
-    {% block javascripts %}
-        {% do assets.addJs('jquery', 100, true, null, 'bottom') %}
-        {% do assets.addJs('theme://js/shooting-star.js', 1010, true, null, 'bottom') %}
-    {% endblock %}
+    {% do assets.addJs('jquery', 100, true, null, 'bottom') %}
+    {% do assets.addJs('theme://js/shooting-star.js', 64, true, null, 'last') %}
+
+    {% block javascripts %}{% endblock %}
 
     {# The default JS assets are at the top because some extensions require their JS to be at the top #}
     {# even if it is recommanded to have the JS at the bottom of the page because they load synchronously. #}

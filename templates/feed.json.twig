@@ -1,0 +1,35 @@
+{%- set collection = collection|default(page.collection) -%}
+
+{%- set page_header_width = 1200 -%}
+{%- set page_header_height = 380 -%}
+
+{%- set jsonfeed = {
+    "version" : "https://jsonfeed.org/version/1",
+    "title" : site.title,
+    "home_page_url" : base_url_absolute,
+    "feed_url" : page.url(true) ~ '.' ~ uri.extension,
+    "favicon": url('theme://images/favicon.png', true)
+} -%}
+
+{%- set itemList = [] -%}
+{%- for item in collection -%}
+    {%- set page_header_image = item.header.header_image.image ? item.media.images[item.header.header_image.image] : null -%}
+
+    {%- if page_header_image -%}
+        {%- set page_header_image = page_header_image.cropZoom(page_header_width, page_header_height) -%}
+    {%- endif -%}
+
+    {%- set itemList = itemList|merge([{
+        "title": item.title|e,
+        "date_published": item.date|date('Y-m-d'),
+        "date_modified": item.date|date('Y-m-d'),
+        "id": item.url(true),
+        "url": item.url(true),
+        "author": {"name" : item.header.author},
+        "content_html": item.content,
+        "banner_image": base_url_absolute ~ page_header_image.url,
+        "tags": item.header.taxonomy.tag
+    }]) -%}
+{%- endfor -%}
+{%- set jsonfeed = jsonfeed|merge({"items": itemList}) -%}
+{{- jsonfeed|json_encode }}
