@@ -17,7 +17,7 @@
 
 {% block javascripts %}
     {{ super() }}
-    {% do assets.addJs('theme://js/tnt-search.js', 64) %}
+    {% do assets.addJs('theme://js/tnt-search.js', 64, true, null, 'bottom') %}
 {% endblock %}
 
 {% block content %}

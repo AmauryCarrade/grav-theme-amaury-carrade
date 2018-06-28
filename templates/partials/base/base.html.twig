@@ -27,10 +27,14 @@
     {{ assets.css() }}
 
     {% block javascripts %}
-        {% do assets.addJs('jquery', 100) %}
+        {% do assets.addJs('jquery', 100, true, null, 'bottom') %}
+        {% do assets.addJs('theme://js/shooting-star.js', 1010, true, null, 'bottom') %}
     {% endblock %}
 
-    {{ assets.js('top') }}
+    {# The default JS assets are at the top because some extensions require their JS to be at the top #}
+    {# even if it is recommanded to have the JS at the bottom of the page because they load synchronously. #}
+    {# Our JS assets are loaded at the bottom explicitely. #}
+    {{ assets.js() }}
 
 {% endblock head %}
 </head>
@@ -41,34 +45,9 @@
     </div>
 
     {% block bottom %}
-        {{ assets.js() }}
+        {{ assets.js('bottom') }}
 
         {{ super() }}
-
-        <script type="text/javascript">
-            'use strict';
-
-            document.body.classList.remove('static-shooting-star');
-
-            window.addEventListener('load', function()
-            {
-                document.body.classList.remove('static-shooting-star');
-
-                function animate_shooting_star()
-                {
-                    document.body.classList.add('animated-shooting-star');
-
-                    setTimeout(function()
-                    {
-                        document.body.classList.remove('animated-shooting-star');
-                    }, 1500);
-
-                    setTimeout(animate_shooting_star, (Math.floor(Math.random() * (60 - 20)) + 20) * 1000);
-                }
-
-                setTimeout(animate_shooting_star, (Math.floor(Math.random() * (10 - 2)) + 2) * 1000);
-            });
-        </script>
 
         {{ assets.js('last') }}
     {% endblock %}

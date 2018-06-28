@@ -36,7 +36,7 @@ $family-primary: $family-sans-serif;
 $weight-light: 200;
 
 $menu-item-hover-color: $text;
-$menu-item-hover-background-color: $info;
+$menu-item-hover-background-color: darken($info, 10%);
 $menu-item-active-color: $text;
 $menu-item-active-background-color: $info;
 

@@ -47,6 +47,7 @@
 {% block javascripts %}
     {{ super() }}
 
+    {# Cannot be in the pipeline, else it breaks MathJax's external plugin references. #}
     {% do assets.addJs('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML', 200, false, 'async', 'last') %}
 
     <script type="text/x-mathjax-config">
