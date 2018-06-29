@@ -1,5 +1,7 @@
 main {
-    &.page-main-list {
+    // The same styles are used for both static pages & lists,
+    // so we include them here even if we are in the “list.scss” file.
+    &.page-main-list, &.page-main-static {
         header.hero .hero-body {
             text-align: center;
 
@@ -34,7 +36,11 @@ main {
         article.main-article {
             border-radius: 8px;
         }
+    }
 
+    // The following styles are specific to lists.
+    // Avoids to duplicate uselessly all selectors in the generated CSS.
+    &.page-main-list {
         section.main-list {
             margin-top: 2em;
 

@@ -1,0 +1,30 @@
+'@extends':
+  type: default
+  context: blueprints://pages
+
+form:
+  fields:
+    tabs:
+      fields:
+        content:
+          fields:
+            header.homepage.invite:
+              ordering@: 1
+              type: text
+              label: Sur-titre
+              help: Le texte affiché au dessus du titre.
+              style: vertical
+            header.abstract:
+              unset@: true
+            attribution_spacer:
+              unset@: true
+            metadata_columns:
+              unset@: true
+        options:
+          fields:
+            publishing:
+              fields:
+                header.comments:
+                  unset@: true
+            license:
+              unset@: true

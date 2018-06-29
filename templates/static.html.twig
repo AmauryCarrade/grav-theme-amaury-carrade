@@ -1,0 +1,26 @@
+{% extends 'partials/base/base-page-content.html.twig' %}
+
+{% block content %}
+    <main class="page-main-static">
+        <header class="hero is-medium">
+            <div class="hero-body">
+                <div class="container">
+                    <p>{{ header.homepage.invite }}</p>
+                    <h1>{{ header.title }}</h1>
+                </div>
+            </div>
+        </header>
+
+        <div class="container">
+            <div class="columns">
+                <div class="column is-10 is-offset-1">
+                    <article class="main-article">
+                        <div class="content">
+                            {{ page.content }}
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
