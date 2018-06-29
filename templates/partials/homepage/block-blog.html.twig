@@ -3,7 +3,7 @@
 {% import 'macros/tags.html.twig' as tags %}
 
 <section>
-    <div class="columns articles-display">
+    <div class="columns is-desktop is-multiline articles-display">
         <div class="column is-half">
             <article class="presentation">
                 <div class="content">
@@ -44,7 +44,7 @@
             </article>
         </div>
     </div>
-    <aside class="columns articles-list">
+    <aside class="columns is-desktop articles-list">
         {% for article in articles.slice(0, 4) if article != last_article %}
             <div class="column tooltip" data-tooltip="{{ article.header.title }}" itemid="{{ article.url }}" itemscope itemtype="http://schema.org/BlogPosting">
                 <a href="{{ article.url }}">
@@ -59,9 +59,11 @@
             <a href="{{ page.url }}">
                 <h3>Tous les articles</h3>
                 <footer>
-                    {{ articles|length }} {{ 'article'|pluralize(articles.count) }}
+                    {{ articles.count }} {{ 'article'|pluralize(articles.count) }}
                 </footer>
             </a>
         </div>
     </aside>
 </section>
+{{ dump(articles) }}
+{{ dump(articles.count) }}

@@ -4,6 +4,11 @@
 {% set top_section_page = page.topParent.parent != null ? page.topParent : page %}
 
 {% block body %}
+    {% do assets.addJs('theme://js/navbar-burgers.js', 64, true, null, 'last') %}
+
+    {# Cannot be in the pipeline, else it breaks MathJax's external plugin references. #}
+    {% do assets.addJs('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML', 200, false, 'async', 'last') %}
+
     <nav class="navbar top-navbar is-transparent" role="navigation" aria-label="main navigation">
         <div class="container">
             <div class="navbar-brand">
@@ -12,13 +17,13 @@
                     <aside>{% block section_title %}<a href="{{ top_section_page.url }}">{{ top_section_page.header.title }}</a>{% endblock %}</aside>
                 </div>
 
-                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="top-navbar-menu">
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                 </a>
             </div>
-            <div class="navbar-menu">
+            <div class="navbar-menu" id="top-navbar-menu">
                 <div class="navbar-start"></div>
 
                 <div class="navbar-end">
@@ -47,9 +52,6 @@
 {% block javascripts %}
     {{ super() }}
 
-    {# Cannot be in the pipeline, else it breaks MathJax's external plugin references. #}
-    {% do assets.addJs('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML', 200, false, 'async', 'last') %}
-
     <script type="text/x-mathjax-config">
         MathJax.Hub.Config({
             tex2jax: {
@@ -63,6 +65,7 @@
             messageStyle: "none",
         });
     </script>
+
     <!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
         integrity="sha384-Ra6zh6uYMmH5ydwCqqMoykyf1T/+ZcnOQfFPhDrp2kI4OIxadnhsvvA2vv9A7xYv"
         crossorigin="anonymous">

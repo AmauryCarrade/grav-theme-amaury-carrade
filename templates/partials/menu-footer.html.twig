@@ -34,7 +34,7 @@
                 {% for page in grav.pages.find('/').parent.children.visible.published.routable if page.template == 'blog' %}
                     <a class="navbar-item" href="{{ page.url(true) }}.atom" aria-label="Flux Atom de la section {{ page.header.title }}">
                         <span class="icon">
-                            <span class="fas fa-rss"></span>
+                            <span class="fas fa-ze-syndication-feeds"></span>
                         </span>
                     </a>
                 {% endfor %}

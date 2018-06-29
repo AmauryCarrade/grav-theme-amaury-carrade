@@ -8,8 +8,17 @@ nav.navbar.top-navbar {
 main.page-main-search {
     header {
         padding: 8rem 0 1em 0;
+
+        @include mobile {
+            padding-top: 4rem;
+        }
+
         form {
             margin: 0 16%;
+
+            @include mobile {
+                margin: 0 1rem;
+            }
 
             .control {
                 input[type="search"] {
@@ -38,9 +47,17 @@ main.page-main-search {
     section.search-results {
         margin: 0 20%;
 
+        @include mobile {
+            margin: 0;
+        }
+
         aside {
             text-align: center;
             padding: 0 0 7rem 0;
+
+            @include mobile {
+                padding-bottom: 2rem;
+            }
 
             font-size: 1.2em;
             font-weight: 300;
@@ -56,10 +73,13 @@ main.page-main-search {
 
             background: rgba($page-background-dark, .4);
 
-            backdrop-filter: blur($frontpage-blur-radius);
-            -webkit-backdrop-filter: blur($frontpage-blur-radius);
-
             transition: background .2s ease-in-out;
+
+            @include blur-background;
+
+            @include mobile {
+                border-radius: 0;
+            }
 
             &:hover {
                 background: rgba($page-background-dark, .6);

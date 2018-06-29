@@ -35,6 +35,8 @@ $family-primary: $family-sans-serif;
 
 $weight-light: 200;
 
+$blur-radius: 1.5rem;
+
 $menu-item-hover-color: $text;
 $menu-item-hover-background-color: darken($info, 10%);
 $menu-item-active-color: $text;
@@ -56,6 +58,14 @@ $timeline-marker-color: $timeline-color;
 $timeline-marker-background-color: $timeline-color;
 $timeline-line-color: $timeline-color;
 $timeline-line-width: .08em;
+
+$frontpage-blog-space-between-blocks: 1.2em;
+$frontpage-blog-margin-around-blocks: 14%;
+
+$frontpage-photos-size: 88px;
+
+$frontpage-reflection-height: 333px;
+$frontpage-reflection-compression: 0.5;
 
 @import "bulma/bulma";
 @import "bulma-tooltip/dist/bulma-tooltip";

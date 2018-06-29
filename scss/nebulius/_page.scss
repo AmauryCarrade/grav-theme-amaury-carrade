@@ -12,8 +12,7 @@ main {
 
                     background: rgba($page-background-dark, .4);
 
-                    backdrop-filter: blur($frontpage-blur-radius);
-                    -webkit-backdrop-filter: blur($frontpage-blur-radius);
+                    @include blur-background;
                 }
             }
         }
@@ -26,6 +25,13 @@ main {
             background: linear-gradient(0deg, lighten($page-background-purple, 48%), transparent 40%, transparent) no-repeat center center;
             background-size: cover;
             background-blend-mode: multiply;
+
+            @include mobile {
+                padding: 1rem;
+            }
+            @include tablet {
+                padding: 1rem $article-padding;
+            }
 
             .container {
                 display: flex;
@@ -71,17 +77,49 @@ main {
                     font-size: 3em;
                     font-weight: 300;
                     color: white;
+
+                    @include mobile {
+                        font-size: 2.6em;
+                    }
+                }
+
+                .reading-time-under-title {
+                    padding-left: .1rem;
+
+                    @include tablet {
+                        display: none;
+                    }
                 }
             }
         }
 
-        // Enlarges the sidebar a little bit
-        .columns .column {
-            &.is-10 {
-                width: 83%;
+        @include desktop {
+            // Enlarges the sidebar a little bit
+            .columns .column {
+                &.is-10 {
+                    width: 83%;
+                }
+                &.is-2 {
+                    width: 17%;
+                }
             }
-            &.is-2 {
-                width: 17%;
+        }
+
+        @include tablet-only {
+            // Enlarges the sidebar a little bit
+            .columns .column {
+                &.is-10 {
+                    width: 80%;
+                }
+                &.is-2 {
+                    width: 20%;
+                }
+            }
+        }
+
+        @include mobile {
+            .columns .column.is-10 {
+                padding-top: 0;
             }
         }
     }
@@ -92,10 +130,13 @@ main {
         border-bottom-left-radius: 8px;
         border-bottom-right-radius: 8px;
 
+        @include tablet {
+            border-bottom-left-radius: 0;
+        }
+
         background: rgba($page-background-dark, .4);
 
-        backdrop-filter: blur($frontpage-blur-radius);
-        -webkit-backdrop-filter: blur($frontpage-blur-radius);
+        @include blur-background;
 
         .content {
             text-align: justify;
@@ -105,6 +146,10 @@ main {
             line-height: 1.6;
 
             color: $content-text-color;
+
+            @include mobile {
+                font-size: 1.6em;
+            }
 
             p, h1, h2, h3, h4, h5, h6, ol, ul {
                 padding-left: $article-padding;
@@ -509,6 +554,46 @@ main {
         }
     }
 
+    .columns.navigation-links {
+        margin: 0 0 .6em 0;
+
+        border-bottom: solid 1px lighten($page-background-purple, 20%);
+
+        font-size: 2.4em;
+        font-family: 'EB Garamond', 'Georgia', 'Times New Roman', Times, serif;
+
+        .column {
+            padding-top: .1em;
+            text-align: center;
+
+            &:first-child {
+                text-align: left;
+            }
+            &:last-child {
+                text-align: right;
+            }
+
+            a {
+                display: block;
+                width: 100%;
+
+                &.is-disabled {
+                    color: lighten($page-background-purple, 20%);
+                    cursor: default;
+                }
+            }
+        }
+
+        &.mobile-navigation-links {
+            margin: 0 $article-padding;
+            border-bottom: none;
+
+            @include tablet {
+                display: none;
+            }
+        }
+    }
+
     aside.main-aside {
         margin-top: 1em;
 
@@ -516,47 +601,19 @@ main {
 
         background: rgba($page-background-dark, .4);
 
-        backdrop-filter: blur($frontpage-blur-radius);
-        -webkit-backdrop-filter: blur($frontpage-blur-radius);
-
         color: lighten($page-background-purple, 65%);
+
+        @include blur-background;
+
+        @include mobile {
+            border-radius: 0;
+        }
 
         a {
             color: lighten($page-background-purple, 65%);
 
             &:hover {
                 color: lighten($page-background-purple, 84%);
-            }
-        }
-
-        .columns.navigation-links {
-            margin: 0 0 .6em 0;
-
-            border-bottom: solid 1px lighten($page-background-purple, 20%);
-
-            font-size: 2.4em;
-            font-family: 'EB Garamond', 'Georgia', 'Times New Roman', Times, serif;
-
-            .column {
-                padding-top: .1em;
-                text-align: center;
-
-                &:first-child {
-                    text-align: left;
-                }
-                &:last-child {
-                    text-align: right;
-                }
-
-                a {
-                    display: block;
-                    width: 100%;
-
-                    &.is-disabled {
-                        color: lighten($page-background-purple, 20%);
-                        cursor: default;
-                    }
-                }
             }
         }
 
@@ -653,6 +710,16 @@ main {
                     transition: none;
                 }
             }
+
+            > li > a {
+                @include tablet-only {
+                    border-top-right-radius: 0;
+                    border-bottom-right-radius: 0;
+                }
+                @include mobile {
+                    border-radius: 0;
+                }
+            }
         }
     }
 
@@ -664,10 +731,18 @@ main {
 
         background: rgba($page-background-dark, .4);
 
-        backdrop-filter: blur($frontpage-blur-radius);
-        -webkit-backdrop-filter: blur($frontpage-blur-radius);
-
         color: $content-text-color;
+
+        @include mobile {
+            border-radius: 0;
+        }
+
+        @include tablet {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+
+        @include blur-background;
 
         h2 {
             padding: 0 $article-padding .4em $article-padding;
@@ -726,29 +801,37 @@ main {
                         display: none;
                     }
 
-                    .field-name, .field-email {
-                        width: 49%;
-                    }
-                    .field-name {
-                        float: left;
-                    }
-                    .field-email {
-                        float: right;
-                    }
+                    @include tablet {
+                        .field-name, .field-email {
+                            width: 49%;
+                        }
+                        .field-name {
+                            float: left;
+                        }
+                        .field-email {
+                            float: right;
+                        }
 
-                    // Fixes text field overlapping previous ones with the float trick
-                    .field-text {
-                        position: relative;
-                        top: 2.8em;
-
-                        textarea {
+                        // Fixes text field overlapping previous ones with the float trick
+                        .field-text {
                             position: relative;
-                            top: -2.8em;
+                            top: 2.8em;
+
+                            textarea {
+                                position: relative;
+                                top: -2.8em;
+                            }
+                        }
+
+                        .field > .help {
+                            padding-top: 0.5em;
                         }
                     }
 
-                    .field > .help {
-                        padding-top: 0.5em;
+                    @include mobile {
+                        .field > .help {
+                            margin-top: 0;
+                        }
                     }
                 }
             }

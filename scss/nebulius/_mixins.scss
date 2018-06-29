@@ -23,3 +23,8 @@
 
     content: $fa-icon-char;
 }
+
+@mixin blur-background {
+    backdrop-filter: blur($blur-radius);
+    -webkit-backdrop-filter: blur($blur-radius);
+}

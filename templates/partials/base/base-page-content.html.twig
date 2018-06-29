@@ -7,12 +7,9 @@
 {% set comments_count = grav.twig.comments|default([])|length %}
 {% set comments_count_text = comments_count == 0 ? 'Aucun commentaire' : (comments_count == 1 ? 'Un commentaire' : comments_count ~ ' commentaires') %}
 
-{% block javascripts %}
-    {{ super() }}
-    {% do assets.addJs('theme://js/spoilers.js', 64, true, null, 'bottom') %}
-{% endblock %}
-
 {% block content %}
+    {% do assets.addJs('theme://js/spoilers.js', 64, true, null, 'bottom') %}
+
     <main class="page-main-article {% block content_main_classes %}{% endblock %}">
         {% block content_header %}
             <div class="header-size-constrainer{% if not page_header_image %} imageless-header{% endif %}">
@@ -41,6 +38,7 @@
                             {% endif %}
                         </aside>
                         <h1>{{ header.title }}</h1>
+                        {% block under_title %}{% endblock %}
                     </div>
                 </header>
             </div>
@@ -48,6 +46,7 @@
 
         {% block content_content %}
             <div class="container">
+                {% block above_content %}{% endblock %}
                 <div class="columns">
                     <div class="column is-10">
                         {% block content_article %}

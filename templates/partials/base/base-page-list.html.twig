@@ -42,15 +42,15 @@
             <div class="container">
                 <div class="columns">
                     <div class="column is-10 is-offset-1">
-                        {% block content_intro %}
-                            {% if page.content %}
+                        {%- block content_intro -%}
+                            {%- if page.content -%}
                                 <article class="main-article">
                                     <div class="content">
-                                        {{ page.content }}
+                                        {{- page.content -}}
                                     </div>
                                 </article>
-                            {% endif %}
-                        {% endblock %}
+                            {%- endif -%}
+                        {%- endblock -%}
                     </div>
                 </div>
 

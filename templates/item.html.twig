@@ -3,33 +3,49 @@
 {% import 'macros/creative-commons.html.twig' as creative_commons %}
 {% import 'macros/tags.html.twig' as tags %}
 
-{% block content_aside %}
-    <aside class="main-aside">
-        <div class="columns is-mobile navigation-links">
-            {% spaceless %}
-                <div class="column">
-                    {% if page.nextSibling.url is null %}
-                    <a href="" title="Vous lisez le dernier article" class="is-disabled">
+{% macro navigation_links(page, config, extra_classes='') %}
+    <div class="columns is-mobile navigation-links {{ extra_classes }}">
+        {% spaceless %}
+            <div class="column">
+                {% if page.nextSibling.url is null %}
+                <a href="" title="Vous lisez le dernier article" class="is-disabled">
                     {% else %}
                     <a href="{{ page.nextSibling.url }}" title="Article plus récent : {{ page.nextSibling.header.title }}">
                         {% endif %}
                         «</a>
-                </div>
-                {% if config.plugins.random.enabled %}
-                    <div class="column">
-                        <a href="{{ base_url_relative }}/random" title="Article au hasard">∞</a>
-                    </div>
-                {% endif %}
+            </div>
+            {% if config.plugins.random.enabled %}
                 <div class="column">
-                    {% if page.prevSibling.url is null %}
-                    <a href="" title="Vous lisez le tout premier article" class="is-disabled">
-                        {% else %}
-                        <a href="{{ page.prevSibling.url }}" title="Article plus ancien : {{ page.prevSibling.header.title }}">
-                            {% endif %}
-                            »</a>
+                    <a href="{{ base_url_relative }}{{ config.plugins.random.route }}" title="Article au hasard">∞</a>
                 </div>
-            {% endspaceless %}
-        </div>
+            {% endif %}
+            <div class="column">
+                {% if page.prevSibling.url is null %}
+                <a href="" title="Vous lisez le tout premier article" class="is-disabled">
+                    {% else %}
+                    <a href="{{ page.prevSibling.url }}" title="Article plus ancien : {{ page.prevSibling.header.title }}">
+                        {% endif %}
+                        »</a>
+            </div>
+        {% endspaceless %}
+    </div>
+{% endmacro %}
+
+{% block under_title %}
+    {% if config.plugins.readingtime.enabled %}
+        <p class="reading-time-under-title" title="Temps de lecture estimé, considérant un rythme de {{ config.plugins.readingtime.words_per_minute }} mots par minute.">
+            {{ page.content|readingtime }} de lecture
+        </p>
+    {% endif %}
+{% endblock %}
+
+{% block above_content %}
+    {{ _self.navigation_links(page, config, 'mobile-navigation-links') }}
+{% endblock %}
+
+{% block content_aside %}
+    <aside class="main-aside">
+        {{ _self.navigation_links(page, config) }}
 
         {% if config.plugins.readingtime.enabled %}
             <p class="reading-time has-text-centered" title="Temps de lecture estimé, considérant un rythme de {{ config.plugins.readingtime.words_per_minute }} mots par minute.">
