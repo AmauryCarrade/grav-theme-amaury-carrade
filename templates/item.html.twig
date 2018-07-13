@@ -56,20 +56,15 @@
             {{- tags.time(page.date, true, true, false, null, 'datePublished') -}}
         </p>
 
-        {%- if header.author or header.authors -%}
-            <p class="has-icon authors" title="Auteur(s) de l'article">
-                {%- if header.authors -%}
-                    {% set authors = header.authors -%}
-                    {%-  if header.author -%}
-                        {%- set authors = [header.author]|merge(authors) -%}
-                    {%- endif -%}
-                    {%- for author in authors -%}
-                        {%- if not loop.first -%}<br />{%- endif -%}{{ author }}
-                    {%- endfor -%}
-                {%- elseif header.author -%}
-                    {{ header.author }}
-                {%- endif -%}
-            </p>
+        {%- if header.taxonomy.author -%}
+            {%- include 'partials/taxonomy-list.html.twig' with {
+                'title_singular': 'Auteur de l\'article',
+                'title_plural': 'Auteurs de l\'article',
+                'icon': 'authors',
+                'has_icon_single': false,
+                'taxonomy': header.taxonomy.author,
+                'taxonomy_type': 'author'
+            } -%}
         {%- endif -%}
 
         {%- if has_comments -%}
@@ -79,24 +74,25 @@
         {%- endif -%}
 
         {%- if header.taxonomy.category -%}
-            <p class="has-icon category" title="Catégorie de l'article">
-                {%- for category in header.taxonomy.category -%}
-                    {%- set cat_url = base_url ~ config.plugins.taxonomylist.route ~ '/category' ~ config.system.param_sep ~ category|e('url') -%}
-                    <a href="{{ cat_url }}">{{ category }}</a>
-                {%- endfor -%}
-            </p>
+            {%- include 'partials/taxonomy-list.html.twig' with {
+                'title_singular': 'Catégorie de l\'article',
+                'title_plural': 'Catégories de l\'article',
+                'icon': 'category',
+                'has_icon_single': false,
+                'taxonomy': header.taxonomy.category,
+                'taxonomy_type': 'category'
+            } -%}
         {%- endif -%}
 
         {%- if header.taxonomy.tag -%}
-            <p class="has-icon tags-list{% if header.taxonomy.tag|length == 1 %}-single{% endif %}" title="Étiquette{% if header.taxonomy.tag|length > 1 %}s{% endif %} de l'article">
-                {%- for tag in header.taxonomy.tag -%}
-                    {%- if config.plugins.taxonomylist.enabled -%}
-                        <a href="{{ base_url }}{{ config.plugins.taxonomylist.route }}/tag{{ config.system.param_sep }}{{ tag|e('url') }}">{{ tag }}</a><br />
-                    {%- else -%}
-                        {{ tag }}<br />
-                    {%- endif -%}
-                {%- endfor -%}
-            </p>
+            {%- include 'partials/taxonomy-list.html.twig' with {
+                'title_singular': 'Étiquette de l\'article',
+                'title_plural': 'Étiquettes de l\'article',
+                'icon': 'tags-list',
+                'has_icon_single': true,
+                'taxonomy': header.taxonomy.tag,
+                'taxonomy_type': 'tag'
+            } -%}
         {%- endif -%}
 
         <p class="license">{{ creative_commons.logos(header.license|default('by-sa')) }}</p>

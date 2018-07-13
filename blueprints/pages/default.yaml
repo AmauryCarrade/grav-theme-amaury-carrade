@@ -75,14 +75,9 @@ form:
                       title: Auteurs
                       underline: true
                       fields:
-                        header.author:
-                          type: text
-                          label: Auteur principal
-                          help: L'auteur de l'article, ou l'auteur principal s'il y en a plusieurs. S'il n'y a pas d'auteur principal, peut être laissé vide. L'auteur principal n'a pas d'autre particularité que d'être affiché en premier.
-                        header.authors:
+                        header.taxonomy.author:
                           type: array
-                          label: Auteurs
-                          help: S'il y a plusieurs auteurs, les renseigner ici.
+                          label: Le ou les auteurs de l'article
                           value_only: true
         options:
           fields:

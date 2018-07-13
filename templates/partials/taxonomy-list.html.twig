@@ -1,0 +1,12 @@
+<p class="has-icon {{ icon }}{% if taxonomy|length == 1 and has_single_icon|default(false) %}-single{% endif %}"
+   title="{{ taxonomy|length > 1 ? title_plural : title_singular }}">
+    {%- for tax in taxonomy -%}
+        {%- if config.plugins.taxonomylist.enabled -%}
+            <a href="{{ base_url }}{{ config.plugins.taxonomylist.route }}/{{ taxonomy_type }}{{ config.system.param_sep }}{{ tax|e('url') }}">
+                {{- tax -}}
+            </a><br />
+        {%- else -%}
+            {{ tax }}<br />
+        {%- endif -%}
+    {%- endfor -%}
+</p>

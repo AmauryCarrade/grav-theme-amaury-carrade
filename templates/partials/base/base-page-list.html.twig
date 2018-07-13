@@ -32,6 +32,14 @@
                                     <span>{{ uri.param('category') }}</span>
                                 </span>
                             </h2>
+                        {% elseif uri.param('author') %}
+                            <h2>
+                                Billets écrits par
+                                <span class="tag is-primary is-large">
+                                    <span class="icon"><i class="fas fa-user"></i></span>
+                                    <span>{{ uri.param('author') }}</span>
+                                </span>
+                            </h2>
                         {% endif %}
                     </div>
                 </div>
