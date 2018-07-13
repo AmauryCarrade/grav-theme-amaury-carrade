@@ -71,4 +71,11 @@ $frontpage-reflection-compression: 0.5;
 @import "bulma-tooltip/dist/bulma-tooltip";
 @import "bulma-timeline/src/sass/index";
 
+$fa-font-path: '../fonts/fontawesome';
+
+@import 'fontawesome/fontawesome';
+@import 'fontawesome/fa-solid';
+@import 'fontawesome/fa-regular';
+@import 'fontawesome/fa-brands';
+
 @import "nebulius/all";

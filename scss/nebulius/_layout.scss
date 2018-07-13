@@ -432,7 +432,9 @@ body:not(.frontpage) footer.page-footer {
         cursor: pointer;
 
         &:before {
-            @include font-awesome('regular', '\f06e');
+            @include fa-icon;
+            @extend .far;
+            content: fa-content($fa-var-eye);
 
             position: relative;
             left: -.6em;
@@ -443,7 +445,7 @@ body:not(.frontpage) footer.page-footer {
         }
 
         &[data-visible="true"]:before {
-            content: '\f070';
+            content: fa-content($fa-var-eye-slash);
         }
     }
 }

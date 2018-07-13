@@ -168,7 +168,10 @@ main {
                     color: transparent;
 
                     span.icon.icon-link:before {
-                        @include font-awesome('solid', '\f0c1');
+                        @include fa-icon;
+                        @extend .fas;
+
+                        content: fa-content($fa-var-link);
                         font-size: .6em;
                     }
                 }
@@ -646,35 +649,37 @@ main {
                 height: 0;
 
                 color: lighten($page-background-purple, 16%);
-            }
 
-            &:not(.tags-list):not(.tags-list-single):not(.category):before {
-                @include font-awesome('regular');
-            }
-            &.tags-list:before, &.tags-list-single:before, &.category:before {
-                @include font-awesome('solid');
+                @include fa-icon;
             }
 
             &.publication-date:before {
-                content: '\f133';
+                @extend .far;
+                content: fa-content($fa-var-calendar);
             }
             &.authors:before {
-                content: '\f007';
+                @extend .far;
+                content: fa-content($fa-var-user);
             }
             &.comments:before {
-                content: '\f086';
+                @extend .far;
+                content: fa-content($fa-var-comments);
             }
             &.comments-single:before {
-                content: '\f075';
+                @extend .far;
+                content: fa-content($fa-var-comment);
             }
             &.category:before {
-                content: '\f0b1';
+                @extend .fas;
+                content: fa-content($fa-var-book);
             }
             &.tags-list:before {
-                content: '\f02c';
+                @extend .fas;
+                content: fa-content($fa-var-tags);
             }
             &.tags-list-single:before {
-                content: '\f02b';
+                @extend .fas;
+                content: fa-content($fa-var-tag);
             }
         }
 
