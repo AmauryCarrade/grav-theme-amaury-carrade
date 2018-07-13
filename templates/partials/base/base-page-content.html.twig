@@ -21,7 +21,7 @@
                     {% set page_header_image_top = min(max(image_height / 2  + ((center_percentage - 50) / 50) * (image_height / 2) - page_header_height / 2, 0), image_height - page_header_height) %}
                     {% set page_header_image = page_header_image.crop(0, page_header_image_top, page_header_image.width, page_header_height) %}
                 {% endif %}
-                <header{% if page_header_image %} style="background-image: linear-gradient(0deg, #7a49b7, transparent 50%, transparent), url('{{ page_header_image.url|e('css') }}');"{% endif %}>
+                <header{% if page_header_image %} style="background-image: linear-gradient(0deg, {{ header.header_image.color|default('#7a49b7') }}, transparent 50%, transparent), url('{{ page_header_image.url|e('css') }}');"{% endif %}>
                     <div class="container">
                         <aside class="header-image-source">
                             {% if header.header_image.image %}

@@ -35,6 +35,11 @@ form:
                           preview_images: true
                           label: Image à utiliser comme bandeau
                           help: Téléversez une image ci-dessus, puis sélectionnez-là ci-contre pour l'utiliser comme bandeau.
+                        header.header_image.color:
+                          type: colorpicker
+                          label: Couleur du dégradé sous l'image
+                          help: Au bas de l'image, un dégradé est affiché pour rendre le titre plus lisible. Par défaut, il est d'un ton violacé pour correspondre au thème. Cela dit, il est possible de personnaliser la couleur, afin de la faire mieux correspondre à l'image. Si vous désirez supprimer complètement le dégradé (supposant que le titre soit lisible sans), réglez ceci à « transparent ».
+                          default: '#7a49b7'
                         header.header_image.title:
                           type: text
                           label: Titre de l'image du bandeau

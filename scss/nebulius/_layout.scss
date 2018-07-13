@@ -222,7 +222,7 @@ nav.navbar.top-navbar {
 main {
     margin-bottom: 500px;
 
-    @include tablet {
+    @include tablet-only {
         margin-bottom: 200px;
     }
 }
