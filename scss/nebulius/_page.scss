@@ -5,11 +5,12 @@ main {
             overflow: hidden;
 
             &.imageless-header {
-                max-height: 111px;
+
+                max-height: unset;
+                height: auto;
 
                 header {
-                    height: 111px;
-
+                    height: auto;
                     background: rgba($page-background-dark, .4);
 
                     @include blur-background;

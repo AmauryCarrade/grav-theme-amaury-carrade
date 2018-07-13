@@ -66,7 +66,7 @@ body.frontpage {
                                     left: 1.4rem;
 
                                     margin: 0;
-                                    padding: 0;
+                                    padding: 1rem 0 0;
                                     border-radius: 0;
                                     width: calc(100vw - 1.2rem);
                                 }
@@ -91,12 +91,14 @@ body.frontpage {
 
                                             @include touch {
                                                 text-align: justify;
+                                            }
+
+                                            @include tablet-only {
                                                 padding: 0 20%;
                                             }
 
                                             @include mobile {
                                                 font-size: 1.4em;
-                                                padding: 0 2%;
                                             }
 
                                             a {
@@ -176,8 +178,8 @@ body.frontpage {
                                 text-align: left;
 
                                 @include touch {
-                                    padding: 0 1rem 1rem;
                                     margin-top: 2rem;
+                                    padding: 1rem;
                                 }
 
                                 div {
@@ -223,12 +225,11 @@ body.frontpage {
 
                                     @include touch {
                                         margin-top: 0;
-                                        padding: 0 20%;
                                         text-align: justify;
                                     }
 
-                                    @include mobile {
-                                        padding: 0 2%;
+                                    @include tablet-only {
+                                        padding: 0 20%;
                                     }
 
                                     * {
