@@ -7,7 +7,7 @@
                 {% for category, value in taxlist['category']|ksort %}
                     <span class="tag is-primary" title="{{ value }} {{ 'billet'|pluralize(value) }}">
                         <a href="{{ base_url }}{{ config.plugins.taxonomylist.route }}/category{{ config.system.param_sep }}{{ category|e('url') }}">
-                            <span class="icon"><i class="fas fa-briefcase"></i></span>
+                            <span class="icon"><i class="fas fa-book"></i></span>
                             <span>{{ category }}</span>
                         </a>
                     </span>

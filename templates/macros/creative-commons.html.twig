@@ -44,12 +44,13 @@
                 {% endif %}
             {% endif %}
 
-            {% set url = url != 'zero' ? 'https://creativecommons.org/licenses/' ~ url ~ '/4.0/deed.fr' : 'https://creativecommons.org/publicdomain/zero/1.0/' %}
+            {% set is_zero = url == 'zero' %}
+            {% set url = not is_zero ? 'https://creativecommons.org/licenses/' ~ url ~ '/4.0/deed.fr' : 'https://creativecommons.org/publicdomain/zero/1.0/' %}
             {% set tag = include_link ? 'a' : 'span' %}
             {% set tag_href = include_link ? ' href="' ~ url ~ '"' : '' %}
             {% set tag_title = include_title ? ' title="' ~ label ~ '"' : '' %}
 
-            <{{ tag }}{{ tag_attr }}{{ tag_title }} class="{{ element_class }}">{% if url != 'zero' %}c{% endif %}{{ ico }}</{{ tag }}>
+            <{{ tag }}{{ tag_attr }}{{ tag_title }}{{ tag_href }} class="{{ element_class }}">{% if not is_zero %}c{% endif %}{{ ico }}</{{ tag }}>
 
         {% else %}
             {{ header.license }}

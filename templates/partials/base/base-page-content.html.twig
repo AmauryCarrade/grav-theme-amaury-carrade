@@ -46,29 +46,27 @@
 
         {% block content_content %}
             <div class="container">
-                {% block above_content %}{% endblock %}
-                <div class="columns">
-                    <div class="column is-10">
-                        {% block content_article %}
-                            <article class="main-article">
-                                <div class="content">
-                                    {{ page.content }}
-                                </div>
-                            </article>
-                            {% if has_comments %}
-                                <footer class="comments-section" id="comments">
-                                    <h2>{{ comments_count_text }}</h2>
-                                    <div class="comments-section-content">
-                                        {% include 'partials/comments.html.twig' with {'page': page} %}
-                                    </div>
-                                </footer>
-                            {% endif %}
-                        {% endblock %}
-                    </div>
-                    <div class="column is-2">
-                        {% block content_aside %}{% endblock %}
-                    </div>
-                </div>
+                {% block content_article %}
+                    {% block above_block_content %}{% endblock %}
+                    <article class="main-article">
+                        {% block above_content %}{% endblock %}
+                        <div class="content">
+                            {{ page.content }}
+                        </div>
+                        {% block below_content %}{% endblock %}
+                    </article>
+
+                    {% block below_block_content %}{% endblock %}
+
+                    {% if has_comments %}
+                        <footer class="comments-section" id="comments">
+                            <h2>{{ comments_count_text }}</h2>
+                            <div class="comments-section-content">
+                                {% include 'partials/comments.html.twig' with {'page': page} %}
+                            </div>
+                        </footer>
+                    {% endif %}
+                {% endblock %}
             </div>
         {% endblock %}
     </main>

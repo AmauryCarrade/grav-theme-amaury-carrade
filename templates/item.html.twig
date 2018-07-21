@@ -4,7 +4,7 @@
 {% import 'macros/tags.html.twig' as tags %}
 
 {% macro navigation_links(page, config, extra_classes='') %}
-    <div class="columns is-mobile navigation-links {{ extra_classes }}">
+    <nav class="columns is-mobile navigation-links {{ extra_classes }}">
         {% spaceless %}
             <div class="column">
                 {% if page.nextSibling.url is null %}
@@ -28,73 +28,83 @@
                         »</a>
             </div>
         {% endspaceless %}
-    </div>
+    </nav>
 {% endmacro %}
 
+{% set authors_list -%}
+    Publié le {{ tags.time(page.date, true, true, false, null, 'datePublished') }}
+    {%- if header.taxonomy.author %}
+        par
+        {% for author in header.taxonomy.author -%}
+            {%- if not (loop.first and loop.last) %}{% if not loop.last and not loop.first %}, {% elseif not loop.first %} et {% endif %}{% endif -%}
+            {%- if config.plugins.taxonomylist.enabled -%}
+                <a href="{{ base_url }}{{ config.plugins.taxonomylist.route }}/author{{ config.system.param_sep }}{{ author|e('url') }}">
+                    {{- author -}}
+                </a>
+            {%- else -%}
+                {{ author }}
+            {%- endif -%}
+        {%- endfor -%}
+    {%- endif -%}
+{%- endset %}
+
 {% block under_title %}
-    {% if config.plugins.readingtime.enabled %}
-        <p class="reading-time-under-title" title="Temps de lecture estimé, considérant un rythme de {{ config.plugins.readingtime.words_per_minute }} mots par minute.">
-            {{ page.content|readingtime }} de lecture
-        </p>
-    {% endif %}
+        <div class="under-title">
+            <ul>
+                {%- if config.plugins.readingtime.enabled -%}
+                    <li title="Temps de lecture estimé, considérant un rythme de {{ config.plugins.readingtime.words_per_minute }} mots par minute.">
+                        {{- page.content|readingtime }} de lecture
+                    </li>
+                {%- endif -%}
+
+                <li class="authors-under-title">{{ authors_list }}</li>
+
+                {%- if has_comments -%}
+                    <li class="comments-under-title">
+                        <a href="#comments">{{- comments_count_text -}}</a>
+                    </li>
+                {%- endif -%}
+            </ul>
+        </div>
 {% endblock %}
 
 {% block above_content %}
-    {{ _self.navigation_links(page, config, 'mobile-navigation-links') }}
+    <nav class="article-navigation">
+        {{ _self.navigation_links(page, config) }}
+    </nav>
+    <aside class="article-meta-mobile">
+        <p>{{ authors_list }}.</p>
+    </aside>
 {% endblock %}
 
-{% block content_aside %}
-    <aside class="main-aside">
-        {{ _self.navigation_links(page, config) }}
-
-        {% if config.plugins.readingtime.enabled %}
-            <p class="reading-time has-text-centered" title="Temps de lecture estimé, considérant un rythme de {{ config.plugins.readingtime.words_per_minute }} mots par minute.">
-                {{- page.content|readingtime }} de lecture</p>
-        {% endif %}
-
-        <p class="has-icon publication-date" title="Date de publication">
-            {{- tags.time(page.date, true, true, false, null, 'datePublished') -}}
-        </p>
-
-        {%- if header.taxonomy.author -%}
-            {%- include 'partials/taxonomy-list.html.twig' with {
-                'title_singular': 'Auteur de l\'article',
-                'title_plural': 'Auteurs de l\'article',
-                'icon': 'authors',
-                'has_icon_single': false,
-                'taxonomy': header.taxonomy.author,
-                'taxonomy_type': 'author'
-            } -%}
-        {%- endif -%}
-
-        {%- if has_comments -%}
-            <p class="has-icon comments{% if comments_count <= 1 %}-single{% endif %}" title="Cliquer pour aller aux commentaires ou en poster un"><a href="#comments">
-                    {{- comments_count_text -}}
-                </a></p>
-        {%- endif -%}
-
-        {%- if header.taxonomy.category -%}
-            {%- include 'partials/taxonomy-list.html.twig' with {
-                'title_singular': 'Catégorie de l\'article',
-                'title_plural': 'Catégories de l\'article',
-                'icon': 'category',
-                'has_icon_single': false,
-                'taxonomy': header.taxonomy.category,
-                'taxonomy_type': 'category'
-            } -%}
-        {%- endif -%}
-
-        {%- if header.taxonomy.tag -%}
-            {%- include 'partials/taxonomy-list.html.twig' with {
-                'title_singular': 'Étiquette de l\'article',
-                'title_plural': 'Étiquettes de l\'article',
-                'icon': 'tags-list',
-                'has_icon_single': true,
-                'taxonomy': header.taxonomy.tag,
-                'taxonomy_type': 'tag'
-            } -%}
-        {%- endif -%}
-
-        <p class="license">{{ creative_commons.logos(header.license|default('by-sa')) }}</p>
+{% block below_block_content %}
+    <aside class="article-meta-bottom">
+        <div class="taxonomy-category">
+            <div class="tags">
+                {% for category in header.taxonomy.category %}
+                    <span class="tag is-info is-large">
+                        <a href="{{ base_url }}{{ config.plugins.taxonomylist.route }}/category{{ config.system.param_sep }}{{ category|e('url') }}">
+                            <span class="icon"><i class="fas fa-book"></i></span>
+                            <span>{{ category }}</span>
+                        </a>
+                    </span>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="license">
+            {{ creative_commons.logos(header.license|default('by-sa')) }}
+        </div>
+        <div class="taxonomy-tags">
+            <div class="tags is-right">
+                {% for tag in header.taxonomy.tag %}
+                    <span class="tag is-info">
+                        <a href="{{ base_url }}{{ config.plugins.taxonomylist.route }}/tag{{ config.system.param_sep }}{{ tag|e('url') }}">
+                            <span class="icon"><i class="fas fa-tag"></i></span>
+                            <span>{{ tag }}</span>
+                        </a>
+                    </span>
+                {% endfor %}
+            </div>
+        </div>
     </aside>
 {% endblock %}

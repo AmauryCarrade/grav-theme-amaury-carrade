@@ -368,7 +368,8 @@ body:not(.frontpage) footer.page-footer {
     width: 100%;
 }
 
-.custom-block {
+// body required for specificity
+body div.custom-block {
     margin: 1em 0;
     padding: 0;
 
@@ -377,7 +378,7 @@ body:not(.frontpage) footer.page-footer {
     background-color: $page-background-purple;
 
     p, h1, h2, h3, h4, h5, h6, ol, ul {
-        padding-left: $article-padding - 10px;
+        padding-left: calc(#{$article-padding} - 10px);
     }
 
     &.custom-block-information {
@@ -409,12 +410,12 @@ body:not(.frontpage) footer.page-footer {
         border-left-color: lighten($page-background-purple, 16%);
     }
 
-    strong, em, figure, dl, dt, dd, ol, ul, li, abbr  {
-        color: inherit;
-    }
-
-    .custom-block-body {
+    div.custom-block-body {
         padding: .6em 0;
+
+        strong, em, figure, dl, dt, dd, ol, ul, li, abbr  {
+            color: inherit;
+        }
     }
 
     .custom-block-header {
@@ -427,7 +428,7 @@ body:not(.frontpage) footer.page-footer {
     }
 
     &.custom-block-spoiler .custom-block-header {
-        padding-left: calc(#{$article-padding - 10px} + .66em);
+        padding-left: calc(#{$article-padding} - 10px + .66em);
 
         cursor: pointer;
 
@@ -462,6 +463,13 @@ a {
     @include placeholder {
         color: rgba(54, 54, 54, 0.8);
     }
+}
+
+.creative-commons-icons {
+    font-family: CCIcons, serif;
+    font-weight: normal;
+    font-style: normal;
+    letter-spacing: .2em;
 }
 
 // Avoids the RSS icon to be censored by anti-social-links (???).

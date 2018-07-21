@@ -1,5 +1,9 @@
 {% extends 'partials/base/base-page-content.html.twig' %}
 
+{% import 'macros/creative-commons.html.twig' as creative_commons %}
+{% import 'macros/tags.html.twig' as tags %}
+
+
 {% macro loop(page) %}
     {% for p in page.children.visible %}
         <li>
@@ -15,10 +19,40 @@
     {% endfor %}
 {% endmacro %}
 
-{% block content_aside %}
-    <aside class="menu">
-        <ul class="menu-list">
-            {{ _self.loop(page.topParent) }}
+{% block under_title %}
+    <div class="under-title">
+        <ul>
+            {%- if config.plugins.readingtime.enabled -%}
+                <li title="Temps de lecture estimé, considérant un rythme de {{ config.plugins.readingtime.words_per_minute }} mots par minute.">
+                    {{- page.content|readingtime }} de lecture
+                </li>
+            {%- endif -%}
+
+            <li class="authors-under-title">Publié le {{ tags.time(page.date, true, true, false, null, 'datePublished') }}</li>
         </ul>
-    </aside>
+    </div>
+{% endblock %}
+
+{% block content_article %}
+    <div class="columns">
+        <div class="column is-10">
+            <article class="main-article">
+                <div class="content">
+                    {{ page.content }}
+                </div>
+            </article>
+            <aside class="article-meta-bottom">
+                <div class="license">
+                    {{ creative_commons.logos(header.license|default('by-sa')) }}
+                </div>
+            </aside>
+        </div>
+        <div class="column is-2">
+            <aside class="menu">
+                <ul class="menu-list">
+                    {{ _self.loop(page.topParent) }}
+                </ul>
+            </aside>
+        </div>
+    </div>
 {% endblock %}

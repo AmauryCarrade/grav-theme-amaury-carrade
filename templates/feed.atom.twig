@@ -46,7 +46,7 @@
             </content>
 
             <author>
-                <name>{{ item.header.author }}{% if item.header.author and item.header.authors %}, {% endif %}{{ item.header.authors|join(', ') }}</name>
+                <name>{{ item.header.taxonomy.author|join(', ') }}</name>
             </author>
         </entry>
     {% endfor %}

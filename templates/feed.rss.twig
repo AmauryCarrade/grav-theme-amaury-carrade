@@ -37,7 +37,7 @@
                 <category>{{ item.taxonomy.tag|join(',') }}</category>
                 <guid>{{ item.url(true) }}</guid>
                 <pubDate>{{ item.date|date('D, d M Y H:i:s O') }}</pubDate>
-                <author>{{ item.header.author }}{% if item.header.author and item.header.authors %}, {% endif %}{{ item.header.authors|join(', ') }}</author>
+                <author>{{ item.header.taxonomy.author|join(', ') }}</author>
             </item>
         {% endfor %}
     </channel>
