@@ -1,4 +1,5 @@
 {% set last_article = articles.current %}
+{% set articles_count = subpage.children.routable.visible.count %}
 
 {% import 'macros/tags.html.twig' as tags %}
 
@@ -75,11 +76,9 @@
             <a href="{{ page.url }}">
                 <h3>Tous les articles</h3>
                 <footer>
-                    {{ articles.count }} {{ 'article'|pluralize(articles.count) }}
+                    {{ articles_count }} {{ 'article'|pluralize(articles_count) }}
                 </footer>
             </a>
         </div>
     </aside>
 </section>
-{{ dump(articles) }}
-{{ dump(articles.count) }}
