@@ -96,3 +96,16 @@ form:
               help: Liens affichés au survol du lien principal, avec la même icône que ci-dessus. Ils sont masqués sur mobile.
               placeholder_key: Titre du lien
               placeholder_value: Lien (URL)
+    meta_section:
+      type: section
+      title: Métadonnées SEO (JSON-LD)
+      underline: true
+      fields:
+        meta.contact_page:
+          type: pages
+          classes: fancy
+          label: Page de contact
+          show_all: false
+          show_modular: false
+          show_root: false
+          help: Page de contact précisée dans les métadonnées et potentiellement exposée sur les moteurs de recherche

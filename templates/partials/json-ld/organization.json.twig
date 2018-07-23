@@ -1,0 +1,24 @@
+{
+    "@context": "http://schema.org",
+    "@type": "Organization",
+    "name": "{{ config.site.title|e('html_attr') }}",
+    "url": "{{ base_url_abs|replace({'"': '\\"'}) }}",
+    "logo": "{{ url('theme://images/logo.jpg', true)|replace({'"': '\\"'}) }}"
+
+    {%- if theme_config.meta.contact_page %},
+    "contactPoint": [{
+        "@type": "ContactPoint",
+        "url": "{{ base_url_abs|replace({'"': '\\"'}) }}{{ theme_config.meta.contact_page|e('html_attr') }}",
+        "contactType": "customer service",
+        "availableLanguage": ["French", "English"]
+    }]
+    {% endif %}
+
+    {%- if theme_config.bottom_links %},
+    "sameAs": [
+        {% for links_group in theme_config.bottom_links %}
+        "{{ links_group.link|replace({'"': '\\"'}) }}"{% if not loop.last %},{% endif %}
+        {% endfor %}
+    ]
+    {% endif %}
+}

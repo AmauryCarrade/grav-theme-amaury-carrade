@@ -10,3 +10,21 @@ streams:
 header:
   title: ''
   tagline: ''
+
+tags_cloud:
+  enabled: true
+  threshold: 0
+
+bottom_links:
+#  -
+#    title: Twitter
+#    link: 'https://twitter.com/NebuliusGrp'
+#    icon_type: fab
+#    icon: fa-twitter
+#    sub_links:
+#      '@NebuliusGrp': 'https://twitter.com/NebuliusGrp'
+#      '@AmauryPi': 'https://twitter.com/AmauryPi'
+#      '@Yoku_Sama': 'https://twitter.com/Yoku_Sama'
+
+meta:
+  contact_page: ''

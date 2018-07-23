@@ -4,6 +4,8 @@
 {% set form_field_input_classes = 'input' %}
 {% set form_field_outer_label_classes = 'label' %}
 
+{% set base_url_abs = grav.uri.rootUrl(true) %}
+
 <!DOCTYPE html>
 <html lang="{{ grav.language.getActive ?: theme_config.default_lang }}">
 <head>
@@ -26,6 +28,15 @@
             <link rel="alternate" type="application/json" title="{{ page.header.title }} – Flux JSON" href="{{ page.url(true) }}.json" />
         {% endfor %}
     {% endif %}
+
+    {% block metadata %}
+        <script type="application/ld+json">
+            {% include 'partials/json-ld/organization.json.twig' %}
+        </script>
+        <script type="application/ld+json">
+            {% include 'partials/json-ld/breadcrumbs.json.twig' %}
+        </script>
+    {% endblock %}
 
     {% block stylesheets %}
         {% do assets.addCss('theme://css-compiled/nebulius.min.css', 98) %}

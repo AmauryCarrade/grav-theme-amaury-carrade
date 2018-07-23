@@ -1,0 +1,31 @@
+{%- set current_page = page -%}
+{%- set crumbs = [] -%}
+
+{%- for i in 1..1000 if current_page != null -%}
+    {%- set crumbs = crumbs|merge([current_page]) -%}
+    {%- set current_page = current_page.parent -%}
+{%- endfor -%}
+
+{%- set crumbs = crumbs|reverse -%}
+
+{
+    "@context": "http://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {%- for crumb in crumbs -%}
+            {
+                "@type": "ListItem",
+                "position": {{ loop.index }},
+                "item": {
+                    {%- if crumb.header == null -%}
+                        "@id": "{{ base_url_abs|replace({'"': '\\"'}) }}",
+                        "name": "{{ config.site.title|e('html_attr') }}"
+                    {%- else -%}
+                        "@id": "{{ crumb.url(true, true)|replace({'"': '\\"'}) }}",
+                        "name": "{{ crumb.header.title|e('html_attr') }}"
+                    {%- endif -%}
+                }
+            }{%- if not loop.last %},{% endif -%}
+        {%- endfor -%}
+    ]
+}

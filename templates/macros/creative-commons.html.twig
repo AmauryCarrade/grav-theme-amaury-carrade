@@ -1,4 +1,4 @@
-{% macro logos(license, include_link = true, include_title = true, element_class = 'creative-commons-icons') -%}
+{% macro logos(license, include_link = true, include_title = true, link_only = false, element_class = 'creative-commons-icons') -%}
     {%- spaceless -%}
         {% set url, ico = '', '' %}
 
@@ -46,12 +46,16 @@
 
             {% set is_zero = url == 'zero' %}
             {% set url = not is_zero ? 'https://creativecommons.org/licenses/' ~ url ~ '/4.0/deed.fr' : 'https://creativecommons.org/publicdomain/zero/1.0/' %}
-            {% set tag = include_link ? 'a' : 'span' %}
-            {% set tag_href = include_link ? ' href="' ~ url ~ '"' : '' %}
-            {% set tag_title = include_title ? ' title="' ~ label ~ '"' : '' %}
 
-            <{{ tag }}{{ tag_attr }}{{ tag_title }}{{ tag_href }} class="{{ element_class }}">{% if not is_zero %}c{% endif %}{{ ico }}</{{ tag }}>
+            {% if link_only %}
+                {{ url }}
+            {% else %}
+                {% set tag = include_link ? 'a' : 'span' %}
+                {% set tag_href = include_link ? ' href="' ~ url ~ '"' : '' %}
+                {% set tag_title = include_title ? ' title="' ~ label ~ '"' : '' %}
 
+                <{{ tag }}{{ tag_attr }}{{ tag_title }}{{ tag_href }} class="{{ element_class }}">{% if not is_zero %}c{% endif %}{{ ico }}</{{ tag }}>
+            {% endif %}
         {% else %}
             {{ header.license }}
         {% endif %}

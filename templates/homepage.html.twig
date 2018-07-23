@@ -2,6 +2,14 @@
 
 {% block body_classes %}frontpage{% endblock %}
 
+{% block metadata %}
+    {{ parent() }}
+
+    <script type="application/ld+json">
+        {% include 'partials/json-ld/website-search.json.twig' %}
+    </script>
+{% endblock %}
+
 {% block body %}
     {% for subpage in pages.children.visible %}
         <section id="{{ subpage.url|trim('/') }}"{% if loop.first %} class="hero is-fullheight"{% endif %}>

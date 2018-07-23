@@ -1,0 +1,13 @@
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "url": "{{ base_url_abs|replace({'"': '\\"'}) }}"
+
+    {%- if config.plugins.tntsearch.enabled %},
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": "{{ base_url_abs|replace({'"': '\\"'}) }}{{ config.plugins.tntsearch.search_route|e('html_attr') }}?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+    }
+    {% endif %}
+}

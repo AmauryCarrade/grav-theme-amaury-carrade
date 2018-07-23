@@ -7,6 +7,14 @@
 {% set comments_count = grav.twig.comments|default([])|length %}
 {% set comments_count_text = comments_count == 0 ? 'Aucun commentaire' : (comments_count == 1 ? 'Un commentaire' : comments_count ~ ' commentaires') %}
 
+{% block metadata %}
+    {{ parent() }}
+
+    <script type="application/ld+json">
+        {% include 'partials/json-ld/blog-posting.json.twig' %}
+    </script>
+{% endblock %}
+
 {% block content %}
     {% do assets.addJs('theme://js/spoilers.js', 64, true, null, 'bottom') %}
 

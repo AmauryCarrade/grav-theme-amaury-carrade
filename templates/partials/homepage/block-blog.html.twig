@@ -25,9 +25,17 @@
         </div>
         <div class="column is-half">
             <article class="latest-article" itemid="{{ last_article.url }}" itemscope itemtype="http://schema.org/BlogPosting">
+                <meta itemprop="author" content="{{ last_article.header.taxonomy.author|join(', ') ?: 'Unknown' }}" />
+                <meta itemprop="image" content="{{ last_article.header.header_image.image ? base_url_abs|replace({'"': '\\"'}) ~ last_article.media.images[last_article.header.header_image.image].url : url('theme://images/logo.jpg', true)|e('html_attr') }}" />
+                <span itemprop="publisher" itemtype="https://schema.org/Organization" itemscope>
+                    <meta itemprop="name" content="{{ config.site.title|e('html_attr') }}" />
+                    <meta itemprop="url" content="{{ base_url_abs|replace({'"': '\\"'}) }}" />
+                    <meta itemprop="logo" content="{{ url('theme://images/logo.jpg', true)|e('html_attr') }}">
+                </span>
+                <meta itemprop="dateModified" content="{{ last_article.modified|date('c') }}" />
                 <h2>Dernier article</h2>
                 <h3>
-                    <a href="{{ last_article.url }}" itemprop="name">{{ last_article.header.title }}</a>
+                    <a href="{{ last_article.url(true) }}" itemprop="mainEntityOfPage"><span itemprop="headline">{{ last_article.header.title }}</span></a>
                 </h3>
                 <div class="content" itemprop="description">
                     {% if last_article.header.abstract %}
@@ -47,8 +55,16 @@
     <aside class="columns is-desktop articles-list">
         {% for article in articles.slice(0, 4) if article != last_article %}
             <div class="column tooltip" data-tooltip="{{ article.header.title }}" itemid="{{ article.url }}" itemscope itemtype="http://schema.org/BlogPosting">
-                <a href="{{ article.url }}">
-                    <h3 itemprop="name">{{ article.header.title }}</h3>
+                <meta itemprop="author" content="{{ article.header.taxonomy.author|join(', ') ?: 'Unknown' }}" />
+                <meta itemprop="image" content="{{ article.header.header_image.image ? base_url_abs|replace({'"': '\\"'}) ~ article.media.images[article.header.header_image.image].url : url('theme://images/logo.jpg', true)|e('html_attr') }}" />
+                <span itemprop="publisher" itemtype="https://schema.org/Organization" itemscope>
+                    <meta itemprop="name" content="{{ config.site.title|e('html_attr') }}" />
+                    <meta itemprop="url" content="{{ base_url_abs|replace({'"': '\\"'}) }}" />
+                    <meta itemprop="logo" content="{{ url('theme://images/logo.jpg', true)|e('html_attr') }}">
+                </span>
+                <meta itemprop="dateModified" content="{{ article.modified|date('c') }}" />
+                <a href="{{ article.url }}" itemprop="mainEntityOfPage">
+                    <h3 itemprop="headline">{{ article.header.title }}</h3>
                     <footer>
                         {{ tags.time(article.date, false, true, false, null, 'datePublished') }}
                     </footer>
