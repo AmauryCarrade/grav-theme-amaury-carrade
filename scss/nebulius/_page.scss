@@ -163,7 +163,7 @@ main {
         @include mobile {
             border-radius: 0;
             margin: 0;
-            padding: $article-padding 0;
+            padding: $article-padding-mobile 0;
         }
 
         @include tablet-only {
@@ -185,11 +185,17 @@ main {
 
             @include mobile {
                 font-size: 1.6em;
+                line-height: 1.5;
             }
 
             p, h1, h2, h3, h4, h5, h6, ol, ul {
                 padding-left: $article-padding;
                 padding-right: $article-padding;
+
+                @include mobile {
+                    padding-left: $article-padding-mobile;
+                    padding-right: $article-padding-mobile;
+                }
             }
 
             h1, h2, h3, h4, h5, h6 {
@@ -356,6 +362,10 @@ main {
                     background-color: $page-background-dark;
 
                     font-size: .88em;
+
+                    @include mobile {
+                        padding: .5em $article-padding-mobile;
+                    }
                 }
 
                 // Fixes a gap between images and caption
@@ -408,7 +418,7 @@ main {
             blockquote {
                 position: relative;
 
-                padding: 1em calc(#{$article-padding} + 1em) 1em calc(#{$article-padding} + 2em);
+                padding: 1em $article-padding + 1rem 1em $article-padding + 2rem;
 
                 background: transparent;
                 border: none;
@@ -416,6 +426,10 @@ main {
                 font-size: 1em;
 
                 text-align: left;
+
+                @include mobile {
+                    padding: 1em $article-padding-mobile / 2 1em $article-padding-mobile + 2.8rem;
+                }
 
                 p:only-child {
                     font-size: 1.2em;
@@ -439,11 +453,19 @@ main {
                     text-align: left;
                     font-size: .9em;
 
+                    @include mobile {
+                        padding-left: calc(#{$article-padding-mobile} + 4.4em);
+                    }
+
                     &:before {
                         content: "—";
                         position: absolute;
                         left: calc(#{$article-padding} + 3.3em);
                         top: .42em;
+
+                        @include mobile {
+                            left: calc(#{$article-padding-mobile} + 3.3em);
+                        }
                     }
                 }
             }
@@ -462,6 +484,10 @@ main {
 
                     font-size: .88em;
                     text-align: left;
+
+                    @include mobile {
+                        padding: 1em $article-padding-mobile;
+                    }
                 }
 
                 .hljs-line-numbers {
@@ -539,6 +565,10 @@ main {
 
                 p {
                     padding-left: calc(#{$article-padding} - 10px);
+
+                    @include mobile {
+                        padding-left: calc(#{$article-padding-mobile} - 10px);
+                    }
                 }
 
                 &.red {
@@ -639,7 +669,7 @@ main {
         }
 
         @include mobile {
-            margin: 0 $article-padding $article-padding / 2 $article-padding;
+            margin: $article-padding $article-padding $article-padding / 2 $article-padding;
             text-align: center;
 
             font-size: 1.1em;
@@ -783,10 +813,18 @@ main {
             border-bottom: solid 1px $timeline-color;
             font-size: 1.6em;
             font-weight: 300;
+
+            @include mobile {
+                padding: 0 $article-padding-mobile .4em $article-padding-mobile;
+            }
         }
 
         .comments-section-content {
             padding: 0 $article-padding 0 $article-padding / 2;
+
+            @include mobile {
+                padding: 0 $article-padding-mobile 0 $article-padding-mobile / 2;
+            }
 
             .timeline-item {
                 padding-bottom: 1em;
