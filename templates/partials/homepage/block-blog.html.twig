@@ -11,7 +11,7 @@
                     <div>{{ introduction }}</div>
                 </div>
                 <footer>
-                    <ul>{{ dump(page) }}
+                    <ul>
                         {% for photo in introduction_images %}
                             <li>
                                 <a href="#"{% if photo.hover %} class="tooltip" data-tooltip="{{ photo.hover }}"{% endif %}>
