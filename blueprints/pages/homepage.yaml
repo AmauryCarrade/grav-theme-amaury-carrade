@@ -1,0 +1,34 @@
+'@extends':
+  type: default
+  context: blueprints://pages
+
+form:
+  fields:
+    tabs:
+      fields:
+        content:
+          fields:
+            metadata_columns:
+              unset@: true
+            homepage_photos_section:
+              type: section
+              title: Photos affichées sur la page d'accueil
+              underline: true
+              fields:
+                header.homepage_photos:
+                  type: list
+                  label: Choisir les photos affichées sur la page d'accueil
+                  help: |
+                    Sélectionnez les photos affichées sous le texte d'introduction sur la page d'accueil,
+                    ainsi que leurs noms associés
+                  fields:
+                    .media:
+                      type: filepicker
+                      folder: '@self'
+                      preview_images: true
+                      label: Photo
+                      help: La photo affichée sur la page d'accueil, ronde
+                    .hover:
+                      type: text
+                      label: Texte affiché au survol
+                      help: Texte affiché au survol de la photo sur la page d'accueil
