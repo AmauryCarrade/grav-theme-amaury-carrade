@@ -16,7 +16,7 @@
                             <li>
                                 <a href="#"{% if photo.hover %} class="tooltip" data-tooltip="{{ photo.hover }}"{% endif %}>
                                     <h3 class="sr-only">{{ photo.hover }}</h3>
-                                    <img src="{{ page.media[photo.media].cropResize(176, 176).url }}" alt="{{ photo.hover }}" />
+                                    <img src="{{ page.media.images[photo.media].cropResize(176, 176).url }}" alt="{{ photo.hover }}" />
                                 </a>
                             </li>
                         {% endfor %}
