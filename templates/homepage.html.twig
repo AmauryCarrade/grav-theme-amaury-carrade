@@ -26,6 +26,7 @@
                         'introduction': description_page.content,
                         'introduction_images': description_page.header.homepage_photos,
                         'page': subpage,
+                        'superpage': page,
                         'articles': subpage.children.routable.visible.order('date', 'desc')
                     } %}
                 {% else %}
