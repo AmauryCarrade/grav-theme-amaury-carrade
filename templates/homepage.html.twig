@@ -24,8 +24,9 @@
                 {% if subpage.template == 'blog' %}
                     {% include 'partials/homepage/block-blog.html.twig' with {
                         'introduction': description_page.content,
-                        'introduction_images': description_page.media.images,
+                        'introduction_images': description_page.header.homepage_photos,
                         'page': subpage,
+                        'superpage': page,
                         'articles': subpage.children.routable.visible.order('date', 'desc')
                     } %}
                 {% else %}

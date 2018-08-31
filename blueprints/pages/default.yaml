@@ -77,13 +77,15 @@ form:
                   fields:
                     authors:
                       type: section
-                      title: Auteurs
+                      title: Métadonnées
                       underline: true
                       fields:
-                        header.taxonomy.author:
-                          type: array
-                          label: Le ou les auteurs de l'article
-                          value_only: true
+                        header.taxonomy:
+                          type: taxonomy
+                          label: PLUGIN_ADMIN.TAXONOMY
+                          multiple: true
+                          validate:
+                            type: array
         options:
           fields:
             publishing:
@@ -116,6 +118,8 @@ form:
                     0: PLUGIN_ADMIN.NO
                   validate:
                     type: bool
+            taxonomies:
+              unset@: true
             license:
               type: section
               title: Licence

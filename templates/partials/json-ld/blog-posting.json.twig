@@ -23,9 +23,9 @@
 
     "license": "{{ creative_commons.logos(header.license|default('by-sa'), false, false, true)|replace({'"': '\\"'}) }}",
 
-    "publisher": {% include 'partials/json-ld/organization.json.twig' %}
+    "publisher": {% include 'partials/json-ld/organization.json.twig' %},
 
-    {% if header.taxonomy.author %},
+    {% if header.taxonomy.author %}
     "author": [
         {% for author in header.taxonomy.author %}
         {
@@ -35,6 +35,11 @@
         }{% if not loop.last %},{% endif %}
         {% endfor %}
     ]
+    {% else %}
+    "author": {
+        "@type": "Person",
+        "name": "Unknown"
+    }
     {% endif %}
 
     {% if header.taxonomy.tag %},

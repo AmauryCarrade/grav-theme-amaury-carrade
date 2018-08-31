@@ -379,6 +379,10 @@ body div.custom-block {
 
     p, h1, h2, h3, h4, h5, h6, ol, ul {
         padding-left: calc(#{$article-padding} - 10px);
+
+        @include mobile {
+            padding-left: calc(#{$article-padding-mobile} - 10px);
+        }
     }
 
     &.custom-block-information {
@@ -429,6 +433,10 @@ body div.custom-block {
 
     &.custom-block-spoiler .custom-block-header {
         padding-left: calc(#{$article-padding} - 10px + .66em);
+
+        @include mobile {
+            padding-left: calc(#{$article-padding-mobile} - 10px + .66em);
+        }
 
         cursor: pointer;
 

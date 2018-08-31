@@ -14,9 +14,9 @@
                     <ul>
                         {% for photo in introduction_images %}
                             <li>
-                                <a href="#"{% if photo.meta.alt_text %} class="tooltip" data-tooltip="{{ photo.meta.alt_text }}"{% endif %}>
-                                    <h3 class="sr-only">{{ photo.meta.alt_text }}</h3>
-                                    <img src="{{ photo.cropResize(176, 176).url }}" alt="{{ photo.meta.alt_text }}" />
+                                <a href="#"{% if photo.hover %} class="tooltip" data-tooltip="{{ photo.hover }}"{% endif %}>
+                                    <h3 class="sr-only">{{ photo.hover }}</h3>
+                                    <img src="{{ superpage.media.images[photo.media].cropResize(176, 176).url }}" alt="{{ photo.hover }}" />
                                 </a>
                             </li>
                         {% endfor %}
