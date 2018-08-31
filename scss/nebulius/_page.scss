@@ -528,6 +528,13 @@ main {
                 display: none;
             }
 
+            div.math {
+                padding-left: $article-padding;
+                padding-right: $article-padding;
+                text-align: center;
+                margin-bottom: 1em;
+            }
+
             .inlineMath.inlineMathDouble {
                 display: block;
                 text-align: center;
