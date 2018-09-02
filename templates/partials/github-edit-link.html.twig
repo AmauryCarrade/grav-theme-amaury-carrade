@@ -1,0 +1,21 @@
+{% set git_sync = attribute(config.plugins, 'git-sync') %}
+
+{% if git_sync.enabled and git_sync.repository and header.edit_link|default(true) %}
+    {% set edit_link =
+        git_sync.repository|trim('/', 'right')|replace({'.git': ''})
+        ~ '/blob/' ~ git_sync.branch|default('master') ~ '/'
+        ~ ('/' ~ page.filePathClean)|replace({'/user/': ''})
+    %}
+    <aside class="article-meta-edit">
+        <a href="{{ edit_link }}">
+            <span class="icon">
+                <span class="fab fa-github"></span>
+            </span>
+            <span class="invite">
+                <span>Une erreur, une suggestion ?</span>
+                <span>Proposez une modification !</span>
+            </span>
+        </a>
+    </aside>
+
+{% endif %}

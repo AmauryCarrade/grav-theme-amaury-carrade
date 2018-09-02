@@ -693,6 +693,56 @@ main {
         }
     }
 
+    aside.article-meta-edit {
+        margin: 0 $article-margin;
+        margin-bottom: -1rem;
+
+        padding-top: 0.4rem;
+        padding-right: 0.2rem;
+
+        height: 1rem;
+
+        font-size: small;
+        text-align: right;
+
+        @include mobile {
+            margin: 0;
+            padding-right: 1.4rem;
+        }
+
+        a {
+            color: white;
+            opacity: .8;
+
+            .fab {
+                position: relative;
+                top: 1px;
+
+                margin-right: .2rem;
+            }
+
+            @include mobile {
+                display: inline-flex;
+                flex-direction: row;
+
+                .icon {
+                    display: block;
+                    align-self: center;
+
+                    padding-right: 1rem;
+                }
+
+                .invite {
+                    text-align: left;
+
+                    span {
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+
     aside.article-meta-bottom {
         display: flex;
         flex-direction: row;

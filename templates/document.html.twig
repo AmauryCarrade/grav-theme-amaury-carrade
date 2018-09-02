@@ -41,6 +41,7 @@
                     {{ page.content }}
                 </div>
             </article>
+            {% include 'partials/github-edit-link.html.twig' %}
             <aside class="article-meta-bottom">
                 <div class="license">
                     {{ creative_commons.logos(header.license|default('by-sa')) }}
