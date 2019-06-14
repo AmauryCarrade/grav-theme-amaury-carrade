@@ -11,20 +11,73 @@
 {% endblock %}
 
 {% block body %}
-    {% for subpage in pages.children.visible %}
-        <section id="{{ subpage.url|trim('/') }}"{% if loop.first %} class="hero is-fullheight"{% endif %}>
-            {% if loop.first %}
-                <header class="hero-head page-header">
+    <section class="hero is-fullheight main-intro">
+        <div class="hero-body">
+            <div class="container">
+                <header>
                     <h1>{{ theme_config.header.title ?: config.site.title }}</h1>
-                    <p>{{ theme_config.header.tagline }}</p>
+                    {% if header.homepage.about.page %}
+                        <p><a href="{{ header.homepage.about.page }}">{{ header.homepage.about.invite|default('À propos') }}</a></p>
+                    {% endif %}
                 </header>
-            {% endif %}
-            <div class="{% if loop.first %}hero-body{% else %}section-body{% endif %}">
+
+                <article>
+                    {{ page.content }}
+                </article>
+            </div>
+        </div>
+
+        <aside class="hero-foot">
+            <div class="container">
+                <ul>
+                    {% for menu in page.header.homepage.menu %}
+                        {% if menu.type == 'pages' %}
+                            {% set menu_pages = page.find(menu.root) %}
+                            {% set menu_pages_latest = menu_pages.children.routable.visible.order('date', 'desc').first %}
+                            {% set menu_link = menu_pages.url %}
+                            {% set menu_latest_link = menu_pages_latest.url %}
+                            {% set menu_latest_title = menu_pages_latest.header.title %}
+                            {% set menu_latest_date = menu_pages_latest.date %}
+                            {{ debug(menu_pages) }}
+                            {{ debug(menu_latest_link) }}
+                        {% else %}
+                            {% set menu_link = menu.link %}
+                            {% set menu_latest_link = menu.latest.link %}
+                            {% set menu_latest_title = menu.latest.title %}
+                            {% set menu_latest_date = menu.latest.date %}
+                        {% endif %}
+
+                        <li>
+                            <h3><a href="{{ menu_link }}">{{ menu.title }}</a></h3>
+                            {% if menu.abstract %}
+                                <p><a href="{{ menu_link }}">{{ menu.abstract }}</a></p>
+                            {% endif %}
+                            {% if menu_latest_link %}
+                                <p class="latest">
+                                    <a href="{{ menu_latest_link }}" title="{{ menu_latest_title }}
+Publié {{ menu_latest_date|nicetime }}, le {{ menu_latest_date|date('d/m/Y') }}">
+                                        {% if menu.latest.invite %}<span class="head">{{ menu.latest.invite }}</span>{% endif %}
+                                        {{ menu_latest_title }}
+                                    </a>
+                                </p>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </aside>
+    </section>
+
+    {% if header.homepage.about.page %}
+        <aside class="about-mobile"><a href="{{ header.homepage.about.page }}">{{ header.homepage.about.invite|default('À propos') }}</a></aside>
+    {% endif %}
+
+    {% for subpage in pages.children.visible %}
+        <section id="{{ subpage.url|trim('/') }}">
+            <div class="section-body">
                 {% set description_page = loop.first ? page : subpage %}
                 {% if subpage.template == 'blog' %}
                     {% include 'partials/homepage/block-blog.html.twig' with {
-                        'introduction': description_page.content,
-                        'introduction_images': description_page.header.homepage_photos,
                         'page': subpage,
                         'superpage': page,
                         'articles': subpage.children.routable.visible.order('date', 'desc')
@@ -35,9 +88,6 @@
                     } %}
                 {% endif %}
             </div>
-            {% if loop.first %}
-                {% include 'partials/menu-footer.html.twig' %}
-            {% endif %}
         </section>
     {% endfor %}
 

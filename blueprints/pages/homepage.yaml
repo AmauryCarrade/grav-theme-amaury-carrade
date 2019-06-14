@@ -10,25 +10,99 @@ form:
           fields:
             metadata_columns:
               unset@: true
-            homepage_photos_section:
+            homepage_about_section:
               type: section
-              title: Photos affichées sur la page d'accueil
+              title: À propos
               underline: true
               fields:
-                header.homepage_photos:
+                header.homepage.about.page:
+                  type: pages
+                  toggleable: true
+                  classes: fancy
+                  label: Page “à propos” affichée sur l'accueil
+                  show_all: true
+                  show_modular: false
+                  show_root: false
+                  help: Page “à propos” qui sera affichée sur la page d'accueil en regard du logo.
+                header.homepage.about.invite:
+                  type: text
+                  toggleable: true
+                  label: Texte du lien “à propos”
+                  help: Texte du lien “à propos“ qui sera affichée sur la page d'accueil en regard du logo.
+            homepage_menu_section:
+              type: section
+              title: Menu spécifique à la page d'accueil
+              underline: true
+              fields:
+                header.homepage.menu:
                   type: list
-                  label: Choisir les photos affichées sur la page d'accueil
-                  help: |
-                    Sélectionnez les photos affichées sous le texte d'introduction sur la page d'accueil,
-                    ainsi que leurs noms associés
+                  style: vertical
+                  collapsed: true
+                  btnLabel: Ajouter un lien
                   fields:
-                    .media:
-                      type: filepicker
-                      folder: '@self'
-                      preview_images: true
-                      label: Photo
-                      help: La photo affichée sur la page d'accueil, ronde
-                    .hover:
+                    .title:
                       type: text
-                      label: Texte affiché au survol
-                      help: Texte affiché au survol de la photo sur la page d'accueil
+                      label: Titre du menu
+                      help: Le titre du bloc de menu
+                      validate:
+                        required: true
+                    .type:
+                      type: toggle
+                      label: Type de menu
+                      help: |
+                        Les menus de l'accueil peuvent être ou bien de classiques liens vers une ressource arbitraire,
+                        ou des collections de pages, permettant dans un tel cas de présenter automatiquement la plus récente.
+                      default: link
+                      highlight: link
+                      options:
+                        link: Lien arbitraire
+                        pages: Collection de pages
+                      validate:
+                        required: true
+                    .abstract:
+                      type: textarea
+                      label: Résumé
+                      help: Ce texte sera affiché sous le titre du menu, et au dessus de l'élément récent.
+                    .latest.invite:
+                      type: text
+                      label: Invite de l'élément récent
+                      help: |
+                        Ce court texte (un mot ou deux idéalement) sera affiché devant l'élément récent affiché dans
+                        le bloc, dans un cadre. Si vide, aucune invite ne sera affichée.
+                    link_type_section:
+                      type: section
+                      title: Lien arbitraire
+                      underline: true
+                    .link:
+                      type: text
+                      label: Lien
+                      help: |
+                        Le lien vers lequel ce menu pointe (absolu, relatif, ou ancre, ou même courriel ou autres,
+                        tout est possible).
+                    .latest.title:
+                      type: text
+                      label: Titre de l'élément récent
+                      help: Titre de l'élément récent affiché en bas du bloc.
+                      togglable: true
+                    .latest.link:
+                      type: text
+                      label: Lien de l'élément récent
+                      help: Lien de l'élément récent affiché en bas du bloc (n'importe quel type de lien, encore).
+                    .latest.date:
+                      type: datetime
+                      label: Date de l'élément récent
+                      help: Date de publication de l'élément récent, affiché dans l'infobulle du lien récent.
+                    pages_type_section:
+                      type: section
+                      title: Collection de pages
+                      underline: true
+                    .root:
+                      type: pages
+                      classes: fancy
+                      label: Page racine de la collection à lier
+                      show_all: true
+                      show_modular: false
+                      show_root: false
+                      help: |
+                        Page racine de la collection à lier, qui sera le lien principal du bloc, et de laquelle la page
+                        la plus récente sera extraite automatiquement.

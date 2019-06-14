@@ -7,7 +7,7 @@
 {% set base_url_abs = grav.uri.rootUrl(true) %}
 
 <!DOCTYPE html>
-<html lang="{{ grav.language.getActive ?: theme_config.default_lang }}">
+<html lang="{{ html_lang }}">
 <head>
 {% block head %}
     <meta charset="utf-8" />
@@ -19,7 +19,10 @@
     {% include 'partials/metadata.html.twig' %}
 
     <link rel="icon" type="image/png" href="{{ url('theme://images/favicon.png') }}" />
-    <link rel="canonical" href="{{ header.canonical ? header.canonical : page.url(true, true) }}" />
+    <link rel="canonical" href="{{ page.canonical }}" />
+
+    <meta name="theme-color" content="#1b1424" />
+    <meta name="msapplication-navbutton-color" content="#1b1424" />
 
     {% if config.plugins.feed.enabled %}
         {% for page in grav.pages.find('/').parent.children.visible.published.routable if page.template == 'blog' %}

@@ -66,8 +66,7 @@ $frontpage-blog-margin-around-blocks: 14%;
 
 $frontpage-photos-size: 88px;
 
-$frontpage-reflection-height: 333px;
-$frontpage-reflection-compression: 0.5;
+$frontpage-space-between-first-blog-and-others: 333px;
 
 @import "bulma/bulma";
 @import "bulma-tooltip/dist/bulma-tooltip";

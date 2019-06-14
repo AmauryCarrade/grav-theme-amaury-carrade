@@ -1,5 +1,5 @@
 styles:
-	sass -t compressed --sourcemap=auto --unix-newlines scss/nebulius.scss > css-compiled/nebulius.min.css
+	sass -s compressed --no-source-map scss/nebulius.scss css-compiled/nebulius.min.css
 
 watch:
-	sass -t compressed --watch scss/nebulius.scss:css-compiled/nebulius.min.css
+	sass -s compressed --watch --source-map scss/nebulius.scss css-compiled/nebulius.min.css

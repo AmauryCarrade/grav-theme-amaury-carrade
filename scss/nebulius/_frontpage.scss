@@ -3,296 +3,403 @@ body.frontpage {
         background: none;
     
         > section.hero {
-            background: url("../images/background-bottom.png") bottom center no-repeat,
-                        url("../images/background-bottom-low.png") bottom/contain no-repeat;
+            max-width: 2000px;
 
-            header.hero-head {
+            margin: auto;
+            padding: 0 4rem;
 
+            @include mobile {
+                padding: 0 2rem;
             }
 
-            .hero-body {
-                color: white;
-                padding-right: 0;
-                padding-left: 0;
+            .hero-body .container {
+                header {
+                    display: flex;
 
-                @include until-fullhd {
-                    display: block;
+                    align-items: center;
+
+                    max-width: 56%;
+
+                    @include touch {
+                        max-width: 100%;
+                    }
+
+                    h1 {
+                        flex: 12;
+
+                        font-size: 4em;
+                        font-family: 'Charlevoix', sans-serif;
+                        font-weight: 200;
+
+                        text-align: left;
+                        text-shadow: 0 0 2px black;
+
+                        span {
+                            font-weight: bold;
+                        }
+
+                        @include mobile {
+                            font-size: 2.8em;
+                        }
+                    }
+
+                    p > a {
+                        display: inline-block;
+
+                        padding: .2em .4em;
+
+                        border: solid 1px white;
+
+                        font-size: .8em;
+
+                        color: darken(white, .2);
+                        text-transform: uppercase;
+
+                        @include mobile {
+                            display: none;
+                        }
+
+                        &:hover {
+                            color: $primary;
+                            background-color: darken(white, .2);
+                        }
+                    }
                 }
 
-                .articles-display {
-                    .column {
-                        padding: 0;
+                article {
+                    max-width: 56%;
 
-                        article {
-                            margin: 0;
-                            padding: .4em 1em 1em;
+                    padding-left: 4px;
 
-                            min-height: 30vh;
+                    font-size: 1.4em;
+                    font-family: $family-serif;
 
-                            font-family: $family-serif;
-                            background-color: rgba(0, 0, 0, .25);
+                    @include fullhd {
+                        font-size: 1.7em;
+                    }
 
-                            @include blur-background;
+                    @include touch {
+                        max-width: 100%;
+                    }
 
-                            @include touch {
-                                min-height: unset;
-                                width: 100vw;
+                    p {
+                        margin-bottom: 1.1rem;
+
+                        text-align: justify;
+
+                        @include fullhd {
+                            margin-bottom: 1.2rem;
+                        }
+
+                        &:first-child {
+                            font-size: 1.4em;
+                        }
+                        &:last-child {
+                            margin-bottom: 0;
+                        }
+                    }
+
+                    a {
+                        color: white;
+                        border-bottom: solid 1px white;
+
+                        &:hover {
+                            border-bottom-style: dotted;
+                        }
+                    }
+                }
+            }
+
+            aside.hero-foot {
+                ul {
+                    display: flex;
+                    flex-direction: row;
+
+                    @include touch {
+                        flex-direction: column;
+                    }
+
+                    margin-bottom: 4rem;
+
+                    li {
+                        display: flex;
+                        flex-direction: column;
+
+                        // Flex-basis 100% is required, else this stupid Chrome thinks blocks have a
+                        // height of 0 when stacked.
+                        flex: 1 1 100%;
+
+                        width: 100%;
+
+                        // Thanks https://css-tricks.com/flexbox-truncated-text/ !
+                        min-width: 0;
+                        max-width: 100%;
+
+                        margin-right: 1.8rem;
+
+                        @include touch {
+                            margin-right: 0;
+                            margin-bottom: 1.8rem;
+
+                            &:last-child {
+                                margin-bottom: 0;
                             }
+                        }
 
-                            h2 {
-                                margin-bottom: .4em;
-                                font-size: 1.5em;
-                                font-style: italic;
-                                line-height: 1.5;
+                        padding: 1rem 1.4rem;
+
+                        background: rgba(lighten($primary, 10%), 40%);
+                        border-radius: 4px;
+
+                        @include blur-background;
+
+                        font-family: $family-sans-serif;
+
+                        transition: background-color ease-in-out .2s;
+
+                        &:hover {
+                            background: $primary;
+                        }
+
+                        &:last-child {
+                            margin-right: 0;
+                        }
+
+                        h3 {
+                            font-weight: 300;
+
+                            font-size: 1.4em;
+                            color: white;
+
+                            a {
+                                display: block;
+                                position: relative;
+
+                                padding-bottom: .4rem;
+
+                                width: 100%;
+
                                 color: white;
-                            }
 
-                            &.presentation {
-                                display: flex;
-                                flex-direction: column;
+                                &:after {
+                                    content: ' ';
 
-                                margin-right: $frontpage-blog-space-between-blocks / 2;
-                                padding-left: $frontpage-blog-margin-around-blocks;
-                                padding-right: $frontpage-blog-margin-around-blocks;
-                                padding-top: 0;
+                                    position: absolute;
+                                    right: .2rem;
+                                    top: .6rem;
 
-                                border-top-right-radius: 4px;
-                                border-bottom-right-radius: 4px;
+                                    width: .8rem;
+                                    height: .8rem;
 
-                                text-align: center;
+                                    transform: rotate(45deg);
 
-                                @include touch {
-                                    position: relative;
-                                    left: 1.4rem;
-
-                                    margin: 0;
-                                    padding: 1rem 0 0;
-                                    border-radius: 0;
-                                    width: calc(100vw - 1.2rem);
-                                }
-
-                                div.content {
-                                    display: flex;
-                                    flex-grow: 2;
-                                    margin: 0;
-
-                                    > div {
-                                        align-self: center;
-
-                                        h2 {
-                                            text-align: center;
-                                            margin-bottom: 1.5em;
-                                        }
-
-                                        p {
-                                            font-size: 1.68em;
-                                            font-variant: normal;
-                                            letter-spacing: 1.4px;
-
-                                            @include touch {
-                                                text-align: justify;
-                                            }
-
-                                            @include tablet-only {
-                                                padding: 0 20%;
-                                            }
-
-                                            @include mobile {
-                                                font-size: 1.4em;
-                                            }
-
-                                            a {
-                                                display: inline-block;
-                                                border-bottom: 1px solid white;
-                                                color: white;
-                                                text-decoration: none;
-
-                                                &:hover {
-                                                    text-shadow: 1px 1px 2px rgba(255, 255, 255, .4), -1px -1px 2px rgba(255, 255, 255, .4);
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-
-                                footer {
-                                    text-align: center;
-
-                                    @include touch {
-                                        margin: 2rem 0;
-                                    }
-
-                                    ul {
-                                        position: relative;
-                                        left: $frontpage-photos-size / 6;
-
-                                        li {
-                                            display: inline-block;
-                                            padding: 0;
-
-                                            a {
-                                                margin: 0;
-
-                                                display: block;
-
-                                                width: $frontpage-photos-size;
-                                                height: $frontpage-photos-size;
-
-                                                img {
-                                                    width: $frontpage-photos-size;
-                                                    border-radius: 426921px;
-                                                    border: 3px solid $page-background-purple;
-
-                                                    filter: grayscale(84%);
-                                                    transition: filter .4s ease-in-out;
-
-                                                    @include mobile {
-                                                        filter: grayscale(42%);
-                                                    }
-
-                                                    &:hover {
-                                                        filter: grayscale(21%);
-                                                    }
-                                                }
-                                            }
-
-                                            &:not(:first-child) {
-                                                position: relative;
-                                                left: -($frontpage-photos-size / 3);
-                                            }
-                                        }
-                                    }
+                                    border-top: solid 1px white;
+                                    border-right: solid 1px white;
                                 }
                             }
+                        }
 
-                            &.latest-article {
-                                display: flex;
-                                flex-direction: column;
+                        p {
+                            flex: 4;
 
-                                margin-left: $frontpage-blog-space-between-blocks / 2;
-                                padding-right: $frontpage-blog-margin-around-blocks;
+                            padding-bottom: 1.2rem;
 
-                                border-top-left-radius: 4px;
-                                border-bottom-left-radius: 4px;
+                            text-align: justify;
 
-                                text-align: left;
+                            font-size: 1.05em;
+                            color: white;
 
-                                @include touch {
-                                    margin-top: 2rem;
-                                    padding: 1rem;
-                                }
+                            &:last-child {
+                                padding-bottom: 0;
+                            }
 
-                                div {
-                                    display: flex;
-                                    flex-direction: column;
-                                    flex-grow: 2;
+                            &.latest {
+                                flex: 1.5;
 
-                                    > div {
-                                        align-self: center;
-                                    }
-                                }
+                                overflow-x: hidden;
+                                overflow-y: visible;
 
-                                h2 {
-                                    @include touch {
-                                        text-align: center;
-                                    }
-                                }
+                                white-space: nowrap;
+                                text-overflow: ellipsis;
 
-                                h3 {
-                                    @include touch {
-                                        text-align: center;
-                                        position: relative;
-                                        top: -.6rem;
+                                font-size: 1em;
+
+                                a {
+                                    .head {
+                                        transition: background-color .2s ease-in-out;
                                     }
 
-                                    a {
-
-                                        font-size: 1.8em;
-                                        font-family: $family-primary;
-                                        font-weight: 300;
+                                    &:hover {
                                         color: white;
 
-                                        &:hover {
-                                            text-shadow: 1px 1px 2px rgba(255, 255, 255, .4), -1px -1px 2px rgba(255, 255, 255, .4);
-                                        }
-                                    }
-                                }
-
-                                div.content {
-                                    font-size: 1.4em;
-                                    margin-top: .6em;
-                                    margin-bottom: .1em;
-
-                                    @include touch {
-                                        margin-top: 0;
-                                        text-align: justify;
-                                    }
-
-                                    @include tablet-only {
-                                        padding: 0 20%;
-                                    }
-
-                                    * {
-                                        color: white;
-                                    }
-                                }
-
-                                footer {
-                                    margin-top: 1em;
-
-                                    text-align: left;
-
-                                    font-size: .96em;
-                                    font-family: $family-primary;
-
-                                    color: lighten($page-background-purple, 78%);
-
-                                    @include touch {
-                                        text-align: center;
-                                    }
-
-                                    a {
-                                        color: lighten($page-background-purple, 78%);
-
-                                        &:hover {
-                                            color: white;
+                                        .head {
+                                            color: $primary;
+                                            background-color: darken(white, .2);
                                         }
                                     }
                                 }
                             }
 
-                            footer {
-                                a.button {
-                                    font-family: $family-primary;
-                                    font-size: 1.3em;
-                                    font-weight: 300;
+                            .head {
+                                display: inline-block;
 
-                                    svg {
-                                        display: inline-block;
-                                        font-size: .9em;
-                                    }
-                                }
+                                position: relative;
+                                top: -2px;
+
+                                margin: 0 .4rem 0 0;
+                                padding: .2em .4em;
+
+                                border: solid 1px white;
+
+                                font-size: .7em;
+
+                                color: darken(white, .2);
+                                text-transform: uppercase;
+                            }
+
+                            a {
+                                color: hsl(0, 0, 80%);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        > aside.about-mobile {
+            display: none;
+
+            @include mobile {
+                display: block;
+                margin-top: 4rem;
+
+                text-align: center;
+
+                a {
+                    display: inline-block;
+                    padding: .4em .6em;
+
+                    border: solid 1px white;
+
+                    font-size: 1em;
+
+                    color: darken(white, .2);
+                    text-transform: uppercase;
+                }
+            }
+        }
+
+        > section:nth-of-type(2) {
+            position: relative;
+            padding-top: $frontpage-space-between-first-blog-and-others;
+        }
+
+        > section:not(.main-intro) {
+            .section-body {
+                position: relative;
+                left: -50%;
+                width: 200%;
+
+                padding: 6em 0;
+                margin-bottom: 18em;
+
+                background-color: rgba(200, 200, 200, .36);
+
+                text-align: center;
+
+                article {
+                    color: white;
+
+                    header {
+                        @include mobile {
+                            width: 96vw;
+                            position: relative;
+                            left: 26%;
+                        }
+
+                        p {
+                            font-family: $family-serif;
+                            font-style: italic;
+                            font-size: 1.4em;
+                        }
+
+                        h2 {
+                            font-family: $family-primary;
+                            font-weight: 300;
+                            font-size: 2.8em;
+                        }
+                    }
+
+                    div.content {
+                        margin: 1.4em 40% 3em;
+                        padding: 2em 0;
+                        border-top: 1px solid white;
+                        border-bottom: 1px solid white;
+
+                        font-family: $family-primary;
+                        font-weight: 300;
+                        font-size: 1.4em;
+
+                        @include touch {
+                            position: relative;
+                            left: 24%;
+
+                            margin-left: 1rem;
+                            margin-right: 1rem;
+
+                            width: 96vw;
+
+                            &.blog-content {
+                                left: 25%;
+                            }
+                        }
+
+                        @include tablet {
+                            left: 25%;
+                        }
+
+                        * {
+                            color: white;
+                        }
+
+                        footer.section-body-abstract-footer {
+                            font-size: .8em;
+                        }
+                    }
+
+                    aside {
+                        a.button {
+                            font-family: $family-primary;
+                            font-weight: 300;
+                            font-size: 1.3em;
+
+                            svg, .fas, .far, .fal {
+                                display: inline-block;
+                                font-size: 1.1em;
+                                padding-right: .4em;
                             }
                         }
                     }
                 }
 
                 .articles-list {
-                    margin: 2rem ($frontpage-blog-margin-around-blocks / 2) 0 ($frontpage-blog-margin-around-blocks / 2);
+                    margin: 6em 30% 0;
 
                     text-align: center;
                     color: white;
 
-                    @include mobile {
-                        margin: 2rem 0;
+                    @include touch {
+                        margin: 4em 24.4% 0;
                     }
 
-                    @include tablet-only {
-                        margin: 2rem 21%;
+                    @include mobile {
+                        margin: 4em 23.5% 0;
                     }
 
                     .column {
                         padding-top: 0;
+                        padding-bottom: 0;
+
                         max-width: 25%;
 
                         @include touch {
@@ -314,7 +421,7 @@ body.frontpage {
 
                         a {
                             display: block;
-                            margin: 0 1em;
+                            margin: 0;
                             padding: .6em .6em;
 
                             border-radius: 4px;
@@ -330,7 +437,7 @@ body.frontpage {
                             @include blur-background;
 
                             @include touch {
-                                margin: 0;
+                                margin: 0 0 1rem;
                             }
 
                             h3 {
@@ -355,108 +462,8 @@ body.frontpage {
                     }
                 }
             }
-        }
 
-        > section:nth-of-type(2) {
-            position: relative;
-            padding-top: $frontpage-reflection-height;
-
-            &:before {
-                content: "";
-
-                position: absolute;
-                top: 0;
-
-                width: 100%;
-                height: $frontpage-reflection-height * (1 / $frontpage-reflection-compression);
-
-                background: url("../images/background-bottom.png") bottom center no-repeat,
-                            url("../images/background-bottom-low.png") bottom/contain no-repeat;
-
-                transform: rotate(180deg) scaleX(-1) scaleY($frontpage-reflection-compression);
-                //transform-origin: middle;
-
-                margin-top: -169px;
-                filter: blur(2.8px) brightness(64%);
-            }
-        }
-
-        > section:not(.hero) {
-            .section-body {
-                position: relative;
-                left: -50%;
-                width: 200%;
-
-                padding: 6em 0;
-                margin-bottom: 18em;
-
-                background-color: rgba(200, 200, 200, .36);
-
-                text-align: center;
-
-                article {
-                    color: white;
-
-                    header {
-                        p {
-                            font-family: $family-serif;
-                            font-style: italic;
-                            font-size: 1.4em;
-                        }
-
-                        h2 {
-                            font-family: $family-primary;
-                            font-weight: 300;
-                            font-size: 2.8em;
-                        }
-                    }
-
-                    div.content {
-                        margin: 1.4em 40% 3em;
-                        padding: 2em 0;
-                        border-top: 1px solid white;
-                        border-bottom: 1px solid white;
-
-                        font-family: $family-primary;
-                        font-weight: 300;
-                        font-size: 1.3em;
-
-                        @include touch {
-                            position: relative;
-                            left: 24%;
-
-                            margin-left: 1rem;
-                            margin-right: 1rem;
-
-                            width: 96vw;
-                        }
-
-                        @include tablet {
-                            left: 25%;
-                        }
-
-                        * {
-                            color: white;
-                        }
-                    }
-
-                    aside {
-                        a.button {
-                            font-family: $family-primary;
-                            font-weight: 300;
-                            font-size: 1.3em;
-
-                            svg, .fas, .far, .fal {
-                                display: inline-block;
-                                font-size: 1.1em;
-                                padding-right: .4em;
-                            }
-                        }
-                    }
-                }
-            }
-
-            $angles: 6deg, -2deg, 1deg, -8deg, 4deg, -11deg;
+            $angles: -2deg, 6deg, -1deg, 1deg, -8deg, 4deg, -11deg;
 
             @each $angle in $angles {
                 &:nth-of-type(#{length($angles)}n+#{index($angles, $angle) + 1}) {
@@ -465,6 +472,12 @@ body.frontpage {
 
                         article {
                             transform: rotate(-$angle);
+                        }
+
+                        @include touch {
+                            aside.articles-list {
+                                transform: rotate(-$angle);
+                            }
                         }
                     }
                 }
