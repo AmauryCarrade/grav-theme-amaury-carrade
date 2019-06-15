@@ -30,6 +30,10 @@ body div.custom-block {
             background-color: $color-dark;
             color: $color-light;
 
+            @if $icon {
+                position: relative;
+            }
+
             .custom-block-heading {
                 @if $icon {
                     padding: .2rem $article-padding .2rem 3.7rem;
@@ -57,7 +61,6 @@ body div.custom-block {
                 }
 
                 @if $icon {
-                    position: relative;
                     padding-left: 2.1rem;
 
                     &:after {
@@ -66,6 +69,10 @@ body div.custom-block {
                         position: absolute;
                         top: calc(50% - 1rem);
                         left: 1.3rem;
+
+                        @include mobile {
+                            left: .8rem;
+                        }
 
                         padding-bottom: .6rem;
 
@@ -104,8 +111,12 @@ body div.custom-block {
                     padding-left: 0;
 
                     &:after {
-                        top: -2.5rem;
+                        top: .5rem;
                         left: 1rem;
+
+                        @include mobile {
+                            top: .28rem;
+                        }
 
                         background-color: $color-darker;
                         color: $color;
@@ -148,6 +159,10 @@ body div.custom-block {
 
             position: relative;
             left: -.9em;
+
+            @include mobile {
+                left: -.6em;
+            }
 
             vertical-align: -.05em;
 
