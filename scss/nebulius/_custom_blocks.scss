@@ -1,0 +1,163 @@
+$custom-blocks: ("information", hsl(194, 64%, 62%), "i", true),
+                ("question",    hsl(210, 64%, 62%), "?"),
+                ("warning",     hsl( 35, 64%, 62%), "!"),
+                ("error",       hsl(  2, 64%, 54%), "×", false, true),
+                ("neutral",     lighten($page-background-purple, 46%)),
+                ("spoiler",     lighten($page-background-purple, 46%));
+
+
+// body required for specificity
+body div.custom-block {
+    margin: 3.2rem 0;
+    padding: 0;
+
+    background-color: $page-background-purple;
+
+    /*p, h1, h2, h3, h4, h5, h6, ol, ul {
+        padding-left: calc(#{$article-padding} - 10px);
+
+        @include mobile {
+            padding-left: calc(#{$article-padding-mobile} - 10px);
+        }
+    }*/
+
+    @each $type, $color, $icon, $icon-italic, $icon-small in $custom-blocks {
+        &.custom-block-#{$type} {
+            $color-light: lighten($color, 32%);
+            $color-dark: darken($color, 38%);
+            $color-darker: darken($color, 48%);
+
+            background-color: $color-dark;
+            color: $color-light;
+
+            .custom-block-heading {
+                @if $icon {
+                    padding: .2rem $article-padding .2rem 3.7rem;
+                }
+                @else {
+                    padding: .2rem calc(#{$article-padding} - 1px);
+                }
+
+                background-color: $color;
+
+                font-family: $family-sans-serif;
+                font-weight: 400;
+                font-size: .9em;
+
+                color: $color-darker;
+            }
+
+            .custom-block-body {
+                a {
+                    color: lighten($color, 10%);
+
+                    &:hover {
+                        color: lighten($color, 20%);
+                    }
+                }
+
+                @if $icon {
+                    position: relative;
+                    padding-left: 2.1rem;
+
+                    &:after {
+                        content: $icon;
+
+                        position: absolute;
+                        top: calc(50% - 1rem);
+                        left: 1.3rem;
+
+                        padding-bottom: .6rem;
+
+                        @if $icon == "?" {
+                            padding-left: .09em;
+                        }
+
+                        width: 2rem;
+                        height: 2rem;
+
+                        background-color: $color;
+                        border-radius: 426921px;
+
+                        text-align: center;
+
+                        @if $icon-small {
+                            line-height: 1;
+                        } @else {
+                            line-height: 1.1;
+                        }
+
+                        font-family: $family-serif;
+                        font-weight: bold;
+
+                        @if $icon-italic {
+                            font-style: italic;
+                        }
+
+                        color: $color-darker;
+                    }
+                }
+            }
+
+            @if $icon {
+                .custom-block-heading + .custom-block-body {
+                    padding-left: 0;
+
+                    &:after {
+                        top: -2.5rem;
+                        left: 1rem;
+
+                        background-color: $color-darker;
+                        color: $color;
+                    }
+                }
+            }
+        }
+    }
+
+    div.custom-block-body {
+        padding: .6em 0;
+
+        strong, em, figure, dl, dt, dd, ol, ul, li, abbr  {
+            color: inherit;
+        }
+    }
+
+    .custom-block-spoiler-header {
+        padding: .6em 0;
+        background-color: darken($page-background-purple, 2%);
+
+        font-family: $family-sans-serif;
+        font-weight: 300;
+        font-size: .9em;
+    }
+
+    &.custom-block-spoiler .custom-block-spoiler-header {
+        padding-left: calc(#{$article-padding} - 10px + .66em);
+
+        @include mobile {
+            padding-left: calc(#{$article-padding-mobile} - 10px + .66em);
+        }
+
+        cursor: pointer;
+
+        &:before {
+            @include fa-icon;
+            @extend .far;
+            content: fa-content($fa-var-eye);
+
+            position: relative;
+            left: -.9em;
+
+            vertical-align: -.05em;
+
+            font-size: .9em;
+
+            color: darken($content-text-color, 12%);
+        }
+
+        &[data-visible="true"]:before {
+            content: fa-content($fa-var-eye-slash);
+        }
+    }
+}
