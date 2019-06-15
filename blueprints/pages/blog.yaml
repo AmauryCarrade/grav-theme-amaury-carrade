@@ -8,12 +8,27 @@ form:
       fields:
         content:
           fields:
-            header.homepage.invite:
+            columns:
+              type: columns
               ordering@: 1
-              type: text
-              style: vertical
-              label: Sur-titre
-              help: Le texte affiché au dessus du titre sur la page racine du blog.
+              fields:
+                column1:
+                  type: column
+                  fields:
+                    header.homepage.invite:
+                      type: text
+                      style: vertical
+                      label: Sur-titre
+                      help: Le texte affiché au dessus du titre sur la page racine du blog.
+                column2:
+                  type: column
+                  fields:
+                    header.homepage.frontpage_invite:
+                      ordering@: 1
+                      type: text
+                      style: vertical
+                      label: Sur-titre d'accueil
+                      help: Le texte affiché au dessus du dernier article sur la page d'accueil. Si vide, le sur-titre est utilisé.
             header.abstract:
               unset@: true
             attribution_spacer:

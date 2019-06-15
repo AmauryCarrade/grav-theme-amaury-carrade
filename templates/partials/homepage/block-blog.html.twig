@@ -15,7 +15,15 @@
     <meta itemprop="dateModified" content="{{ last_article.modified|date('c') }}" />
 
     <header>
-        <p>{% if page.header.homepage.invite %}{{ page.header.homepage.invite }}{% else %}Dernier article{% endif %}</p>
+        <p>
+            {% if page.header.homepage.frontpage_invite %}
+                {{ page.header.homepage.frontpage_invite }}
+            {% elseif page.header.homepage.invite %}
+                {{ page.header.homepage.invite }}
+            {% else %}
+                Dernier article
+            {% endif %}
+        </p>
         <h2 itemprop="headline">{{ last_article.header.title }}</h2>
     </header>
 
