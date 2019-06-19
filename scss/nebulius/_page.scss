@@ -716,6 +716,10 @@ main {
 
                     img {
                         height: 3rem;
+
+                        @include mobile {
+                            height: 1.8rem;
+                        }
                     }
                 }
 
@@ -730,6 +734,7 @@ main {
 
                     @include mobile {
                         text-align: center;
+                        font-size: $size-5;
                     }
                 }
             }
