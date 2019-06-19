@@ -8,7 +8,7 @@ form:
         content:
           fields:
             header.abstract:
-              ordering@: 1
+              ordering@: 2
               type: textarea
               style: vertical
               placeholder: |
@@ -152,3 +152,14 @@ form:
                     - en interdisant la modification (**pas de modification**) ;
                     - en interdisant tout usage, y compris de reproduction (**tous droits réservés**) ;
                     - ou en plaçant le contenu dans le domaine public, renonçant alors à l'intégralité de ses droits dessus.
+
+            canonical-links:
+              type: section
+              title: Liens canoniques et références
+              underline: true
+              fields:
+                header.canonical:
+                  type: text
+                  toggleable: true
+                  label: Lien canonique
+                  help: Le lien canonique présenté dans les balises meta du site, si différent du site courant.

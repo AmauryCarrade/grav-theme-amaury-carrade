@@ -40,6 +40,10 @@ body div.custom-block {
                 }
                 @else {
                     padding: .2rem calc(#{$article-padding} - 1px);
+
+                    @include mobile {
+                        padding: .2rem calc(#{$article-padding-mobile} - 1px);
+                    }
                 }
 
                 background-color: $color;

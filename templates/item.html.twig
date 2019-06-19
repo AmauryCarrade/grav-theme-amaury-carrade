@@ -77,6 +77,21 @@
     </aside>
 {% endblock %}
 
+{% block below_content %}
+    {% if header.zestedesavoir %}
+        <aside class="explicit-canonical-link">
+            <a href="{{ header.zestedesavoir }}">
+                <figure aria-hidden="true">
+                    <img src="{{ url('theme://images/zestedesavoir/zestedesavoir-small.svg') }}" alt="Logo de Zeste de Savoir" />
+                </figure>
+                <p>
+                    Cet article est également publié sur Zeste de Savoir
+                </p>
+            </a>
+        </aside>
+    {% endif %}
+{% endblock %}
+
 {% block below_block_content %}
     {% include 'partials/github-edit-link.html.twig' %}
     

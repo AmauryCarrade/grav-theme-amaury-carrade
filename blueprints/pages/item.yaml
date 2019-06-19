@@ -1,0 +1,19 @@
+'@extends':
+  type: default
+  context: blueprints://pages
+
+form:
+  fields:
+    tabs:
+      fields:
+        options:
+          fields:
+            canonical-links:
+              fields:
+                header.zestedesavoir:
+                  type: text
+                  toggleable: true
+                  label: Équivalent sur Zeste de Savoir
+                  help: |
+                    Le lien vers l'article ou le billet équivalent sur Zeste de Savoir. Ajoute un encart de lien,
+                    sans configurer de lien canonique.
