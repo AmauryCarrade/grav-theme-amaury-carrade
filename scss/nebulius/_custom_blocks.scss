@@ -48,11 +48,13 @@ body div.custom-block {
 
                 background-color: $color;
 
-                font-family: $family-sans-serif;
-                font-weight: 400;
-                font-size: .9em;
+                &, em, strong, a, abbr {
+                    font-family: $family-sans-serif;
+                    font-weight: 400;
+                    font-size: .9em;
 
-                color: $color-darker;
+                    color: $color-darker;
+                }
             }
 
             .custom-block-body {
