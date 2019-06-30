@@ -14,7 +14,7 @@
             <div class="navbar-brand">
                 <div class="navbar-item site-name" href="/">
                     <a href="/">{{ theme_config.header.title ?: config.site.title }}</a>
-                    <aside>{% block section_title %}<a href="{{ top_section_page.url }}">{{ top_section_page.header.title }}</a>{% endblock %}</aside>
+                    <aside>{% block section_title %}<a href="{{ top_section_page.url }}">{{ top_section_page.header.menu ?: top_section_page.header.title }}</a>{% endblock %}</aside>
                 </div>
 
                 <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="top-navbar-menu">
