@@ -4,6 +4,10 @@
 {% import 'macros/tags.html.twig' as tags %}
 
 {% macro navigation_links(page, config, extra_classes='') %}
+    {% if page.template == 'item-advanced' and page.parent.template == 'item' %}
+        {% set page = page.parent %}
+    {% endif %}
+
     <nav class="columns is-mobile navigation-links {{ extra_classes }}">
         {% spaceless %}
             <div class="column">
@@ -51,6 +55,7 @@
 {% block under_title %}
         <div class="under-title">
             <ul>
+                {% block under_title_advanced %}{% endblock %}
                 {%- if config.plugins.readingtime.enabled -%}
                     <li title="Temps de lecture estimé, considérant un rythme de {{ config.plugins.readingtime.words_per_minute }} mots par minute.">
                         {{- page.content|readingtime }} de lecture
@@ -75,6 +80,22 @@
     <aside class="article-meta-mobile">
         <p>{{ authors_list }}.</p>
     </aside>
+
+    {% block advanced_switch %}
+        {% set advanced_page = null %}
+        {% for child in page.children %}
+            {% if child.template == 'item-advanced' %}
+                {% set advanced_page = child %}
+            {% endif %}
+        {% endfor %}
+        {% if advanced_page %}
+            {% include 'partials/page-switcher.html.twig' with {
+                'current_page_type': 'simple',
+                'simple_page': page,
+                'advanced_page': advanced_page
+            } %}
+        {% endif %}
+    {% endblock %}
 {% endblock %}
 
 {% block below_content %}

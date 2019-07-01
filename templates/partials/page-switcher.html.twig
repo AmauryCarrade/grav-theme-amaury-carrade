@@ -1,0 +1,18 @@
+<aside class="article-advanced-switch">
+    <ul>
+        <li{% if current_page_type == 'simple' %} class="is-active"{% endif %}>
+            <a href="{{ simple_page.url }}">
+                <strong>Version courte</strong>
+                <span>Si vous n'avez pas envie de lire la version complète ou qu'elle vous semble trop complexe</span>
+                <small>{{ simple_page.content|readingtime }} de lecture</small>
+            </a>
+        </li>
+        <li{% if current_page_type == 'advanced' %} class="is-active"{% endif %}>
+            <a href="{{ advanced_page.url }}">
+                <strong>Version complète</strong>
+                <span>Si vous voulez approfondir le sujet dans un article beaucoup plus détaillé, mais aussi plus long</span>
+                <small>{{ advanced_page.content|readingtime }} de lecture</small>
+            </a>
+        </li>
+    </ul>
+</aside>

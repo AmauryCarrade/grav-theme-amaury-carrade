@@ -1,0 +1,23 @@
+'@extends':
+  type: item
+  context: blueprints://pages
+
+form:
+  fields:
+    tabs:
+      fields:
+        content:
+          fields:
+            metadata_columns:
+              fields:
+                banner_column:
+                  fields:
+                    attributions:
+                      fields:
+                        inherit-infos:
+                          ordering@: 1
+                          type: display
+                          size: large
+                          display_label: false
+                          markdown: true
+                          content: "Si le bandeau n'est pas spécifié, il sera hérité de l'article parent, car vous modifiez une sous-page."

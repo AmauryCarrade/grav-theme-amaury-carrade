@@ -1,0 +1,94 @@
+aside.article-advanced-switch {
+    margin: 4rem 16%;
+
+    @include mobile {
+        margin: 3rem .6rem 4rem;
+    }
+
+    ul {
+        display: flex;
+        flex-direction: row;
+
+        border-radius: 16px;
+        box-shadow:
+                rgba(white, 20%) 6px 6px 12px,
+                rgba(white, 20%) -2px -2px 12px;
+
+        li {
+            margin: 0;
+            padding: 0;
+
+            flex: 2;
+
+            a {
+                display: flex;
+                flex-direction: column;
+
+                height: 100%;
+
+                padding: 1em;
+
+                border: solid 1px lighten($primary, 12%);
+                border-top-right-radius: 16px;
+                border-bottom-right-radius: 16px;
+
+                background-clip: border-box;
+                background-color: darken($primary, 20%);
+                color: white;
+
+                font-family: $family-sans-serif;
+
+                transition: background-color .2s ease-in-out;
+
+                > * {
+                    display: block;
+                }
+
+                strong {
+                    font-size: 1.5em;
+                    font-weight: 300;
+
+                    @include mobile {
+                        font-size: 1.3em;
+                    }
+                }
+
+                span {
+                    flex: 12;
+                    hyphens: auto;
+
+                    @include mobile {
+                        font-size: .88em;
+                        text-align: justify;
+                    }
+                }
+
+                small {
+                    margin-top: .4em;
+
+                    @include mobile {
+                        font-size: .8em;
+                    }
+                }
+            }
+
+            &:first-child {
+                //border-right: solid 1px lighten($primary, 12%);
+                text-align: right;
+
+                a {
+                    border-radius: 16px 0 0 16px;
+                }
+            }
+
+            &.is-active a {
+                background-color: $primary;
+                cursor: default;
+            }
+
+            &:not(.is-active) a:hover {
+                background-color: darken($primary, 2%);
+            }
+        }
+    }
+}

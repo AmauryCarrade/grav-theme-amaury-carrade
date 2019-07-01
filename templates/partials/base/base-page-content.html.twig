@@ -2,6 +2,16 @@
 
 {% set page_header_height = 380 * 2 %} {# Real height is 380px; doubled for high-pixel-density screens. #}
 {% set page_header_image = header.header_image.image ? page.media.images[header.header_image.image] : null %}
+{% set page_header_image_ref = page %}
+
+{# We're trying to inherit the banner from the parent page if this is an advanced one #}
+{% if not page_header_image and page.template == 'item-advanced' and page.parent.template == 'item' %}
+    {% set page_header_image_ref = page.parent %}
+    {% set page_header_image = page_header_image_ref.header.header_image.image ? page_header_image_ref.media.images[page_header_image_ref.header.header_image.image] : null %}
+{% endif %}
+
+{% set page_header_image_color = page_header_image_ref.header.header_image.color %}
+{% set center_percentage = page_header_image_ref.header.header_image.vertical_centering|default(50) %}
 
 {% set has_comments = config.plugins.comments.enabled and grav.twig.enable_comments_plugin and header.comments.show|default(true) %}
 {% set comments_count = grav.twig.comments|default([])|length %}
@@ -25,11 +35,10 @@
                     {# We crop images so they are smaller to download (especially true for heavy full-HD images…), so we don't have to bother with optimization manually. #}
                     {# Also, allows to center the image wherever the user want #}
                     {% set image_height = page_header_image.height %}
-                    {% set center_percentage = header.header_image.vertical_centering|default(50) %}
                     {% set page_header_image_top = min(max(image_height / 2  + ((center_percentage - 50) / 50) * (image_height / 2) - page_header_height / 2, 0), image_height - page_header_height) %}
                     {% set page_header_image = page_header_image.crop(0, page_header_image_top, page_header_image.width, page_header_height) %}
                 {% endif %}
-                <header{% if page_header_image %} style="background-image: linear-gradient(0deg, {{ header.header_image.color|default('#7a49b7') }}, transparent 50%, transparent), url('{{ page_header_image.url|e('css') }}');"{% endif %}>
+                <header{% if page_header_image %} style="background-image: linear-gradient(0deg, {{ page_header_image_color|default('#7a49b7') }}, transparent 50%, transparent), url('{{ page_header_image.url|e('css') }}');"{% endif %}>
                     <div class="container">
                         <aside class="header-image-source">
                             {% if header.header_image.image %}

@@ -136,7 +136,7 @@ main {
 
                         text-align: right;
 
-                        time {
+                        > span {
                             display: inline-block;
 
                             margin-top: 1em;
@@ -146,6 +146,10 @@ main {
                             border-bottom-left-radius: 2px;
 
                             background-color: lighten($primary, 40%);
+
+                            .icon {
+                                margin-right: .3em;
+                            }
                         }
                     }
 

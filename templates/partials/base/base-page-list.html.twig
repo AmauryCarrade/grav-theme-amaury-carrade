@@ -85,7 +85,23 @@
                                                     <header class="card-image{% if not page_header_image %} imageless-header{% endif %}"{% if page_header_image %} style="background: linear-gradient(0deg, {{ subpage.header.header_image.color|default('#7a49b7')|toRGBA(0.6) }}, transparent 50%, transparent) center center, url('{{ page_header_image.url|e('css') }}') center {{ center_percentage + 10 * (center_percentage >= 50 ? 1 : -1) }}%;"{% endif %}>
                                                         {% block content_list_item_header_aside %}
                                                             <aside>
-                                                                {{ tags.time(subpage.date, true, true, false, null, 'datePublished') }}
+                                                                <span>
+                                                                    {% if subpage.template == 'item' %}
+                                                                        {% set has_advanced = false %}
+                                                                        {% for child in subpage.children.published.routable %}
+                                                                            {% if child.template == 'item-advanced' %}
+                                                                                {{ debug(child) }}
+                                                                                {% set has_advanced = true %}
+                                                                            {% endif %}
+                                                                        {% endfor %}
+                                                                        {% if has_advanced %}
+                                                                            <span class="icon tooltip is-tooltip-left" data-tooltip="Une version avancée de cet article est également disponible">
+                                                                                <span class="fas fa-fire"></span>
+                                                                            </span>
+                                                                        {% endif %}
+                                                                    {% endif %}
+                                                                    {{ tags.time(subpage.date, true, true, false, null, 'datePublished') }}
+                                                                </span>
                                                             </aside>
                                                         {% endblock %}
                                                         <h2>{{ subpage.header.title }}</h2>

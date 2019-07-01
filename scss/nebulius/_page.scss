@@ -129,10 +129,7 @@ main {
                             }
 
                             @include mobile {
-                                &:not(:first-child) {
-                                    margin-left: 0;
-                                }
-                                &:not(:first-child):before, &.authors-under-title, &.comments-under-title {
+                                &.authors-under-title, &.comments-under-title {
                                     display: none;
                                 }
                             }

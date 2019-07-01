@@ -1,0 +1,19 @@
+{% extends "item.html.twig" %}
+
+{% block main_title %}{% if header.title %}{{ header.title|e('html') }} ⋅ Version complète ⋅ {% endif %}{% endblock %}
+
+{% block under_title_advanced %}<li>Version complète</li>{% endblock %}
+
+{% block advanced_switch %}
+    {% set advanced_page = null %}
+    {% if page.parent.template == 'item' %}
+        {% set simple_page = page.parent %}
+    {% endif %}
+    {% if simple_page %}
+        {% include 'partials/page-switcher.html.twig' with {
+            'current_page_type': 'advanced',
+            'simple_page': simple_page,
+            'advanced_page': page
+        } %}
+    {% endif %}
+{% endblock %}
