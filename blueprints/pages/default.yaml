@@ -86,6 +86,25 @@ form:
                           multiple: true
                           validate:
                             type: array
+                    tocs:
+                      type: section
+                      title: Table des matières
+                      underline: true
+                      fields:
+                        header.page-toc.active:
+                          type: toggle
+                          label: Afficher la table des matières
+                          help: |
+                            Si actif, une table des matières sera générée pour cette page.
+                            Elle sera repliée par défaut sur mobile.
+                          highlight: 1
+                          size: medium
+                          options:
+                            1: PLUGIN_ADMIN.YES
+                            0: PLUGIN_ADMIN.NO
+                          default: 1
+                          validate:
+                            type: bool
         options:
           fields:
             publishing:

@@ -27,6 +27,7 @@
 
 {% block content %}
     {% do assets.addJs('theme://js/spoilers.js', 64, true, null, 'bottom') %}
+    {% do assets.addJs('theme://js/tocs-toggler.js', 64, true, null, 'bottom') %}
 
     <main class="page-main-article {% block content_main_classes %}{% endblock %}">
         {% block content_header %}
@@ -67,6 +68,20 @@
                     {% block above_block_content %}{% endblock %}
                     <article class="main-article">
                         {% block above_content %}{% endblock %}
+                        {% block table_of_content %}
+                            {% if config.get('plugins.page-toc.enabled') and (config.get('plugins.page-toc.active') or attribute(page.header, 'page-toc').active) %}
+                                <aside class="table-of-contents">
+                                    {% set table_of_contents = toc(page.content, 2, 3) %}
+                                    {% if table_of_contents is not empty %}
+                                        <h4 aria-haspopup="listbox" aria-expanded="false">
+                                            Sommaire
+                                            <span class="table-of-content-toggle-indicator" aria-hidden="true">»</span>
+                                        </h4>
+                                        {{ table_of_contents }}
+                                    {% endif %}
+                                </aside>
+                            {% endif %}
+                        {% endblock %}
                         <div class="content">
                             {{ page.content }}
                         </div>
