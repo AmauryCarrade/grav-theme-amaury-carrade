@@ -115,7 +115,7 @@ main.page-main-search {
                         font-family: $family-monospace;
                         font-size: .8em;
 
-                        color: desaturate(darken($content-text-color, 48%), 8);
+                        color: desaturate(darken($content-text-color, 42%), 8);
                     }
                 }
             }
