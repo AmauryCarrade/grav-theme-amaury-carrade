@@ -4,7 +4,7 @@
             {% for links_group in theme_config.bottom_links %}
                 {% if links_group.sub_links %}
                     <div class="navbar-item has-dropdown has-dropdown-up is-hoverable">
-                        <a class="navbar-link" href="{{ links_group.link }}" aria-label="{{ links_group.title }}">
+                        <a class="navbar-link" href="{{ links_group.link }}" rel="me" aria-label="{{ links_group.title }}">
                             <span class="icon">
                                 <span class="{{ links_group.icon_type }} {{ links_group.icon }}"></span>
                             </span>
@@ -12,7 +12,7 @@
 
                         <div class="navbar-dropdown">
                             {% for sub_link_title, sub_link in links_group.sub_links %}
-                                <a class="navbar-item" href="{{ sub_link }}">
+                                <a class="navbar-item" href="{{ sub_link }}" rel="me">
                                     <span class="icon">
                                         <span class="{{ links_group.icon_type }} {{ links_group.icon }}"></span>
                                     </span>
@@ -22,7 +22,7 @@
                         </div>
                     </div>
                 {% else %}
-                    <a class="navbar-item" href="{{ links_group.link }}" aria-label="{{ links_group.title }}">
+                    <a class="navbar-item" href="{{ links_group.link }}" rel="me" aria-label="{{ links_group.title }}">
                         <span class="icon">
                             <span class="{{ links_group.icon_type }} {{ links_group.icon }}"></span>
                         </span>
