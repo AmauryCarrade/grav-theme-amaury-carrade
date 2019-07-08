@@ -66,6 +66,15 @@
                     <section class="main-list">
                         <div class="columns is-multiline">
                             {% for subpage in collection %}
+                                {% set page_advanced = null %}
+                                {% if subpage.template == 'item' %}
+                                    {% for child in subpage.children.published.routable %}
+                                        {% if child.template == 'item-advanced' %}
+                                            {% set page_advanced = child %}
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+
                                 <div class="column is-half">
                                     {% block content_list_item %}
                                         <article class="card list-item">
@@ -86,19 +95,10 @@
                                                         {% block content_list_item_header_aside %}
                                                             <aside>
                                                                 <span>
-                                                                    {% if subpage.template == 'item' %}
-                                                                        {% set has_advanced = false %}
-                                                                        {% for child in subpage.children.published.routable %}
-                                                                            {% if child.template == 'item-advanced' %}
-                                                                                {{ debug(child) }}
-                                                                                {% set has_advanced = true %}
-                                                                            {% endif %}
-                                                                        {% endfor %}
-                                                                        {% if has_advanced %}
-                                                                            <span class="icon tooltip is-tooltip-left" data-tooltip="Une version avancée de cet article est également disponible">
-                                                                                <span class="fas fa-fire"></span>
-                                                                            </span>
-                                                                        {% endif %}
+                                                                    {% if page_advanced %}
+                                                                        <span class="icon tooltip is-tooltip-left" data-tooltip="Une version avancée de cet article est également disponible">
+                                                                            <span class="fas fa-fire"></span>
+                                                                        </span>
                                                                     {% endif %}
                                                                     {{ tags.time(subpage.date, true, true, false, null, 'datePublished') }}
                                                                 </span>
@@ -111,8 +111,12 @@
                                                     <div class="card-content">
                                                         {% block content_list_item_content_reading_time %}
                                                             {% if config.plugins.readingtime.enabled %}
-                                                                <p class="reading-time" title="Temps de lecture estimé, considérant un rythme de {{ config.plugins.readingtime.words_per_minute }} mots par minute.">
-                                                                    {{- subpage.content|readingtime }} de lecture</p>
+                                                                <ul class="reading-time" title="Temps de lecture estimé, considérant un rythme de {{ config.plugins.readingtime.words_per_minute }} mots par minute.">
+                                                                    <li>{{- subpage.content|readingtime }} de lecture</li>
+                                                                    {%- if page_advanced %}
+                                                                        <li>{{ page_advanced.content|readingtime }} en version complète</li>
+                                                                    {%- endif -%}
+                                                                </ul>
                                                             {% endif %}
                                                         {% endblock %}
                                                         {% block content_list_item_content_body %}

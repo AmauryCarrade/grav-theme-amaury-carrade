@@ -166,13 +166,34 @@ main {
 
                     min-height: 11em;
 
-                    p.reading-time {
+                    ul.reading-time {
                         font-size: .94em;
                         color: desaturate(darken($content-text-color, 48%), 8);
                         margin-bottom: .6rem;
 
                         & + .content {
                             margin-top: 0;
+                        }
+                        li {
+                            @include tablet {
+                                display: inline-block;
+
+                                &:not(:first-child) {
+                                    position: relative;
+                                    margin-left: 1em;
+
+                                    &:before {
+                                        content: ' – ';
+                                        position: absolute;
+                                        left: -.9em;
+                                    }
+                                }
+                            }
+                            @include mobile {
+                                &:not(:first-child) {
+                                    margin-top: -.2em;
+                                }
+                            }
                         }
                     }
 
