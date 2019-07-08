@@ -42,15 +42,15 @@
                 <header{% if page_header_image %} style="background-image: linear-gradient(0deg, {{ page_header_image_color|default('#7a49b7') }}, transparent 50%, transparent), url('{{ page_header_image.url|e('css') }}');"{% endif %}>
                     <div class="container">
                         <aside class="header-image-source">
-                            {% if header.header_image.image %}
-                                {% if header.header_image.link %}
-                                <a href="{{ header.header_image.link }}">
+                            {% if page_header_image %}
+                                {% if page_header_image_ref.header.header_image.link %}
+                                <a href="{{ page_header_image_ref.header.header_image.link }}">
                                     {% endif %}
-                                    {{ header.header_image.title }}
-                                    {% if header.header_image.author %}
-                                        <cite>{{ header.header_image.author }}</cite>
+                                    {{ page_header_image_ref.header.header_image.title }}
+                                    {% if page_header_image_ref.header.header_image.author %}
+                                        <cite>{{ page_header_image_ref.header.header_image.author }}</cite>
                                     {% endif %}
-                                    {% if header.header_image.link %}
+                                    {% if page_header_image_ref.header.header_image.link %}
                                 </a>
                                 {% endif %}
                             {% endif %}
