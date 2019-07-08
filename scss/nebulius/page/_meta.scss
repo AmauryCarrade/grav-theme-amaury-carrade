@@ -1,0 +1,147 @@
+aside.article-meta-mobile {
+    @include tablet {
+        display: none;
+    }
+
+    @include mobile {
+        margin: $article-padding $article-padding $article-padding / 2 $article-padding;
+        text-align: center;
+
+        font-size: 1.1em;
+        font-style: italic;
+
+        a {
+            &, &:hover {
+                color: white;
+            }
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+aside.article-meta-edit {
+    margin: 0 $article-margin;
+    margin-bottom: -1rem;
+
+    padding-top: 0.4rem;
+    padding-right: 0.2rem;
+
+    height: 1rem;
+
+    font-size: small;
+    text-align: right;
+
+    @include mobile {
+        margin: 0;
+        padding-right: 1.4rem;
+    }
+
+    a {
+        color: white;
+        opacity: .8;
+
+        .fab {
+            position: relative;
+            top: 1px;
+
+            margin-right: .2rem;
+        }
+
+        @include mobile {
+            display: inline-flex;
+            flex-direction: row;
+
+            .icon {
+                display: block;
+                align-self: center;
+
+                padding-right: 1rem;
+            }
+
+            .invite {
+                text-align: left;
+
+                span {
+                    display: block;
+                }
+            }
+        }
+    }
+}
+
+aside.article-meta-bottom {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    margin: 8rem $article-margin;
+
+    @include mobile {
+        flex-direction: column;
+        margin: 4rem 0;
+    }
+
+    .tag {
+
+        &.is-large {
+            font-weight: 300;
+        }
+
+        a {
+            color: white;
+        }
+    }
+
+    .taxonomy-category {
+        flex: 2;
+        padding-right: 26%;
+
+        text-align: left;
+
+        @include mobile {
+            padding-right: 0;
+            text-align: center;
+
+            .tags {
+                justify-content: center;
+            }
+        }
+    }
+
+    .license {
+        text-align: center;
+
+        .creative-commons-icons {
+            color: lighten($page-background-purple, 78%);
+            font-size: 2em;
+
+            @include unselectable;
+        }
+
+        @include mobile {
+            margin: 2rem 0;
+        }
+
+        &:only-child {
+            width: 100%;
+        }
+    }
+
+    .taxonomy-tags {
+        flex: 2;
+        padding-left: 26%;
+
+        text-align: right;
+
+        @include mobile {
+            padding-left: 0;
+            text-align: center;
+
+            .tags {
+                justify-content: center;
+            }
+        }
+    }
+}

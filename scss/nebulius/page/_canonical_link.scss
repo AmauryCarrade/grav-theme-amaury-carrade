@@ -1,0 +1,67 @@
+aside.explicit-canonical-link {
+    margin: 10rem auto;
+    max-width: 60%;
+
+    @include mobile {
+        max-width: 96%;
+    }
+
+    a {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        @include mobile {
+            flex-direction: column;
+        }
+
+        width: 100%;
+
+        margin: 0;
+        padding: 1rem;
+
+        border: 1px solid lighten($primary, 8%);
+        border-radius: 4px;
+
+        background-color: rgba(lighten($primary, 4%), 40%);
+
+        transition: background-color .2s ease-in-out, border-color .2s ease-in-out;
+
+        &:hover {
+            border-color: lighten($primary, 12%);
+            background-color: rgba(lighten($primary, 4%), 60%);
+        }
+
+        figure {
+            flex: 2;
+            text-align: center;
+
+            @include mobile {
+                padding: 1rem 0;
+            }
+
+            img {
+                height: 3rem;
+
+                @include mobile {
+                    height: 1.8rem;
+                }
+            }
+        }
+
+        p {
+            flex: 6;
+
+            font-family: $family-sans-serif;
+            font-weight: 300;
+            font-size: $size-4;
+
+            color: white;
+
+            @include mobile {
+                text-align: center;
+                font-size: $size-5;
+            }
+        }
+    }
+}

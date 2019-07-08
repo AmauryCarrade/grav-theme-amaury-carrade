@@ -1,0 +1,132 @@
+aside.table-of-contents {
+    float: right;
+    width: 32%;
+
+    margin: 0 2rem 1rem;
+
+    font-family: $family-sans-serif;
+
+    @include mobile {
+        float: none;
+        margin: 3rem auto;
+
+        width: 96%;
+
+        background-color: $primary;
+
+        border-radius: 8px;
+        box-shadow:
+                rgba(white, 10%) 6px 6px 12px,
+                rgba(white, 10%) -2px -2px 12px;
+
+        &.is-visible {
+            h4 .table-of-content-toggle-indicator {
+                transform: rotate(-90deg);
+            }
+
+            > ul {
+                display: block;
+            }
+        }
+    }
+
+    h4 {
+        position: relative;
+
+        margin-bottom: .4rem;
+        padding-bottom: 0;
+
+        font-size: 2em;
+        font-weight: 300;
+
+        text-align: center;
+
+        @include mobile {
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+
+        .table-of-content-toggle-indicator {
+            display: none;
+
+            @include mobile {
+                display: block;
+
+                position: absolute;
+                top: .2rem;
+                right: 1rem;
+
+                height: 1em;
+
+                font-family: $family-serif;
+                font-size: 1.3em;
+
+                text-align: center;
+                line-height: .7em;
+
+                transform: rotate(90deg);
+                transform-origin: center;
+
+                transition: transform .4s ease-in-out;
+            }
+        }
+    }
+
+    > ul {
+        counter-reset: toc-primary-level;
+
+        margin-top: 0;
+        padding-top: .4rem;
+        border-top: solid 1px lighten($primary, 56%);
+
+        @include mobile {
+            display: none;
+        }
+
+        > li {
+            margin: 0;
+            padding: 0;
+
+            > a {
+                position: relative;
+                display: block;
+
+                padding: .4rem 0 .4rem 1.4rem;
+
+                @include mobile {
+                    margin: 0 .4rem;
+                }
+
+                font-size: 1.58em;
+                font-weight: 300;
+
+                color: white;
+
+                @include mobile {
+                    font-size: 1.3em;
+                }
+
+                &:before {
+                    counter-increment: toc-primary-level;
+                    content: counter(toc-primary-level) ". ";
+
+                    position: absolute;
+                    left: 0;
+                }
+            }
+
+            &:not(:first-child) {
+                margin-top: 1rem;
+            }
+
+            ul {
+                margin-left: 1.8rem;
+
+                a {
+                    color: lighten(desaturate($primary, 32%), 70%);
+                    font-size: 1.1em;
+                }
+            }
+        }
+    }
+}

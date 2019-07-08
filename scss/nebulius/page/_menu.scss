@@ -1,0 +1,24 @@
+aside.menu {
+    margin-top: 1em;
+
+    ul.menu-list {
+        li {
+            margin-bottom: .4em;
+
+            a {
+                transition: none;
+            }
+        }
+
+        > li > a {
+            @include tablet-only {
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+            @include mobile {
+                padding: .5em 1.3em;
+                border-radius: 0;
+            }
+        }
+    }
+}

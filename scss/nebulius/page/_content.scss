@@ -1,0 +1,502 @@
+.content {
+    text-align: justify;
+    hyphens: auto;
+
+    font-size: 1.8em;
+    font-family: 'EB Garamond', 'Georgia', 'Times New Roman', Times, serif;
+    line-height: 1.6;
+
+    color: $content-text-color;
+
+    @include mobile {
+        font-size: 1.6em;
+        line-height: 1.5;
+    }
+
+    p, h1, h2, h3, h4, h5, h6, ol, ul {
+        padding-left: $article-padding;
+        padding-right: $article-padding;
+
+        @include mobile {
+            padding-left: $article-padding-mobile;
+            padding-right: $article-padding-mobile;
+        }
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        position: relative;
+
+        color: darken($content-text-color, 4%);
+        text-align: left;
+
+        a {
+            display: inline-block;
+            margin-left: .6em;
+
+            @include mobile {
+                margin-left: 0;
+            }
+
+            color: transparent;
+
+            span.icon.icon-link {
+                @include mobile {
+                    position: absolute;
+                    right: 1.2rem;
+                    top: 1.2rem;
+                }
+
+                &:before {
+                    @include fa-icon;
+                    @extend .fas;
+
+                    content: fa-content($fa-var-link);
+
+                    font-weight: 900;
+                    font-size: .6em;
+                }
+            }
+        }
+
+        &:hover a {
+            color: darken($content-text-color, 8%);
+        }
+
+        // Clears the TOC floating block.
+        &:first-of-type {
+            clear: both;
+        }
+    }
+
+    h2 {
+        position: relative;
+
+        margin-top: 6rem;
+        padding-top: .8rem;
+        padding-bottom: .8rem;
+
+        background-color: lighten($primary, 6%);
+        border-top: solid 4px lighten($primary, 21%);
+
+        font-family: $family-sans-serif;
+        font-weight: 300;
+
+        @include mobile {
+            font-size: 1.4em;
+        }
+
+        span.icon.icon-link {
+            position: absolute;
+            right: 1.8rem;
+            top: 1.8rem;
+        }
+    }
+
+    strong, em, figure, dl, dt, dd, ol, ul, li, abbr {
+        color: $content-text-color;
+    }
+
+    a {
+        color: $link;
+
+        strong, em, figure, dl, dt, dd, ol, ul, li, abbr {
+            color: $link;
+        }
+
+        &:hover {
+            color: lighten($link, 12%);
+
+            strong, em, figure, dl, dt, dd, ol, ul, li, abbr {
+                color: lighten($link, 12%);
+            }
+        }
+    }
+
+    abbr[title] {
+        cursor: help;
+    }
+
+    kbd {
+        padding: .2em .4em;
+        background-color: $page-background-dark;
+        border: solid 1px lighten($page-background-dark, 12%);
+        border-radius: 5px;
+        font-size: .8em;
+    }
+
+    mark {
+        padding: .1em;
+    }
+
+    hr {
+        height: 1px;
+        margin: 2em 0;
+
+        background-color: lighten($page-background-purple, 80%);
+    }
+
+    ul li {
+        list-style-type: none;
+        position: relative;
+
+        &:before {
+            position: absolute;
+            left: -1.2em;
+            top: -.1em;
+
+            content: "–";
+
+            color: darken($content-text-color, 4%);
+        }
+
+        ol, ul {
+            margin-top: .2em;
+        }
+
+        p {
+            padding: 0;
+            margin: 0;
+        }
+    }
+
+    > ol, > ol ol {
+        counter-reset: ol-item;
+
+        li {
+            display: block;
+            position: relative;
+
+            &:before {
+                counter-increment: ol-item;
+
+                position: absolute;
+                left: -1.4em;
+
+                content: counter(ol-item) ". ";
+
+                color: darken($content-text-color, 4%);
+            }
+
+            ol, ul {
+                margin-top: .2em;
+            }
+
+            p {
+                padding: 0;
+                margin: 0;
+
+                &:first-child {
+                    display: inline-block;
+                }
+                &:not(:first-child) {
+                    padding-left: 1.25em;
+                }
+                &:not(:last-child) {
+                    margin-bottom: .2em;
+                }
+            }
+        }
+    }
+
+    > ol ol {
+        margin-left: .4em;
+    }
+
+    .video-wrapper {
+        position: relative;
+        padding-bottom: 54.46%; /* 16:9 */
+        padding-top: 25px;
+        height: 0;
+
+        iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    figure {
+        margin-left: 0;
+        margin-right: 0;
+
+        text-align: center;
+
+        figcaption {
+            margin-top: 0;
+            padding: .5em $article-padding;
+
+            background-color: $page-background-dark;
+
+            font-size: .88em;
+
+            @include mobile {
+                padding: .5em $article-padding-mobile;
+            }
+        }
+
+        // Fixes a gap between images and caption
+        > img {
+            position: relative;
+            top: 0.46em;
+        }
+
+        .hljs-code-div {
+            margin: 0;
+
+            pre {
+                margin: 0;
+
+                .hljs {
+                    padding-bottom: .5em;
+                }
+            }
+
+            & + figcaption {
+                padding-top: 0;
+                padding-bottom: 1em;
+            }
+        }
+
+        blockquote {
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        span.inlineMath.inlineMathDouble + figcaption {
+            background-color: transparent;
+        }
+
+        .table-wrapper {
+            table {
+                margin-bottom: 0;
+
+                tbody:last-child tr:last-child td {
+                    border-bottom-width: 2px;
+                }
+            }
+
+            & + figcaption {
+                background-color: darken($page-background-purple, 6%);
+            }
+        }
+    }
+
+    blockquote {
+        position: relative;
+
+        padding: 1em $article-padding + 1rem 1em $article-padding + 2rem;
+
+        background: transparent;
+        border: none;
+
+        font-size: 1em;
+
+        text-align: left;
+
+        @include mobile {
+            padding: 1em $article-padding-mobile / 2 1em $article-padding-mobile + 2.8rem;
+        }
+
+        p:only-child {
+            font-size: 1.2em;
+        }
+
+        &:before {
+            position: absolute;
+            top: -1.23em;
+            left: 0.26em;
+            content: "“";
+            padding-top: 1em;
+            font-size: 4.6em;
+        }
+
+        & + figcaption {
+            position: relative;
+            padding-left: calc(#{$article-padding} + 4.4em);
+
+            background-color: transparent;
+
+            text-align: left;
+            font-size: .9em;
+
+            @include mobile {
+                padding-left: calc(#{$article-padding-mobile} + 4.4em);
+            }
+
+            &:before {
+                content: "—";
+                position: absolute;
+                left: calc(#{$article-padding} + 3.3em);
+                top: .42em;
+
+                @include mobile {
+                    left: calc(#{$article-padding-mobile} + 3.3em);
+                }
+            }
+        }
+    }
+
+    pre, .hljs-code-div {
+        margin: 1em 0;
+        padding: 0;
+
+        background-color: $page-background-dark;
+
+        text-align: left;
+
+        code {
+            padding: 1em $article-padding;
+            background-color: $page-background-dark;
+
+            font-size: .88em;
+            text-align: left;
+
+            @include mobile {
+                padding: 1em $article-padding-mobile;
+            }
+        }
+
+        .hljs-line-numbers {
+            float: left;
+            position: relative;
+
+            top: 0.95em;
+
+            padding-left: 1em;
+
+            counter-reset: code-line-numbers;
+
+            span:before {
+                counter-increment: code-line-numbers;
+                content: counter(code-line-numbers);
+
+                display: block;
+                height: 2.048em;
+
+                font-size: .6em;
+                font-family: $family-monospace;
+                text-align: right;
+                color: desaturate(darken($content-text-color, 40%), 26%);
+            }
+        }
+    }
+
+    code {
+        background-color: $page-background-dark;
+        color: $content-text-color;
+        font-size: .8em;
+    }
+
+    table {
+        background-color: $page-background-purple;
+        margin-bottom: 1.25em;
+
+        thead, tfoot {
+            background-color: darken($page-background-purple, 6%);
+
+            th {
+                border-bottom: solid 2px lighten($page-background-purple, 12%);
+                color: darken($content-text-color, 4%);
+                font-variant: all-small-caps;
+                letter-spacing: .06em;
+            }
+        }
+
+        tfoot th {
+            border-bottom: none;
+            border-top: solid 2px lighten($page-background-purple, 12%);
+        }
+
+        tbody {
+            td {
+                padding: 15px;
+                font-size: .96em;
+                border-bottom: solid 1px lighten($page-background-purple, 12%);
+            }
+        }
+    }
+
+    .katex-html {
+        display: none;
+    }
+
+    div.math {
+        padding-left: $article-padding;
+        padding-right: $article-padding;
+        text-align: center;
+        margin-bottom: 1em;
+    }
+
+    .inlineMath.inlineMathDouble {
+        display: block;
+        text-align: center;
+    }
+
+    .notices {
+        background-color: $page-background-purple;
+        padding: .6em 0;
+
+        p {
+            padding-left: calc(#{$article-padding} - 10px);
+
+            @include mobile {
+                padding-left: calc(#{$article-padding-mobile} - 10px);
+            }
+        }
+
+        &.red {
+            color: #dd625e;
+        }
+        &.green {
+            color: #44b144;
+        }
+    }
+
+    .footnote-ref {
+        // Ensures the footnotes numbers are always in a normal font weight & variant, even
+        // when the note is in a bold or italic block.
+        font-weight: normal !important;
+        font-variant: normal !important;
+        font-style: normal !important;
+    }
+
+    .footnotes {
+        font-size: .8em;
+
+        hr {
+            width: 60%;
+            margin-bottom: 0;
+        }
+
+        ol {
+            margin-top: .6em;
+
+            li {
+                position: relative;
+
+                &:hover {
+                    .footnote-backref {
+                        color: $link;
+                    }
+                }
+
+                p {
+                    padding-right: 2em;
+                }
+
+                .footnote-backref {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+
+                    display: inline-block;
+                    padding: 3px .4em 6px .8em;
+
+                    color: darken($link, 32%);
+                }
+            }
+        }
+    }
+}

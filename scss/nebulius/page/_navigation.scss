@@ -1,0 +1,35 @@
+nav.article-navigation {
+    margin: 0 32% $article-padding / 2;
+
+    @include mobile {
+        margin: 0 $article-padding $article-padding / 2;
+    }
+
+    .columns {
+        font-size: 2.4em;
+        font-family: 'EB Garamond', 'Georgia', 'Times New Roman', Times, serif;
+
+        .column {
+            padding-top: .1em;
+            text-align: center;
+
+            &:first-child {
+                text-align: left;
+            }
+            &:last-child {
+                text-align: right;
+            }
+
+            a {
+                display: block;
+                width: 100%;
+                color: white;
+
+                &.is-disabled {
+                    color: desaturate(lighten($page-background-dark, 50%), 60);
+                    cursor: default;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,136 @@
+footer.comments-section {
+    margin: 2rem $article-margin 0;
+    padding: 1em 0 0 0;
+
+    border-radius: 8px;
+
+    background: rgba($page-background-dark, .4);
+
+    color: $content-text-color;
+
+    @include mobile {
+        margin: 0;
+        border-radius: 0;
+    }
+
+    @include tablet-only {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    @include blur-background;
+
+    h2 {
+        padding: 0 $article-padding .4em $article-padding;
+        border-bottom: solid 1px $timeline-color;
+        font-size: 1.6em;
+        font-weight: 300;
+
+        @include mobile {
+            padding: 0 $article-padding-mobile .4em $article-padding-mobile;
+        }
+    }
+
+    .comments-section-content {
+        padding: 0 $article-padding 0 $article-padding / 2;
+
+        @include mobile {
+            padding: 0 $article-padding-mobile 0 $article-padding-mobile / 2;
+        }
+
+        .timeline-item {
+            padding-bottom: 1em;
+
+            .timeline-marker.is-icon {
+                height: 32px;
+                width: 32px;
+                left: -16px;
+                cursor: default;
+            }
+
+            .timeline-content {
+                position: relative;
+                top: 7px;
+
+                width: 100%;
+
+                h3.heading {
+                    font-size: .9em;
+                    font-weight: 400;
+                    cursor: default;
+
+                    &.comments-disabled {
+                        padding-bottom: .6em;
+                    }
+                }
+
+                div.content {
+                    margin-bottom: .4em;
+
+                    p {
+                        margin-bottom: .4em;
+                    }
+
+                    strong, em, figure, dl, dt, dd, ol, ul, li, abbr  {
+                        color: inherit;
+                    }
+                }
+
+                cite.comment-date {
+                    display: block;
+                    font-weight: 300;
+                    font-style: normal;
+                    cursor: default;
+                }
+            }
+
+            &.new-comment {
+                .label {
+                    display: none;
+                }
+
+                textarea {
+                    width: 100%;
+                    height: 6rem;
+
+                    padding: .4rem;
+                    border-style: solid;
+                    border-radius: $radius;
+                }
+
+                @include tablet {
+                    .field-name, .field-email {
+                        width: 49%;
+                    }
+                    .field-name {
+                        float: left;
+                    }
+                    .field-email {
+                        float: right;
+                    }
+
+                    // Fixes text field overlapping previous ones with the float trick
+                    .field-text {
+                        position: relative;
+                        top: 2.8em;
+
+                        textarea {
+                            position: relative;
+                            top: -2.8em;
+                        }
+                    }
+
+                    .field > .help {
+                        padding-top: 0.5em;
+                    }
+                }
+
+                @include mobile {
+                    .field > .help {
+                        margin-top: 0;
+                    }
+                }
+            }
+        }
+    }
+}
