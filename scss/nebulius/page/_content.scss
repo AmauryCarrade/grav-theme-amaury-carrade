@@ -129,10 +129,36 @@
     }
 
     hr {
-        height: 1px;
-        margin: 2em 0;
+        position: relative;
 
-        background-color: lighten($page-background-purple, 80%);
+        height: 8px;
+        width: 8px;
+        margin: 6rem auto;
+
+        &, &:before, &:after {
+            background-color: lighten($page-background-purple, 80%);
+            border-radius: 4269px;
+        }
+
+        &:before, &:after {
+            content: ' ';
+
+            position: absolute;
+            top: 2px;
+
+            display: block;
+
+            height: 4px;
+            width: 4px;
+        }
+
+        &:before {
+            left: 4rem;
+        }
+
+        &:after {
+            right: 4rem;
+        }
     }
 
     ul li {
@@ -467,7 +493,12 @@
 
         hr {
             width: 60%;
+            height: 1px;
+
+            margin: initial;
             margin-bottom: 0;
+
+            border-radius: 0;
         }
 
         ol {
