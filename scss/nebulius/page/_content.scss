@@ -444,8 +444,13 @@
         }
     }
 
-    .katex-mathml {
-        display: none;
+    .katex {
+        // KaTeX's default size of 1.21em is huge with our font size.
+        font-size: 1em;
+
+        .katex-mathml {
+            display: none;
+        }
     }
 
     div.math {
