@@ -12,6 +12,9 @@ bugs: https://github.com/Nebulius/GravTemplate/issues
 readme: https://github.com/Nebulius/GravTemplate
 license: CeCILL-B
 
+dependencies:
+  - { name: grav, version: '>=1.5.10' }
+
 form:
   validation: loose
   fields:

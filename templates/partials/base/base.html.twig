@@ -46,17 +46,15 @@
         {% do assets.addCss('theme://css-compiled/katex.min.css', 98) %}
     {% endblock %}
 
-    {{ assets.css() }}
-
     {% do assets.addJs('jquery', 100, true, null, 'head') %}
     {% do assets.addJs('theme://js/shooting-star.js', 64, true, null, 'last') %}
 
     {% block javascripts %}{% endblock %}
 
-    {# The default JS assets are at the top because some extensions require their JS to be at the top #}
-    {# even if it is recommanded to have the JS at the bottom of the page because they load synchronously. #}
-    {# Our JS assets are loaded at the bottom explicitely. #}
-    {{ assets.js() }}
+    {% block assets deferred %}
+        {{ assets.css()|raw }}
+        {{ assets.js()|raw }}
+    {% endblock %}
 
 {% endblock head %}
 </head>
@@ -67,9 +65,9 @@
     </div>
 
     {% block bottom %}
-        {{ assets.js('bottom') }}
+        {{ assets.js('bottom')|raw }}
 
-        {{ super() }}
+        {{ super() }}
 
         {{ assets.js('last') }}
     {% endblock %}
