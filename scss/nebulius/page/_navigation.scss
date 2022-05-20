@@ -1,8 +1,8 @@
 nav.article-navigation {
-    margin: 0 32% $article-padding / 2;
+    margin: 0 32% $article-padding * 0.5;
 
     @include mobile {
-        margin: 0 $article-padding $article-padding / 2;
+        margin: 0 $article-padding $article-padding * 0.5;
     }
 
     .columns {

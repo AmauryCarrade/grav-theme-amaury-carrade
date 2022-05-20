@@ -32,10 +32,10 @@ footer.comments-section {
     }
 
     .comments-section-content {
-        padding: 0 $article-padding 0 $article-padding / 2;
+        padding: 0 $article-padding 0 $article-padding * 0.5;
 
         @include mobile {
-            padding: 0 $article-padding-mobile 0 $article-padding-mobile / 2;
+            padding: 0 $article-padding-mobile 0 $article-padding-mobile * 0.5;
         }
 
         .timeline-item {

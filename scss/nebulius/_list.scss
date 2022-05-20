@@ -1,3 +1,5 @@
+@use "sass:math";
+
 main {
     // The same styles are used for both static pages & lists,
     // so we include them here even if we are in the “list.scss” file.
@@ -214,10 +216,10 @@ main {
 
             .tag {
                 &.is-very-small {
-                    font-size: $size-7 / 2;
+                    font-size: $size-7 * 0.5;
                 }
                 &.is-small {
-                    font-size: $size-7 / 1.5;
+                    font-size: math.div($size-7, 1.5);
                 }
                 &.is-medium {
                     font-size: $size-7;

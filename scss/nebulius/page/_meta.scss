@@ -4,7 +4,7 @@ aside.article-meta-mobile {
     }
 
     @include mobile {
-        margin: $article-padding $article-padding $article-padding / 2 $article-padding;
+        margin: $article-padding $article-padding $article-padding * 0.5 $article-padding;
         text-align: center;
 
         font-size: 1.1em;

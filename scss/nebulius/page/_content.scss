@@ -322,7 +322,7 @@
         text-align: left;
 
         @include mobile {
-            padding: 1em $article-padding-mobile / 2 1em $article-padding-mobile + 2.8rem;
+            padding: 1em $article-padding-mobile * 0.5 1em $article-padding-mobile + 2.8rem;
         }
 
         p:only-child {
