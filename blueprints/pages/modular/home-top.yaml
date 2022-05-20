@@ -10,6 +10,8 @@ form:
           fields:
             metadata_columns:
               unset@: true
+            header.abstract:
+              unset@: true
 
             home_associations_section:
               type: section
