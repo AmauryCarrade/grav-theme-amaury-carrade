@@ -1,0 +1,34 @@
+<section class="hero is-fullheight-with-navbar">
+    <article class="hero-body">
+        <div class="container">
+            <h1>{{ page.title }}</h1>
+            <p>{{ page.content }}</p>
+            <ul class="associations">
+                {% for asso in header.associations %}
+                    <li>
+                        <figure{% if asso.icon_background %} style="background-color: {{ asso.icon_background }}"{% endif %}>
+                            <a href="{{ asso.link }}">
+                                <img src="{{ page.media[asso.icon].url }}" alt="{{ asso.name }}" />
+                            </a>
+                        </figure>
+                        <p><a href="{{ asso.link }}">{{ asso.title|raw }}</a></p>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </article>
+    <footer class="hero-foot">
+        <div class="container">
+            {% for bottom_links_group in header.home_bottom_links %}
+                <div class="bottom-links-group">
+                    <h2>{{ bottom_links_group.title }}</h2>
+                    <ul class="pointy-links is-large">
+                        {% for link in bottom_links_group.links %}
+                            <li><a href="{{ link.type == "link" ? link.link : link.page }}">{{ link.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endfor %}
+        </div>
+    </footer>
+</section>

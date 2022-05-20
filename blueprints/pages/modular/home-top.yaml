@@ -1,0 +1,120 @@
+'@extends':
+  type: default
+  context: blueprints://pages
+
+form:
+  fields:
+    tabs:
+      fields:
+        content:
+          fields:
+            metadata_columns:
+              unset@: true
+
+            home_associations_section:
+              type: section
+              title: Associations et collectifs
+              underline: true
+              fields:
+                header.associations:
+                  type: list
+                  label: Associations et collectifs
+                  help: |
+                    Les associations et collectifs affichés sur la page d'accueil, sous le titre et le paragraphe
+                    d'introduction.
+                  collapsed: true
+                  btnLabel: Ajouter un collectif ou une association
+                  fields:
+                    .name:
+                      type: text
+                      label: Nom de l'association ou du collectif
+                      help: |
+                        Utilisé comme texte alternatif pour l'icône.
+                      validate:
+                        required: true
+                    .title:
+                      type: text
+                      label: Texte à afficher
+                      help: |
+                        Par exemple « Membre du <strong>collectif</strong> ».
+                      validate:
+                        required: true
+                    .link:
+                      type: url
+                      label: Lien
+                      validate:
+                        required: true
+                    .icon:
+                      type: filepicker
+                      folder: 'self@'
+                      preview_images: true
+                      label: Icône
+                      help: |
+                        Icône du collectif ou de l'association. Envoyez-là au préalable au dessus, dans la zone médias.
+                      validate:
+                        required: true
+                    .icon_background:
+                      type: colorpicker
+                      label: Fond de l'icône
+                      help: |
+                        Si elle est transparente, couleur de fond de l'icône (affichée dans un cercle de cette couleur).
+                        Laisser vide pour garder un fond transparent.
+
+            home_bottom_links_section:
+              type: section
+              title: Liens en bas de l'écran
+              underline: true
+              fields:
+                header.home_bottom_links:
+                  type: list
+                  style: vertical
+                  label: Ensembles de liens en bas de page
+                  help: |
+                    Ensemble de liens affichés en bas de la page. Ils seront affichés groupés, dans l'ordre, de gauche
+                    à droite. Le thème est optimisé pour deux ensembles de liens.
+                  btnLabel: Ajouter un ensemble de liens
+                  fields:
+                    .title:
+                      type: text
+                      label: Titre des liens
+                      validate:
+                        required: true
+                    .links:
+                      type: list
+                      label: Liens
+                      collapsed: true
+                      btnLabel: Ajouter un lien
+                      fields:
+                        .title:
+                          type: text
+                          label: Titre du lien
+                          validate:
+                            required: true
+                        .type:
+                          type: toggle
+                          label: Type de lien
+                          help: |
+                            Les menus de l'accueil peuvent être ou bien de classiques liens vers une ressource arbitraire,
+                            ou des pages.
+                          default: link
+                          highlight: link
+                          options:
+                            link: Lien arbitraire
+                            pages: Page
+                          validate:
+                            required: true
+                        .link:
+                          type: text
+                          label: Lien
+                          help: |
+                            Le lien vers lequel ce menu pointe (absolu, relatif, ou ancre, ou même courriel ou autres,
+                            tout est possible), si l'option « page » est sélectionnée.
+                        .page:
+                          type: pages
+                          classes: fancy
+                          label: Page
+                          show_all: true
+                          show_modular: false
+                          show_root: false
+                          help: |
+                            La page vers laquelle ce menu pointe, si l'option « lien arbitraire » est sélectionnée.

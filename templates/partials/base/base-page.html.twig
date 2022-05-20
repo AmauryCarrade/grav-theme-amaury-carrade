@@ -10,9 +10,15 @@
     {% do assets.addJs('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML', 200, false, 'async', 'last') %}
 
     <nav class="navbar top-navbar is-transparent" role="navigation" aria-label="main navigation">
-        <div class="container">
+        <div class="container is-fluid">
             <div class="navbar-brand">
-                <div class="navbar-item site-name" href="/">
+                <div class="navbar-item site-name">
+                    <figure>
+                        <a href="/">
+                            <img src="/{{ (theme_config.header.image|first).path }}" alt="{{ config.site.title }}" aria-hidden="true" />
+                        </a>
+                    </figure>
+
                     <a href="/">{{ theme_config.header.title ?: config.site.title }}</a>
                     <aside>{% block section_title %}<a href="{{ top_section_page.url }}">{{ top_section_page.header.menu ?: top_section_page.header.title }}</a>{% endblock %}</aside>
                 </div>
@@ -27,17 +33,23 @@
                 <div class="navbar-start"></div>
 
                 <div class="navbar-end">
-                    {% for menu_item in pages.children.visible.routable.published %}
-                        <a href="{{ menu_item.url }}" class="navbar-item{% if page.url|starts_with(menu_item.route) %} is-active{% endif %}">
-                            {{ menu_item.title }}
-                        </a>
-                    {% endfor %}
-
-                    {% if config.plugins.tntsearch.enabled %}
-                        <a class="navbar-item search-nav" href="{{ config.plugins.tntsearch.search_route }}" title="Rechercher sur le site…">
-                            <span class="fas fa-search"></span>
-                            <span class="sr-only">Rechercher</span>
-                        </a>
+                    {% if theme_config.social %}
+                        <div class="navbar-item social-links">
+                            <ul>
+                                {% for social in theme_config.social %}
+                                    <li>
+                                        <a href="{{ social.link }}" rel="me" title="{{ social.title }}" aria-label="{{ social.title }}">
+                                            <span class="icon">
+                                                <span class="{{ social.icon_type }} {{ social.icon }}"></span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
+                    {% if theme_config.email %}
+                        <a href="mailto:{{ theme_config.email|safe_email }}" class="navbar-item email">{{ theme_config.email|safe_email }}</a>
                     {% endif %}
                 </div>
             </div>
@@ -46,7 +58,7 @@
 
     {% block content %}{% endblock %}
 
-    {% include 'partials/menu-footer.html.twig' %}
+    {% include 'partials/footer.html.twig' %}
 {% endblock %}
 
 {% block javascripts %}

@@ -23,7 +23,7 @@ form:
                   show_all: true
                   show_modular: false
                   show_root: false
-                  help: Page “à propos” qui sera affichée sur la page d'accueil en regard du logo.
+                  help: Page “à propos” qui sera affichée sur la page d'accueil en regard du logo.
                 header.homepage.about.invite:
                   type: text
                   toggleable: true

@@ -118,8 +118,8 @@
 
     kbd {
         padding: .2em .4em;
-        background-color: $page-background-dark;
-        border: solid 1px lighten($page-background-dark, 12%);
+        background-color: $page-background;
+        border: solid 1px lighten($page-background, 12%);
         border-radius: 5px;
         font-size: .8em;
     }
@@ -253,7 +253,7 @@
             margin-top: 0;
             padding: .5em $article-padding;
 
-            background-color: $page-background-dark;
+            background-color: $page-background;
 
             font-size: .88em;
 
@@ -368,13 +368,13 @@
         margin: 1em 0;
         padding: 0;
 
-        background-color: $page-background-dark;
+        background-color: $page-background;
 
         text-align: left;
 
         code {
             padding: 1em $article-padding;
-            background-color: $page-background-dark;
+            background-color: $page-background;
 
             font-size: .88em;
             text-align: left;
@@ -410,7 +410,7 @@
     }
 
     code {
-        background-color: $page-background-dark;
+        background-color: $page-background;
         color: $content-text-color;
         font-size: .8em;
     }

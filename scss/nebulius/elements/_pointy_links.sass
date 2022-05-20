@@ -1,0 +1,33 @@
+
+
+ul.pointy-links
+  display: flex
+  flex-direction: row
+  align-items: baseline
+
+  --angle-size: .8em
+
+  li
+    position: relative
+    padding-right: calc(var(--angle-size) * 2)
+
+    &:not(:last-child)
+      margin-right: 1.8rem
+
+    &:after
+      content: ' '
+
+      position: absolute
+      right: .4em
+      top: calc(.5em - var(--angle-size) / 10)
+
+      width: var(--angle-size)
+      height: var(--angle-size)
+
+      transform: rotate(45deg)
+
+      border-top: solid 1px currentColor
+      border-right: solid 1px currentColor
+
+  &.is-large
+    --angle-size: .6em

@@ -1,66 +1,17 @@
 html {
     background-color: $page-background-purple;
+    min-height: 100%;
 }
 
 body {
     scroll-behavior: smooth;
+    min-height: 100%;
 
-    width: 100%;
-
-    overflow-x: hidden;
-
-    background:
-        url('../images/stars.svg') top center repeat,
-        linear-gradient(to bottom, $page-background-dark 0%, #1b1424 32%, $page-background-purple 100%),
-        $page-background-purple;
-
-    background-size: contain;
-
-    .body-background-container {
-        width: 100%;
-        min-height: 100vh;
-        margin: 0;
-        padding: 0;
-
-        background:
-            url('../images/background-bottom.png') bottom center no-repeat,
-            url("../images/background-bottom-low.png") bottom / contain no-repeat;
-    }
-
-    &::after {
-        content: "";
-
-        display: block;
-        position: absolute;
-        top: 2em;
-        right: 4em;
-
-        width: 0;
-        height: 30em;
-
-        background: url('../images/stars-shooting-star.svg') no-repeat;
-        background-size: contain;
-
-        transition: none;
-
-        z-index: 0;
-    }
-
-    &.static-shooting-star::after {
-        width: 10em;
-        opacity: 1;
-    }
-
-    &.animated-shooting-star::after {
-        width: 28em;
-        opacity: 0;
-
-        transition: width .8s, opacity .8s;
-    }
+    background: linear-gradient(180deg, var(--yellow-000) 0%, var(--yellow-000) 50%, var(--gray-000) 100%);
 }
 
 header.page-header {
-    color: white;
+    color: var(--yellow-900);
     padding-top: 0;
 
     h1 {
@@ -155,15 +106,16 @@ nav.page-nav {
 }
 
 nav.navbar.top-navbar {
+    margin-top: $navbar-margin-top;
     background: transparent;
-    color: white;
+    color: var(--yellow-900);
 
     @include touch {
         .navbar-brand {
             align-items: center;
 
             .navbar-burger {
-                color: white;
+                color: var(--yellow-900);
             }
         }
 
@@ -171,10 +123,8 @@ nav.navbar.top-navbar {
             border-top: 1px solid white;
             border-bottom: 1px solid white;
 
-            @include blur-background;
-
             &, .navbar-item:hover, .navbar-item.is-active {
-                background: rgba($page-background-dark, .4);
+                background: rgba($page-background, .4);
                 text-align: center;
             }
         }
@@ -183,12 +133,9 @@ nav.navbar.top-navbar {
     .navbar-item {
         font-size: 1.2em;
         font-weight: 300;
-        color: white;
 
-        padding: inherit 1em;
-
-        a {
-            color: white;
+        &, a {
+            color: var(--yellow-900);
         }
 
         &.is-active {
@@ -197,25 +144,94 @@ nav.navbar.top-navbar {
     }
 
     div.site-name.navbar-item {
-        font-size: 1.8em;
-        font-family: 'Charlevoix', sans-serif;
+        display: flex;
+        align-items: center;
+
+        font-size: 1.6em;
+        font-family: 'Fira Sans', sans-serif;
         font-weight: 200;
 
         text-align: center;
-        text-shadow: 0 0 2px black;
+
+        &, a {
+            color: var(--yellow-900);
+        }
 
         span {
-            font-weight: bold;
+            font-weight: 600;
+        }
+
+        figure {
+            margin-right: .6em;
+            width: $navbar-avatar-size;
+            height: $navbar-avatar-size;
+
+            a, img {
+                display: inline-block;
+                width: 100%;
+                height: 100%;
+                border-radius: 4269px;
+                max-height: unset;
+            }
         }
 
         aside {
             display: inline-block;
-            border-left: 1px solid white;
+            border-left: 1px solid var(--yellow-700);
             padding-left: .6em;
             margin-left: .6em;
 
             @include mobile {
                 text-align: left;
+            }
+        }
+    }
+
+    div.navbar-end {
+        .navbar-item {
+            &:not(:first-child) {
+                position: relative;
+                margin-left: calc(.75rem * 2 + 8px);
+
+                &:before {
+                    position: absolute;
+                    left: calc(-.75rem * 2/3 - 4px);
+
+                    display: block;
+                    content: ' ';
+
+                    width: 6px;
+                    height: 6px;
+                    border-radius: 4269px;
+
+                    background: var(--yellow-700);
+                }
+            }
+
+            &.social-links ul {
+                display: flex;
+                flex-direction: row;
+
+                li {
+                    &:not(:first-child) {
+                        margin-left: 1.2rem;
+                    }
+
+                    a {
+                        font-size: 1.4rem;
+                        color: var(--yellow-700);
+
+                        &:hover {
+                            color: var(--yellow-800);
+                        }
+                    }
+                }
+            }
+
+            &.email {
+                font-size: 1.2rem;
+                font-family: $family-monospace;
+                color: var(--yellow-900);
             }
         }
     }
@@ -251,123 +267,117 @@ aside.earth-footer {
 }
 
 footer.page-footer {
+    padding-top: 2rem;
+    background: radial-gradient(100% 100% at 50% 100%, var(--yellow-900) 99.99%, rgba(141, 43, 11, 0) 100%);
 
-    nav.navbar {
-        background-color: transparent;
+    &, a {
+        color: var(--yellow-000);
+    }
 
-        @include touch {
+    nav.footer-main {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        margin: 6rem 0 3rem 0;
+
+        .footer-item {
+            &:last-child {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+            }
+
+            h3 {
+                margin-bottom: .4rem;
+
+                font-family: $family-sans-serif;
+                font-weight: 400;
+                font-size: 1.6rem;
+            }
+
+            p {
+                &, button.copy {
+                    font-size: 1.3rem;
+                }
+
+                a.email {
+                    font-family: $family-monospace;
+                }
+
+            }
+
+            ul {
+                font-family: $family-sans-serif;
+                font-weight: 300;
+                font-size: 1.2rem;
+            }
+        }
+    }
+
+    nav.footer-footer {
+        padding-bottom: .6rem;
+
+        font-family: $family-sans-serif;
+        font-weight: 300;
+        font-size: 1.1rem;
+
+        .column:nth-child(2) {
+            text-align: center;
+        }
+
+        .column:last-child {
+            text-align: right;
+        }
+
+        .column ul {
             display: flex;
-            flex-direction: column-reverse;
-            align-items: center;
+            flex-direction: row;
+            align-items: baseline;
 
-            .navbar-end {
-                width: 100%;
-                text-align: center;
+            li {
+                &:not(:first-child) {
+                    position: relative;
+                    padding-left: .75rem;
+                    margin-left: calc(.75rem * 2 + 8px);
 
-                margin-bottom: .6rem;
+                    &:before {
+                        position: absolute;
+                        left: calc(-.75rem * 2/3 - 4px);
+                        top: calc(.5em + 2px);
 
-                a.navbar-item {
-                    padding: .8rem 0;
-                    border-bottom: none;
+                        display: block;
+                        content: ' ';
 
-                    &:hover, &.is-active {
-                        background-color: transparent;
+                        width: 6px;
+                        height: 6px;
+                        border-radius: 4269px;
+
+                        background: var(--yellow-100);
+                    }
+
+                    &.has-no-dot-separator {
+                        // nth-child(an+b of selector) only works on Safari as of now (may '22),
+                        // but this fallbacks to no bigger margin before the first non-dotted
+                        // element and that's okay.
+                        &:not(:nth-child(1 of .has-no-dot-separator)) {
+                            margin-left: 0;
+                        }
+
+                        &:before {
+                            display: none;
+                        }
                     }
                 }
             }
         }
-    }
 
-    a.navbar-item, a.navbar-link {
-        padding: 0 1.4em;
-        border-bottom: 1px solid transparent;
-
-        font-size: 1.2em;
-        font-variant: all-small-caps;
-        letter-spacing: 4px;
-
-        color: white;
-
-        &.is-active, &:hover {
-            border-bottom-color: white;
+        .column.is-license {
+            font-size: 1.6rem;
+            user-select: none;
         }
     }
-
-    .navbar-item.has-dropdown {
-        a.navbar-link::after {
-            display: none;
-        }
-        a.navbar-item {
-            font-variant: normal;
-            letter-spacing: 0;
-            font-size: 1.2em;
-            margin-left: 0.92em;
-            padding: .4em 1em .4em .6em;
-            border-bottom: none;
-
-            .icon {
-                margin-right: .4em;
-                position: relative;
-                top: 2px;
-            }
-
-            &:hover {
-                color: white;
-            }
-        }
-        .navbar-dropdown {
-            background-color: transparent;
-            box-shadow: none;
-            border-bottom: none;
-
-            @include touch {
-                display: none;
-            }
-        }
-    }
-
-    @include touch {
-        div.navbar-item {
-            a.navbar-link {
-                width: 100%;
-                height: 100%;
-                padding: 1.4em;
-                background: transparent;
-            }
-        }
-    }
-
-    &:before {
-        $footer-earth-size-small-radius: $footer-earth-size-small/2;
-
-        content: "";
-        position: absolute;
-
-        left: calc(50% - 30px); // TODO use variable above
-
-        @include touch {
-            display: none;
-        }
-
-        width: $footer-earth-size-small;
-        height: $footer-earth-size-small;
-
-        background: url('../images/earth.svg') center center no-repeat;
-
-        transition: transform .4s ease-in-out;
-    }
-
-    &:hover {
-        &:before {
-            transform: rotate(360deg);
-        }
-    }
-}
-
-body:not(.frontpage) footer.page-footer {
-    position: relative;
-    bottom: 0;
-    width: 100%;
 }
 
 a {

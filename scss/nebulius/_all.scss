@@ -1,7 +1,10 @@
+@import "css-variables";
 @import "mixins";
 @import "layout";
-@import "custom_blocks";
-@import "frontpage";
+@import "elements/copy";
+@import "elements/pointy_links";
+@import "elements/custom_blocks";
+@import "home/all";
 @import "list";
 @import "page";
 @import "search";

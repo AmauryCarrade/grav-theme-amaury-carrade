@@ -134,3 +134,7 @@ fabric.properties
 ### Symfony Patch ###
 /web/css/
 /web/js/
+
+### Grav & custom ###
+
+user-assets/

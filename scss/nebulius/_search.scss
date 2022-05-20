@@ -71,7 +71,7 @@ main.page-main-search {
 
             border-radius: 8px;
 
-            background: rgba($page-background-dark, .4);
+            background: rgba($page-background, .4);
 
             transition: background .2s ease-in-out;
 
@@ -82,7 +82,7 @@ main.page-main-search {
             }
 
             &:hover {
-                background: rgba($page-background-dark, .6);
+                background: rgba($page-background, .6);
             }
 
             a {

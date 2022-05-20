@@ -9,7 +9,7 @@
 
         header {
             height: auto;
-            background: rgba($page-background-dark, .4);
+            background: rgba($page-background, .4);
 
             @include blur-background;
         }

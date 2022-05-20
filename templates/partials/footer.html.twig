@@ -1,0 +1,142 @@
+<footer class="page-footer">
+    <div class="container">
+        <nav class="footer-main">
+            <div class="footer-item">
+                {% if theme_config.email %}
+                    <h3>Un projet lié à ce que je fais ?</h3>
+                    <p>
+                        <a href="mailto:{{ theme_config.email|safe_email }}" class="email">{{ theme_config.email|safe_email }}</a>
+                        <button class="copy" data-copy="{{ theme_config.email|safe_email }}" title="Copier l'adresse de courriel dans le presse-papier">
+                            <span class="icon is-small">
+                              <i class="far fa-clipboard"></i>
+                            </span>
+                        </button>
+                    </p>
+                {% endif %}
+            </div>
+            <div class="footer-item">
+                {% if theme_config.donations %}
+                    <h3>Vous voulez me soutenir ?</h3>
+                    <ul class="pointy-links is-small">
+                        {% for donation in theme_config.donations %}
+                            <li><a href="{{ donation.link }}">{{ donation.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        </nav>
+
+        <nav class="footer-footer columns">
+            <div class="column is-5">
+                <ul>
+                    <li>{{ config.site.title }}</li>
+
+                    {% for page_path in theme_config.footer.pages %}
+                        {% set footer_page = grav.pages.find(page_path) %}
+                        <li><a href="{{ page_path }}">{{ (footer_page.header.menu_footer ?? footer_page.header.menu ?? footer_page.header.title)|raw }}</a></li>
+                    {% endfor %}
+
+                    {% if config.plugins.tntsearch.enabled %}
+                        <li class="has-no-dot-separator">
+                            <a href="{{ config.plugins.tntsearch.search_route }}" title="Rechercher sur le site…">
+                                <span class="icon">
+                                    <span class="fas fa-search"></span>
+                                </span>
+                            </a>
+                        </li>
+                    {% endif %}
+
+                    {% if config.plugins.feed.enabled %}
+                        {% for page in grav.pages.find('/').parent.children.visible.published.routable if page.template == 'blog' %}
+                            <li class="has-no-dot-separator">
+                                <a href="{{ page.url(true) }}.atom" aria-label="Flux Atom de la section {{ page.header.title }}">
+                                    <span class="icon">
+                                        <span class="fas fa-ze-syndication-feeds"></span>
+                                    </span>
+                                </a>
+                            </li>
+                        {% endfor %}
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="column is-2 is-license creative-commons-icons">cba</div>
+            <div class="column is-5">
+                {% if theme_config.siret %}
+                    <p>SIRET : {{ theme_config.siret }}</p>
+                {% endif %}
+            </div>
+        </nav>
+    </div>
+</footer>
+
+
+
+{#
+<footer class="hero-foot page-footer">
+    <!-- temp -->
+    {% if config.plugins.tntsearch.enabled %}
+        <a class="navbar-item search-nav" href="{{ config.plugins.tntsearch.search_route }}" title="Rechercher sur le site…">
+            Rechercher
+        </a>
+    {% endif %}
+    <nav class="navbar is-transparent">
+        <div class="navbar-brand">
+            {% for links_group in theme_config.bottom_links %}
+                {% if links_group.sub_links %}
+                    <div class="navbar-item has-dropdown has-dropdown-up is-hoverable">
+                        <a class="navbar-link" href="{{ links_group.link }}" rel="me" aria-label="{{ links_group.title }}">
+                            <span class="icon">
+                                <span class="{{ links_group.icon_type }} {{ links_group.icon }}"></span>
+                            </span>
+                        </a>
+
+                        <div class="navbar-dropdown">
+                            {% for sub_link_title, sub_link in links_group.sub_links %}
+                                <a class="navbar-item" href="{{ sub_link }}" rel="me">
+                                    <span class="icon">
+                                        <span class="{{ links_group.icon_type }} {{ links_group.icon }}"></span>
+                                    </span>
+                                    {{ sub_link_title }}
+                                </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% else %}
+                    <a class="navbar-item" href="{{ links_group.link }}" rel="me" aria-label="{{ links_group.title }}">
+                        <span class="icon">
+                            <span class="{{ links_group.icon_type }} {{ links_group.icon }}"></span>
+                        </span>
+                    </a>
+                {% endif %}
+            {% endfor %}
+
+            {% if config.plugins.feed.enabled %}
+                {% for page in grav.pages.find('/').parent.children.visible.published.routable if page.template == 'blog' %}
+                    <a class="navbar-item" href="{{ page.url(true) }}.atom" aria-label="Flux Atom de la section {{ page.header.title }}">
+                        <span class="icon">
+                            <span class="fas fa-ze-syndication-feeds"></span>
+                        </span>
+                    </a>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        <div class="navbar-end">
+            {% set this_page = page %}
+            {% for page in pages.children.visible %}
+                {% set current_page = (page.active or page.activeChild) ? 'is-active' : '' %}
+                <a class="navbar-item {{ current_page }}" href="{{ page.url }}"{% if this_page.template == 'homepage' %} data-target="#{{ page.url|trim('/') }}"{% endif %}>
+                        {% if page.header.icon %}<i class="fas fa-{{ page.header.icon }}"></i>{% endif %}
+                        {{ page.menu }}
+                </a>
+            {% endfor %}
+            {% for mitem in site.menu %}
+                <a class="navbar-item" href="{{ mitem.url }}">
+                    {% if mitem.icon %}<i class="fas fa-{{ mitem.icon }}"></i>{% endif %}
+                    {{ mitem.text }}
+                </a>
+            {% endfor %}
+        </div>
+    </nav>
+</footer>
+#}

@@ -1,0 +1,132 @@
+.hero.is-fullheight-with-navbar
+  min-height: calc(100vh - 1rem - #{$navbar-margin-top} - #{$navbar-avatar-size})
+
+  article.hero-body
+    position: relative
+    padding-left: 40%
+
+    > *
+      animation: fade-up .5s ease-in-out
+
+    &:before
+      content: ''
+      display: block
+
+      position: absolute
+      top: 0
+      left: 0
+
+      width: 100vw
+      height: 100%
+
+      background: url('../images/home-bg-blur-area.png') no-repeat 60% 40%
+
+      animation: fade .2s ease-in-out
+
+    h1
+      font-family: $family-serif
+      font-size: 3.6rem
+      font-weight: 700
+
+      background: linear-gradient(90.73deg, var(--yellow-900) 0%, var(--yellow-800) 99.72%)
+      -webkit-background-clip: text
+      -webkit-text-fill-color: transparent
+      background-clip: text
+      text-fill-color: transparent
+
+    p
+      max-width: 50rem
+      font-size: 1.5rem
+      color: var(--yellow-900)
+
+    ul.associations
+      display: flex
+      flex-direction: row
+      align-items: center
+      gap: 2rem
+
+      padding: 1rem 0 .4rem 0
+
+      li
+        display: flex
+        flex-direction: row
+        align-items: center
+        gap: .4rem
+
+        padding: 0
+
+        figure
+          width: 1.6rem
+          height: 1.6rem
+
+          &, img
+            border-radius: 4269px
+
+        p
+          font-size: 1.2rem
+
+          a
+            font-weight: 300
+
+            strong
+              font-weight: 400
+
+            color: var(--yellow-900)
+
+            &:hover
+              color: var(--yellow-800)
+
+  footer.hero-foot
+    > .container
+      display: flex
+      flex-direction: row
+      justify-content: space-between
+      align-items: flex-start
+      margin-bottom: 2rem
+
+      animation: fade-up-delayed 1.2s ease-in-out
+
+      .bottom-links-group
+        h2
+          margin-bottom: .8rem
+
+          font-family: $family-serif
+          font-weight: 500
+          font-style: italic
+          font-size: 1.6rem
+
+          color: var(--yellow-900)
+
+        ul.pointy-links
+          li, li a
+            font-family: $family-sans-serif
+            font-weight: 300
+            font-size: 1.5rem
+            color: var(--yellow-900)
+
+
+@keyframes fade
+  from
+    opacity: 0
+  to
+    opacity: 1
+
+
+@keyframes fade-up
+  from
+    opacity: 0
+    transform: translate3d(0, 1rem, 0)
+  to
+    opacity: 1
+    transform: translate3d(0, 0, 0)
+
+@keyframes fade-up-delayed
+  from
+    opacity: 0
+    transform: translate3d(0, 1rem, 0)
+  50%
+    opacity: 0
+    transform: translate3d(0, 1rem, 0)
+  to
+    opacity: 1
+    transform: translate3d(0, 0, 0)

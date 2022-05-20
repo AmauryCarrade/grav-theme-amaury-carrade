@@ -1,0 +1,10 @@
+{% extends "partials/base/base-page.html.twig" %}
+
+{% block body_classes %}home{% endblock %}
+{% block section_title %}{% endblock %}
+
+{% block content %}
+    {% for module in page.collection() %}
+        {{ module.content|raw }}
+    {% endfor %}
+{% endblock %}

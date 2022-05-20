@@ -11,15 +11,18 @@
 <head>
 {% block head %}
     <meta charset="utf-8" />
-    <title>{% block main_title %}{% if header.title %}{{ header.title|e('html') }} ⋅ {% endif %}{% endblock %}{{ site.title|e('html') }}</title>
-
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>{% block main_title %}{% if header.title %}{{ header.title|e('html') }} ⋅ {% endif %}{% endblock %}{{ site.title|e('html') }}</title>
 
     {% include 'partials/metadata.html.twig' %}
 
     <link rel="icon" type="image/png" href="{{ url('theme://images/favicon.png') }}" />
-    <link rel="canonical" href="{{ page.canonical }}" />
+
+    {% if page.canonical %}
+        <link rel="canonical" href="{{ page.canonical }}" />
+    {% endif %}
 
     <meta name="theme-color" content="#1b1424" />
     <meta name="msapplication-navbutton-color" content="#1b1424" />
@@ -47,7 +50,7 @@
     {% endblock %}
 
     {% do assets.addJs('jquery', 100, true, null, 'head') %}
-    {% do assets.addJs('theme://js/shooting-star.js', 64, true, null, 'last') %}
+    {% do assets.addJs('theme://js/copy.js', 64, true, null, 'last') %}
 
     {% block javascripts %}{% endblock %}
 
@@ -59,17 +62,15 @@
 {% endblock head %}
 </head>
 
-<body id="top" class="static-shooting-star {{ page.header.body_classes }} {% block body_classes %}{% endblock %}">
-    <div class="body-background-container">
-        {% block body %}{% endblock %}
-    </div>
+<body id="top" class="{{ page.header.body_classes }} {% block body_classes %}{% endblock %}">
+    {% block body %}{% endblock %}
 
     {% block bottom %}
         {{ assets.js('bottom')|raw }}
 
         {{ super() }}
 
-        {{ assets.js('last') }}
+        {{ assets.js('last')|raw }}
     {% endblock %}
 </body>
 </html>

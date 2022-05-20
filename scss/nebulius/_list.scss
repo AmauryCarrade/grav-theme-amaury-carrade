@@ -90,7 +90,7 @@ main {
             article.list-item {
                 border-radius: 8px;
 
-                background: rgba($page-background-dark, .4);
+                background: rgba($page-background, .4);
 
                 transition: background .2s ease-in-out, box-shadow .2s ease-in-out;
 
@@ -102,7 +102,7 @@ main {
                 }
 
                 &:hover {
-                    background: rgba($page-background-dark, .6);
+                    background: rgba($page-background, .6);
                     box-shadow: 2px 2px 14px 0 rgba(lighten($primary, 4%), .68), 6px 6px 21px 0 rgba(lighten($primary, 2%), .52);
                 }
 
@@ -126,7 +126,7 @@ main {
                     }
 
                     &.imageless-header {
-                        background: rgba($page-background-dark, .32) none;
+                        background: rgba($page-background, .32) none;
                         border-bottom: solid 1px lighten($page-background-purple, 48%);
                     }
 

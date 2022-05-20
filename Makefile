@@ -4,4 +4,4 @@ styles:
 
 watch:
 	cp css/katex.min.css css-compiled/katex.min.css
-	sass -t compressed --watch --sourcemap=auto scss/nebulius.scss:css-compiled/nebulius.min.css
+	sass -t compressed --watch --sourcemap=auto scss/nebulius.scss:css-compiled/nebulius.min.css --cache-location .sass-cache
