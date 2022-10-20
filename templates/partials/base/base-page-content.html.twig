@@ -83,7 +83,7 @@
                             {% endif %}
                         {% endblock %}
                         <div class="content">
-                            {{ page.content }}
+                            {{ page.content|raw }}
                         </div>
                         {% block below_content %}{% endblock %}
                     </article>

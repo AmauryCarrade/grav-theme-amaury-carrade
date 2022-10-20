@@ -54,7 +54,7 @@
                             {%- if page.content -%}
                                 <article class="main-article">
                                     <div class="content">
-                                        {{- page.content -}}
+                                        {{- page.content|raw -}}
                                     </div>
                                 </article>
                             {%- endif -%}

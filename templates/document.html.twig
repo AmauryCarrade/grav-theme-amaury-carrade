@@ -38,7 +38,7 @@
         <div class="column is-10">
             <article class="main-article">
                 <div class="content">
-                    {{ page.content }}
+                    {{ page.content|raw }}
                 </div>
             </article>
             {% include 'partials/github-edit-link.html.twig' %}
