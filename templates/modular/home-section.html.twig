@@ -1,0 +1,38 @@
+<section class="homepage-section" id="{{ header.metadata.anchor }}">
+    <header>
+        <p class="surtitle">{{ header.surtitle }}</p>
+        <h2>{{ header.title }}</h2>
+        <article>
+            {{ page.content|raw }}
+        </article>
+    </header>
+
+    <div class="container">
+        <section class="main-items">
+            {% for main in header.main %}
+                <article>
+                    <a href="{{ main|link_or_page }}">
+                        <figure style="background-image: url('{{ page.media[main.image].url }}')"></figure>
+                    </a>
+                    <h3>
+                        <a href="{{ main|link_or_page }}" class="pointy-link">
+                            {{ main.title }}
+                        </a>
+                    </h3>
+                    <article>
+                        {{ main.content|markdown }}
+                    </article>
+                </article>
+            {% endfor %}
+        </section>
+
+        <aside class="see-also-items">
+            <h3>Mais aussi</h3>
+            <ul>
+                {% for also in header.see_also %}
+                    <li><a href="{{ also|link_or_page }}">{{ also.title }}</a></li>
+                {% endfor %}
+            </ul>
+        </aside>
+    </div>
+</section>

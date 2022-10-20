@@ -1,0 +1,134 @@
+section.homepage-section
+  margin: 6rem 0
+  padding: 2rem 0
+
+  header
+    text-align: center
+    font-family: $family-serif
+
+    > p
+      margin-bottom: -1rem
+
+      +mobile
+        margin-bottom: -.4rem
+
+      font-size: 1.4rem
+      font-style: italic
+
+      color: $yellow-800
+
+    > h2
+      margin-bottom: 1rem
+
+      font-size: 2.5rem
+      font-weight: 600
+
+      +mobile
+        font-size: 2rem
+        line-height: 1
+
+      color: $yellow-900
+
+    > article
+      margin: auto
+      max-width: 80ch
+
+      padding: 0 1rem
+
+      font-family: $family-sans-serif
+      font-size: 1rem
+
+      color: $yellow-900
+
+  section.main-items
+    display: grid
+    grid-template-columns: repeat(3, 1fr)
+    gap: 2rem
+
+    margin-top: 4rem
+    padding: 0 2rem
+
+    +mobile
+      grid-template-columns: 1fr
+      padding: 0 1rem
+
+    > article
+      > a
+        figure
+          width: 100%
+          aspect-ratio: 1 / 1
+
+          +mobile
+            aspect-ratio: 3 / 2
+
+          background-clip: content-box
+          background-repeat: no-repeat
+          background-size: cover
+          background-position: center
+
+          box-shadow: inset 0 4px 4px rgba(141, 43, 11, 0.21)
+          border-radius: 16px
+
+          transition: box-shadow .1s ease-in-out
+
+        &:hover figure
+          box-shadow: inset 0 8px 8px rgba(141, 43, 11, 0.21)
+
+      h3
+        margin-top: 1rem
+
+        font-size: 1.5rem
+        font-weight: 600
+
+        &, a
+          color: var(--yellow-900)
+
+        a
+          --pointy-links--angle-size: .5em
+          --pointy-links--angle-right-shift: 0
+          --pointy-links--angle-right-shift--hover: -.2em
+
+          display: block
+
+          &:hover
+            text-decoration: none
+            color: var(--yellow-1000)
+
+      article
+        font-size: 1rem
+        word-wrap: break-word
+        line-height: 1.2
+        color: var(--yellow-1000)
+
+  aside.see-also-items
+    display: flex
+    flex-direction: row
+
+    margin: 4rem 0
+    padding: 0 2rem
+
+    +mobile
+      padding: 0 1rem
+
+    color: var(--yellow-800)
+
+    h3
+      position: relative
+      padding-right: 2rem
+      margin-right: 2rem
+
+      &:after
+        content: '•'
+        position: absolute
+        right: 0
+
+    ul
+      display: flex
+      flex-direction: row
+      flex-wrap: wrap
+
+      li
+        font-weight: 500
+
+        &:not(:last-child)
+          margin-right: 2rem

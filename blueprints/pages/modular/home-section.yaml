@@ -1,0 +1,156 @@
+'@extends':
+  type: default
+  context: blueprints://pages
+
+form:
+  fields:
+    tabs:
+      fields:
+        content:
+          fields:
+            metadata_columns:
+              unset@: true
+            header.abstract:
+              unset@: true
+            header.surtitle:
+              ordering@: 1
+              type: text
+              label: Sur-titre
+              style: vertical
+              help: Affiché au dessus du titre en italique, tel une nano introduction.
+
+            header.main:
+              type: list
+              style: vertical
+              label: Éléments principaux de la section
+              help: |
+                Éléments principaux, mis en avant dans cette section. Chaque élément aura une grande photo,
+                un titre, un texte explicatif et un lien vers lequel l'ensemble pointera. Le rendu est optimisé
+                pour un multiple de trois éléments.
+              btnLabel: Ajouter un élément principal
+              fields:
+                .title:
+                  type: text
+                  label: Titre
+                  validate:
+                    required: true
+                .content:
+                  type: editor
+                .image:
+                  type: filepicker
+                  folder: 'self@'
+                  preview_images: true
+                  label: Image d'illustration
+                  help: |
+                    Illustration affichée en grand au dessus du titre et de la description.
+                    Envoyez-là au préalable au dessus, dans la zone médias.
+                  validate:
+                    required: true
+                .type:
+                  type: elements
+                  label: Type de lien
+                  help: |
+                    Sélectionnez le type de lien, puis renseignez le lien ou la page.
+                    Vous pouvez lier vers une page interne ou un lien externe arbitraire.
+                  default: link
+                  options:
+                    link: Lien arbitraire
+                    page: Page
+                  fields:
+                    link:
+                      type: element
+                      fields:
+                        .link:
+                          type: text
+                          label: Lien
+                          help: |
+                            Le lien vers lequel ce menu pointe (absolu, relatif, ou ancre, ou même courriel ou autres,
+                            tout est possible), si l'option « lien arbitraire » est sélectionnée.
+                    page:
+                      type: element
+                      fields:
+                        .page:
+                          type: pages
+                          classes: fancy
+                          label: Page
+                          show_all: true
+                          show_modular: false
+                          show_root: false
+                          help: |
+                            La page vers laquelle ce menu pointe, si l'option « page » est sélectionnée.
+
+            header.see_also:
+              type: list
+              style: vertical
+              label: Voir aussi
+              help: |
+                Éléments secondaires, affichés comme liste de liens sur une seule ligne. Chaque lien a uniquement un
+                texte et une destination.
+              btnLabel: Ajouter un élément à voir aussi
+              fields:
+                .title:
+                  type: text
+                  label: Titre
+                  validate:
+                    required: true
+                .type:
+                  type: elements
+                  label: Type de lien
+                  help: |
+                    Sélectionnez le type de lien, puis renseignez le lien ou la page.
+                    Vous pouvez lier vers une page interne ou un lien externe arbitraire.
+                  default: link
+                  options:
+                    link: Lien arbitraire
+                    page: Page
+                  fields:
+                    link:
+                      type: element
+                      fields:
+                        .link:
+                          type: text
+                          label: Lien
+                          help: |
+                            Le lien vers lequel cet élément pointe (absolu, relatif, ou ancre, ou même courriel ou autres,
+                            tout est possible).
+                    page:
+                      type: element
+                      fields:
+                        .page:
+                          type: pages
+                          classes: fancy
+                          label: Page
+                          show_all: true
+                          show_modular: false
+                          show_root: false
+                          help: |
+                            La page vers laquelle ce lien pointe.
+
+ex:
+  .type:
+    type: toggle
+    label: Type de lien
+    help: |
+      Vous pouvez lier vers une page interne ou un lien externe arbitraire.
+    default: link
+    highlight: link
+    options:
+      link: Lien arbitraire
+      pages: Page
+    validate:
+      required: true
+  .link:
+    type: text
+    label: Lien
+    help: |
+      Le lien vers lequel ce menu pointe (absolu, relatif, ou ancre, ou même courriel ou autres,
+      tout est possible), si l'option « lien arbitraire » est sélectionnée.
+  .page:
+    type: pages
+    classes: fancy
+    label: Page
+    show_all: true
+    show_modular: false
+    show_root: false
+    help: |
+      La page vers laquelle ce menu pointe, si l'option « page » est sélectionnée.
