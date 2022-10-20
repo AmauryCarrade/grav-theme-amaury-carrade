@@ -2,22 +2,23 @@
 namespace Grav\Theme;
 
 use Grav\Common\Theme;
+use Grav\Theme\Event;
 
-class Nebulius extends Theme
+class AmauryCarrade extends Theme
 {
     // Enables blueprints for the page admin.
     public $features = [
         'blueprints' => 1000,
     ];
 
-    public static function getSubscriptedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [
-            'onThemesInitialized' => ['onThemesInitialized', 0]
+            'onThemeInitialized' => ['onThemeInitialized', 0]
         ];
     }
 
-    public function onPluginsInitialized()
+    public function onThemeInitialized()
     {
         if ($this->isAdmin()) return;
 
@@ -29,7 +30,7 @@ class Nebulius extends Theme
     public function onTwigExtensions()
     {
         /** @var $twig \Twig_Environment */
-        $twig = $this->grav['twig']->twig;
+        $twig = $this->grav['twig']->twig();
 
         $twig->addFilter(new \Twig_SimpleFilter('shuffle', function($array)
         {
@@ -90,6 +91,17 @@ class Nebulius extends Theme
             }
 
             return 'rgba(' . $r . ', ' . $g . ', ' . $b . ', ' . $opacity . ')';
+        }));
+
+        /**
+         * From a data structure with a type key (value link or page) and a link.link key or page.page key,
+         * outputs the URL to the page or the link, according to the type key.
+         *
+         * This kind of data structure is obtained using a elements/element selector on the admin interface.
+         * See, for example, header.see_also in blueprints/pages/modular/home-section.yaml.
+         */
+        $twig->addFilter(new \Twig_SimpleFilter('link_or_page', function($data) {
+            return $data['type'] === 'page' ? $data['page']['page'] : $data['link']['link'];
         }));
     }
 }
