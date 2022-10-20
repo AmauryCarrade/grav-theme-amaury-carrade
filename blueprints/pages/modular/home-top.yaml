@@ -110,7 +110,7 @@ form:
                           label: Lien
                           help: |
                             Le lien vers lequel ce menu pointe (absolu, relatif, ou ancre, ou même courriel ou autres,
-                            tout est possible), si l'option « page » est sélectionnée.
+                            tout est possible), si l'option « lien arbitraire » est sélectionnée.
                         .page:
                           type: pages
                           classes: fancy
@@ -119,4 +119,4 @@ form:
                           show_modular: false
                           show_root: false
                           help: |
-                            La page vers laquelle ce menu pointe, si l'option « lien arbitraire » est sélectionnée.
+                            La page vers laquelle ce menu pointe, si l'option « page » est sélectionnée.
