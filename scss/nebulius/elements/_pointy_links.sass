@@ -1,33 +1,54 @@
+\:root
+  --pointy-links--angle-size: .8em
+  --pointy-links--angle-right-shift: .4em
+  --pointy-links--angle-right-shift--hover: .2em
+  --pointy-links--angle-color: currentColor
 
+
+/// Adds a thin arrow at the right of the element. The arrow moves a little bit when hovered.
+///
+/// CSS Variables
+/// --pointy-links--angle-size: size of the angle arrow at the end of the element (default .8em)
+//  --pointy-links--angle-right-shift: shift of the angle arrow from the end of the element (default .4em)
+//  --pointy-links--angle-right-shift--hover: same but when hovered (will be animated) (default .2em)
+//  --pointy-links--angle-color: color of the angle arrow (default currentColor)
+%pointy-link
+  position: relative
+  padding-right: calc(var(--pointy-links--angle-size) * 2)
+
+  &:after
+    content: ' '
+
+    position: absolute
+    right: var(--pointy-links--angle-right-shift)
+    top: calc(.5em - var(--pointy-links--angle-size) / 10)
+
+    width: var(--pointy-links--angle-size)
+    height: var(--pointy-links--angle-size)
+
+    transform: rotate(45deg)
+
+    border-top: solid 1px var(--pointy-links--angle-color)
+    border-right: solid 1px var(--pointy-links--angle-color)
+
+    transition: right .1s ease-in-out
+
+  &:hover:after
+    right: var(--pointy-links--angle-right-shift--hover)
 
 ul.pointy-links
   display: flex
   flex-direction: row
   align-items: baseline
 
-  --angle-size: .8em
-
   li
-    position: relative
-    padding-right: calc(var(--angle-size) * 2)
+    @extend %pointy-link
 
     &:not(:last-child)
       margin-right: 1.8rem
 
-    &:after
-      content: ' '
-
-      position: absolute
-      right: .4em
-      top: calc(.5em - var(--angle-size) / 10)
-
-      width: var(--angle-size)
-      height: var(--angle-size)
-
-      transform: rotate(45deg)
-
-      border-top: solid 1px currentColor
-      border-right: solid 1px currentColor
-
   &.is-large
-    --angle-size: .6em
+    --pointy-links--angle-size: .5em
+
+.pointy-link
+  @extend %pointy-link
