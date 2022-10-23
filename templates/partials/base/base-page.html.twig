@@ -12,15 +12,16 @@
     <nav class="navbar top-navbar is-transparent" role="navigation" aria-label="main navigation">
         <div class="container is-fluid">
             <div class="navbar-brand">
-                <div class="navbar-item site-name">
+                <div class="navbar-item site-name {% block navbar_item_site_name_classes %}{% endblock %}">
                     <figure>
                         <a href="/">
                             <img src="/{{ (theme_config.header.image|first).path }}" alt="{{ config.site.title }}" aria-hidden="true" />
                         </a>
                     </figure>
-
-                    <a href="/">{{ theme_config.header.title|raw ?: config.site.title|raw }}</a>
-                    <aside>{% block section_title %}<a href="{{ top_section_page.url }}">{{ top_section_page.header.menu ?: top_section_page.header.title }}</a>{% endblock %}</aside>
+                    <header>
+                        <a href="/">{{ theme_config.header.title|raw ?: config.site.title|raw }}</a>
+                        {% block section_title_outside_aside %}<aside>{% block section_title %}<a href="{{ top_section_page.url }}">{{ top_section_page.header.menu ?: top_section_page.header.title }}</a>{% endblock %}</aside>{% endblock %}
+                    </header>
                 </div>
 
                 <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="top-navbar-menu">

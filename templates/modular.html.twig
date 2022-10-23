@@ -1,7 +1,8 @@
 {% extends "partials/base/base-page.html.twig" %}
 
 {% block body_classes %}home{% endblock %}
-{% block section_title %}{% endblock %}
+{% block navbar_item_site_name_classes %}without-section-title{% endblock %}
+{% block section_title_outside_aside %}{% endblock %}
 
 {% block content %}
     {% for module in page.collection() %}

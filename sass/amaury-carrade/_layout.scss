@@ -10,52 +10,6 @@ body {
     background: linear-gradient(180deg, var(--yellow-000) 0%, var(--yellow-000) 50%, var(--gray-000) 100%);
 }
 
-header.page-header {
-    color: var(--yellow-900);
-    padding-top: 0;
-
-    h1 {
-        width: 100%;
-
-        font-size: 6em;
-        font-family: 'Charlevoix', sans-serif;
-        font-weight: 200;
-
-        text-align: center;
-        text-shadow: 0 0 2px black;
-
-        span {
-            font-weight: bold;
-        }
-    }
-
-    p {
-        width: 100%;
-
-        margin-top: -.6em;
-
-        font-size: 1.95em;
-        font-family: 'Fira Sans', sans-serif;
-        font-weight: 200;
-        font-variant: all-small-caps;
-        letter-spacing: .18em;
-
-        text-align: center;
-        text-shadow: 0 0 2px black;
-    }
-
-    @include mobile {
-        h1 {
-            font-size: 3.6em;
-        }
-        p {
-            font-size: 1em;
-            position: relative;
-            top: -.6em;
-        }
-    }
-}
-
 nav.page-nav {
     font-size: 1.3em;
     font-family: 'Fira Sans', sans-serif;
@@ -109,6 +63,12 @@ nav.navbar.top-navbar {
     margin-top: $navbar-margin-top;
     background: transparent;
     color: var(--yellow-900);
+
+    // Ensures all the menu is always visible on all viewports, even in section with very long titles.
+    // In this case, the left part of the menu (mail and socials) will be displayed under the title, right-aligned.
+    > .container.is-fluid {
+        flex-wrap: wrap;
+    }
 
     @include touch {
         .navbar-brand {
@@ -181,9 +141,16 @@ nav.navbar.top-navbar {
 
         text-align: center;
 
-        @include mobile {
+        @include touch {
             padding-left: 0;
             padding-right: 0;
+
+            // On mobile, the header is displayed over multiple lines.
+            // The render is better if the logo is top-aligned with the content,
+            // as it can overlap the logo.
+            &:not(.without-section-title) {
+                align-items: flex-start;
+            }
         }
 
         &, a {
@@ -212,14 +179,40 @@ nav.navbar.top-navbar {
             }
         }
 
-        aside {
-            display: inline-block;
-            border-left: 1px solid var(--yellow-700);
-            padding-left: .6em;
-            margin-left: .6em;
+        header {
+            aside {
+                display: inline-block;
+                border-left: 1px solid var(--yellow-700);
+                padding-left: .6em;
+                margin-left: .3em;
 
-            @include mobile {
-                text-align: left;
+                @include mobile {
+                    text-align: left;
+                }
+            }
+        }
+
+        &:not(.without-section-title) header {
+            @include touch {
+                text-align: start;
+
+                > a {
+                    display: block;
+                    font-size: 1.2rem;
+                    font-variant: all-small-caps;
+                    line-height: 1;
+                }
+
+                > aside {
+                    border: none;
+                    padding: 0;
+                    margin: 0;
+
+                    word-wrap: break-word;
+                    max-width: 55vw;
+
+                    line-height: 1.1;
+                }
             }
         }
     }
