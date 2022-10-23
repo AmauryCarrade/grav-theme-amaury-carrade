@@ -1,0 +1,10 @@
+@mixin glass-block($color: $yellow-000, $transparency: .3, $border: $white, $shadow: $yellow-800, $blur: 20px, $radius: 8px)
+  border: 1px solid rgba($border, .2)
+  background: rgba($color, $transparency)
+  backdrop-filter: blur($blur)
+  border-radius: $radius
+
+  box-shadow: 0 100px 80px rgba($shadow, .16), 0 30px 24px rgba($shadow, .1), 0 12px 10px rgba($shadow, .08), 0 4px 3px rgba($shadow, .05), 0 5px 10px rgba($shadow, .2)
+
+.is-glass
+  @include glass-block
