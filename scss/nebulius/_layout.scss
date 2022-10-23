@@ -112,20 +112,48 @@ nav.navbar.top-navbar {
 
     @include touch {
         .navbar-brand {
-            align-items: center;
-
             .navbar-burger {
+                height: auto;
                 color: var(--yellow-900);
             }
         }
 
-        .navbar-menu {
-            border-top: 1px solid white;
-            border-bottom: 1px solid white;
+        .navbar-menu.is-active {
+            position: absolute;
 
-            &, .navbar-item:hover, .navbar-item.is-active {
-                background: rgba($page-background, .4);
+            margin-top: 0.4rem;
+            padding: 1rem 0;
+
+            // Positioned in absolute, its left position will be the left position of its parent
+            // element, witch is the one of the container, with a $gap left and right padding.
+            // For the floating menu to appear centered, we leave the left position at zero, and
+            // we set the width to full width minus two gaps (accounting for padding-left & right of
+            // the container).
+            width: calc(100% - 2 * $gap);
+
+            @include glass-block;
+
+            .navbar-end .navbar-item {
+                margin: 0;
                 text-align: center;
+
+                &:hover {
+                    background: transparent;
+                }
+
+                &.email:before {
+                    display: none;
+                }
+
+                &.social-links ul {
+                    justify-content: center;
+
+                    li:not(:first-child) {
+                        // Bigger margin between social items:
+                        // easier target on mobile devices.
+                        margin-left: 1.8rem;
+                    }
+                }
             }
         }
     }
@@ -153,8 +181,17 @@ nav.navbar.top-navbar {
 
         text-align: center;
 
+        @include mobile {
+            padding-left: 0;
+            padding-right: 0;
+        }
+
         &, a {
             color: var(--yellow-900);
+
+            &:hover {
+                text-decoration: none;
+            }
         }
 
         span {
@@ -272,6 +309,10 @@ footer.page-footer {
 
     &, a {
         color: var(--yellow-000);
+
+        &:hover {
+            text-decoration: none;
+        }
     }
 
     nav.footer-main {
