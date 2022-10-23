@@ -1,15 +1,15 @@
 [submodule "scss/bulma"]
-	path = scss/bulma
+	path = sass/bulma
 	url = https://github.com/jgthms/bulma.git
 	branch = 5a23dcbfe4bf018a4781eccc2a54e54f7b44f323
 	shallow = true
 [submodule "scss/bulma-tooltip"]
-	path = scss/bulma-tooltip
+	path = sass/bulma-tooltip
 	url = https://github.com/Wikiki/bulma-tooltip.git
 	branch = 6e0355423db52bb648087397482fe64a078b6a3b
 	shallow = true
 [submodule "scss/bulma-timeline"]
-	path = scss/bulma-timeline
+	path = sass/bulma-timeline
 	url = https://github.com/Wikiki/bulma-timeline.git
 	branch = a9545c7c31875141162bf9276e14dee43088fdcc
 	shallow = true
