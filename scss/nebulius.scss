@@ -24,19 +24,21 @@ $yellow-600: rgba(222, 145, 29, 1);
 $yellow-700: rgba(203, 110, 23, 1);
 $yellow-800: rgba(180, 77, 18, 1);
 $yellow-900: rgba(141, 43, 11, 1);
+$yellow-1000: rgb(108, 26, 4);
+$yellow-1100: rgb(89, 21, 1);
 
 $blue: #7bc2ff;
 
 $page-background: $yellow-000;
 $page-background-purple: $yellow-000;
 
-$primary: $yellow-900;
-$info: $yellow-700;
-$link: $yellow-700;
+$primary: $yellow-1000;
+$info: $yellow-800;
+$link: $yellow-800;
 
-$link-hover: white;
-$link-focus: white;
-$link-active: white;
+$link-hover: $yellow-1100;
+$link-focus: $yellow-1100;
+$link-active: $yellow-1100;
 
 $link-hover-border: lighten($primary, 32%);
 $link-focus-border: lighten($primary, 32%);
