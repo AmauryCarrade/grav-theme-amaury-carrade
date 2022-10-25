@@ -1,0 +1,105 @@
+/// Footer styles, at the bottom of every page.
+
+footer.page-footer
+  padding-top: 2rem
+  background: radial-gradient(100% 100% at 50% 100%, var(--yellow-900) 99.99%, rgba(141, 43, 11, 0) 100%)
+
+  &, a
+    color: var(--yellow-000)
+
+    &:hover
+      text-decoration: none
+
+
+  ///
+  /// The top part of the footer, with bigger items for contact and donation links.
+  ///
+  nav.footer-main
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+    align-items: flex-start
+
+    margin: 6rem 0 3rem 0
+
+    .footer-item
+      &:last-child
+        display: flex
+        flex-direction: column
+        align-items: flex-end
+
+      h3
+        margin-bottom: .4rem
+
+        font-family: $family-sans-serif
+        font-weight: 400
+        font-size: 1.6rem
+
+      p
+        &,
+        button.copy
+          font-size: 1.3rem
+
+        a.email
+          font-family: $family-monospace
+
+      ul
+        font-family: $family-sans-serif
+        font-weight: 300
+        font-size: 1.2rem
+
+
+  ///
+  /// The bottom part of the footer, with small links, license, and SIRET number.
+  ///
+  nav.footer-footer
+    padding-bottom: .6rem
+
+    font-family: $family-sans-serif
+    font-weight: 300
+    font-size: 1.1rem
+
+    .column:nth-child(2)
+      text-align: center
+
+    .column:last-child
+      text-align: right
+
+    .column ul
+      display: flex
+      flex-direction: row
+      align-items: baseline
+
+      li
+        &:not(:first-child)
+          position: relative
+          padding-left: .75rem
+          margin-left: calc(.75rem * 2 + 8px)
+
+          &:before
+            position: absolute
+            left: calc(-.75rem * 2 / 3 - 4px)
+            top: calc(.5em + 2px)
+
+            display: block
+            content: ' '
+
+            width: 6px
+            height: 6px
+            border-radius: 4269px
+
+            background: var(--yellow-100)
+
+          &.has-no-dot-separator
+            // nth-child(an+b of selector) only works on Safari as of now (may '22),
+            // but this fallbacks to no bigger margin before the first non-dotted
+            // element and that's okay.
+            &:not(:nth-child(1 of .has-no-dot-separator))
+              margin-left: 0
+
+            &:before
+              display: none
+
+    .column.is-license
+      font-size: 1.6rem
+      user-select: none
