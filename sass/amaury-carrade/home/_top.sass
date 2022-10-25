@@ -1,32 +1,44 @@
 .hero.is-fullheight-with-navbar
   min-height: calc(100vh - 1rem - #{$navbar-margin-top} - #{$navbar-avatar-size})
 
+  &:before
+    content: ''
+    display: block
+
+    position: absolute
+    top: 0
+    left: 0
+
+    width: 100vw
+    height: 100%
+
+    background: url('../images/home-bg-blur-area.png') no-repeat 60% 40%
+
+    animation: fade .2s ease-in-out
+
+    @media (prefers-reduced-motion)
+      animation: none
+
   article.hero-body
     position: relative
     padding-left: 40%
 
+    +touch
+      padding-left: 1.5rem
+
     > *
       animation: fade-up .5s ease-in-out
 
-    &:before
-      content: ''
-      display: block
-
-      position: absolute
-      top: 0
-      left: 0
-
-      width: 100vw
-      height: 100%
-
-      background: url('../images/home-bg-blur-area.png') no-repeat 60% 40%
-
-      animation: fade .2s ease-in-out
+      @media (prefers-reduced-motion)
+        animation: none
 
     h1
+      padding-bottom: .5em
+
       font-family: $family-serif
       font-size: 3.6rem
       font-weight: 700
+      line-height: 1.1
 
       background: linear-gradient(90.73deg, var(--yellow-900) 0%, var(--yellow-800) 99.72%)
       -webkit-background-clip: text
@@ -34,10 +46,19 @@
       background-clip: text
       text-fill-color: transparent
 
+      +touch
+        font-size: 3.2rem
+        text-align: end
+
     p
       max-width: 50rem
       font-size: 1.5rem
       color: var(--yellow-900)
+
+      +touch
+        font-size: 1.2rem
+        text-align: start
+        max-width: none
 
     ul.associations
       display: flex
@@ -48,6 +69,10 @@
       column-gap: 2rem
 
       padding: 1rem 0 .4rem 0
+
+      +touch
+        row-gap: .4rem
+        padding-top: 3rem
 
       li
         display: flex
@@ -61,11 +86,18 @@
           width: 1.6rem
           height: 1.6rem
 
+          +touch
+            width: 1.2rem
+            height: 1.2rem
+
           &, img
             border-radius: 4269px
 
         p
           font-size: 1.2rem
+
+          +touch
+            font-size: 1rem
 
           a
             font-weight: 300
@@ -89,8 +121,27 @@
 
       animation: fade-up-delayed 1.2s ease-in-out
 
+      +touch
+        flex-direction: column
+        animation: none
+        margin: 0 1.5rem
+
+      @media (prefers-reduced-motion)
+        animation: none
+
       .bottom-links-group
         max-width: 50%
+
+        +touch
+          display: flex
+          flex-direction: row
+          align-content: flex-start
+
+          width: 100%
+          max-width: none
+
+          &:not(:last-child)
+            margin-bottom: 2rem
 
         h2
           margin-bottom: .8rem
@@ -99,11 +150,21 @@
           font-weight: 500
           font-style: italic
           font-size: 1.4rem
+          line-height: 1.1
 
           color: var(--yellow-900)
 
         ul.pointy-links
           flex-wrap: wrap
+
+          +touch
+            flex-direction: column
+            align-items: flex-end
+
+            flex: 4
+
+            li:not(:last-child)
+              margin-right: 0
 
           li, li a
             font-family: $family-sans-serif
