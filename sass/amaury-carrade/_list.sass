@@ -8,12 +8,15 @@ main
     header.hero .hero-body
       text-align: center
       font-family: $family-sans-serif
-      color: $content-text-color
+      color: var(--yellow-900)
 
       p
         font-family: $family-serif
         font-style: italic
         font-size: 1.6em
+
+        // Darker text because smaller text (more legible)
+        color: var(--yellow-1000)
 
       h1
         font-weight: 300
@@ -82,8 +85,7 @@ main
         +blur-background
 
         +mobile
-          border-top-left-radius: 0
-          border-top-right-radius: 0
+          border-radius: 0
 
         &:hover
           background: rgba($page-background, .6)
@@ -91,8 +93,10 @@ main
 
         a
           display: block
-
           color: $content-text-color
+
+          &:hover
+            text-decoration: none
 
         header
           display: flex
