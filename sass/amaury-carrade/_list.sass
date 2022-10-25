@@ -1,0 +1,219 @@
+@use "sass:math"
+
+main
+  // The same styles are used for both static pages & lists,
+  // so we include them here even if we are in the “list.scss” file.
+  &.page-main-list,
+  &.page-main-static
+    header.hero .hero-body
+      text-align: center
+      font-family: $family-sans-serif
+      color: $content-text-color
+
+      p
+        font-family: $family-serif
+        font-style: italic
+        font-size: 1.6em
+
+      h1
+        font-weight: 300
+        font-size: 3.8em
+
+      h2
+        margin-top: .4em
+
+        font-weight: 300
+        font-size: $size-large
+
+        .icon
+          font-size: .8em
+          color: darken($content-text-color, 10%)
+
+
+    article.main-article
+      border-radius: 8px
+
+      +mobile
+        border-radius: 0
+
+
+  // The following styles are specific to lists.
+  // Avoids to duplicate uselessly all selectors in the generated CSS.
+  &.page-main-list
+    +mobile
+      .hero .hero-body
+        position: relative
+        top: calc(.75rem)
+
+      .columns
+        margin-top: 0
+
+        .column:empty
+          display: none
+
+    section.main-list
+      margin-top: 2em
+
+      +mobile
+        margin-top: 0
+
+      +tablet
+        false
+          border-top-left-radius: 0
+          border-bottom-left-radius: 0
+
+          header
+            border-top-left-radius: 0
+
+        false
+          border-top-right-radius: 0
+          border-bottom-right-radius: 0
+
+          header
+            border-top-right-radius: 0
+
+      article.list-item
+        border-radius: 8px
+
+        background: rgba($page-background, .4)
+
+        transition: background .2s ease-in-out, box-shadow .2s ease-in-out
+
+        +blur-background
+
+        +mobile
+          border-top-left-radius: 0
+          border-top-right-radius: 0
+
+        &:hover
+          background: rgba($page-background, .6)
+          box-shadow: 2px 2px 14px 0 rgba(lighten($primary, 4%), .68), 6px 6px 21px 0 rgba(lighten($primary, 2%), .52)
+
+        a
+          display: block
+
+          color: $content-text-color
+
+        header
+          display: flex
+          flex-direction: column
+
+          min-height: 160px
+
+          border-top-right-radius: 8px
+          border-top-left-radius: 8px
+
+          +mobile
+            border-radius: 0
+
+          &.imageless-header
+            background: rgba($page-background, .32) none
+            border-bottom: solid 1px lighten($page-background-purple, 48%)
+
+          aside
+            display: block
+            flex-grow: 1
+
+            text-align: right
+
+            > span
+              display: inline-block
+
+              margin-top: 1em
+              padding: .4em .8em
+
+              border-top-left-radius: 2px
+              border-bottom-left-radius: 2px
+
+              background-color: lighten($primary, 40%)
+
+              .icon
+                margin-right: .3em
+
+          h2
+            margin: 0 .4rem .2em 1.4rem
+            font-size: 1.77em
+            font-weight: 300
+            color: white
+
+        .card-content
+          padding-top: 1rem
+
+          min-height: 11em
+
+          ul.reading-time
+            font-size: .94em
+            color: desaturate(darken($content-text-color, 48%), 8)
+            margin-bottom: .6rem
+
+            & + .content
+              margin-top: 0
+
+            li
+              +tablet
+                display: inline-block
+
+                &:not(:first-child)
+                  position: relative
+                  margin-left: 1em
+
+                  &:before
+                    content: ' – '
+                    position: absolute
+                    left: -.9em
+
+              +mobile
+                &:not(:first-child)
+                  margin-top: -.2em
+
+          .content
+            margin-top: .5rem
+
+
+    aside.tags-cloud
+      margin: 6em 21%
+
+      +mobile
+        margin-left: 12%
+        margin-right: 12%
+
+      .tag
+        &.is-very-small
+          font-size: $size-7 * 0.5
+
+        &.is-small
+          font-size: math.div($size-7, 1.5)
+
+        &.is-medium
+          font-size: $size-7
+
+        &.is-large
+          font-size: $size-6
+
+        &.is-very-large
+          font-size: $size-5
+
+
+    aside.categories
+      .tag
+        font-size: $size-5 * 1.1
+        font-weight: 300
+        text-align: center
+        margin-right: 2rem
+
+        &:last-child
+          margin-right: .25rem
+
+        +mobile
+          display: block
+
+          &,
+          &:last-child
+            margin-right: 0
+
+        a
+          position: relative
+          left: .2em
+
+          +mobile
+            top: .2em
