@@ -1,6 +1,7 @@
 @mixin glass-block($color: $yellow-000, $transparency: .3, $border: $white, $shadow: $yellow-800, $blur: 20px, $radius: 8px)
   border: 1px solid rgba($border, .2)
   background: rgba($color, $transparency)
+  -webkit-backdrop-filter: blur($blur)
   backdrop-filter: blur($blur)
   border-radius: $radius
 
