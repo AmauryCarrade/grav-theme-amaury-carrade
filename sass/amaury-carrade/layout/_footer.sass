@@ -4,11 +4,18 @@ footer.page-footer
   padding-top: 2rem
   background: radial-gradient(100% 100% at 50% 100%, var(--yellow-900) 99.99%, rgba(141, 43, 11, 0) 100%)
 
+  +mobile
+    background: radial-gradient(150% 70% at 50% 85%, var(--yellow-900) 99.99%, rgba(141, 43, 11, 0) 100%)
+
   &, a
     color: var(--yellow-000)
 
     &:hover
       text-decoration: none
+
+  +touch
+    padding-right: 1rem
+    padding-left: 1rem
 
 
   ///
@@ -22,11 +29,23 @@ footer.page-footer
 
     margin: 6rem 0 3rem 0
 
+    +mobile
+      flex-direction: column
+      align-items: center
+      margin-top: 9rem
+
     .footer-item
+      +mobile
+        margin-bottom: 3rem
+        text-align: center
+
       &:last-child
         display: flex
         flex-direction: column
         align-items: flex-end
+
+        +mobile
+          align-items: center
 
       h3
         margin-bottom: .4rem
@@ -35,10 +54,15 @@ footer.page-footer
         font-weight: 400
         font-size: 1.6rem
 
+        +touch
+          font-size: 1.4rem
+
       p
         &,
         button.copy
           font-size: 1.3rem
+          +touch
+            font-size: 1.1rem
 
         a.email
           font-family: $family-monospace
@@ -47,6 +71,10 @@ footer.page-footer
         font-family: $family-sans-serif
         font-weight: 300
         font-size: 1.2rem
+
+        +touch
+          --pointy-links--angle-size: .6rem
+          font-size: 1rem
 
 
   ///
@@ -59,22 +87,39 @@ footer.page-footer
     font-weight: 300
     font-size: 1.1rem
 
+    +mobile
+      display: flex
+      flex-direction: column
+
+      text-align: center
+
     .column:nth-child(2)
       text-align: center
 
     .column:last-child
       text-align: right
 
+      +mobile
+        text-align: center
+
     .column ul
       display: flex
       flex-direction: row
       align-items: baseline
+
+      +touch
+        display: block
 
       li
         &:not(:first-child)
           position: relative
           padding-left: .75rem
           margin-left: calc(.75rem * 2 + 8px)
+
+          // Vertical list on mobile & tablet
+          +touch
+            margin-left: 0
+            padding-left: 0
 
           &:before
             position: absolute
@@ -90,6 +135,9 @@ footer.page-footer
 
             background: var(--yellow-100)
 
+            +touch
+              display: none
+
           &.has-no-dot-separator
             // nth-child(an+b of selector) only works on Safari as of now (may '22),
             // but this fallbacks to no bigger margin before the first non-dotted
@@ -103,3 +151,8 @@ footer.page-footer
     .column.is-license
       font-size: 1.6rem
       user-select: none
+
+      // On mobile, we display the license at the end of the page because it's the
+      // most important part.
+      +mobile
+        order: 100
