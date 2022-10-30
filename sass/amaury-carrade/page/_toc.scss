@@ -12,7 +12,8 @@ aside.table-of-contents {
 
         width: 96%;
 
-        background-color: $primary;
+        background-color: var(--yellow-1000);
+        color: var(--yellow-100);
 
         border-radius: 8px;
         box-shadow:
@@ -36,12 +37,17 @@ aside.table-of-contents {
         margin-bottom: .4rem;
         padding-bottom: 0;
 
-        font-size: 2em;
+        font-size: 1.6em;
         font-weight: 300;
+
+        @include touch {
+            font-size: 1.3rem;
+        }
 
         text-align: center;
 
         @include mobile {
+            margin-bottom: 0;
             font-size: 1.5em;
             cursor: pointer;
         }
@@ -77,7 +83,7 @@ aside.table-of-contents {
 
         margin-top: 0;
         padding-top: .4rem;
-        border-top: solid 1px lighten($primary, 56%);
+        border-top: solid 1px var(--yellow-600);
 
         @include mobile {
             display: none;
@@ -97,13 +103,18 @@ aside.table-of-contents {
                     margin: 0 .4rem;
                 }
 
-                font-size: 1.58em;
+                font-size: 1.2rem;
                 font-weight: 300;
 
-                color: white;
+                @include touch {
+                    font-size: 1rem;
+                }
+
+                color: var(--yellow-900);
 
                 @include mobile {
                     font-size: 1.3em;
+                    color: var(--yellow-000);
                 }
 
                 &:before {
@@ -116,15 +127,23 @@ aside.table-of-contents {
             }
 
             &:not(:first-child) {
-                margin-top: 1rem;
+                margin-top: .4rem;
             }
 
             ul {
                 margin-left: 1.8rem;
 
                 a {
-                    color: lighten(desaturate($primary, 32%), 70%);
-                    font-size: 1.1em;
+                    color: var(--yellow-800);
+                    font-size: 1rem;
+
+                    @include touch {
+                        font-size: .9rem;
+                    }
+
+                    @include mobile {
+                        color: var(--yellow-100);
+                    }
                 }
             }
         }
