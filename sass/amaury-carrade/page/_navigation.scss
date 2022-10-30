@@ -23,11 +23,15 @@ nav.article-navigation {
             a {
                 display: block;
                 width: 100%;
-                color: white;
+                color: var(--yellow-900);
 
                 &.is-disabled {
-                    color: desaturate(lighten($page-background, 50%), 60);
+                    color: var(--yellow-600);
                     cursor: default;
+                }
+
+                &:hover {
+                    text-decoration: none;
                 }
             }
         }
