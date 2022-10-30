@@ -2,14 +2,17 @@
     text-align: justify;
     hyphens: auto;
 
-    font-size: 1.8em;
+    font-size: 1.4em;
     font-family: 'EB Garamond', 'Georgia', 'Times New Roman', Times, serif;
     line-height: 1.6;
 
     color: $content-text-color;
 
+    max-width: 88ch;
+    margin: auto;
+
     @include mobile {
-        font-size: 1.6em;
+        font-size: 1.3em;
         line-height: 1.5;
     }
 
@@ -26,7 +29,7 @@
     h1, h2, h3, h4, h5, h6 {
         position: relative;
 
-        color: darken($content-text-color, 4%);
+        color: var(--yellow-1100);
         text-align: left;
 
         a {
@@ -66,30 +69,32 @@
         &:first-of-type {
             clear: both;
         }
-    }
-
-    h2 {
-        position: relative;
-
-        margin-top: 6rem;
-        padding-top: .8rem;
-        padding-bottom: .8rem;
-
-        background-color: lighten($primary, 6%);
-        border-top: solid 4px lighten($primary, 21%);
-
-        font-family: $family-sans-serif;
-        font-weight: 300;
-
-        @include mobile {
-            font-size: 1.4em;
-        }
 
         span.icon.icon-link {
             position: absolute;
             right: 1.8rem;
             top: 1.8rem;
         }
+    }
+
+    h1 {
+        font-size: 2.8rem;
+    }
+    h2 {
+        font-size: 2rem;
+    }
+    h3 {
+        font-size: 1.6rem;
+        color: var(--yellow-900);
+    }
+    h4 {
+        font-size: 1.2rem;
+    }
+    h5 {
+        font-size: .9rem;
+    }
+    h6 {
+        font-size: .7rem;
     }
 
     strong, em, figure, dl, dt, dd, ol, ul, li, abbr {
