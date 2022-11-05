@@ -93,7 +93,7 @@
                                                         {% set center_percentage = subpage.header.header_image.vertical_centering|default(50) %}
                                                         {% set page_header_image = page_header_image.cropZoom(page_header_width, page_header_height) %}
                                                     {% endif %}
-                                                    <header class="card-image{% if not page_header_image %} imageless-header{% endif %}"{% if page_header_image %} style="background: linear-gradient(0deg, {{ subpage.header.header_image.color|default('#7a49b7')|toRGBA(0.6) }}, transparent 50%, transparent) center center, url('{{ page_header_image.url|e('css') }}') center {{ center_percentage + 10 * (center_percentage >= 50 ? 1 : -1) }}%;"{% endif %}>
+                                                    <header class="card-image{% if not page_header_image %} imageless-header{% endif %}"{% if page_header_image %} style="background: linear-gradient(0deg, {{ subpage.header.header_image.color|default('#7a49b7') }}, {{ subpage.header.header_image.color|default('#7a49b7')|toRGBA(0.9) }} 25%, transparent 80%, transparent) center center, url('{{ page_header_image.url|e('css') }}') center {{ center_percentage + 10 * (center_percentage >= 50 ? 1 : -1) }}%;"{% endif %}>
                                                         {% block content_list_item_header_aside %}
                                                             <aside>
                                                                 <span>

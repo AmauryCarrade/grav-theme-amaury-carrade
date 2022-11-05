@@ -21,10 +21,6 @@ main {
             border-bottom-left-radius: 0;
         }
 
-        background: rgba($page-background, .4);
-
-        @include blur-background;
-
         @import "page/toc";
         @import "page/content";
         @import "page/canonical_link";
