@@ -9,6 +9,7 @@ section.hero.is-error-page {
                 font-size: 3.6em;
                 font-family: $family-serif;
                 font-style: italic;
+                color: var(--yellow-1000)
             }
 
             p:not(:empty) {
