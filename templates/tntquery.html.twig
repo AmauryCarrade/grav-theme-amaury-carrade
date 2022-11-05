@@ -2,6 +2,6 @@
 
 {% block content %}
     <div class="body-content">
-        {{ vardump(tntsearch_results) }}
+        {{ tntsearch_results|raw }}
     </div>
 {% endblock %}

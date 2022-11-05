@@ -28,13 +28,13 @@
 {% for key, val in tntsearch_results.hits  %}
     <article class="search-result">
         <a href="{{ base_url ~ val.link }}">
-            <h2>{{ val.title }}</h2>
+            <h2>{{ val.title|raw }}</h2>
 
             {% if config.get('plugins.tntsearch.display_route') %}
-                <p class="route">{{ val.link }}</p>
+                <p class="route">{{ val.link|raw }}</p>
             {% endif %}
 
-            <p>{{ val.content }}</p>
+            <p>{{ val.content|raw }}</p>
         </a>
     </article>
 {% endfor %}
