@@ -12,6 +12,7 @@
 
 {% set options = { uri: url, limit: limit, snippet: snippet, min: min, in_page: in_page, live_update: live_update, search_type: search_type } %}
 
+{% block body_classes %}has-hero-with-aura{% endblock %}
 {% block main_title %}Recherche sur le site ⋅ {% endblock %}
 {% block section_title %}<a href="{{ top_section_page.url }}">Recherche</a>{% endblock %}
 

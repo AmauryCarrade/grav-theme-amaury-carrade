@@ -69,33 +69,43 @@ main.page-main-search {
             margin-bottom: 1.4rem;
             padding: 0;
 
-            border-radius: 8px;
-
-            background: rgba($page-background, .4);
-
-            transition: background .2s ease-in-out;
-
-            @include blur-background;
-
-            @include mobile {
-                border-radius: 0;
-            }
-
-            &:hover {
-                background: rgba($page-background, .6);
-            }
-
             a {
                 display: block;
                 padding: 1.25rem;
 
-                color: darken($text, 8%);
+                border-radius: 8px;
+
+                background: rgba(var(--yellow-200), .4);
+                color: var(--gray-900);
+
+                @include blur-background;
+
+                @include mobile {
+                    border-radius: 0;
+                }
+
+                transition: background .2s ease-in-out, color .2s ease-in-out;
+
+                &:hover, &:focus {
+                    background: var(--yellow-900);
+
+                    text-decoration: none;
+                    color: var(--yellow-100);
+
+                    p.route {
+                        color: var(--yellow-200);
+                    }
+
+                    em {
+                        color: var(--gray-900);
+                    }
+                }
 
                 em {
                     display: inline-block;
                     padding: 0 .4em;
 
-                    background-color: rgba(lighten($primary, 40%), .4);
+                    background-color: var(--yellow-400);
                     border-radius: 4px;
 
                     font-style: normal;
