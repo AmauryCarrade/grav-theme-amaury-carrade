@@ -1,41 +1,119 @@
-// https://highlightjs.org/static/demo/styles/monokai-sublime.css
 
-.hljs  {
+/* Zeste de Savoir syntax theme */
+/* Based on a11y-light theme by ericwbailey: https://github.com/highlightjs/highlight.js/blob/35cd46312bf3e898471617c47d52f9528fedd763/src/styles/a11y-light.css */
+/* Itself based on the Tomorrow Night Eighties theme: https://github.com/isagalaev/highlight.js/blob/master/src/styles/tomorrow-night-eighties.css */
+/* @author: Amaury Carrade */
+
+// Comment
+.hljs-comment,
+.hljs-quote {
+    color: var(--gray-500);
+}
+
+// Red
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+    color: hsl(360, 72%, 38%);
+}
+
+// Orange
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+    color: var(--yellow-900);
+}
+
+// Yellow
+.hljs-attribute,
+.hljs-selector-pseudo {
+    color: var(--yellow-800);
+}
+
+// Green
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition,
+.hljs-selector-attr {
+    color: hsl(83, 74%, 27%);
+}
+
+// Blue
+.hljs-title,
+.hljs-section {
+    color: var(--yellow-600);
+}
+
+.hljs-number {
+    color: hsl(224, 69%, 54%);
+}
+
+// Purple
+.hljs-keyword,
+.hljs-selector-tag {
+    color: hsl(264, 58%, 37%);
+}
+
+// Emphasis on these
+.hljs-attribute,
+.hljs-keyword,
+.hljs-selector-class,
+.hljs-selector-tag,
+.hljs-selector-id,
+.hljs-string {
+    font-weight: 700;
+}
+
+// The whole code
+.hljs {
     display: block;
     overflow-x: auto;
     padding: 0.5em;
-    background: #23241f;
+
+    background: #FFF;
+    color: $black;
 }
-.hljs, .hljs-tag, .hljs-subst {
-    color: #f8f8f2;
-}
-.hljs-strong, .hljs-emphasis {
-    color: #a8a8a2;
-}
-.hljs-bullet, .hljs-quote, .hljs-number, .hljs-regexp, .hljs-literal, .hljs-link {
-    color: #ae81ff;
-}
-.hljs-code, .hljs-title, .hljs-section, .hljs-selector-class {
-    color: #a6e22e;
-}
-.hljs-strong {
-    font-weight: bold;
-}
+
+// Markdown
 .hljs-emphasis {
     font-style: italic;
 }
-.hljs-keyword, .hljs-selector-tag, .hljs-name, .hljs-attr {
-    color: #f92672;
+
+.hljs-strong {
+    font-weight: bold;
 }
-.hljs-symbol, .hljs-attribute {
-    color: #66d9ef;
-}
-.hljs-params, .hljs-class .hljs-title {
-    color: #f8f8f2;
-}
-.hljs-string, .hljs-type, .hljs-built_in, .hljs-builtin-name, .hljs-selector-id, .hljs-selector-attr, .hljs-selector-pseudo, .hljs-addition, .hljs-variable, .hljs-template-variable {
-    color: #e6db74;
-}
-.hljs-comment, .hljs-deletion, .hljs-meta {
-    color: #75715e;
+
+@media screen and (-ms-high-contrast: active) {
+    .hljs-addition,
+    .hljs-attribute,
+    .hljs-built_in,
+    .hljs-builtin-name,
+    .hljs-bullet,
+    .hljs-comment,
+    .hljs-link,
+    .hljs-literal,
+    .hljs-meta,
+    .hljs-number,
+    .hljs-params,
+    .hljs-string,
+    .hljs-symbol,
+    .hljs-type,
+    .hljs-quote {
+        color: highlight;
+    }
+
+    .hljs-keyword,
+    .hljs-selector-tag {
+        font-weight: bold;
+    }
 }

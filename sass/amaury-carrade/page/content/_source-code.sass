@@ -1,0 +1,119 @@
+// ZMD source code
+
+.hljs-code-div
+  display: flex
+
+  // Required for line highlights
+  position: relative
+
+  margin: 0 auto
+  padding: .4rem
+
+  border-radius: 4px
+
+  background-color: #FFF
+  font-family: $family-monospace
+  font-style: normal
+  font-size: 1.4rem
+
+  line-height: 1.3
+
+  z-index: 0
+
+  + .hljs-code-div, + p
+    margin-top: 1rem
+
+  .hljs-line-numbers
+    counter-reset: line
+
+    margin: 0
+    padding: .5rem
+
+    border-right: .1rem solid var(--gray-100)
+
+    text-align: right
+    color: var(--gray-500)
+
+    z-index: 1
+
+    span:after
+      display: block
+      position: relative
+      top: -.1rem
+      line-height: 1.3
+
+    span[data-count]:after
+      content: attr(data-count)
+
+    // Highlighted lines
+    span.hll
+      &:after
+        font-weight: bold
+        color: var(--yellow-900)
+
+      &:before
+        display: block
+        content: ''
+
+        position: absolute
+        left: 0
+
+        width: 100%
+        height: 1.3em
+        // This precise height is required for the highlighted lines to not overlap.
+
+        background-color: transparentize($yellow-200, .66)
+
+  // Code part
+  pre
+    margin: 0
+    padding: 0
+    width: 100%
+    overflow-x: auto
+
+    // Required for highlight to work (same for the other one below)
+    background-color: transparent
+
+    line-height: 1.43
+    z-index: 2
+
+    .hljs
+      background-color: transparent
+
+  // This applies only to console codes rendered with zmd 9.1.2+, as previous
+  // versions were missing the possibility to style them as full console blocks.
+  // Old blocs only have a black background on the content, not the line numbers,
+  // and they get a degraded support for line highlight.
+  &.hljs-code-console
+    background-color: $black
+
+    .hljs-line-numbers
+      border-right-color: var(--gray-600)
+
+      span
+        &:after
+          color: var(--gray-400)
+        &.hll:after
+          color: var(--gray-200)
+
+    // Required for highlight to work
+    pre code.language-console
+      background-color: transparent
+
+// The code part of the console codes (shared for legacy and new versions,
+// the background-color being overridden for new versions).
+.language-console
+  display: block
+  padding: .5rem
+
+  color: var(--gray-000)
+  background-color: var(--gray-900)
+
+  font-family: $family-monospace
+
+  overflow-x: auto
+
+// In custom blocks (info, spoiler, etc.), code blocks touches the border so we disable
+// border radius.
+.custom-block .custom-block-body .hljs-code-div
+  border-radius: 0

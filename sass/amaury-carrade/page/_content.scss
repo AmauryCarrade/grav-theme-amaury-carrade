@@ -1,7 +1,7 @@
 .content {
     hyphens: auto;
 
-    font-size: 1.4em;
+    font-size: 1.3rem;
     font-family: 'Lora', 'EB Garamond', 'Georgia', 'Times New Roman', Times, serif;
     line-height: 1.6;
 
@@ -11,7 +11,7 @@
     margin: auto;
 
     @include mobile {
-        font-size: 1.3em;
+        font-size: 1.2rem;
         line-height: 1.5;
     }
 
@@ -61,39 +61,35 @@
         }
 
         &:hover a {
-            color: darken($content-text-color, 8%);
+            color: var(--yellow-700);
         }
 
         // Clears the TOC floating block.
         &:first-of-type {
             clear: both;
         }
-
-        span.icon.icon-link {
-            position: absolute;
-            right: 1.8rem;
-            top: 1.8rem;
-        }
     }
 
     h1 {
-        font-size: 2.8rem;
+        font-size: 3.2rem;
     }
     h2 {
-        font-size: 2rem;
+        font-size: 2.8rem;
     }
     h3 {
-        font-size: 1.6rem;
-        color: var(--yellow-900);
+        font-size: 2.2rem;
     }
     h4 {
-        font-size: 1.2rem;
+        font-size: 1.8rem;
+        color: var(--yellow-900);
     }
     h5 {
-        font-size: .9rem;
+        font-size: 1.5rem;
+        color: var(--yellow-900);
     }
     h6 {
-        font-size: .7rem;
+        font-size: 1.2rem;
+        color: var(--yellow-900);
     }
 
     strong, em, figure, dl, dt, dd, ol, ul, li, abbr {
@@ -135,12 +131,15 @@
     hr {
         position: relative;
 
+        // Required for the before and after dots to be visible, as this element is overflow:hidden by default.
+        overflow: visible;
+
         height: 8px;
         width: 8px;
         margin: 4rem auto;
 
         &, &:before, &:after {
-            background-color: lighten($page-background-purple, 80%);
+            background-color: var(--yellow-900);
             border-radius: 4269px;
         }
 
@@ -152,8 +151,8 @@
 
             display: block;
 
-            height: 4px;
-            width: 4px;
+            height: 6px;
+            width: 6px;
         }
 
         &:before {
@@ -172,7 +171,6 @@
         &:before {
             position: absolute;
             left: -1.2em;
-            top: -.1em;
 
             content: "–";
 
@@ -181,6 +179,7 @@
 
         ol, ul {
             margin-top: .2em;
+            margin-left: 0;
         }
 
         p {
@@ -204,11 +203,12 @@
 
                 content: counter(ol-item) ". ";
 
-                color: darken($content-text-color, 4%);
+                color: var(--gray-800)
             }
 
             ol, ul {
                 margin-top: .2em;
+                margin-left: 0;
             }
 
             p {
@@ -230,6 +230,35 @@
 
     > ol ol {
         margin-left: .4em;
+    }
+
+    // touche
+    kbd {
+        padding: .2rem .6rem;
+
+        border: solid .1rem var(--yellow-200);
+        border-bottom-width: .4rem;
+        border-radius: 4px;
+
+        background-color: var(--yellow-100);
+
+        color: var(--yellow-900);
+        text-shadow: 0 .1rem 0 $white;
+    }
+
+    // Code inline
+    p,
+    li,
+    td {
+        code:not(.hljs) {
+            --code-inline-color: var(--gray-900);
+            --code-inline-background: var(--gray-100);
+
+            color: var(--code-inline-color);
+            background: var(--code-inline-background);
+            border-radius: 4px;
+            padding: 0 .6rem;
+        }
     }
 
     .video-wrapper {
@@ -256,8 +285,6 @@
         figcaption {
             margin-top: 0;
             padding: .5em $article-padding;
-
-            background-color: $page-background;
 
             font-size: .88em;
 
@@ -297,20 +324,6 @@
         span.inlineMath.inlineMathDouble + figcaption {
             background-color: transparent;
         }
-
-        .table-wrapper {
-            table {
-                margin-bottom: 0;
-
-                tbody:last-child tr:last-child td {
-                    border-bottom-width: 2px;
-                }
-            }
-
-            & + figcaption {
-                background-color: darken($page-background-purple, 6%);
-            }
-        }
     }
 
     blockquote {
@@ -329,14 +342,19 @@
             padding: 1em $article-padding-mobile * 0.5 1em $article-padding-mobile + 2.8rem;
         }
 
-        p:only-child {
-            font-size: 1.2em;
+        p {
+            padding-left: 0;
+            padding-right: 0;
+
+            &:only-child {
+                font-size: 1.2em;
+            }
         }
 
         &:before {
             position: absolute;
             top: -1.23em;
-            left: 0.26em;
+            left: .2em;
             content: "“";
             padding-top: 1em;
             font-size: 4.6em;
@@ -344,7 +362,7 @@
 
         & + figcaption {
             position: relative;
-            padding-left: calc(#{$article-padding} + 4.4em);
+            padding-left: calc(#{$article-padding} + 3.4em);
 
             background-color: transparent;
 
@@ -352,13 +370,13 @@
             font-size: .9em;
 
             @include mobile {
-                padding-left: calc(#{$article-padding-mobile} + 4.4em);
+                padding-left: calc(#{$article-padding-mobile} + 3.4em);
             }
 
             &:before {
                 content: "—";
                 position: absolute;
-                left: calc(#{$article-padding} + 3.3em);
+                left: calc(#{$article-padding} + 2.3em);
                 top: .42em;
 
                 @include mobile {
@@ -368,6 +386,9 @@
         }
     }
 
+    @import "content/source-code";
+
+    /*
     pre, .hljs-code-div {
         margin: 1em 0;
         padding: 0;
@@ -412,41 +433,71 @@
             }
         }
     }
-
-    code {
-        background-color: $page-background;
-        color: $content-text-color;
-        font-size: .8em;
-    }
+    */
 
     table {
-        background-color: $page-background-purple;
-        margin-bottom: 1.25em;
+        margin: .4rem auto;
+        width: fit-content;
 
-        thead, tfoot {
-            background-color: darken($page-background-purple, 6%);
+        tr {
+            &:last-child {
+                td {
+                    &:first-child {
+                        border-bottom-left-radius: 8px;
+                    }
 
-            th {
-                border-bottom: solid 2px lighten($page-background-purple, 12%);
-                color: darken($content-text-color, 4%);
-                font-variant: all-small-caps;
-                letter-spacing: .06em;
+                    &:last-child {
+                        border-bottom-right-radius: 8px;
+                    }
+                }
+            }
+
+            &:first-child {
+                th {
+                    &:first-child {
+                        border-top-left-radius: 8px;
+                    }
+
+                    &:last-child {
+                        border-top-right-radius: 8px;
+                    }
+                }
             }
         }
 
-        tfoot th {
-            border-bottom: none;
-            border-top: solid 2px lighten($page-background-purple, 12%);
+        th {
+            background-color: var(--yellow-100);
         }
 
-        tbody {
-            td {
-                padding: 15px;
-                font-size: .96em;
-                border-bottom: solid 1px lighten($page-background-purple, 12%);
-            }
+        td,
+        th {
+            text-align: left;
+            padding: 8px;
+            border-color: var(--yellow-400);
+        }
+
+        thead {
+            border-collapse: collapse;
+        }
+
+        tfoot {
+            border-top: 1px solid black;
+        }
+
+        tr:hover td {
+            background-color: var(--yellow-100);
         }
     }
+
+    > .table-wrapper, > .video-container  {
+        &:not(:first-child) {
+            margin-top: 2rem;
+        }
+        &:not(:last-child) {
+            margin-bottom: 2rem;
+        }
+    }
+
 
     .katex {
         // KaTeX's default size of 1.21em is huge with our font size.
@@ -508,6 +559,10 @@
             margin-bottom: 0;
 
             border-radius: 0;
+
+            &:before, &:after {
+                display: none;
+            }
         }
 
         ol {
@@ -523,18 +578,18 @@
                 }
 
                 p {
-                    padding-right: 2em;
+                    padding-right: 2rem;
                 }
 
                 .footnote-backref {
                     position: absolute;
                     top: 0;
-                    right: 0;
+                    right: -2rem;
 
                     display: inline-block;
                     padding: 3px .4em 6px .8em;
 
-                    color: darken($link, 32%);
+                    color: var(--yellow-900);
                 }
             }
         }

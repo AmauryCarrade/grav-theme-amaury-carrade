@@ -1,25 +1,15 @@
 $custom-blocks: ("information", hsl(194, 64%, 62%), "i", true),
                 ("question",    hsl(210, 64%, 62%), "?"),
                 ("warning",     hsl( 35, 64%, 62%), "!"),
-                ("error",       hsl(  2, 64%, 54%), "×", false, true),
-                ("neutral",     lighten($page-background-purple, 46%)),
-                ("spoiler",     lighten($page-background-purple, 46%));
+                ("error",       hsl(  2, 64%, 74%), "×", false),
+                ("neutral",     $gray-400),
+                ("spoiler",     $gray-200);
 
 
 // body required for specificity
-body div.custom-block {
+body .custom-block {
     margin: 3.2rem 0;
     padding: 0;
-
-    background-color: $page-background-purple;
-
-    /*p, h1, h2, h3, h4, h5, h6, ol, ul {
-        padding-left: calc(#{$article-padding} - 10px);
-
-        @include mobile {
-            padding-left: calc(#{$article-padding-mobile} - 10px);
-        }
-    }*/
 
     @each $type, $color, $icon, $icon-italic, $icon-small in $custom-blocks {
         &.custom-block-#{$type} {
@@ -30,13 +20,22 @@ body div.custom-block {
             background-color: $color-dark;
             color: $color-light;
 
+            border-radius: 6px;
+
             @if $icon {
                 position: relative;
             }
 
+            &:is(details) .custom-block-heading {
+                cursor: pointer;
+            }
+            &:is(details):not([open]) .custom-block-heading {
+                border-radius: 6px;
+            }
+
             .custom-block-heading {
                 @if $icon {
-                    padding: .2rem $article-padding .2rem 3.7rem;
+                    padding: .2rem $article-padding .2rem 3rem;
                 }
                 @else {
                     padding: .2rem calc(#{$article-padding} - 1px);
@@ -47,6 +46,9 @@ body div.custom-block {
                 }
 
                 background-color: $color;
+
+                border-top-left-radius: 6px;
+                border-top-right-radius: 6px;
 
                 &, em, strong, a, abbr {
                     font-family: $family-sans-serif;
@@ -97,7 +99,7 @@ body div.custom-block {
                         @if $icon-small {
                             line-height: 1;
                         } @else {
-                            line-height: 1.1;
+                            line-height: 1.4;
                         }
 
                         font-family: $family-serif;
@@ -117,8 +119,14 @@ body div.custom-block {
                     padding-left: 0;
 
                     &:after {
+                        width: 1.4rem;
+                        height: 1.4rem;
+
                         top: .5rem;
                         left: 1rem;
+
+                        font-size: 1.1rem;
+                        line-height: 1.2;
 
                         @include mobile {
                             top: .28rem;
@@ -132,53 +140,25 @@ body div.custom-block {
         }
     }
 
-    div.custom-block-body {
+    > div.custom-block-body {
         padding: .6em 0;
 
-        strong, em, figure, dl, dt, dd, ol, ul, li, abbr  {
-            color: inherit;
-        }
-    }
-
-    .custom-block-spoiler-header {
-        padding: .6em 0;
-        background-color: darken($page-background-purple, 2%);
-
-        font-family: $family-sans-serif;
-        font-weight: 300;
-        font-size: .9em;
-    }
-
-    &.custom-block-spoiler .custom-block-spoiler-header {
-        padding-left: calc(#{$article-padding} - 10px + .66em);
-
-        @include mobile {
-            padding-left: calc(#{$article-padding-mobile} - 10px + .66em);
+        // Specificity rules are here completely broken, I blame Bulma. Hence the !important.
+        p, h1, h2, h3, h4, h5, h6, figure, dl, dt, dd, ol, ul, strong, em, li, abbr {
+            color: currentColor !important;
         }
 
-        cursor: pointer;
-
-        &:before {
-            @include fa-icon;
-            @extend .far;
-            content: fa-content($fa-var-eye);
-
-            position: relative;
-            left: -.9em;
-
-            @include mobile {
-                left: -.6em;
+        h1, h2, h3, h4, h5, h6 {
+            a > .icon.icon-link {
+                opacity: 0;
             }
 
-            vertical-align: -.05em;
-
-            font-size: .9em;
-
-            color: darken($content-text-color, 12%);
-        }
-
-        &[data-visible="true"]:before {
-            content: fa-content($fa-var-eye-slash);
+            &:hover, &:focus {
+                a > .icon.icon-link {
+                    opacity: 1;
+                    color: currentColor !important;
+                }
+            }
         }
     }
 }
