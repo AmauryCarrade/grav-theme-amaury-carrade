@@ -124,11 +124,11 @@
                                                         {% block content_list_item_content_body %}
                                                             <div class="content">
                                                                 {% if subpage.header.abstract %}
-                                                                    {{ subpage.header.abstract|markdown }}
+                                                                    {{ subpage.header.abstract|markdown|raw }}
                                                                 {% elseif subpage.summary %}
-                                                                    {{ subpage.summary(250) }}
+                                                                    {{ subpage.summary(250)|raw }}
                                                                 {% else %}
-                                                                    {{ subpage.content|striptags|safe_truncate(300, true) }}
+                                                                    {{ subpage.content|striptags|safe_truncate(300, true)|raw }}
                                                                 {% endif %}
                                                             </div>
                                                         {% endblock %}
