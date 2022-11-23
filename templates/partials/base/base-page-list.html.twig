@@ -67,10 +67,10 @@
                 {% block content_list %}
                     <section class="main-list">
                         <div class="columns is-multiline">
-                            {% for subpage in collection %}
+                            {% for subpage in collection.published.visible.routable %}
                                 {% set page_advanced = null %}
                                 {% if subpage.template == 'item' %}
-                                    {% for child in subpage.children.published.routable %}
+                                    {% for child in subpage.children.published.visible.routable %}
                                         {% if child.template == 'item-advanced' %}
                                             {% set page_advanced = child %}
                                         {% endif %}
