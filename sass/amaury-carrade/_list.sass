@@ -31,7 +31,6 @@ main
 
         .icon
           font-size: .8em
-          color: darken($content-text-color, 10%)
 
 
     article.main-article
@@ -198,6 +197,13 @@ main
         &.is-very-large
           font-size: $size-5
 
+        a
+          color: var(--yellow-000)
+
+          &:hover
+            text-decoration: none
+            color: var(--yellow-200)
+
 
     aside.categories
       .tag
@@ -222,3 +228,9 @@ main
 
           +mobile
             top: .2em
+
+          color: var(--yellow-000)
+
+          &:hover
+            text-decoration: none
+            color: var(--yellow-200)
