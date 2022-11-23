@@ -2,7 +2,7 @@
 
 {% import 'macros/tags.html.twig' as tags %}
 
-{% set collection = page.collection() %}
+{% set collection = page.collection().published.visible.routable %}
 
 {% set page_header_height = 380 %}
 {% set page_header_width = 800 %}
@@ -67,7 +67,7 @@
                 {% block content_list %}
                     <section class="main-list">
                         <div class="columns is-multiline">
-                            {% for subpage in collection.published.visible.routable %}
+                            {% for subpage in collection %}
                                 {% set page_advanced = null %}
                                 {% if subpage.template == 'item' %}
                                     {% for child in subpage.children.published.visible.routable %}
