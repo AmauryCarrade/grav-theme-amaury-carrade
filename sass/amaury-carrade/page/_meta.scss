@@ -39,8 +39,13 @@ aside.article-meta-edit {
     }
 
     a {
-        color: white;
+        color: var(--yellow-900);
         opacity: .8;
+
+        &:hover {
+            text-decoration: none;
+            color: var(--yellow-1000);
+        }
 
         .fab {
             position: relative;
