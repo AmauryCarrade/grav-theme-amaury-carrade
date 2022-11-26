@@ -6,9 +6,6 @@
 {% block body %}
     {% do assets.addJs('theme://js/navbar-burgers.js', 64, true, null, 'last') %}
 
-    {# Cannot be in the pipeline, else it breaks MathJax's external plugin references. #}
-    {% do assets.addJs('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML', 200, false, 'async', 'last') %}
-
     <nav class="navbar top-navbar is-transparent" role="navigation" aria-label="main navigation">
         <div class="container is-fluid">
             <div class="navbar-brand">
@@ -60,27 +57,4 @@
     {% block content %}{% endblock %}
 
     {% include 'partials/footer.html.twig' %}
-{% endblock %}
-
-{% block javascripts %}
-    {{ super() }}
-
-    <script type="text/x-mathjax-config">
-        MathJax.Hub.Config({
-            tex2jax: {
-                inlineMath: [['$', '$']],
-                displayMath: [['$$','$$']],
-                processEscapes: true,
-                processClass: "content",
-                ignoreClass: "page-container"
-            },
-            TeX: { extensions: ["color.js", "cancel.js", "enclose.js", "bbox.js", "mathchoice.js", "newcommand.js", "verb.js", "unicode.js", "autobold.js", "mhchem.js"] },
-            messageStyle: "none",
-        });
-    </script>
-
-    <!--<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
-        integrity="sha384-Ra6zh6uYMmH5ydwCqqMoykyf1T/+ZcnOQfFPhDrp2kI4OIxadnhsvvA2vv9A7xYv"
-        crossorigin="anonymous">
-    </script>-->
 {% endblock %}
