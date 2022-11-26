@@ -1,5 +1,7 @@
 .content {
     hyphens: auto;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
 
     font-size: 1.3rem;
     font-family: 'Lora', 'EB Garamond', 'Georgia', 'Times New Roman', Times, serif;

@@ -56,6 +56,8 @@ aside.article-advanced-switch {
                 span {
                     flex: 12;
                     hyphens: auto;
+                    -webkit-hyphens: auto;
+                    -ms-hyphens: auto;
 
                     @include mobile {
                         font-size: .88em;
