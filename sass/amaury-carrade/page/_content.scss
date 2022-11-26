@@ -382,7 +382,7 @@
                 top: .42em;
 
                 @include mobile {
-                    left: calc(#{$article-padding-mobile} + 3.3em);
+                    left: calc(#{$article-padding-mobile} + 2.3em);
                 }
             }
         }
