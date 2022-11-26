@@ -53,8 +53,9 @@
                 {% set tag = include_link ? 'a' : 'span' %}
                 {% set tag_href = include_link ? ' href="' ~ url ~ '"' : '' %}
                 {% set tag_title = include_title ? ' title="' ~ label ~ '"' : '' %}
+                {% set tag_label = ' aria-label="' ~ label ~ '"' %}
 
-                <{{ tag }}{{ tag_attr }}{{ tag_title }}{{ tag_href }} class="{{ element_class }}">{% if not is_zero %}c{% endif %}{{ ico }}</{{ tag }}>
+                <{{ tag|raw }}{{ tag_attr|raw }}{{ tag_title|raw }}{{ tag_href|raw }}{{ tag_label|raw }} class="{{ element_class|raw }}">{% if not is_zero %}c{% endif %}{{ ico }}</{{ tag }}>
             {% endif %}
         {% else %}
             {{ header.license }}
