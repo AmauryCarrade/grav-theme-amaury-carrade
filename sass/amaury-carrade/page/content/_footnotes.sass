@@ -1,0 +1,50 @@
+.footnote-ref
+  // Ensures the footnotes numbers are always in a normal font weight & variant, even
+  // when the note is in a bold or italic block.
+  font-weight: normal !important
+  font-variant: normal !important
+  font-style: normal !important
+
+.footnotes
+  margin-top: 4rem
+  font-size: .8em
+
+  hr
+    width: 60%
+    height: 1px
+
+    margin: initial
+    margin-bottom: 0
+
+    border-radius: 0
+
+    &:before,
+    &:after
+      display: none
+
+  ol
+    margin-top: .6em
+
+    li
+      position: relative
+
+      &:hover
+        .footnote-backref
+          color: $link
+
+      p
+        padding-right: 2rem
+
+      .footnote-backref
+        position: absolute
+        top: 0
+        right: -2rem
+
+        // Fixes horizontal overflow on small screens
+        @include mobile
+          right: -1rem
+
+        display: inline-block
+        padding: 3px .4em 6px .8em
+
+        color: var(--yellow-900)

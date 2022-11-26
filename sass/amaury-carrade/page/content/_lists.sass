@@ -1,0 +1,59 @@
+ul li
+  list-style-type: none
+  position: relative
+
+  &:before
+    position: absolute
+    left: -1.2em
+
+    content: "–"
+
+    color: darken($content-text-color, 4%)
+
+  ol,
+  ul
+    margin-top: .2em
+    margin-left: 0
+
+  p
+    padding: 0
+    margin: 0
+
+> ol,
+> ol ol
+  counter-reset: ol-item
+
+  li
+    display: block
+    position: relative
+
+    // TODO: replace with :marker?
+    &:before
+      counter-increment: ol-item
+
+      position: absolute
+      left: -1.4em
+
+      content: counter(ol-item) ". "
+
+      color: var(--gray-800)
+
+    ol,
+    ul
+      margin-top: .2em
+      margin-left: 0
+
+    p
+      padding: 0
+      margin: 0
+
+      &:first-child
+        display: inline-block
+      &:not(:first-child)
+        padding-left: 1.25em
+      &:not(:last-child)
+        margin-bottom: .2em
+
+> ol ol
+  margin-left: .4em
+

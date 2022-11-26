@@ -1,0 +1,46 @@
+table
+  margin: .4rem auto
+  width: fit-content
+
+  tr
+    &:last-child
+      td
+        &:first-child
+          border-bottom-left-radius: 8px
+
+        &:last-child
+          border-bottom-right-radius: 8px
+
+    &:first-child
+      th
+        &:first-child
+          border-top-left-radius: 8px
+
+        &:last-child
+          border-top-right-radius: 8px
+
+  th
+    background-color: var(--yellow-100)
+
+  td,
+  th
+    text-align: left
+    padding: 8px
+    border-color: var(--yellow-400)
+
+  thead
+    border-collapse: collapse
+
+  tfoot
+    border-top: 1px solid black
+
+  tr:hover td
+    background-color: var(--yellow-100)
+
+
+// Ensures proper margins around chained tables
+> .table-wrapper
+  &:not(:first-child)
+    margin-top: 2rem
+  &:not(:last-child)
+    margin-bottom: 2rem

@@ -1,0 +1,120 @@
+// Video embeds
+.video-wrapper
+  position: relative
+  padding-bottom: 54.46%
+
+  // 16:9
+  padding-top: 25px
+  height: 0
+
+  iframe
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+
+
+// Figure container for images, videos, quotes, codes
+figure
+  margin-left: 0
+  margin-right: 0
+
+  text-align: center
+
+  figcaption
+    margin-top: 0
+    padding: .5em $article-padding
+
+    font-size: .88em
+
+    @include mobile
+      padding: .5em $article-padding-mobile
+
+  // Fixes a gap between images and caption
+  > img
+    position: relative
+    top: 0.46em
+
+  .hljs-code-div
+    margin: 0
+
+    // Avoids code with a legend to be centered
+    text-align: left
+
+    pre
+      margin: 0
+
+      .hljs
+        padding-bottom: .5em
+
+    & + figcaption
+      padding-top: 0
+      padding-bottom: 1em
+
+  blockquote
+    margin-bottom: 0
+    padding-bottom: 0
+
+  span.inlineMath.inlineMathDouble + figcaption
+    background-color: transparent
+
+
+// Quotes (typically in figures)
+blockquote
+  position: relative
+
+  padding: 1em $article-padding + 1rem 1em $article-padding + 2rem
+
+  background: transparent
+  border: none
+
+  font-size: 1em
+  text-align: left
+
+  @include mobile
+    padding: 1em $article-padding-mobile * 0.5 1em $article-padding-mobile + 2.8rem
+
+  p
+    padding-left: 0
+    padding-right: 0
+
+    &:only-child
+      font-size: 1.2em
+
+  &:before
+    position: absolute
+    top: -1.23em
+    left: .2em
+    content: "“"
+    padding-top: 1em
+    font-size: 4.6em
+
+  & + figcaption
+    position: relative
+    padding-left: calc(#{$article-padding} + 3.4em)
+
+    background-color: transparent
+
+    text-align: left
+    font-size: .9em
+
+    @include mobile
+      padding-left: calc(#{$article-padding-mobile} + 3.4em)
+
+    &:before
+      content: "—"
+      position: absolute
+      left: calc(#{$article-padding} + 2.3em)
+      top: .42em
+
+      @include mobile
+        left: calc(#{$article-padding-mobile} + 2.3em)
+
+
+// Ensures proper margins around chained videos
+> .video-container
+  &:not(:first-child)
+    margin-top: 2rem
+  &:not(:last-child)
+    margin-bottom: 2rem

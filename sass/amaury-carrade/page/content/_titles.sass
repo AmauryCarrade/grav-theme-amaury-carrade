@@ -1,0 +1,57 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6
+  position: relative
+
+  color: var(--yellow-1100)
+  text-align: left
+
+  a
+    display: inline-block
+    margin-left: .6em
+
+    @include mobile
+      margin-left: 0
+
+    color: transparent
+
+    span.icon.icon-link
+      @include mobile
+        position: absolute
+        right: 1.2rem
+        top: 1.2rem
+
+      &:before
+        @include fa-icon
+        @extend .fas
+
+        content: fa-content($fa-var-link)
+
+        font-weight: 900
+        font-size: .6em
+
+  &:hover a
+    color: var(--yellow-700)
+
+  // Clears the TOC floating block.
+  &:first-of-type
+    clear: both
+
+h1
+  font-size: 3.2rem
+h2
+  font-size: 2.8rem
+h3
+  font-size: 2.2rem
+h4
+  font-size: 1.8rem
+  color: var(--yellow-900)
+h5
+  font-size: 1.5rem
+  color: var(--yellow-900)
+h6
+  font-size: 1.2rem
+  color: var(--yellow-900)

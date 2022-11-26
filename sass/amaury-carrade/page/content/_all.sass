@@ -1,0 +1,29 @@
+.content
+  font-size: 1.3rem
+  font-family: 'Lora', 'EB Garamond', 'Georgia', 'Times New Roman', Times, serif
+  line-height: 1.6
+
+  hyphens: auto
+  -webkit-hyphens: auto
+  -ms-hyphens: auto
+
+  color: $content-text-color
+
+  max-width: 88ch
+  margin: auto
+
+  @include mobile
+    font-size: 1.2rem
+    line-height: 1.5
+
+  @import "containers"
+  @import "inline-elements"
+  @import "titles"
+  @import "lists"
+  @import "hr"
+  @import "maths"
+  @import "figures"
+  @import "source-code"
+  @import "tables"
+  @import "footnotes"
+  @import "notices"

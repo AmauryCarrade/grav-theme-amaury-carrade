@@ -1,0 +1,33 @@
+hr
+  position: relative
+
+  // Required for the before and after dots to be visible, as this element is overflow:hidden by default.
+  overflow: visible
+
+  height: 8px
+  width: 8px
+  margin: 4rem auto
+
+  &,
+  &:before,
+  &:after
+    background-color: var(--yellow-900)
+    border-radius: 4269px
+
+  &:before,
+  &:after
+    content: ' '
+
+    position: absolute
+    top: 2px
+
+    display: block
+
+    height: 6px
+    width: 6px
+
+  &:before
+    left: 4rem
+
+  &:after
+    right: 4rem

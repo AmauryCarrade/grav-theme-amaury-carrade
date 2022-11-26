@@ -1,0 +1,14 @@
+.notices
+  background-color: $page-background-purple
+  padding: .6em 0
+
+  p
+    padding-left: calc(#{$article-padding} - 10px)
+
+    @include mobile
+      padding-left: calc(#{$article-padding-mobile} - 10px)
+
+  &.red
+    color: #dd625e
+  &.green
+    color: #44b144

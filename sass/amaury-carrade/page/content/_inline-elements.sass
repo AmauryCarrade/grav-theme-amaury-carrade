@@ -1,0 +1,72 @@
+strong,
+em,
+figure,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+abbr
+  color: $content-text-color
+
+a
+  color: $link
+
+  strong,
+  em,
+  figure,
+  dl,
+  dt,
+  dd,
+  ol,
+  ul,
+  li,
+  abbr
+    color: $link
+
+  &:hover
+    color: lighten($link, 12%)
+
+    strong,
+    em,
+    figure,
+    dl,
+    dt,
+    dd,
+    ol,
+    ul,
+    li,
+    abbr
+      color: lighten($link, 12%)
+
+abbr[title]
+  cursor: help
+
+mark
+  padding: .1em
+
+kbd
+  padding: .2rem .6rem
+
+  border: solid .1rem var(--yellow-200)
+  border-bottom-width: .4rem
+  border-radius: 4px
+
+  background-color: var(--yellow-100)
+
+  color: var(--yellow-900)
+  text-shadow: 0 .1rem 0 $white
+
+// Inline code
+p,
+li,
+td
+  code:not(.hljs)
+    --code-inline-color: var(--gray-900)
+    --code-inline-background: var(--gray-100)
+
+    color: var(--code-inline-color)
+    background: var(--code-inline-background)
+    border-radius: 4px
+    padding: 0 .6rem
