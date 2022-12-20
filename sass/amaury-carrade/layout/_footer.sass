@@ -154,6 +154,19 @@ footer.page-footer
               font-size: .9em
               color: var(--yellow-100)
 
+        // On no-so-large screens, we don't display the first item (the name),
+        // and its separator.
+        +until-fullhd
+          &:first-child
+            display: none
+
+          &:nth-child(2)
+            margin-left: 0
+            padding-left: 0
+
+            &:before
+              display: none
+
     .column.is-license
       font-size: 1.6rem
       user-select: none
