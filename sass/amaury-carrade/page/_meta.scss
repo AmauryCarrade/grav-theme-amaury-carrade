@@ -41,6 +41,7 @@ aside.article-meta-edit {
     a {
         color: var(--yellow-900);
         opacity: .8;
+        text-decoration: none;
 
         &:hover {
             text-decoration: none;
@@ -89,6 +90,7 @@ aside.article-meta-bottom {
     }
 
     .tag {
+        transition: background-color .1s ease-in-out;
 
         &.is-large {
             font-weight: 300;
@@ -96,6 +98,11 @@ aside.article-meta-bottom {
 
         a {
             color: white;
+            text-decoration: none;
+        }
+
+        &:hover {
+            background: var(--yellow-900);
         }
     }
 
@@ -121,6 +128,8 @@ aside.article-meta-bottom {
         .creative-commons-icons {
             color: var(--yellow-800);
             font-size: 2em;
+
+            text-decoration: none;
 
             @include unselectable;
 

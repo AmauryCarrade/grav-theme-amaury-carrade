@@ -96,6 +96,9 @@ $frontpage-space-between-first-blog-and-others: 333px;
 $navbar-margin-top: .8rem;
 $navbar-avatar-size: 48px;
 
+$menu-item-hover-color: $white;
+$menu-item-active-color: $white;
+
 @import "bulma/bulma";
 @import "bulma-tooltip/src/sass/index";
 @import "bulma-timeline/src/sass/index";

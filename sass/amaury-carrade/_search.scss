@@ -77,6 +77,7 @@ main.page-main-search {
 
                 background: rgba(var(--yellow-200), .4);
                 color: var(--gray-900);
+                text-decoration: none;
 
                 @include blur-background;
 

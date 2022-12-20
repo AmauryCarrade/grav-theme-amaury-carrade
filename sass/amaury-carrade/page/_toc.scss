@@ -111,6 +111,7 @@ aside.table-of-contents {
                 }
 
                 color: var(--yellow-900);
+                text-decoration: none;
 
                 @include mobile {
                     font-size: 1.3em;
@@ -136,6 +137,7 @@ aside.table-of-contents {
                 a {
                     color: var(--yellow-800);
                     font-size: 1rem;
+                    text-decoration: none;
 
                     @include touch {
                         font-size: .9rem;

@@ -1,5 +1,9 @@
 a
   transition: color .2s ease-in-out
+  text-decoration: underline
+  text-decoration-thickness: .01rem
 
   &:hover
+    // For links where base decoration is disabled, we force underline on hover,
+    // except if we REALLY want to skip it—but we better have a GOOD alternative!
     text-decoration: underline
