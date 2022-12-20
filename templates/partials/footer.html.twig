@@ -6,7 +6,7 @@
                     <h3>Un projet lié à ce que je fais ?</h3>
                     <p>
                         <a href="mailto:{{ theme_config.email|safe_email }}" class="email">{{ theme_config.email|safe_email }}</a>
-                        <button class="copy" data-copy="{{ theme_config.email|safe_email }}" title="Copier l'adresse de courriel dans le presse-papier">
+                        <button class="copy" data-copy="{{ theme_config.email|safe_email }}" title="Copier l'adresse de courriel dans le presse-papier" aria-label="Copier l'adresse de courriel dans le presse-papier">
                             <span class="icon is-small">
                               <i class="far fa-clipboard"></i>
                             </span>
