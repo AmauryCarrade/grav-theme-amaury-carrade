@@ -13,3 +13,17 @@ ul
   @include mobile
     padding-left: $article-padding-mobile
     padding-right: $article-padding-mobile
+
+
+=align($align)
+  &, p, ol, ul, dl, h1, h2, h3, h4, h5, h6, table, figure, div
+    text-align: $align
+
+  div.hljs-code-div
+    text-align: left
+
+.align-center
+  +align(center)
+
+.align-right
+  +align(right)
