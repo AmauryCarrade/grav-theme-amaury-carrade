@@ -108,6 +108,7 @@ section.homepage-section
     padding: 0 2rem
 
     +mobile
+      flex-direction: column
       padding: 0 1rem
 
     color: var(--yellow-800)
@@ -121,6 +122,13 @@ section.homepage-section
         content: '•'
         position: absolute
         right: 0
+
+      +mobile
+        padding-right: 0
+        margin-right: 0
+
+        &:after
+          display: none
 
     ul
       display: flex
