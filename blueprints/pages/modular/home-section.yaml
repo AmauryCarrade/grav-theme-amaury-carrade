@@ -44,14 +44,14 @@ form:
                   help: |
                     Illustration affichée en grand au dessus du titre et de la description.
                     Envoyez-là au préalable au dessus, dans la zone médias.
-                  validate:
-                    required: true
                 .type:
                   type: elements
                   label: Type de lien
                   help: |
                     Sélectionnez le type de lien, puis renseignez le lien ou la page.
                     Vous pouvez lier vers une page interne ou un lien externe arbitraire.
+                  validate:
+                    required: true
                   default: link
                   options:
                     link: Lien arbitraire
@@ -99,6 +99,8 @@ form:
                   help: |
                     Sélectionnez le type de lien, puis renseignez le lien ou la page.
                     Vous pouvez lier vers une page interne ou un lien externe arbitraire.
+                  validate:
+                    required: true
                   default: link
                   options:
                     link: Lien arbitraire
@@ -125,32 +127,3 @@ form:
                           show_root: false
                           help: |
                             La page vers laquelle ce lien pointe.
-
-ex:
-  .type:
-    type: toggle
-    label: Type de lien
-    help: |
-      Vous pouvez lier vers une page interne ou un lien externe arbitraire.
-    default: link
-    highlight: link
-    options:
-      link: Lien arbitraire
-      pages: Page
-    validate:
-      required: true
-  .link:
-    type: text
-    label: Lien
-    help: |
-      Le lien vers lequel ce menu pointe (absolu, relatif, ou ancre, ou même courriel ou autres,
-      tout est possible), si l'option « lien arbitraire » est sélectionnée.
-  .page:
-    type: pages
-    classes: fancy
-    label: Page
-    show_all: true
-    show_modular: false
-    show_root: false
-    help: |
-      La page vers laquelle ce menu pointe, si l'option « page » est sélectionnée.
