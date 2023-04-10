@@ -7,27 +7,27 @@
         </article>
     </header>
 
-    <div class="container">
+    <div class="section-content">
         <section class="main-items">
             {% for main in header.main %}
                 <article>
-                    <a href="{{ main|link_or_page }}">
-                        <figure style="background-image: url('{{ page.media[main.image].url }}')"></figure>
-                    </a>
-                    <h3>
-                        <a href="{{ main|link_or_page }}" class="pointy-link">
-                            {{ main.title }}
-                        </a>
-                    </h3>
                     <article>
+                        <h3>
+                            <a href="{{ main|link_or_page }}" class="pointy-link">
+                                {{ main.title }}
+                            </a>
+                        </h3>
                         {{ main.content|markdown }}
                     </article>
+                    {# <a href="{{ main|link_or_page }}">
+                        <figure style="background-image: url('{{ page.media[main.image].url }}')"></figure>
+                    </a> #}
                 </article>
             {% endfor %}
         </section>
 
         <aside class="see-also-items">
-            <h3>Mais aussi</h3>
+            <h3>Et aussi</h3>
             <ul>
                 {% for also in header.see_also %}
                     <li><a href="{{ also|link_or_page }}">{{ also.title }}</a></li>
